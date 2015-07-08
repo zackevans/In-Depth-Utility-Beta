@@ -31,10 +31,10 @@ public class LaunchApp
     	
         frame.getContentPane().add(layerPane);
         
-        wallpaper.setOpaque(false);
+        //wallpaper.setOpaque(false);
         
         bufferPanel.initialize();
-        bufferPanel.setOpaque(false);
+        //bufferPanel.setOpaque(false);
         
         bufferPanel.setSize(Window_Width, Window_Height);
         

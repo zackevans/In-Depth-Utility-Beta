@@ -20,6 +20,7 @@ public class BufferPanel extends JPanel
 		addComponents();
 		setDefaults();
 		initializePanels();
+		setOpaque(false);
 		setBorder(BorderFactory.createLineBorder(Color.red));
 	}
 	

@@ -1,8 +1,10 @@
 package menu.main;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -35,8 +37,8 @@ public class MainMenu extends JPanel
 		createComponents();
 		layoutComponents();
 		addListeners();
-		setOpaque(true);
-		//setBorder(BorderFactory.createLineBorder(Color.BLUE));
+		setOpaque(false);
+		setBorder(BorderFactory.createLineBorder(Color.BLUE));
 	}
 	
 	public void createComponents()
@@ -50,9 +52,8 @@ public class MainMenu extends JPanel
 	{
 		setLayout(null);
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20));//-20 
-		setOpaque(false);
-		add(mainTittleLbl);
 		
+		add(mainTittleLbl);
 	}
 	
 	public void addListeners()
