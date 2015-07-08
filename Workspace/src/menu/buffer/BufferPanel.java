@@ -1,5 +1,6 @@
 package menu.buffer;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
