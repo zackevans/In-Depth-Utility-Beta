@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import menu.buffer.BufferPanel;
-import program.walpaper.Wallpaper;
+import program.wallpaper.Wallpaper;
 
 public class LaunchApp 
 {
@@ -36,11 +36,11 @@ public class LaunchApp
 		});
     }
     
-    
     public static void createAndShowGUI()
     {
     	frame.setSize(Window_Width, Window_Height); 
     	frame.setMinimumSize(new Dimension(Window_Width,Window_Height));
+    	frame.setResizable(false);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         frame.getContentPane().add(layerPane);
         

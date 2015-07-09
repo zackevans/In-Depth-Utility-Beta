@@ -48,7 +48,7 @@ public class MainMenu extends JPanel
 		layoutComponents();
 		addListeners();
 		setOpaque(false);
-		setBorder(BorderFactory.createLineBorder(Color.BLUE));
+		//setBorder(BorderFactory.createLineBorder(Color.BLUE));
 	}
 	
 	public void createComponents() 
@@ -122,7 +122,7 @@ public class MainMenu extends JPanel
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("SettignsBtn");
-				//bufferPanel.showPanel("SETTINGS_MENU");
+				bufferPanel.showPanel("SETTINGS_MENU");
 			}
 		});
 		

@@ -6,14 +6,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import menu.main.MainMenu;
+import menu.settings.SettingsMenu;
+import toolbar.topbar.TopBar;
 
 public class BufferPanel extends JPanel
 {
 	private Map <String, JPanel> mapPanels = new HashMap <String, JPanel>();
 	private MainMenu mainMenu;
+	private SettingsMenu settingsMenu;
 	
 	public void initialize()
 	{
@@ -22,18 +26,25 @@ public class BufferPanel extends JPanel
 		setDefaults();
 		initializePanels();
 		setOpaque(false);
-		setBorder(BorderFactory.createLineBorder(Color.red));
 	}
 	
 	public void createComponents() 
 	{
+		// Main Menu Settings
 		mainMenu = new MainMenu(this);
 		mapPanels.put("MAIN_MENU", mainMenu);
+		
+		// Security Settings
+		settingsMenu = new SettingsMenu(this);
+		mapPanels.put("SETTINGS_MENU", settingsMenu);
 	}
 	
 	public void addComponents()
 	{
 		add(mainMenu);
+		
+		add(settingsMenu);
+		
 	}
 	
 	public void setDefaults()
@@ -44,8 +55,9 @@ public class BufferPanel extends JPanel
 	public void initializePanels()
 	{
 		mainMenu.initialize();
+		
+		settingsMenu.initialize();
 	}
-	
 	
 	public void showPanel(String panelName)
 	{
