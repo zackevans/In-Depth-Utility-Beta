@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import menu.main.MainMenu;
 import menu.settings.SettingsMenu;
+import menu.settings.security.SecuritySettings;
 import toolbar.topbar.TopBar;
 
 public class BufferPanel extends JPanel
@@ -18,6 +19,7 @@ public class BufferPanel extends JPanel
 	private Map <String, JPanel> mapPanels = new HashMap <String, JPanel>();
 	private MainMenu mainMenu;
 	private SettingsMenu settingsMenu;
+	private SecuritySettings securitySettings;
 	
 	public void initialize()
 	{
@@ -37,6 +39,8 @@ public class BufferPanel extends JPanel
 		// Security Settings
 		settingsMenu = new SettingsMenu(this);
 		mapPanels.put("SETTINGS_MENU", settingsMenu);
+		securitySettings = new SecuritySettings(this);
+		mapPanels.put("SECURITY_SETTINGS", securitySettings);
 	}
 	
 	public void addComponents()
@@ -44,7 +48,7 @@ public class BufferPanel extends JPanel
 		add(mainMenu);
 		
 		add(settingsMenu);
-		
+		add(securitySettings);	
 	}
 	
 	public void setDefaults()
@@ -57,6 +61,7 @@ public class BufferPanel extends JPanel
 		mainMenu.initialize();
 		
 		settingsMenu.initialize();
+		securitySettings.initialize();
 	}
 	
 	public void showPanel(String panelName)
