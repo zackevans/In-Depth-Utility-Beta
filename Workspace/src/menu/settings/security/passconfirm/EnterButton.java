@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
+import sql.system.settings.SystemDatabase;
 
 public class EnterButton extends JButton 
 {
 	BufferPanel bufferPanel;
-
+	private PasswordConfirm passConfirm = new PasswordConfirm(bufferPanel);
+	private SystemDatabase systemdb = new SystemDatabase();
+	
 	public EnterButton (BufferPanel bufferPanel)
 	{
 		super();
@@ -37,6 +40,36 @@ public class EnterButton extends JButton
 			public void actionPerformed(ActionEvent arg0) 
 			{	
 				System.out.println("EnterBtn");
+				
+				boolean matchPass = passConfirm.comparePass();
+				
+				if (matchPass == true)
+				{
+					boolean row = systemdb.checkRow();
+					
+					if(row == true)
+					{
+						
+					}
+					
+					else
+					{
+						
+					}
+					
+					// TODO tip move to first launch
+					passConfirm.hideWarning();
+					passConfirm.clearTxtFields();
+					bufferPanel.showPanel("SECURITY_SETTINGS");
+					
+				}
+				
+				else
+				{
+					passConfirm.showWarning();
+					passConfirm.clearTxtFields();
+				}
+				
 			}
 		});
 	}
