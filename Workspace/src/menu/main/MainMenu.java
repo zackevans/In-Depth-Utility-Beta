@@ -54,7 +54,7 @@ public class MainMenu extends JPanel
 	public void createComponents() 
 	{
 		mainTittleLbl = new JLabel("In Depth Utility");
-		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014");
+		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
 		notesBtn = new JButton("Notes");
 		remindersBtn = new JButton ("Reminders");
 		mailBtn = new JButton ("Mail");
@@ -148,7 +148,7 @@ public class MainMenu extends JPanel
 	public static void  createBottomLabel()
 	{
 		companyNameLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12));
-	    int y = (int) (Window_Width)/2+85;
+	    int y = (int) (Window_Width)/2+90;
 	    companyNameLbl.setBounds(480, y,225,40);
 	}
 	public void createPersonalButton()

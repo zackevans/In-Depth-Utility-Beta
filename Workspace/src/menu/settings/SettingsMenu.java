@@ -54,7 +54,7 @@ public class SettingsMenu extends JPanel
 	public void createComponents() 
 	{
 		mainTittleLbl = new JLabel("Settings Menu");
-		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014");
+		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
 		generalBtn = new JButton("General");
 		securityBtn = new JButton("Security");
 		returnBtn = new JButton("Return");
@@ -118,7 +118,7 @@ public class SettingsMenu extends JPanel
 
 	public static void  createBottomLabel() {
 		companyNameLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12));
-	    int y = (int) (Window_Width)/2+85;
+	    int y = (int) (Window_Width)/2+90;
 	    companyNameLbl.setBounds(480, y,225,40);
 	}
 	

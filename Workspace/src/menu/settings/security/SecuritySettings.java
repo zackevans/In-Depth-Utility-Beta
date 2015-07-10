@@ -56,7 +56,7 @@ public class SecuritySettings extends JPanel
 	public void createComponents()
 	{
 		mainTittleLbl = new JLabel("Security Settings");
-		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014");
+		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
 		createPswBtn = new JButton ("Create Password");
 		removePswBtn = new JButton ("Remove Password");
 		resetPswBtn = new JButton ("Reset Password");
@@ -90,8 +90,8 @@ public class SecuritySettings extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
-				
+				System.out.println("Create Passowrd Btn");
+				bufferPanel.showPanel("PASSWORD_CONFIRM");
 			}
 		});
 		
@@ -131,7 +131,7 @@ public class SecuritySettings extends JPanel
 	
 	public static void  createBottomLabel() {
 		companyNameLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12));
-	    int y = (int) (Window_Width)/2+85;
+	    int y = (int) (Window_Width)/2+90;
 	    companyNameLbl.setBounds(480, y,225,40);
 	}
 
