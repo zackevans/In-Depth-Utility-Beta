@@ -193,6 +193,4 @@ public class MainMenu extends JPanel
 	    aboutBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,16));
 	    //aboutBtn.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 	}
-	
-	
 }
