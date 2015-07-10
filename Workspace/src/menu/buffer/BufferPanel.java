@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import menu.main.MainMenu;
 import menu.settings.SettingsMenu;
 import menu.settings.security.SecuritySettings;
+import menu.settings.security.passconfirm.PasswordConfirm;
 import toolbar.topbar.TopBar;
 
 public class BufferPanel extends JPanel
@@ -20,6 +21,8 @@ public class BufferPanel extends JPanel
 	private MainMenu mainMenu;
 	private SettingsMenu settingsMenu;
 	private SecuritySettings securitySettings;
+	private PasswordConfirm passConfirm;
+	
 	
 	public void initialize()
 	{
@@ -32,7 +35,7 @@ public class BufferPanel extends JPanel
 	
 	public void createComponents() 
 	{
-		// Main Menu Settings
+		// Main Menu 
 		mainMenu = new MainMenu(this);
 		mapPanels.put("MAIN_MENU", mainMenu);
 		
@@ -41,14 +44,19 @@ public class BufferPanel extends JPanel
 		mapPanels.put("SETTINGS_MENU", settingsMenu);
 		securitySettings = new SecuritySettings(this);
 		mapPanels.put("SECURITY_SETTINGS", securitySettings);
+		passConfirm = new PasswordConfirm(this);
+		mapPanels.put("PASSWORD_CONFIRM", passConfirm);
 	}
 	
 	public void addComponents()
 	{
+		// Main Menu 
 		add(mainMenu);
 		
+		// Security Settings
 		add(settingsMenu);
 		add(securitySettings);	
+		add(passConfirm);
 	}
 	
 	public void setDefaults()
@@ -58,10 +66,13 @@ public class BufferPanel extends JPanel
 	
 	public void initializePanels()
 	{
+		// Main Menu
 		mainMenu.initialize();
 		
+		// Security Settings
 		settingsMenu.initialize();
 		securitySettings.initialize();
+		passConfirm.initialize();
 	}
 	
 	public void showPanel(String panelName)
