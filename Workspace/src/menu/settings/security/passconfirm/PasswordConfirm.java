@@ -117,4 +117,38 @@ public class PasswordConfirm extends JPanel
 		invalidLbl.setForeground(Color.red);
 		invalidLbl.setVisible(false);
 	}
+	
+	public boolean comparePass()
+	{
+		String iniText = initialField.getText();
+		String reText = retypeField.getText();
+		boolean r = false;
+		
+		if (iniText.length() > 0 && reText.length() > 0) {
+			if (iniText.equals(reText)){
+				r = true;
+			}
+		}
+		return r; 
+	}
+	
+	public void clearTxtFields()
+	{
+		initialField.setText("");
+		retypeField.setText("");
+	}
+	
+	public void showWarning()
+	{
+		invalidLbl.setVisible(true);
+	}
+	
+	public void	hideWarning()
+	{
+		invalidLbl.setVisible(false);
+	}
+	
+	
+	
+	
 }
