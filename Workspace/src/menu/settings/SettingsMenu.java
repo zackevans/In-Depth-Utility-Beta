@@ -94,7 +94,7 @@ public class SettingsMenu extends JPanel
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("SecurityBtn");
-				//bufferPanel.showPanel("SECURITY_SETTINGS");
+				bufferPanel.showPanel("SECURITY_SETTINGS");
 			}
 		});
 
