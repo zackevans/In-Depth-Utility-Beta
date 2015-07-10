@@ -14,6 +14,8 @@ import javax.swing.SwingUtilities;
 
 import menu.buffer.BufferPanel;
 import program.wallpaper.Wallpaper;
+import sql.DataBase;
+import sql.system.settings.SystemDatabase;
 
 public class LaunchApp 
 {
@@ -21,7 +23,6 @@ public class LaunchApp
 	public static final int Window_Height = 500;
 	private static JFrame frame = new JFrame();
     private static JLayeredPane layerPane = new JLayeredPane();
-    private JPanel panelGreen = new JPanel();
     private static Wallpaper wallpaper = new Wallpaper(new ImageIcon("Images/Wallpaper/mavericks_2560.jpg").getImage());
     static BufferPanel bufferPanel = new BufferPanel();
     
@@ -36,7 +37,7 @@ public class LaunchApp
 		});
     }
     
-    public static void createAndShowGUI()
+    private static void createAndShowGUI()
     {
     	frame.setSize(Window_Width, Window_Height); 
     	frame.setMinimumSize(new Dimension(Window_Width,Window_Height));
@@ -52,6 +53,23 @@ public class LaunchApp
         
         frame.pack();
         frame.setVisible(true);
+        
+        dataBaseCalls();
+    }
+    
+    
+    
+    private static void dataBaseCalls()
+    {
+    	final DataBase dataBase = new DataBase();
+    	final SystemDatabase systemdb = new SystemDatabase();
+    	
+    	dataBase.createDBLocation();
+		dataBase.createDatabase();
+		dataBase.checkConnection();
+		
+		systemdb.createSystemTable();
+		
     }
     
 
