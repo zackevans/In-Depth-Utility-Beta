@@ -12,9 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
+import menu.settings.security.passconfirm.PasswordConfirm;
+import sql.system.settings.SystemDatabase;
 
 public class SecuritySettings extends JPanel
 {
+	private SystemDatabase systemdb = new SystemDatabase();
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
 	public static final int btnLn1 = 50+55;
@@ -31,6 +34,7 @@ public class SecuritySettings extends JPanel
 	private JButton resetPswBtn;
 	private JButton removePswBtn;
 	private JButton returnBtn;
+	private PasswordConfirm passConfirm; 
 	BufferPanel bufferPanel;
 	
 	public SecuritySettings (BufferPanel bufferPanel)
@@ -42,7 +46,7 @@ public class SecuritySettings extends JPanel
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		// set buttons
+		setButtons();
 	}
 	
 	public void initialize ()
@@ -61,6 +65,7 @@ public class SecuritySettings extends JPanel
 		removePswBtn = new JButton ("Remove Password");
 		resetPswBtn = new JButton ("Reset Password");
 		returnBtn = new JButton ("Return");
+		passConfirm =  new PasswordConfirm(bufferPanel);
 		
 		createMainTittleLable();
 		createBottomLabel();
@@ -92,6 +97,8 @@ public class SecuritySettings extends JPanel
 			{
 				System.out.println("Create Passowrd Btn");
 				bufferPanel.showPanel("PASSWORD_CONFIRM");
+				passConfirm.hideWarning();
+				passConfirm.clearTxtFields();
 			}
 		});
 		
@@ -100,7 +107,7 @@ public class SecuritySettings extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
+				System.out.println("Reset Pass Btn");
 			}
 		});
 		
@@ -159,6 +166,25 @@ public class SecuritySettings extends JPanel
 		int x = (Window_Height)/2+rightRow;
 	    returnBtn.setBounds(x,btnLn2,btnWidth,btnHeight);
 	    returnBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14));
+	}
+	
+	public void setButtons()
+	{
+		boolean passExist = systemdb.getPassExist();
+		
+		if (passExist == true)
+		{
+			createPswBtn.setEnabled(false);
+			resetPswBtn.setEnabled(true);
+			removePswBtn.setEnabled(true);
+		}
+		
+		else
+		{
+			createPswBtn.setEnabled(true);
+			resetPswBtn.setEnabled(false);
+			removePswBtn.setEnabled(false);
+		}
 	}
 	
 }
