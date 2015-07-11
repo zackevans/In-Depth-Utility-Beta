@@ -49,12 +49,14 @@ public class EnterButton extends JButton
 					
 					if(row == true)
 					{
-						
+						systemdb.updatePassword(passConfirm.getPass());
+						systemdb.updatePassExist(true);
 					}
 					
 					else
 					{
-						
+						systemdb.createPassword(passConfirm.getPass());
+						systemdb.updatePassExist(true);
 					}
 					
 					// TODO tip move to first launch
