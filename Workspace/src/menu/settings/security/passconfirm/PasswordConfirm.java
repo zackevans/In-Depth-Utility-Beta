@@ -27,6 +27,7 @@ public class PasswordConfirm extends JPanel
 	private static RetypeField retypeField;
 	private static EnterButton enterBtn;
 	private static ReturnButton returnBtn;
+	public String passwordText;
 	BufferPanel bufferPanel;
 	
 	public PasswordConfirm (BufferPanel bufferPanel)
@@ -138,6 +139,12 @@ public class PasswordConfirm extends JPanel
 		retypeField.setText("");
 	}
 	
+	public String getPass()
+	{
+		passwordText = initialField.getText();
+		return passwordText;
+	}
+	
 	public void showWarning()
 	{
 		invalidLbl.setVisible(true);
@@ -147,8 +154,4 @@ public class PasswordConfirm extends JPanel
 	{
 		invalidLbl.setVisible(false);
 	}
-	
-	
-	
-	
 }
