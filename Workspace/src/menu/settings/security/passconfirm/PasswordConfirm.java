@@ -113,9 +113,9 @@ public class PasswordConfirm extends JPanel
 	
 	public static void createInvalidLabel()
 	{
-		invalidLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,14));
+		invalidLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,16));
 		invalidLbl.setBounds(360,120,350,40);
-		invalidLbl.setForeground(Color.red);
+		invalidLbl.setForeground(Color.RED);
 		invalidLbl.setVisible(false);
 	}
 	

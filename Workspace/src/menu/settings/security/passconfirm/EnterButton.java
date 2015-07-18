@@ -45,25 +45,27 @@ public class EnterButton extends JButton
 				
 				if (matchPass == true)
 				{
-					boolean row = systemdb.checkRow();
-					
-					if(row == true)
+					if (passConfirm.getPass().length() >0)
 					{
-						systemdb.updatePassword(passConfirm.getPass());
-						systemdb.updatePassExist(true);
+						boolean row = systemdb.checkRow();
+						
+						if(row == true)
+						{
+							systemdb.updatePassword(passConfirm.getPass());
+							systemdb.updatePassExist(true);
+						}
+						
+						else
+						{
+							systemdb.createPassword(passConfirm.getPass());
+							systemdb.updatePassExist(true);
+						}
+						
+						// TODO tip move to first launch
+						passConfirm.hideWarning();
+						passConfirm.clearTxtFields();
+						bufferPanel.showPanel("SECURITY_SETTINGS");
 					}
-					
-					else
-					{
-						systemdb.createPassword(passConfirm.getPass());
-						systemdb.updatePassExist(true);
-					}
-					
-					// TODO tip move to first launch
-					passConfirm.hideWarning();
-					passConfirm.clearTxtFields();
-					bufferPanel.showPanel("SECURITY_SETTINGS");
-					
 				}
 				
 				else

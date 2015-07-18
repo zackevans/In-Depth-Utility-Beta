@@ -8,6 +8,8 @@ import java.sql.Statement;
 
 public class SystemDatabase 
 {
+	final static String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
+	
 	public void createSystemTable()
 	{
 		Connection c = null;
@@ -16,7 +18,7 @@ public class SystemDatabase
 	    try 
 	    {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c = DriverManager.getConnection(dbLocation);
 	      System.out.println("Opened database successfully");
 
 	      stmt = c.createStatement();
@@ -46,7 +48,7 @@ public class SystemDatabase
 	    try 
 	    {  
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c = DriverManager.getConnection(dbLocation);
 	      c.setAutoCommit(false);
 	  
 	      String sql = "INSERT INTO SYSTEM_SETTINGS (PASSWORD,PASS_EXIST)" +
@@ -76,7 +78,7 @@ public class SystemDatabase
 		try 
 	    {
 			Class.forName("org.sqlite.JDBC");
-		    dbConnection = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+		    dbConnection = DriverManager.getConnection(dbLocation);
 		    dbConnection.setAutoCommit(false);
 		    
 			String updateTableSQL = "UPDATE SYSTEM_SETTINGS SET PASSWORD = ? WHERE ID = ?";
@@ -109,7 +111,7 @@ public class SystemDatabase
 	    try 
 	    {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c = DriverManager.getConnection(dbLocation);
 	      c.setAutoCommit(false);
 
 	      stmt = c.createStatement();
@@ -139,7 +141,7 @@ public class SystemDatabase
 	    try 
 	    {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c = DriverManager.getConnection(dbLocation);
 	      c.setAutoCommit(false);
 	     
 
@@ -177,7 +179,7 @@ public class SystemDatabase
 	    try 
 	    {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c = DriverManager.getConnection(dbLocation);
 	      c.setAutoCommit(false);
 	  
 	      stmt = c.createStatement();
@@ -206,7 +208,7 @@ public class SystemDatabase
 		try 
 	    {
 			Class.forName("org.sqlite.JDBC");
-		    dbConnection = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+		    dbConnection = DriverManager.getConnection(dbLocation);
 		    dbConnection.setAutoCommit(false);
 		    
 			String updateTableSQL = "UPDATE SYSTEM_SETTINGS SET PASS_EXIST = ? WHERE ID = ?";

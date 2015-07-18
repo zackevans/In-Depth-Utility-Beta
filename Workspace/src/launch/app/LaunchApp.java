@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import menu.buffer.BufferPanel;
 import program.wallpaper.Wallpaper;
@@ -23,7 +25,7 @@ public class LaunchApp
 	public static final int Window_Height = 500;
 	private static JFrame frame = new JFrame();
     private static JLayeredPane layerPane = new JLayeredPane();
-    private static Wallpaper wallpaper = new Wallpaper(new ImageIcon("Images/Wallpaper/mavericks_2560.jpg").getImage());
+    private static Wallpaper wallpaper; 
     static BufferPanel bufferPanel = new BufferPanel();
     
     public static void main(String[] args) 
@@ -35,6 +37,8 @@ public class LaunchApp
 				createAndShowGUI();
 			}
 		});
+    	
+    	dataBaseCalls();
     }
     
     private static void createAndShowGUI()
@@ -43,21 +47,23 @@ public class LaunchApp
     	frame.setMinimumSize(new Dimension(Window_Width,Window_Height));
     	frame.setResizable(false);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        frame.getContentPane().add(layerPane);
+        
         
         bufferPanel.initialize();       
         bufferPanel.setSize(frame.getWidth(),frame.getHeight());
       
+        wallpaper = new Wallpaper(new ImageIcon("/Library/Desktop Pictures/Underwater.jpg").getImage());
+        
         layerPane.add(wallpaper, new Integer(0), 0);
         layerPane.add(bufferPanel, new Integer(1), 0);
+        
+        frame.getContentPane().add(layerPane);
         
         frame.pack();
         frame.setVisible(true);
         
-        dataBaseCalls();
+        
     }
-    
-    
     
     private static void dataBaseCalls()
     {
@@ -71,6 +77,4 @@ public class LaunchApp
 		systemdb.createSystemTable();
 		
     }
-    
-
 }

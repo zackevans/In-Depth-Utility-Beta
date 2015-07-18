@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
+import menu.settings.security.enterpassword.EnterPassword;
 import menu.settings.security.passconfirm.PasswordConfirm;
 import sql.system.settings.SystemDatabase;
 
@@ -34,7 +35,8 @@ public class SecuritySettings extends JPanel
 	private JButton resetPswBtn;
 	private JButton removePswBtn;
 	private JButton returnBtn;
-	private PasswordConfirm passConfirm; 
+	private PasswordConfirm passConfirm;
+	private EnterPassword enterPass;
 	BufferPanel bufferPanel;
 	
 	public SecuritySettings (BufferPanel bufferPanel)
@@ -66,6 +68,8 @@ public class SecuritySettings extends JPanel
 		resetPswBtn = new JButton ("Reset Password");
 		returnBtn = new JButton ("Return");
 		passConfirm =  new PasswordConfirm(bufferPanel);
+		enterPass = new EnterPassword(bufferPanel);
+		
 		
 		createMainTittleLable();
 		createBottomLabel();
@@ -108,6 +112,9 @@ public class SecuritySettings extends JPanel
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("Reset Pass Btn");
+				bufferPanel.showPanel("ENTER_PASSWORD");
+				enterPass.clearFields();
+				enterPass.showWarning(false);
 			}
 		});
 		
