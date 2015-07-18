@@ -25,7 +25,7 @@ public class LaunchApp
 	public static final int Window_Height = 500;
 	private static JFrame frame = new JFrame();
     private static JLayeredPane layerPane = new JLayeredPane();
-    private static Wallpaper wallpaper = new Wallpaper(new ImageIcon("Images/Wallpaper/Wallpaper3.jpg").getImage());
+    private static Wallpaper wallpaper; 
     static BufferPanel bufferPanel = new BufferPanel();
     
     public static void main(String[] args) 
@@ -52,6 +52,8 @@ public class LaunchApp
         bufferPanel.initialize();       
         bufferPanel.setSize(frame.getWidth(),frame.getHeight());
       
+        wallpaper = new Wallpaper(new ImageIcon("/Library/Desktop Pictures/Underwater.jpg").getImage());
+        
         layerPane.add(wallpaper, new Integer(0), 0);
         layerPane.add(bufferPanel, new Integer(1), 0);
         
