@@ -6,9 +6,11 @@ import java.sql.DriverManager;
 
 public class DataBase 
 {
+	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
+
 	public void createDBLocation()
 	{
-		File file = new File("IDU_Files");
+		File file = new File(System.getProperty("user.home"),"Library/IDU Data");
 		
 		if (!file.exists())
 		{
@@ -27,7 +29,7 @@ public class DataBase
 	    try 
 	    {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c = DriverManager.getConnection(dbLocation);
 	    } 
 	    catch ( Exception e ) 
 	    {
@@ -39,11 +41,13 @@ public class DataBase
 	
 	public void checkConnection()
 	{
+		boolean connection = false;
 		Connection c = null;
 		try 
 	    {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c = DriverManager.getConnection(dbLocation);
+	      connection = true;
 	    } 
 	    catch ( Exception e ) 
 	    {
@@ -51,6 +55,6 @@ public class DataBase
 	      System.exit(0);
 	    }
 		
-		System.out.println("database connected successfully");
+		System.out.println("database connected: " + connection);
 	}
 }
