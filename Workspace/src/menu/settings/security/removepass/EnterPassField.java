@@ -1,8 +1,9 @@
-package menu.settings.security.enterpassword;
-
+package menu.settings.security.removepass;
 
 import java.awt.Graphics;
+
 import javax.swing.JPasswordField;
+
 import menu.buffer.BufferPanel;
 
 public class EnterPassField extends JPasswordField

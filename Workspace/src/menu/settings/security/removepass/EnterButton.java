@@ -1,4 +1,4 @@
-package menu.settings.security.enterpassword;
+package menu.settings.security.removepass;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,13 +8,14 @@ import javax.swing.JButton;
 import menu.buffer.BufferPanel;
 import sql.system.settings.SystemDatabase;
 
+
 public class EnterButton extends JButton
 {
 	BufferPanel bufferPanel;
-	private EnterPassword ep = new EnterPassword(bufferPanel);
+	private RemovePassword removePass = new RemovePassword(bufferPanel);
 	private SystemDatabase sd = new SystemDatabase();
 	
-	public EnterButton(BufferPanel bufferPanel)
+	public EnterButton (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
@@ -38,19 +39,22 @@ public class EnterButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				String pass = ep.getPassword();
+				String pass = removePass.getPassword();
 				String dbPass = sd.getPassword();
 				
 				if (pass.equals(dbPass))
 				{
-					bufferPanel.showPanel("PASSWORD_CONFIRM");
+					sd.updatePassExist(false);
+					sd.updatePassword("");
+					bufferPanel.showPanel("SECURITY_SETTINGS");
 				}
 				
 				else
 				{
-					ep.showWarning(true);
+					removePass.showWarning(true);
 				}
 			}
 		});
 	}
+
 }

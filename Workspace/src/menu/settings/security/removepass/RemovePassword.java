@@ -1,4 +1,4 @@
-package menu.settings.security.enterpassword;
+package menu.settings.security.removepass;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +9,8 @@ import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
 
-public class EnterPassword extends JPanel
+
+public class RemovePassword extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
@@ -27,7 +28,7 @@ public class EnterPassword extends JPanel
 	private static ReturnButton returnBtn;
 	BufferPanel bufferPanel;
 	
-	public EnterPassword(BufferPanel bufferPanel)
+	public RemovePassword (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
@@ -43,7 +44,7 @@ public class EnterPassword extends JPanel
 	
 	public void createComponents()
 	{
-		mainTittleLbl = new JLabel("Reset Password");
+		mainTittleLbl = new JLabel("Remove Password");
 		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
 		enterPasswordLbl = new JLabel("Enter Password: ");
 		enterPassField = new EnterPassField(bufferPanel);
@@ -98,7 +99,7 @@ public class EnterPassword extends JPanel
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
 	    int x = (int) (Window_Height) / 2;
-	    mainTittleLbl.setBounds(x, 5, 250,40);
+	    mainTittleLbl.setBounds(x, 5, 400,40);
 	}
 	
 	public static void  createBottomLabel() {
@@ -120,4 +121,5 @@ public class EnterPassword extends JPanel
 		incorrectLbl.setForeground(Color.red);
 		incorrectLbl.setVisible(false);
 	}
+
 }

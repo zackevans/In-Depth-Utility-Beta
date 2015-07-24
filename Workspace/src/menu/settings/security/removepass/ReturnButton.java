@@ -1,4 +1,4 @@
-package menu.settings.security.enterpassword;
+package menu.settings.security.removepass;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +7,7 @@ import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
 
-public class ReturnButton extends JButton 
+public class ReturnButton extends JButton
 {
 	BufferPanel bufferPanel;
 	
