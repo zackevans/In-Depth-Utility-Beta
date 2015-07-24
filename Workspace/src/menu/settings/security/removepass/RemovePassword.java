@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
 
@@ -99,7 +101,8 @@ public class RemovePassword extends JPanel
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
 	    int x = (int) (Window_Height) / 2;
-	    mainTittleLbl.setBounds(x, 5, 400,40);
+	    mainTittleLbl.setBounds(0, 5, Window_Width,40);
+	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
 	public static void  createBottomLabel() {

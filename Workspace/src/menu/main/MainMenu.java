@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
 
@@ -141,8 +142,8 @@ public class MainMenu extends JPanel
 	{
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
 	    int x = (int) (Window_Height) / 2;
-	    mainTittleLbl.setBounds(x, 5, 200,40);
-	    //mainTittleLbl.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+	    mainTittleLbl.setBounds(0, 5, Window_Width,40);
+	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 
 	public static void  createBottomLabel()
