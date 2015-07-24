@@ -1,24 +1,19 @@
 package menu.settings.security.enterpassword;
 
+
 import java.awt.Graphics;
-import java.awt.Shape;
-import java.awt.geom.RoundRectangle2D;
-
 import javax.swing.JPasswordField;
-
 import menu.buffer.BufferPanel;
 
 public class EnterPassField extends JPasswordField
 {
 	BufferPanel bufferPanel;
-	private Shape shape;
 	
 	public EnterPassField (BufferPanel bufferPanel) 
     {
-       // setOpaque(false); 
         this.bufferPanel = bufferPanel;
     }
-	
+
  	protected void paintComponent(Graphics g) 
     {
          g.setColor(getBackground());
@@ -29,17 +24,6 @@ public class EnterPassField extends JPasswordField
     protected void paintBorder(Graphics g) 
     {
          g.setColor(getForeground());
-         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15,15);
     }
-    
-    public boolean contains(int x, int y) 
-    {
-         if (shape == null || !shape.getBounds().equals(getBounds())) 
-         {
-             shape = new RoundRectangle2D.Float(0, 0, getWidth()-1, getHeight()-1, 15, 15);
-         }
-         
-         return shape.contains(x, y);
-    }
-
 }

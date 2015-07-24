@@ -33,7 +33,6 @@ public class EnterPassword extends JPanel
 		this.bufferPanel = bufferPanel;
 	}
 	
-	
 	public void initialize ()
 	{
 		createComponents();
@@ -50,7 +49,7 @@ public class EnterPassword extends JPanel
 		enterPassField = new EnterPassField(bufferPanel);
 		enterBtn = new EnterButton(bufferPanel);
 		returnBtn = new ReturnButton(bufferPanel);
-		incorrectLbl = new JLabel("Incorrect Password"); // centerd label
+		incorrectLbl = new JLabel("Incorrect Password"); // center label
 		
 		createMainTittleLable();
 		createBottomLabel();

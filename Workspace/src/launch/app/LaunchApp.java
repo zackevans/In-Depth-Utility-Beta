@@ -52,7 +52,8 @@ public class LaunchApp
         bufferPanel.initialize();       
         bufferPanel.setSize(frame.getWidth(),frame.getHeight());
       
-        wallpaper = new Wallpaper(new ImageIcon("/Library/Desktop Pictures/Underwater.jpg").getImage());
+        //Library/Desktop Pictures/Underwater.jpg
+        wallpaper = new Wallpaper("/Library/Desktop Pictures/Underwater.jpg");
         
         layerPane.add(wallpaper, new Integer(0), 0);
         layerPane.add(bufferPanel, new Integer(1), 0);
@@ -61,8 +62,6 @@ public class LaunchApp
         
         frame.pack();
         frame.setVisible(true);
-        
-        
     }
     
     private static void dataBaseCalls()

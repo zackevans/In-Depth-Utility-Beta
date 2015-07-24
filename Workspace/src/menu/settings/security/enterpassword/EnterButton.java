@@ -13,7 +13,6 @@ public class EnterButton extends JButton
 	BufferPanel bufferPanel;
 	private EnterPassword ep = new EnterPassword(bufferPanel);
 	private SystemDatabase sd = new SystemDatabase();
-	private EnterPassword enterPass = new EnterPassword(bufferPanel);
 	
 	public EnterButton(BufferPanel bufferPanel)
 	{
@@ -49,7 +48,7 @@ public class EnterButton extends JButton
 				
 				else
 				{
-					enterPass.showWarning(true);
+					ep.showWarning(true);
 				}
 			}
 		});

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import menu.buffer.BufferPanel;
 import menu.settings.security.enterpassword.EnterPassword;
 import menu.settings.security.passconfirm.PasswordConfirm;
+import menu.settings.security.removepass.RemovePassword;
 import sql.system.settings.SystemDatabase;
 
 public class SecuritySettings extends JPanel
@@ -37,6 +38,7 @@ public class SecuritySettings extends JPanel
 	private JButton returnBtn;
 	private PasswordConfirm passConfirm;
 	private EnterPassword enterPass;
+	private RemovePassword removePass;
 	BufferPanel bufferPanel;
 	
 	public SecuritySettings (BufferPanel bufferPanel)
@@ -69,7 +71,7 @@ public class SecuritySettings extends JPanel
 		returnBtn = new JButton ("Return");
 		passConfirm =  new PasswordConfirm(bufferPanel);
 		enterPass = new EnterPassword(bufferPanel);
-		
+		removePass = new RemovePassword(bufferPanel);
 		
 		createMainTittleLable();
 		createBottomLabel();
@@ -123,7 +125,10 @@ public class SecuritySettings extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				
+				System.out.println("Remove Pass Btn");
+				bufferPanel.showPanel("REMOVE_PASSWORD");
+				removePass.clearFields();
+				removePass.showWarning(false);
 			}
 		});
 		
