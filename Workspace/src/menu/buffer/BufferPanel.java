@@ -14,6 +14,7 @@ import menu.settings.SettingsMenu;
 import menu.settings.security.SecuritySettings;
 import menu.settings.security.enterpassword.EnterPassword;
 import menu.settings.security.passconfirm.PasswordConfirm;
+import menu.settings.security.removepass.RemovePassword;
 import toolbar.topbar.TopBar;
 
 public class BufferPanel extends JPanel
@@ -24,6 +25,7 @@ public class BufferPanel extends JPanel
 	private SecuritySettings securitySettings;
 	private PasswordConfirm passConfirm;
 	private EnterPassword enterPassword;
+	private RemovePassword removePassword;
 	
 	
 	public void initialize()
@@ -50,6 +52,8 @@ public class BufferPanel extends JPanel
 		mapPanels.put("PASSWORD_CONFIRM", passConfirm);
 		enterPassword = new EnterPassword(this);
 		mapPanels.put("ENTER_PASSWORD", enterPassword);
+		removePassword = new RemovePassword(this);
+		mapPanels.put("REMOVE_PASSWORD", removePassword);
 	}
 	
 	public void addComponents()
@@ -62,6 +66,7 @@ public class BufferPanel extends JPanel
 		add(securitySettings);	
 		add(passConfirm);
 		add(enterPassword);
+		add(removePassword);
 	}
 	
 	public void setDefaults()
@@ -79,6 +84,7 @@ public class BufferPanel extends JPanel
 		securitySettings.initialize();
 		passConfirm.initialize();
 		enterPassword.initialize();
+		removePassword.initialize();
 	}
 	
 	public void showPanel(String panelName)
