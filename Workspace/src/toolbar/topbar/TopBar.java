@@ -14,9 +14,14 @@ public class TopBar extends JPanel
 {
 	BufferPanel bufferPanel;
 	
+	
 	public TopBar (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
 	}
+	
+	
+	
+	
 }
