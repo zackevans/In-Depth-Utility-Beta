@@ -40,6 +40,7 @@ public class CancelButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{	
+				System.out.println("Cancel button clicked");
 				bufferPanel.showPanel("SCREEN_SAVER");
 			}
 		});
