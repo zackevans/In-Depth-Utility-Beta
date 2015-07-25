@@ -7,6 +7,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.event.AncestorListener;
 
 import menu.buffer.BufferPanel;
 
@@ -33,6 +34,7 @@ public class Login extends JPanel
 	{
 		super();
 		this.bufferPanel = bufferPanel;
+		
 	}
 	
 	public void initialize ()
@@ -59,6 +61,7 @@ public class Login extends JPanel
 		createEnterPassLabel();
 		createIncorrectLabel();
 		enterPassField.setBounds(235,112,240,25);
+		
 		enterBtn.setBounds((Window_Height)/2+rightRow, btnLn2, btnWidth, btnHeight);
 		cancelBtn.setBounds((Window_Height)/2+leftRow, btnLn2, btnWidth, btnHeight);
 	}
