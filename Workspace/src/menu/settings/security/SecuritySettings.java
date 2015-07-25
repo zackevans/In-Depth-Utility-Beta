@@ -23,9 +23,9 @@ public class SecuritySettings extends JPanel
 	private SystemDatabase systemdb = new SystemDatabase();
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
-	public static final int btnLn1 = 50+55;
-	public static final int btnLn2 = 150+55;
-	public static final int btnLn3 = 250;
+	public static final int btnLn1 = 50+55+5;
+	public static final int btnLn2 = 150+55+5;
+	public static final int btnLn3 = 250+5;
 	public static final int leftRow = -75;
 	public static final int rightRow = 125;
 	public static final int btnWidth = 150;
@@ -146,7 +146,7 @@ public class SecuritySettings extends JPanel
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
 	    int x = (int) (Window_Height) / 2;
-	    mainTittleLbl.setBounds(0, 5, Window_Width,40);
+	    mainTittleLbl.setBounds(0, 20, Window_Width,40);
 	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	

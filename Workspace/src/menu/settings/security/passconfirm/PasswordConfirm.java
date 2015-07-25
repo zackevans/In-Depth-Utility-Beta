@@ -16,7 +16,7 @@ public class PasswordConfirm extends JPanel
 	public static final int Window_Height = 500;
 	public static final int btnWidth = 150;
 	public static final int btnHeight = 50;
-	public static final int btnLn2 = 200;
+	public static final int btnLn2 = 200+15;
 	public static final int leftRow = -75;
 	public static final int rightRow = 125;
 	private static JLabel mainTittleLbl;
@@ -62,8 +62,8 @@ public class PasswordConfirm extends JPanel
 		createEnterLabel();
 		createReEnterLabel();
 		createInvalidLabel();
-		initialField.setBounds(225, 75, 240, 25);
-		retypeField.setBounds(225, 150, 240, 25);
+		initialField.setBounds(225, 85, 240, 25);
+		retypeField.setBounds(225, 160, 240, 25);
 		returnBtn.setBounds((Window_Height)/2+leftRow, btnLn2, btnWidth, btnHeight);
 		enterBtn.setBounds((Window_Height)/2+rightRow, btnLn2, btnWidth, btnHeight);
 	}
@@ -93,7 +93,7 @@ public class PasswordConfirm extends JPanel
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
 	    int x = (int) (Window_Height) / 2;
-	    mainTittleLbl.setBounds(0, 5, Window_Width,40);
+	    mainTittleLbl.setBounds(0, 15, Window_Width,40);
 	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	} 
 	
@@ -105,18 +105,18 @@ public class PasswordConfirm extends JPanel
 	
 	public static void createEnterLabel(){
 		enterPassword.setFont(new Font("Helvetica Neue",Font.PLAIN,12));
-	    enterPassword.setBounds(227,45,225,40);
+	    enterPassword.setBounds(227,55,225,40);
 	}
 	
 	public static void createReEnterLabel() {
 		reEnterPassLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12));
-		reEnterPassLbl.setBounds(227,120,225,40);
+		reEnterPassLbl.setBounds(227,130,225,40);
 	}
 	
 	public static void createInvalidLabel()
 	{
 		invalidLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,16));
-		invalidLbl.setBounds(360,120,350,40);
+		invalidLbl.setBounds(360,130,350,40);
 		invalidLbl.setForeground(Color.RED);
 		invalidLbl.setVisible(false);
 	}

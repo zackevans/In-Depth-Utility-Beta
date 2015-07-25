@@ -101,7 +101,7 @@ public class RemovePassword extends JPanel
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
 	    int x = (int) (Window_Height) / 2;
-	    mainTittleLbl.setBounds(0, 5, Window_Width,40);
+	    mainTittleLbl.setBounds(0, 15, Window_Width,40);
 	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
