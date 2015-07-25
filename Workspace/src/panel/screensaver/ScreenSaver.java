@@ -2,6 +2,8 @@ package panel.screensaver;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,6 +37,7 @@ public class ScreenSaver extends JPanel
 	{
 		createComponents();
 		layoutComponents();
+		addListeners();
 		setOpaque(false);
 	}
 	
@@ -55,6 +58,19 @@ public class ScreenSaver extends JPanel
 		add(mainBanner);
 		add(clickMessage);
 	}
+	
+	public void addListeners()
+	{
+		addMouseListener(new MouseAdapter() 
+		{ 
+	          public void mousePressed(MouseEvent e) 
+	          { 
+	        	  System.out.println("Panel Clicked");
+	        	  bufferPanel.showPanel("LOGIN_PANEL");  
+	          } 
+		}); 
+	}
+	
 	
 	public void createMainBanner()
 	{
