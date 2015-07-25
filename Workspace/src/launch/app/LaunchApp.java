@@ -49,10 +49,10 @@ public class LaunchApp
     	frame.setMinimumSize(new Dimension(Window_Width,Window_Height));
     	frame.setResizable(false);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        
-        bufferPanel.initialize();       
+    	
+        bufferPanel.initialize();    
         bufferPanel.setSize(frame.getWidth(),frame.getHeight());
-     
+        
         wallpaper = new Wallpaper("/Library/Desktop Pictures/Underwater.jpg");
         
         topBar = new TopBar(bufferPanel);
