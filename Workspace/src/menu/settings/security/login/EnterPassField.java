@@ -1,6 +1,7 @@
 package menu.settings.security.login;
 
 import java.awt.Graphics;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JPasswordField;
 

@@ -28,6 +28,7 @@ public class NotificationsButton extends JButton
 	
 	public void createBtn()
 	{
+		setFocusable(false);
 		setText("IMAGE");
 		setOpaque(false);
 		//setContentAreaFilled(true);

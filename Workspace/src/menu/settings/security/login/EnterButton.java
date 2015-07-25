@@ -36,6 +36,8 @@ public class EnterButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
+				System.out.println("Enter Btn clicked");
+				
 				if (login.getPassword().equals(systemDB.getPassword()))
 				{
 					bufferPanel.showPanel(login.getNextPanel());

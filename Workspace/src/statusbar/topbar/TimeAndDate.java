@@ -23,8 +23,6 @@ public class TimeAndDate extends JLabel
 		String hrString = hours.format(date);
 		int hrInt = Integer.parseInt(hrString);
 		
-		System.out.println(hrInt);
-		
 		if (hrInt <= 9)
 		{
 			 timeAndDate = (hours.format(date).substring(1)) + ":" +  min.format(date);
