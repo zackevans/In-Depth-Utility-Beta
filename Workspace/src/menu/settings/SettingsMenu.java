@@ -16,9 +16,9 @@ public class SettingsMenu extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
-	public static final int btnLn1 = 50;
-	public static final int btnLn2 = 150;
-	public static final int btnLn3 = 250;
+	public static final int btnLn1 = 75;
+	public static final int btnLn2 = 175;
+	public static final int btnLn3 = 275;
 	public static final int leftRow = -75;
 	public static final int rightRow = 125;
 	public static final int btnWidth = 150;
@@ -114,7 +114,7 @@ public class SettingsMenu extends JPanel
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
 	    int x = (int) (Window_Height) / 2;
-	    mainTittleLbl.setBounds(0, 5, Window_Width,40);
+	    mainTittleLbl.setBounds(0, 15, Window_Width,40);
 	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 

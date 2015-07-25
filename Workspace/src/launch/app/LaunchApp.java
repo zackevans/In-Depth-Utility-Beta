@@ -18,6 +18,7 @@ import menu.buffer.BufferPanel;
 import program.wallpaper.Wallpaper;
 import sql.DataBase;
 import sql.system.settings.SystemDatabase;
+import statusbar.topbar.TopBar;
 
 public class LaunchApp 
 {
@@ -27,6 +28,7 @@ public class LaunchApp
     private static JLayeredPane layerPane = new JLayeredPane();
     private static Wallpaper wallpaper; 
     static BufferPanel bufferPanel = new BufferPanel();
+    public static TopBar topBar;
     
     public static void main(String[] args) 
     {
@@ -48,18 +50,20 @@ public class LaunchApp
     	frame.setResizable(false);
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         
-        
         bufferPanel.initialize();       
         bufferPanel.setSize(frame.getWidth(),frame.getHeight());
-      
-        //Library/Desktop Pictures/Underwater.jpg
+     
         wallpaper = new Wallpaper("/Library/Desktop Pictures/Underwater.jpg");
+        
+        topBar = new TopBar(bufferPanel);
+        topBar.setSize(frame.getWidth(), frame.getHeight());
+        topBar.initialize();
         
         layerPane.add(wallpaper, new Integer(0), 0);
         layerPane.add(bufferPanel, new Integer(1), 0);
+        layerPane.add(topBar, new Integer(2), 0);
         
         frame.getContentPane().add(layerPane);
-        
         frame.pack();
         frame.setVisible(true);
     }

@@ -1,4 +1,4 @@
-package menu.settings.security.enterpassword;
+package menu.settings.security.login;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
 
-public class EnterPassword extends JPanel
+public class Login extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
@@ -25,10 +25,11 @@ public class EnterPassword extends JPanel
 	private static JLabel incorrectLbl;
 	private static EnterPassField enterPassField;
 	private static EnterButton enterBtn;
-	private static ReturnButton returnBtn;
+	private static CancelButton cancelBtn;
 	BufferPanel bufferPanel;
+	String nextPanel = "MAIN_MENU";
 	
-	public EnterPassword(BufferPanel bufferPanel)
+	public Login (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
@@ -44,13 +45,14 @@ public class EnterPassword extends JPanel
 	
 	public void createComponents()
 	{
-		mainTittleLbl = new JLabel("Reset Password");
+		mainTittleLbl = new JLabel("Login");
 		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
 		enterPasswordLbl = new JLabel("Enter Password: ");
+		incorrectLbl = new JLabel("Incorrect Password"); // center label
 		enterPassField = new EnterPassField(bufferPanel);
 		enterBtn = new EnterButton(bufferPanel);
-		returnBtn = new ReturnButton(bufferPanel);
-		incorrectLbl = new JLabel("Incorrect Password"); // center label
+		cancelBtn = new CancelButton(bufferPanel);
+		
 		
 		createMainTittleLable();
 		createBottomLabel();
@@ -58,7 +60,7 @@ public class EnterPassword extends JPanel
 		createIncorrectLabel();
 		enterPassField.setBounds(235,112,240,25);
 		enterBtn.setBounds((Window_Height)/2+rightRow, btnLn2, btnWidth, btnHeight);
-		returnBtn.setBounds((Window_Height)/2+leftRow, btnLn2, btnWidth, btnHeight);
+		cancelBtn.setBounds((Window_Height)/2+leftRow, btnLn2, btnWidth, btnHeight);
 	}
 	
 	public void layoutComponents()
@@ -71,14 +73,14 @@ public class EnterPassword extends JPanel
 		add(enterPasswordLbl);
 		add(enterPassField);
 		add(enterBtn);
-		add(returnBtn);
 		add(incorrectLbl);
+		add(cancelBtn);
 	}
 	
 	public void initializeComponents()
 	{
 		enterBtn.initialize();
-		returnBtn.initialize();
+		cancelBtn.initialize();
 	}
 	
 	public String getPassword()
@@ -95,6 +97,17 @@ public class EnterPassword extends JPanel
 	{
 		incorrectLbl.setVisible(tf);
 	}
+	
+	public void setNextPanel(String next)
+	{
+		nextPanel = next;
+	}
+	
+	public String getNextPanel()
+	{
+		return nextPanel;
+	}
+	
 	
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));

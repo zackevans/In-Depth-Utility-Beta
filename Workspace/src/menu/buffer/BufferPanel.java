@@ -13,20 +13,25 @@ import menu.main.MainMenu;
 import menu.settings.SettingsMenu;
 import menu.settings.security.SecuritySettings;
 import menu.settings.security.enterpassword.EnterPassword;
+import menu.settings.security.login.Login;
 import menu.settings.security.passconfirm.PasswordConfirm;
 import menu.settings.security.removepass.RemovePassword;
-import toolbar.topbar.TopBar;
+import panel.screensaver.ScreenSaver;
+import sql.system.settings.SystemDatabase;
+import statusbar.topbar.TopBar;
 
 public class BufferPanel extends JPanel
 {
 	private Map <String, JPanel> mapPanels = new HashMap <String, JPanel>();
+	private SystemDatabase systemDB = new SystemDatabase();
 	private MainMenu mainMenu;
 	private SettingsMenu settingsMenu;
 	private SecuritySettings securitySettings;
 	private PasswordConfirm passConfirm;
 	private EnterPassword enterPassword;
 	private RemovePassword removePassword;
-	
+	private Login login;
+	private ScreenSaver screenSaver;
 	
 	public void initialize()
 	{
@@ -54,6 +59,13 @@ public class BufferPanel extends JPanel
 		mapPanels.put("ENTER_PASSWORD", enterPassword);
 		removePassword = new RemovePassword(this);
 		mapPanels.put("REMOVE_PASSWORD", removePassword);
+		login = new Login(this);
+		mapPanels.put("LOGIN_PANEL", login);
+		
+		// Other Panels
+		screenSaver = new ScreenSaver(this);
+		mapPanels.put("SCREEN_SAVER", screenSaver);
+		
 	}
 	
 	public void addComponents()
@@ -67,11 +79,10 @@ public class BufferPanel extends JPanel
 		add(passConfirm);
 		add(enterPassword);
 		add(removePassword);
-	}
-	
-	public void setDefaults()
-	{
-		showPanel("MAIN_MENU");
+		add(login);
+		
+		// Other Panels
+		add(screenSaver);
 	}
 	
 	public void initializePanels()
@@ -85,6 +96,24 @@ public class BufferPanel extends JPanel
 		passConfirm.initialize();
 		enterPassword.initialize();
 		removePassword.initialize();
+		login.initialize();
+		
+		//Other Panel
+		screenSaver.initialize();
+	}
+	
+	public void setDefaults()
+	{
+		if (systemDB.getPassExist() == true)
+		{
+			login.setNextPanel("MAIN_MENU");
+			showPanel("LOGIN_PANEL");
+		}
+		
+		else
+		{
+			showPanel("MAIN_MENU");
+		}
 	}
 	
 	public void showPanel(String panelName)
