@@ -1,20 +1,17 @@
 package statusbar.topbar;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import menu.buffer.BufferPanel;
 
-public class NotificationsButton extends JButton
+public class LockButton extends JButton
 {
 	BufferPanel bufferPanel;
 	
-	public NotificationsButton (BufferPanel bufferPanel)
+	public LockButton (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
@@ -24,15 +21,12 @@ public class NotificationsButton extends JButton
 	{
 		createBtn();
 		addListeners();
-		
 	}
 	
 	public void createBtn()
 	{
 		setFocusable(false);
-		setBorderPainted(false);
-		setIcon(new ImageIcon("Images/Button_Images/TopBar/Notifications.png"));
-		validate();
+		setText("IMAGE");
 	}
 	
 	public void addListeners()
@@ -42,10 +36,13 @@ public class NotificationsButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-				System.out.println("NotificationsButton");
 				
 			}
 		});
 	}
+	
+	
+	
+	
 
 }

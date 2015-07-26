@@ -56,7 +56,7 @@ public class LaunchApp
         wallpaper = new Wallpaper("/Library/Desktop Pictures/Underwater.jpg");
         
         topBar = new TopBar(bufferPanel);
-        topBar.setSize(frame.getWidth(), frame.getHeight());
+        topBar.setBounds(0, 0, 700, 21);
         topBar.initialize();
         
         layerPane.add(wallpaper, new Integer(0), 0);
