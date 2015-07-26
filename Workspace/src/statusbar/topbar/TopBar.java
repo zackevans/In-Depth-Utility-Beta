@@ -1,6 +1,7 @@
 package statusbar.topbar;
 
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -20,7 +21,8 @@ public class TopBar extends JPanel
 	{
 		super();
 		this.bufferPanel = bufferPanel;
-		setOpaque(false);
+		setOpaque(false); // set true to show gray
+		setBackground(Color.LIGHT_GRAY);
 	}
 	
 	public void paintComponent(Graphics g)
@@ -43,7 +45,7 @@ public class TopBar extends JPanel
 		TimeandDate = new TimeAndDate();
 		notificationsBtn = new NotificationsButton(bufferPanel);
 		
-		notificationsBtn.setBounds(655, 0, 50, 20);
+		notificationsBtn.setBounds(655, 0, 50, 21);
 		notificationsBtn.initialize();
 	}
 	
