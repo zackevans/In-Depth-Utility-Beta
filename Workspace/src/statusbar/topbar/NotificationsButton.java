@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import menu.buffer.BufferPanel;
 
@@ -29,10 +30,9 @@ public class NotificationsButton extends JButton
 	public void createBtn()
 	{
 		setFocusable(false);
-		setText("IMAGE");
-		setOpaque(false);
-		//setContentAreaFilled(true);
-		//setBorderPainted(false);
+		setBorderPainted(false);
+		setIcon(new ImageIcon("Images/Button_Images/TopBar/Notifications.png"));
+		validate();
 	}
 	
 	public void addListeners()
