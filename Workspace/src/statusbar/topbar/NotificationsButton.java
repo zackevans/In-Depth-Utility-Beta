@@ -24,7 +24,6 @@ public class NotificationsButton extends JButton
 	{
 		createBtn();
 		addListeners();
-		
 	}
 	
 	public void createBtn()
@@ -43,8 +42,7 @@ public class NotificationsButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-				System.out.println("NotificationsButton");
-				
+				System.out.println("Notifications Btn Clicked");
 			}
 		});
 	}
