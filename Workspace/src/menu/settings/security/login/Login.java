@@ -7,9 +7,9 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.event.AncestorListener;
 
 import menu.buffer.BufferPanel;
+
 
 public class Login extends JPanel
 {
@@ -34,7 +34,6 @@ public class Login extends JPanel
 	{
 		super();
 		this.bufferPanel = bufferPanel;
-		
 	}
 	
 	public void initialize ()
@@ -54,7 +53,6 @@ public class Login extends JPanel
 		enterPassField = new EnterPassField(bufferPanel);
 		enterBtn = new EnterButton(bufferPanel);
 		cancelBtn = new CancelButton(bufferPanel);
-		
 		
 		createMainTittleLable();
 		createBottomLabel();
@@ -110,7 +108,6 @@ public class Login extends JPanel
 	{
 		return nextPanel;
 	}
-	
 	
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
