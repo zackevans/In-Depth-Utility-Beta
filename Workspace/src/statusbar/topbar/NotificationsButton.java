@@ -32,6 +32,7 @@ public class NotificationsButton extends JButton
 		setFocusable(false);
 		setBorderPainted(false);
 		setIcon(new ImageIcon("Images/Button_Images/TopBar/Notifications.png"));
+		setPressedIcon(new ImageIcon("Images/Button_Images/TopBar/NotificationsClicked.png"));
 		validate();
 	}
 	
