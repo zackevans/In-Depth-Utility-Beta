@@ -3,6 +3,8 @@ package menu.settings.security.login;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,7 +13,7 @@ import javax.swing.SwingConstants;
 import menu.buffer.BufferPanel;
 
 
-public class Login extends JPanel
+public class Login extends JPanel implements KeyListener
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
@@ -134,5 +136,22 @@ public class Login extends JPanel
 		incorrectLbl.setBounds(x,140,225,40);
 		incorrectLbl.setForeground(Color.red);
 		incorrectLbl.setVisible(false);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		System.out.println("key");
 	}
 }
