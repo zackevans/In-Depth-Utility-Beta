@@ -17,7 +17,6 @@ public class TopBar extends JPanel
 	private SystemDatabase systemDB = new SystemDatabase();
 	private NotificationsButton notificationsBtn;
 	private TimeAndDate TimeandDate;
-	private LockButton lockBtn;
 	BufferPanel bufferPanel;
 	
 	public TopBar (BufferPanel bufferPanel)
@@ -34,10 +33,7 @@ public class TopBar extends JPanel
 		
 		g.drawLine(0, 20, 700,20);
 		g.drawLine(655, 1, 655, 20);
-		TimeandDate.showTime(g);
-		
-		
-		
+		//TimeandDate.showTime(g);
 	}
 	
 	public void initialize()
@@ -50,16 +46,10 @@ public class TopBar extends JPanel
 	{
 		
 		notificationsBtn = new NotificationsButton(bufferPanel);
-		lockBtn = new LockButton(bufferPanel);
 		TimeandDate = new TimeAndDate();
 		
 		notificationsBtn.initialize();
 		notificationsBtn.setBounds(655, 0, 50, 21);
-		
-		
-		lockBtn.initialize();
-		lockBtn.setBounds(0, 0, 30, 21);
-		setDefultLockBtn();
 	}
 	
 	public void layoutComponents()
@@ -68,20 +58,5 @@ public class TopBar extends JPanel
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20));
 		
 		add(notificationsBtn);
-		add(lockBtn);
 	}
-	
-	public void setDefultLockBtn()
-	{
-		if(systemDB.getPassExist() == true)
-		{
-			showLockBtn(false);
-		}
-	}
-	
-	public void showLockBtn(Boolean tf)
-	{
-		lockBtn.setVisible(tf);
-	}
-	
 }
