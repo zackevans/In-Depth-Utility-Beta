@@ -2,12 +2,14 @@ package menu.settings.security.login;
 
 import java.awt.Graphics;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JPasswordField;
 
 import menu.buffer.BufferPanel;
 
-public class EnterPassField extends JPasswordField
+public class EnterPassField extends JPasswordField 
 {
 	BufferPanel bufferPanel;
 	
@@ -15,6 +17,10 @@ public class EnterPassField extends JPasswordField
     {
         this.bufferPanel = bufferPanel;
     }
+	
+	
+	
+	// add key listener here 
 
  	protected void paintComponent(Graphics g) 
     {
