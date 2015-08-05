@@ -18,14 +18,13 @@ import statusbar.topbar.TopBar;
 // Main Class: 
 public class LaunchApp 
 {
-	// Created locked VAR. 
-	public static final int Window_Width = 700; 
-	public static final int Window_Height = 500; 
+     // Created locked VAR. 
+     public static final int Window_Width = 700; 
+     public static final int Window_Height = 500; 
+     // Created JFrame VAR. 
+     private static JFrame frame = new JFrame();
 	
-	// Created JFrame VAR. 
-	private static JFrame frame = new JFrame();
-	
-	// Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
+     // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
     private static JLayeredPane layerPane = new JLayeredPane();
     
     // Created a Wallpaper Class Object.
@@ -128,10 +127,10 @@ public class LaunchApp
     	
     	// create db location and create the database
     	dataBase.createDBLocation();
-		dataBase.createDatabase();
-		dataBase.checkConnection();
+	dataBase.createDatabase();
+	dataBase.checkConnection();
 		
-		// create the systems table in the database
-		systemdb.createSystemTable();
+	// create the systems table in the database
+	systemdb.createSystemTable();
     }
 }
