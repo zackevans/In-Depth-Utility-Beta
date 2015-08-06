@@ -20,10 +20,21 @@ import panel.screensaver.ScreenSaver;
 import sql.system.settings.SystemDatabase;
 import statusbar.topbar.TopBar;
 
+
+/**
+ * @author ZackEvans
+ *
+ * Bufferpanel class used to show and change main content panels
+ *
+ */
+
 public class BufferPanel extends JPanel
 {
+	// Creates hash map to store all main panels <Name of Panel,Panel Object>
 	private Map <String, JPanel> mapPanels = new HashMap <String, JPanel>();
+	// Creates SystemDataBase to access startup functions
 	private SystemDatabase systemDB = new SystemDatabase();
+	// Create VAR for all main panels 
 	private MainMenu mainMenu;
 	private SettingsMenu settingsMenu;
 	private SecuritySettings securitySettings;
@@ -33,14 +44,31 @@ public class BufferPanel extends JPanel
 	private Login login;
 	private ScreenSaver screenSaver;
 	
+	/**
+	 * function: initialize
+	 * 
+	 * Calls methods to create panel and components
+	 * 
+	 */
+	
 	public void initialize()
 	{
 		createComponents();
 		addComponents();
 		setDefaults();
 		initializePanels();
+		
 		setOpaque(false);
 	}
+	
+	
+	/**
+	 * Function: createComponents
+	 * 
+	 * initialize object
+	 * Add panel object in to hashmap (mapPanels) 
+	 * 
+	 */
 	
 	public void createComponents() 
 	{
@@ -51,14 +79,19 @@ public class BufferPanel extends JPanel
 		// Security Settings
 		settingsMenu = new SettingsMenu(this);
 		mapPanels.put("SETTINGS_MENU", settingsMenu);
+		
 		securitySettings = new SecuritySettings(this);
 		mapPanels.put("SECURITY_SETTINGS", securitySettings);
+		
 		passConfirm = new PasswordConfirm(this);
 		mapPanels.put("PASSWORD_CONFIRM", passConfirm);
+		
 		enterPassword = new EnterPassword(this);
 		mapPanels.put("ENTER_PASSWORD", enterPassword);
+		
 		removePassword = new RemovePassword(this);
 		mapPanels.put("REMOVE_PASSWORD", removePassword);
+		
 		login = new Login(this);
 		mapPanels.put("LOGIN_PANEL", login);
 		
@@ -67,6 +100,15 @@ public class BufferPanel extends JPanel
 		mapPanels.put("SCREEN_SAVER", screenSaver);
 		
 	}
+	
+	
+	/**
+	 * Function: addComponents
+	 * 
+	 * add all main panel components to panel (Separated in categories)
+	 * 
+	 * 
+	 */
 	
 	public void addComponents()
 	{
@@ -85,6 +127,14 @@ public class BufferPanel extends JPanel
 		add(screenSaver);
 	}
 	
+	
+	/**
+	 * Function: initializePanels
+	 * 
+	 * Initialize (create) all Panels 
+	 * 
+	 */
+	
 	public void initializePanels()
 	{
 		// Main Menu
@@ -102,28 +152,46 @@ public class BufferPanel extends JPanel
 		screenSaver.initialize();
 	}
 	
+	
+	/**
+	 * Function: setDefaults
+	 * 
+	 * Check to see if there is a password in the database (getPassExist)
+	 * Show login panel or main menu at start of the program
+	 */
+	
 	public void setDefaults()
 	{
-		if (systemDB.getPassExist() == true)
+		if (systemDB.getPassExist() == true) // Check database is a password exists
 		{
-			login.setNextPanel("MAIN_MENU");
-			showPanel("LOGIN_PANEL");
+			login.setNextPanel("MAIN_MENU"); // setNext panel the loginpanel will show
+			showPanel("LOGIN_PANEL"); // show the login panel
 		}
 		
 		else
 		{
-			showPanel("MAIN_MENU");
+			showPanel("MAIN_MENU"); // show the main menu as the first panel shown 
 		}
 	}
 	
+	/** 
+	 * Function: showPanel
+	 * 
+	 * Hide all panels in the hashmap using for loop
+	 * Create holding panel and set to new panel (Passed pram)
+	 * Set new panel visiable
+	 * 
+	 * @param panelName
+	 */
+	
 	public void showPanel(String panelName)
 	{
-		for (JPanel panel : mapPanels.values())
+		for (JPanel panel : mapPanels.values()) // Run through all panels in hashmap
 		{
-			panel.setVisible(false);
+			panel.setVisible(false); // hide all panels 
 		}
 		
-		JPanel panelToShow = mapPanels.get(panelName);
-		panelToShow.setVisible(true);
+		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
+		panelToShow.setVisible(true); // set new panel visiable 
 	}
 }

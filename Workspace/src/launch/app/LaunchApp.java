@@ -1,4 +1,5 @@
-package launch.app; // package identifier 
+package launch.app;
+ // package identifier 
 
 // Imports 
 import java.awt.Dimension;
@@ -13,29 +14,17 @@ import sql.DataBase;
 import sql.system.settings.SystemDatabase;
 import statusbar.topbar.TopBar;
 
-
-
 // Main Class: 
 public class LaunchApp 
 {
-     // Created locked VAR. 
-     public static final int Window_Width = 700; 
-     public static final int Window_Height = 500; 
-     // Created JFrame VAR. 
-     private static JFrame frame = new JFrame();
-	
-     // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
-    private static JLayeredPane layerPane = new JLayeredPane();
-    
-    // Created a Wallpaper Class Object.
-    private static Wallpaper wallpaper; 
-    
-    // Created a BufferPanel Class Object.
-    static BufferPanel bufferPanel = new BufferPanel();
-    
-    // Created a TopBar Class Object.
-    public static TopBar topBar;
-    
+	// Created locked VAR. 
+	public static final int Window_Width = 700; 
+	public static final int Window_Height = 500;
+	private static JFrame frame = new JFrame(); // Created JFrame VAR. 
+    private static JLayeredPane layerPane = new JLayeredPane(); // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
+    private static Wallpaper wallpaper;  // Created a Wallpaper Class Object.
+    static BufferPanel bufferPanel = new BufferPanel(); // Created a BufferPanel Class Object.
+    public static TopBar topBar; // Created a TopBar Class Object.
     
     
     /**
@@ -51,7 +40,7 @@ public class LaunchApp
 		{
 			public void run() 
 			{
-				createAndShowGUI(); // Method Call to created program.
+				createAndShowGUI(); // Method Call to create program.
 			}
 		});
     	
@@ -62,7 +51,7 @@ public class LaunchApp
      * Create and show GUI method 
      * 
      * sets size restraints
-     * 		//TODO Create a Wrapper so the main panel will be able to auto resize (See IDU Beta 1 Resize) 
+     * TODO Create a Wrapper so the main panel will be able to auto resize (See IDU Beta 1 Resize) 
      */
     
     private static void createAndShowGUI()
@@ -112,11 +101,10 @@ public class LaunchApp
      * 
      * Declare database objects
      * Create Database Location and checkConnection 
-     * 		// TODO if this fails put alert icon in status bar
+     * 		TODO if this fails put alert icon in status bar
      * 		put the icons on own panel with manager to put in line 
      * 		put the notifications button on own section to it doesn't resize with list it is Locked
      * Initialize system db table
-     * 
      */
     
     private static void dataBaseCalls()
@@ -127,10 +115,10 @@ public class LaunchApp
     	
     	// create db location and create the database
     	dataBase.createDBLocation();
-	dataBase.createDatabase();
-	dataBase.checkConnection();
+		dataBase.createDatabase();
+		dataBase.checkConnection();
 		
-	// create the systems table in the database
-	systemdb.createSystemTable();
+		// create the systems table in the database
+		systemdb.createSystemTable();
     }
 }
