@@ -105,7 +105,6 @@ public class LaunchApp
      * 		put the icons on own panel with manager to put in line 
      * 		put the notifications button on own section to it doesn't resize with list it is Locked
      * Initialize system db table
-     * 
      */
     
     private static void dataBaseCalls()
