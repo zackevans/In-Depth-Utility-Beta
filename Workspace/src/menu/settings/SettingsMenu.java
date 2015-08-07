@@ -12,24 +12,33 @@ import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
 
+
+/**
+ * @author ZackEvans
+ * Class: SettingsMenu
+ * 
+ * Main setting menu panel
+ *
+ */
+
 public class SettingsMenu extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
-	public static final int btnLn1 = 75;
-	public static final int btnLn2 = 175;
-	public static final int btnLn3 = 275;
-	public static final int leftRow = -75;
-	public static final int rightRow = 125;
-	public static final int btnWidth = 150;
-	public static final int btnHeight = 50;
-	public static final int btnPadding = 25;
-	private static JLabel mainTittleLbl;
-	private static JLabel companyNameLbl;
-	private BufferPanel bufferPanel;
-	private JButton generalBtn;
-	private JButton securityBtn;
-	private JButton returnBtn;
+	public static final int btnLn1 = 75; // first line of buttons
+	public static final int btnLn2 = 175; // Second line of buttons
+	public static final int btnLn3 = 275; // Third lane of buttons
+	public static final int leftRow = -75; // left verticle row
+	public static final int rightRow = 125; // right verticle row
+	public static final int btnWidth = 150; // button width
+	public static final int btnHeight = 50; // button height
+	public static final int btnPadding = 25; // space between the buttons
+	private static JLabel mainTittleLbl; // Create main tittle text
+	private static JLabel companyNameLbl; // Create Brand label
+	private BufferPanel bufferPanel; // Created bufferPanel object
+	private JButton generalBtn; // created general button
+	private JButton securityBtn; // created security button
+	private JButton returnBtn; // created return button
 	
 	//SETTINGS
 	//general (Sounds,Mail,
@@ -38,28 +47,57 @@ public class SettingsMenu extends JPanel
 	//Notifacations
 	//RETURN
 	
+	
+	/**
+	 * Constructor: SettingsMenu 
+	 * @param bufferPanel
+	 * 
+	 * calls hierarchy
+	 * inharets bufferPanel object
+	 *  
+	 */
+	
 	public SettingsMenu (BufferPanel bufferPanel)
 	{
-		super();
-		this.bufferPanel = bufferPanel;
+		super(); // calls hierarchy
+		setOpaque(false);
+		this.bufferPanel = bufferPanel; // inharets bufferpanel
 	}
+	
+	/**
+	 * Function: initialize
+	 * 
+	 * call methods to create panel
+	 * 
+	 */
 	
 	public void initialize ()
 	{
+		// call methods
 		createComponents();
 		layoutComponents();
 		addListeners();
-		setOpaque(false);
 	}
+	
+	
+	/**
+	 * Function: createComponents
+	 * 
+	 * initilize components
+	 * call methods to set up and place components
+	 * 
+	 */
 	
 	public void createComponents() 
 	{
+		// initilize components
 		mainTittleLbl = new JLabel("Settings Menu");
 		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
 		generalBtn = new JButton("General");
 		securityBtn = new JButton("Security");
 		returnBtn = new JButton("Return");
 		
+		// set up components
 		createMainTittleLable();
 		createBottomLabel();
 		createGeneralButton();
@@ -67,10 +105,22 @@ public class SettingsMenu extends JPanel
 		createReturnButton();
 	}
 	
+	
+	/**
+	 * Function: layoutComponents
+	 * 
+	 * set panel layout to null
+	 * set the size of the panel
+	 * add components to panel
+	 * 
+	 */
+	
 	public void layoutComponents() 
 	{
-		setLayout(null);
-		setPreferredSize(new Dimension(Window_Width,Window_Height-20));//-20 
+		setLayout(null); // set panel layout to null
+		setPreferredSize(new Dimension(Window_Width,Window_Height-20)); // set the panel size
+		
+		// add components to panel
 		add(mainTittleLbl);
 		add(companyNameLbl);
 		add(generalBtn);
@@ -78,38 +128,56 @@ public class SettingsMenu extends JPanel
 		add(returnBtn);
 	}
 	
+	/**
+	 * Function: addListeners
+	 * 
+	 * add action listener to all buttons
+	 * 
+	 */
+	
+	
 	public void addListeners() 
 	{
-		generalBtn.addActionListener(new ActionListener() 
+		generalBtn.addActionListener(new ActionListener() // add action listeners to button
 		{
 			@Override
-			public void actionPerformed(ActionEvent arg0) 
+			public void actionPerformed(ActionEvent arg0) // when action is proformed  
 			{
-				System.out.println("GeneralBtn");
+				System.out.println("GeneralBtn"); // print button name
 			}
 		});
 
-		securityBtn.addActionListener(new ActionListener() 
+		securityBtn.addActionListener(new ActionListener() // add action listeners to button
 		{
 			@Override
-			public void actionPerformed(ActionEvent arg0) 
+			public void actionPerformed(ActionEvent arg0) // when action is proformed
 			{
-				System.out.println("SecurityBtn");
-				bufferPanel.showPanel("SECURITY_SETTINGS");
+				System.out.println("SecurityBtn"); // print button name
+				bufferPanel.showPanel("SECURITY_SETTINGS"); // show Security Settings on the bufferpanel
 			}
 		});
 
-		returnBtn.addActionListener(new ActionListener() 
+		returnBtn.addActionListener(new ActionListener() // add action listeners to button
 		{
 			@Override
-			public void actionPerformed(ActionEvent arg0) 
+			public void actionPerformed(ActionEvent arg0) // when action is proformed
 			{
-				System.out.println("ReturnBtn");
-				bufferPanel.showPanel("MAIN_MENU");
+				System.out.println("ReturnBtn"); // print button name
+				bufferPanel.showPanel("MAIN_MENU"); // show Main Menu on the bufferPanel
 			}
 		});
 
 	}
+	
+	/**
+	 * Functions: createMainTittleLable(), createBottomLabel(), createGeneralButton(), 
+	 * 			  createSecurityButton(), createReturnButton()
+	 * 
+	 * set font, position and location
+	 * 
+	 */
+	
+	
 	
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
