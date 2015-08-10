@@ -11,10 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
+import sql.system.settings.SystemDatabase;
 
 
-public class Login extends JPanel implements KeyListener
+public class Login extends JPanel 
 {
+	SystemDatabase systemDB = new SystemDatabase();
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
 	public static final int btnWidth = 150;
@@ -84,6 +86,7 @@ public class Login extends JPanel implements KeyListener
 	{
 		enterBtn.initialize();
 		cancelBtn.initialize();
+		enterPassField.addListener();
 	}
 	
 	public String getPassword()
@@ -91,7 +94,7 @@ public class Login extends JPanel implements KeyListener
 		return enterPassField.getText();
 	}
 	
-	public void clearFields()
+	public void clearField()
 	{
 		enterPassField.setText("");
 	}
@@ -136,22 +139,5 @@ public class Login extends JPanel implements KeyListener
 		incorrectLbl.setBounds(x,140,225,40);
 		incorrectLbl.setForeground(Color.red);
 		incorrectLbl.setVisible(false);
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		System.out.println("key");
 	}
 }

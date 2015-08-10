@@ -2,27 +2,29 @@ package menu.settings.security.login;
 
 import java.awt.Graphics;
 import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JPasswordField;
 
 import menu.buffer.BufferPanel;
+import sql.system.settings.SystemDatabase;
 
 public class EnterPassField extends JPasswordField 
 {
 	BufferPanel bufferPanel;
+	private EnterButton enterBtn = new EnterButton(bufferPanel);
+	SystemDatabase systemDB = new SystemDatabase();
+	Login login = new Login(bufferPanel);
 	
 	public EnterPassField (BufferPanel bufferPanel) 
     {
         this.bufferPanel = bufferPanel;
+        setFocusable(true);
     }
 	
-	
-	
-	// add key listener here 
-
- 	protected void paintComponent(Graphics g) 
+	protected void paintComponent(Graphics g) 
     {
          g.setColor(getBackground());
          g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
@@ -34,4 +36,44 @@ public class EnterPassField extends JPasswordField
          g.setColor(getForeground());
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15,15);
     }
+	
+	public void addListener()
+	{
+		addKeyListener(new KeyAdapter() 
+		{
+			public void keyReleased(KeyEvent e) {
+		        
+		    }
+
+		    public void keyTyped(KeyEvent e) {
+		    	
+		    }
+
+		    public void keyPressed(KeyEvent e) 
+		    {
+		    	if (e.getKeyCode() == KeyEvent.VK_ENTER)
+		    	{
+		    		System.out.println("Enter key pressed");
+		    		
+		    		if (login.getPassword().equals(systemDB.getPassword()))
+					{
+						bufferPanel.showPanel(login.getNextPanel());
+						login.showWarning(false);
+					}
+					
+					else
+					{
+						login.showWarning(true);
+						login.clearField();
+					}
+		    	}
+		    	
+		    	if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+		    	{
+		    		bufferPanel.showPanel("SCREEN_SAVER");
+		    	}
+		    	
+		    }
+		});
+	}
 }

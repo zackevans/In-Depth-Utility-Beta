@@ -177,13 +177,11 @@ public class SettingsMenu extends JPanel
 	 * 
 	 */
 	
-	
-	
 	public static void  createMainTittleLable() {
-		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
-	    int x = (int) (Window_Height) / 2;
-	    mainTittleLbl.setBounds(0, 15, Window_Width,40);
-	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30)); // set font and text size
+	    int x = (int) (Window_Height) / 2; // calculate x var
+	    mainTittleLbl.setBounds(0, 15, Window_Width,40); // set size and location of object
+	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER); // center text in middle of object
 	}
 
 	public static void  createBottomLabel() {
