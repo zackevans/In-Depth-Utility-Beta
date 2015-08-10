@@ -2,6 +2,8 @@ package panel.screensaver;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
+import menu.settings.security.login.Login;
 
 public class ScreenSaver extends JPanel
 {	
@@ -23,6 +26,7 @@ public class ScreenSaver extends JPanel
 	public static JLabel mainBanner;
 	public static JLabel clickMessage;
 	BufferPanel bufferPanel;
+	Login login;
 	
 	//TODO add keylistener and mouse listener to wake up panel
 	//TODO make setting to lock notifications settings when panel is displayed
@@ -45,6 +49,7 @@ public class ScreenSaver extends JPanel
 	{
 		mainBanner = new JLabel("In Depth Utility");
 		clickMessage = new JLabel("click or press any key");
+		login = new Login(bufferPanel);
 		
 		createMainBanner();
 		createClickMessage();
@@ -66,9 +71,28 @@ public class ScreenSaver extends JPanel
 	          public void mousePressed(MouseEvent e) 
 	          { 
 	        	  System.out.println("Panel Clicked");
-	        	  bufferPanel.showPanel("LOGIN_PANEL");  
+	        	  bufferPanel.showPanel("LOGIN_PANEL");
+	        	  login.clearField();
 	          } 
 		}); 
+		
+		addKeyListener(new KeyAdapter() 
+		{
+			public void keyReleased(KeyEvent e) {
+		        
+		    }
+
+		    public void keyTyped(KeyEvent e) {
+		    	
+		    }
+
+		    public void keyPressed(KeyEvent e) 
+		    {
+		    	System.out.println("key typed");
+		    	bufferPanel.showPanel("LOGIN_PANEL");
+		    }
+		});
+		
 	}
 	
 	
