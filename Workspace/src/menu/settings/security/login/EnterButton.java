@@ -47,10 +47,9 @@ public class EnterButton extends JButton
 				else
 				{
 					login.showWarning(true);
-					login.clearFields();
+					login.clearField();
 				}
 			}
 		});
 	}
-
 }
