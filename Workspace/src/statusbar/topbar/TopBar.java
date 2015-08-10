@@ -33,7 +33,7 @@ public class TopBar extends JPanel
 		
 		g.drawLine(0, 20, 700,20);
 		g.drawLine(655, 1, 655, 20);
-		//TimeandDate.showTime(g);
+		TimeandDate.showTime(g);
 	}
 	
 	public void initialize()
