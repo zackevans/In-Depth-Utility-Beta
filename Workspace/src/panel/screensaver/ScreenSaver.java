@@ -28,13 +28,15 @@ public class ScreenSaver extends JPanel
 	BufferPanel bufferPanel;
 	Login login;
 	
-	//TODO add keylistener and mouse listener to wake up panel
+	//TODO add keylistener to wake up panel
 	//TODO make setting to lock notifications settings when panel is displayed
 	
 	public ScreenSaver (BufferPanel bufferPanel)
 	{
 		super();
+		setOpaque(false);
 		this.bufferPanel = bufferPanel;
+		setFocusable(true);
 	}
 	
 	public void initialize ()
@@ -42,7 +44,8 @@ public class ScreenSaver extends JPanel
 		createComponents();
 		layoutComponents();
 		addListeners();
-		setOpaque(false);
+		
+		
 	}
 	
 	public void createComponents()
@@ -94,7 +97,6 @@ public class ScreenSaver extends JPanel
 		});
 		
 	}
-	
 	
 	public void createMainBanner()
 	{
