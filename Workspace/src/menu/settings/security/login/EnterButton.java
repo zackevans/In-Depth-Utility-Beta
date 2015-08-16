@@ -48,6 +48,7 @@ public class EnterButton extends JButton
 				{
 					login.showWarning(true);
 					login.clearField();
+					login.setFocusOnField();
 				}
 			}
 		});

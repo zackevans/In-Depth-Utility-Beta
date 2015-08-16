@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPasswordField;
 
 import menu.buffer.BufferPanel;
+import panel.screensaver.ScreenSaver;
 import sql.system.settings.SystemDatabase;
 
 public class EnterPassField extends JPasswordField 
@@ -17,6 +18,7 @@ public class EnterPassField extends JPasswordField
 	private EnterButton enterBtn = new EnterButton(bufferPanel);
 	SystemDatabase systemDB = new SystemDatabase();
 	Login login = new Login(bufferPanel);
+	ScreenSaver ss = new ScreenSaver(bufferPanel);
 	
 	public EnterPassField (BufferPanel bufferPanel) 
     {
@@ -41,13 +43,8 @@ public class EnterPassField extends JPasswordField
 	{
 		addKeyListener(new KeyAdapter() 
 		{
-			public void keyReleased(KeyEvent e) {
-		        
-		    }
-
-		    public void keyTyped(KeyEvent e) {
-		    	
-		    }
+			public void keyReleased(KeyEvent e) {}
+		    public void keyTyped(KeyEvent e) {}
 
 		    public void keyPressed(KeyEvent e) 
 		    {
@@ -71,6 +68,7 @@ public class EnterPassField extends JPasswordField
 		    	if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
 		    	{
 		    		bufferPanel.showPanel("SCREEN_SAVER");
+		    		ss.requestFocusInWindow();
 		    	}
 		    	
 		    }
