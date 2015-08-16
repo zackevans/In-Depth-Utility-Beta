@@ -81,6 +81,12 @@ public class RemovePassword extends JPanel
 	{
 		enterBtn.initialize();
 		returnBtn.initialize();
+		enterPassField.addListeners();
+	}
+	
+	public void setDefaultFocus()
+	{
+		enterPassField.requestFocusInWindow();
 	}
 	
 	public String getPassword()
