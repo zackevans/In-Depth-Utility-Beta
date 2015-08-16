@@ -1,14 +1,19 @@
 package menu.settings.security.removepass;
 
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JPasswordField;
 
 import menu.buffer.BufferPanel;
+import sql.system.settings.SystemDatabase;
 
 public class EnterPassField extends JPasswordField
 {
 	BufferPanel bufferPanel;
+	private RemovePassword removePass = new RemovePassword(bufferPanel);
+	private SystemDatabase sd = new SystemDatabase();
 	
 	public EnterPassField (BufferPanel bufferPanel) 
     {
@@ -27,4 +32,37 @@ public class EnterPassField extends JPasswordField
          g.setColor(getForeground());
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15,15);
     }
+    
+    public void addListeners()
+    {
+    	addKeyListener(new KeyAdapter() 
+		{
+			public void keyReleased(KeyEvent e) {}
+		    public void keyTyped(KeyEvent e) {}
+
+		    public void keyPressed(KeyEvent e) 
+		    {
+		    	String pass = removePass.getPassword();
+				String dbPass = sd.getPassword();
+		    	
+		    	if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		    	{
+		    		if (pass.equals(dbPass))
+					{
+						sd.updatePassExist(false);
+						sd.updatePassword("");
+						bufferPanel.showPanel("SECURITY_SETTINGS");
+					}
+					
+					else
+					{
+						removePass.showWarning(true);
+						removePass.setDefaultFocus();
+					}
+		    	}
+		    }
+		});
+    }
+    
+    
 }
