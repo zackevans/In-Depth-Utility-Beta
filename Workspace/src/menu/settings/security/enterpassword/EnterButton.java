@@ -85,6 +85,7 @@ public class EnterButton extends JButton
 				else
 				{
 					ep.showWarning(true); // show warrning
+					ep.setDefaultFocus();
 				}
 			}
 		});
