@@ -109,8 +109,8 @@ public class SecuritySettings extends JPanel
 		mainTittleLbl = new JLabel("Security Settings");
 		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
 		createPswBtn = new JButton ("Create Password");
-		removePswBtn = new JButton ("Remove Password");
 		resetPswBtn = new JButton ("Reset Password");
+		removePswBtn = new JButton ("Remove Password");
 		returnBtn = new JButton ("Return");
 		passConfirm =  new PasswordConfirm(bufferPanel);
 		enterPass = new EnterPassword(bufferPanel);
@@ -166,6 +166,7 @@ public class SecuritySettings extends JPanel
 				bufferPanel.showPanel("PASSWORD_CONFIRM"); // show password confirm panel
 				passConfirm.hideWarning(); // hide passconfirm panel warnings
 				passConfirm.clearTxtFields(); // clear passconfirm text fields
+				passConfirm.setDefaultFocus(); // set text field as active
 			}
 		});
 		
@@ -178,6 +179,7 @@ public class SecuritySettings extends JPanel
 				bufferPanel.showPanel("ENTER_PASSWORD"); // show enter password panel
 				enterPass.clearFields(); // clear enter password text fields
 				enterPass.showWarning(false); // hide warrnings on enterpass panel
+				enterPass.setDefaultFocus();
 			}
 		});
 		
@@ -190,6 +192,7 @@ public class SecuritySettings extends JPanel
 				bufferPanel.showPanel("REMOVE_PASSWORD"); // show remove password panel
 				removePass.clearFields(); // clear text fields
 				removePass.showWarning(false); // set panel warring off
+				removePass.setDefaultFocus(); // set text field active
 			}
 		});
 		

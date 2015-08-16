@@ -114,6 +114,11 @@ public class Login extends JPanel
 		return nextPanel;
 	}
 	
+	public void setFocusOnField()
+	{
+		enterPassField.requestFocusInWindow();
+	}
+	
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
 	    int x = (int) (Window_Height) / 2;

@@ -88,6 +88,54 @@ public class PasswordConfirm extends JPanel
 	{
 		enterBtn.initialize();
 		returnBtn.initialize();
+		initialField.addListener();
+		retypeField.addListener();
+	}
+	
+	public boolean comparePass()
+	{
+		String iniText = initialField.getText();
+		String reText = retypeField.getText();
+		boolean r = false;
+		
+		if (iniText.length() > 0 && reText.length() > 0) {
+			if (iniText.equals(reText)){
+				r = true;
+			}
+		}
+		return r; 
+	}
+	
+	public void clearTxtFields()
+	{
+		initialField.setText("");
+		retypeField.setText("");
+	}
+	
+	public String getPass()
+	{
+		passwordText = initialField.getText();
+		return passwordText;
+	}
+	
+	public void setDefaultFocus()
+	{
+		initialField.requestFocusInWindow();
+	}
+	
+	public void setNextFocus()
+	{
+		retypeField.requestFocusInWindow();
+	}
+	
+	public void showWarning()
+	{
+		invalidLbl.setVisible(true);
+	}
+	
+	public void	hideWarning()
+	{
+		invalidLbl.setVisible(false);
 	}
 	
 	public static void  createMainTittleLable() {
@@ -118,42 +166,6 @@ public class PasswordConfirm extends JPanel
 		invalidLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,16));
 		invalidLbl.setBounds(360,130,350,40);
 		invalidLbl.setForeground(Color.RED);
-		invalidLbl.setVisible(false);
-	}
-	
-	public boolean comparePass()
-	{
-		String iniText = initialField.getText();
-		String reText = retypeField.getText();
-		boolean r = false;
-		
-		if (iniText.length() > 0 && reText.length() > 0) {
-			if (iniText.equals(reText)){
-				r = true;
-			}
-		}
-		return r; 
-	}
-	
-	public void clearTxtFields()
-	{
-		initialField.setText("");
-		retypeField.setText("");
-	}
-	
-	public String getPass()
-	{
-		passwordText = initialField.getText();
-		return passwordText;
-	}
-	
-	public void showWarning()
-	{
-		invalidLbl.setVisible(true);
-	}
-	
-	public void	hideWarning()
-	{
 		invalidLbl.setVisible(false);
 	}
 }

@@ -1,8 +1,13 @@
 package menu.settings.security.enterpassword;
 
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JPasswordField;
 import menu.buffer.BufferPanel;
+import menu.settings.security.passconfirm.PasswordConfirm;
+import sql.system.settings.SystemDatabase;
 
 
 /**
@@ -15,7 +20,10 @@ import menu.buffer.BufferPanel;
 public class EnterPassField extends JPasswordField
 {
 	BufferPanel bufferPanel; // create bufferPanel object
-	
+	private EnterPassword ep = new EnterPassword(bufferPanel); // Enter password class object
+	private SystemDatabase sd = new SystemDatabase(); // system database object
+	private PasswordConfirm pc = new PasswordConfirm(bufferPanel);
+
 	/**
 	 * Constructor: EnterPassField 
 	 * @param bufferPanel
@@ -57,4 +65,36 @@ public class EnterPassField extends JPasswordField
          g.setColor(getForeground()); // set color same as backround
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15,15); // create and draw border around field
     }
+    
+    public void addListener()
+    {
+    	addKeyListener(new KeyAdapter() 
+		{
+			public void keyReleased(KeyEvent e) {}
+		    public void keyTyped(KeyEvent e) {}
+
+		    public void keyPressed(KeyEvent e) 
+		    {
+		    	String pass = ep.getPassword(); // get pass word from textfield 
+				String dbPass = sd.getPassword(); // get pass from database 
+		    	
+		    	if (e.getKeyCode() == KeyEvent.VK_ENTER)
+		    	{
+		    		if (pass.equals(dbPass)) // check if passwords match
+					{
+						bufferPanel.showPanel("PASSWORD_CONFIRM"); // show password confirm panel
+						pc.setDefaultFocus();
+					}
+					
+					else
+					{
+						ep.showWarning(true); // show warrning
+						ep.clearFields();
+						ep.setDefaultFocus();
+					}
+		    	}
+
+		    }
+		});
+	}
 }

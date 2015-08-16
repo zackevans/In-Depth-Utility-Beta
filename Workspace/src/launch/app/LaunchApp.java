@@ -72,7 +72,8 @@ public class LaunchApp
         
         // Initialize wallpaper object.
         // TODO put image on JLabel and resize to fit the Frame size.
-        wallpaper = new Wallpaper("/Library/Desktop Pictures/Wave.jpg");
+        // Image Path: /Library/Desktop Pictures/Wave.jpg
+        wallpaper = new Wallpaper("Images/Wallpaper/mavericks_2560.jpg");
         
         // Initialize top bar object.
         // Set location and size of top bar object.
