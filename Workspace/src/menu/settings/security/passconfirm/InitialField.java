@@ -2,6 +2,8 @@ package menu.settings.security.passconfirm;
 
 import java.awt.Graphics;
 import java.awt.Shape;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JPasswordField;
@@ -12,6 +14,7 @@ public class InitialField extends JPasswordField
 {
 	BufferPanel bufferPanel;
 	private Shape shape;
+	private PasswordConfirm pc = new PasswordConfirm(bufferPanel);
 	
 	public InitialField (BufferPanel bufferPanel) 
     {
@@ -32,13 +35,21 @@ public class InitialField extends JPasswordField
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
     }
     
-    public boolean contains(int x, int y) 
+    public void addListener()
     {
-         if (shape == null || !shape.getBounds().equals(getBounds())) 
-         {
-             shape = new RoundRectangle2D.Float(0, 0, getWidth()-1, getHeight()-1, 15, 15);
-         }
-         
-         return shape.contains(x, y);
+    	addKeyListener(new KeyAdapter() 
+		{
+			public void keyReleased(KeyEvent e) {}
+		    public void keyTyped(KeyEvent e) {}
+
+		    public void keyPressed(KeyEvent e) 
+		    {
+		    	if (e.getKeyCode() == KeyEvent.VK_ENTER)
+		    	{
+		    		pc.setNextFocus(); // set focous on next text field
+		    	}
+		    }
+		});
     }
+    
 }

@@ -44,8 +44,6 @@ public class ScreenSaver extends JPanel
 		createComponents();
 		layoutComponents();
 		addListeners();
-		
-		
 	}
 	
 	public void createComponents()
@@ -73,9 +71,10 @@ public class ScreenSaver extends JPanel
 		{ 
 	          public void mousePressed(MouseEvent e) 
 	          { 
-	        	  System.out.println("Panel Clicked");
-	        	  bufferPanel.showPanel("LOGIN_PANEL");
-	        	  login.clearField();
+	        	  System.out.println("Panel Clicked"); // print text
+	        	  bufferPanel.showPanel("LOGIN_PANEL"); // show login panel
+	        	  login.clearField(); // clear text field
+	        	  login.setFocusOnField(); // when panel is shown make textfield active
 	          } 
 		}); 
 		
