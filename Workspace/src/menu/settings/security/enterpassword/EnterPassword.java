@@ -124,15 +124,28 @@ public class EnterPassword extends JPanel
 	}
 	
 	/**
-	 * function: initilizeComponents
+	 * Function: initilizeComponents
 	 * 
 	 * call initilize methods for buttons
 	 */
 	
 	public void initializeComponents()
 	{
-		enterBtn.initialize();
-		returnBtn.initialize();
+		enterBtn.initialize(); // create enter button
+		returnBtn.initialize(); // create enter button
+		enterPassField.addListener(); // add listeners to text field
+	}
+	
+	/**
+	 * Function: setDefaultFocus
+	 * 
+	 * set focous on text field
+	 * 
+	 */
+	
+	public void setDefaultFocus()
+	{
+		enterPassField.requestFocusInWindow(); // make text field active
 	}
 	
 	/**
