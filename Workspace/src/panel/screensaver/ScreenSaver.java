@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -78,25 +79,23 @@ public class ScreenSaver extends JPanel
 	          } 
 		}); 
 		
-		addKeyListener(new KeyAdapter() 
+		addKeyListener(new KeyListener() 
 		{
-			public void keyReleased(KeyEvent e) {
-		        
-		    }
 
-		    public void keyTyped(KeyEvent e) {
-		    	
-		    }
+            @Override
+            public void keyTyped(KeyEvent e) {}
 
-		    public void keyPressed(KeyEvent e) 
-		    {
-		    	System.out.println("key typed");
-		    	bufferPanel.showPanel("LOGIN_PANEL");
-		    }
-		});
+            @Override
+            public void keyReleased(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                System.out.println("Pressed " + e.getKeyChar());
+            }
+        });
 		
 	}
-	
+
 	public void createMainBanner()
 	{
 		mainBanner.setFont(new Font("Helvetica Neue",Font.PLAIN,50));
