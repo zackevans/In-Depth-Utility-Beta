@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import menu.main.MainMenu;
+import menu.notes.Notes;
 import menu.settings.SettingsMenu;
 import menu.settings.security.SecuritySettings;
 import menu.settings.security.enterpassword.EnterPassword;
@@ -19,7 +20,6 @@ import menu.settings.security.removepass.RemovePassword;
 import panel.screensaver.ScreenSaver;
 import sql.system.settings.SystemDatabase;
 import statusbar.topbar.TopBar;
-
 
 /**
  * @author ZackEvans
@@ -43,6 +43,7 @@ public class BufferPanel extends JPanel
 	private RemovePassword removePassword;
 	private Login login;
 	private ScreenSaver screenSaver;
+	private Notes notes;
 	
 	/**
 	 * function: initialize
@@ -57,10 +58,8 @@ public class BufferPanel extends JPanel
 		addComponents();
 		setDefaults();
 		initializePanels();
-		
 		setOpaque(false);
 	}
-	
 	
 	/**
 	 * Function: createComponents
@@ -75,6 +74,10 @@ public class BufferPanel extends JPanel
 		// Main Menu 
 		mainMenu = new MainMenu(this);
 		mapPanels.put("MAIN_MENU", mainMenu);
+		
+		// Notes
+		notes = new Notes(this);
+		mapPanels.put("NOTES", notes);
 		
 		// Security Settings
 		settingsMenu = new SettingsMenu(this);
@@ -98,9 +101,7 @@ public class BufferPanel extends JPanel
 		// Other Panels
 		screenSaver = new ScreenSaver(this);
 		mapPanels.put("SCREEN_SAVER", screenSaver);
-		
 	}
-	
 	
 	/**
 	 * Function: addComponents
@@ -115,6 +116,9 @@ public class BufferPanel extends JPanel
 		// Main Menu 
 		add(mainMenu);
 		
+		// Notes
+		add(notes);
+		
 		// Security Settings
 		add(settingsMenu);
 		add(securitySettings);	
@@ -126,7 +130,6 @@ public class BufferPanel extends JPanel
 		// Other Panels
 		add(screenSaver);
 	}
-	
 	
 	/**
 	 * Function: initializePanels
@@ -140,6 +143,9 @@ public class BufferPanel extends JPanel
 		// Main Menu
 		mainMenu.initialize();
 		
+		// Notes
+		notes.initialize();
+		
 		// Security Settings
 		settingsMenu.initialize();
 		securitySettings.initialize();
@@ -151,7 +157,6 @@ public class BufferPanel extends JPanel
 		//Other Panel
 		screenSaver.initialize();
 	}
-	
 	
 	/**
 	 * Function: setDefaults
