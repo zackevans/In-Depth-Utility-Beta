@@ -144,6 +144,7 @@ public class MainMenu extends JPanel
 			public void actionPerformed(ActionEvent arg0) // function: action when button is clicked. Passed pram is not used
 			{
 				System.out.println("notesBtn");
+				bufferPanel.showPanel("NOTES");
 			}
 		});
 		
