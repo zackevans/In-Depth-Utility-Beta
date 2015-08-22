@@ -50,7 +50,7 @@ public class ScreenSaver extends JPanel
 	public void createComponents()
 	{
 		mainBanner = new JLabel("In Depth Utility");
-		clickMessage = new JLabel("click or press any key");
+		clickMessage = new JLabel("click to wakeup"); //TODO when a key listener is added then change jlabel
 		login = new Login(bufferPanel);
 		
 		createMainBanner();
