@@ -1,5 +1,6 @@
 package menu.notes;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,8 +27,8 @@ public class AddNoteBtn extends JButton
 	
 	public void createButton()
 	{
-		setIcon(new ImageIcon("Images/Button_Images/Notes/Add.png")); //embed image into program
-		validate();
+		ImageIcon start = new ImageIcon(getClass().getResource("Images/Add.png"));
+		setIcon(start);
 	}
 	
 	public void addListeners()
