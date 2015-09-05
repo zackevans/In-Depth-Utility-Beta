@@ -28,6 +28,7 @@ public class Notes extends JPanel
 	public static final int btnPadding = 25; // space between the buttons
 	private NotesList notesList;
 	private AddNoteBtn addNoteBtn;
+	private ReturnBtn returnBtn;
 	BufferPanel bufferPanel; // create bufferPanel object
 	
 	/**
@@ -83,9 +84,11 @@ public class Notes extends JPanel
 	{
 		notesList = new NotesList(bufferPanel);
 		addNoteBtn = new AddNoteBtn(bufferPanel);
+		returnBtn = new ReturnBtn(bufferPanel);
 		
 		notesList.setBounds(0,50,250,445);
 		addNoteBtn.setBounds(280,20,30,30);
+		returnBtn.setBounds(250,20,30,30);
 	}
 	
 	/**
@@ -99,6 +102,7 @@ public class Notes extends JPanel
 	{
 		notesList.initialize();
 		addNoteBtn.initialize();
+		returnBtn.initialize();
 	}
 	
 	/**
@@ -118,5 +122,6 @@ public class Notes extends JPanel
 		
 		add(notesList);
 		add(addNoteBtn);
+		add(returnBtn);
 	}
 }
