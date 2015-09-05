@@ -1,6 +1,5 @@
 package menu.notes;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,26 +8,26 @@ import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
 
-public class AddNoteBtn extends JButton
+public class ReturnBtn extends JButton
 {
 	private BufferPanel bufferPanel;
 	
-	public AddNoteBtn (BufferPanel bufferPanel)
+	public ReturnBtn (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
 	}
 	
-	public void initialize ()
+	public void initialize()
 	{
-		createButton();
+		createBtn();
 		addListeners();
 	}
 	
-	public void createButton()
+	public void createBtn()
 	{
-		ImageIcon start = new ImageIcon(getClass().getResource("Images/Add.png"));
-		setIcon(start);
+		setIcon(new ImageIcon("Images/Button_Images/Notes/Return.png"));
+		validate();
 	}
 	
 	public void addListeners()
@@ -38,8 +37,8 @@ public class AddNoteBtn extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				System.out.println("Add Button");
-				
+				System.out.println("returnBtn");
+				bufferPanel.showPanel("MAIN_MENU");
 			}
 		});
 	}
