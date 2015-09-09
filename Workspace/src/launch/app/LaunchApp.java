@@ -122,4 +122,25 @@ public class LaunchApp
 		// create the systems table in the database
 		systemdb.createSystemTable();
     }
+    
+    /**
+     * Function: frameXPosition
+     * @return frame x coordinate
+     */
+    
+    public int frameXPosition()
+    {
+    	return frame.getX(); // get x cord from frame
+    }
+    
+    /**
+     * Function: frameYPosition
+     * @return frame y coordinate
+     */
+    
+    public int frameYPosition()
+    {
+    	return frame.getY(); // get Y cord from frame
+    }
+    
 }
