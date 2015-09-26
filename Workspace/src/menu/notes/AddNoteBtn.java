@@ -13,11 +13,13 @@ import javax.swing.JOptionPane;
 
 import launch.app.LaunchApp;
 import menu.buffer.BufferPanel;
+import panel.customnotedialog.NoteDialog;
 
 public class AddNoteBtn extends JButton
 {
 	private BufferPanel bufferPanel;
 	private LaunchApp launchApp = new LaunchApp();
+	private NoteDialog noteDialog = new NoteDialog();
 	
 	public AddNoteBtn (BufferPanel bufferPanel)
 	{
@@ -45,28 +47,24 @@ public class AddNoteBtn extends JButton
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("Add Button");
-				createInputWindow();
+				noteDialog.createFrame();
 			}
 		});
 	}
-	
-	public void createInputWindow()
-	{
-		int x = launchApp.frameXPosition() + 154; // 154 centers window for x
-		int y = launchApp.frameYPosition() + 167; // 167 centers window for y
-		
-		
-		JOptionPane optionPane = new JOptionPane("Enter Note Title:"
-                , JOptionPane.QUESTION_MESSAGE
-                , JOptionPane.CANCEL_OPTION
-                , null, null, "");
-		
-		optionPane.setWantsInput(true);    
-		
-		JDialog dialog = optionPane.createDialog(null, "Create Note Name");
-		
-		dialog.setLocation(x, y);
-		dialog.setVisible(true);
-		
-	}
 }
+
+
+
+
+
+//String optionPane = new JOptionPane("Enter Note Title:"
+//        , JOptionPane.QUESTION_MESSAGE
+//        , JOptionPane.CANCEL_OPTION
+//        , null, null, "");
+//
+//optionPane.setWantsInput(true);    
+//
+//JDialog dialog = optionPane.createDialog(null, "Create Note Name");
+//
+//dialog.setLocation(x, y);
+//dialog.setVisible(true);
