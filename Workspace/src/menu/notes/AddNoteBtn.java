@@ -47,7 +47,7 @@ public class AddNoteBtn extends JButton
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("Add Button");
-				noteDialog.createFrame();
+				noteDialog.createAndShowGUI();
 			}
 		});
 	}
