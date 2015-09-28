@@ -7,8 +7,11 @@ import javax.swing.JButton;
 
 public class EnterButton extends JButton
 {
-	public EnterButton ()
+	NoteDialog dialog;
+	
+	public EnterButton (NoteDialog dialog)
 	{
+		this.dialog = dialog;
 		setText("Enter");
 		addListeners();
 	}
