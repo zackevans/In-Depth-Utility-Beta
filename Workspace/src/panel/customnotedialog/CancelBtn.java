@@ -7,8 +7,11 @@ import javax.swing.JButton;
 
 public class CancelBtn extends JButton
 {
-	public CancelBtn ()
+	NoteDialog noteDialog;
+	
+	public CancelBtn (NoteDialog dialog)
 	{
+		this.noteDialog = dialog;
 		setText("Cancel");
 		addListeners();
 	}
@@ -21,7 +24,7 @@ public class CancelBtn extends JButton
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("Cancel Button");
-				
+				noteDialog.showDialog(false);
 			}
 		});
 	}

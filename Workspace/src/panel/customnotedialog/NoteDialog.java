@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
 
-public class NoteDialog extends JFrame
+public class NoteDialog 
 {
 	public static final int Window_Width = 393; // Standard Dialog size
 	public static final int Window_Height = 167; // Standard Dialog size
@@ -16,7 +16,8 @@ public class NoteDialog extends JFrame
 	private static JLabel enterLabel = new JLabel("Note Name: ");
 	private LaunchApp launchApp = new LaunchApp(); // created to acess frame location
 	private DialogField dialogField = new DialogField();
-	private CancelBtn cancelBtn = new CancelBtn();
+	private CancelBtn cancelBtn = new CancelBtn(this);
+	private EnterButton enterBtn = new EnterButton(this);
 	
 	public NoteDialog()
 	{
@@ -50,7 +51,8 @@ public class NoteDialog extends JFrame
 	public void createComponents()
 	{
 		dialogField.setBounds(75, 30, 243, 30);
-		cancelBtn.setBounds(75,80,124,45);
+		cancelBtn.setBounds(75,80,100,45);
+		enterBtn.setBounds(223, 80, 100, 45);
 		createEnterLabel();
 	}
 	
@@ -59,6 +61,7 @@ public class NoteDialog extends JFrame
 		customFrame.getContentPane().add(dialogField);
 		customFrame.getContentPane().add(enterLabel);
 		customFrame.getContentPane().add(cancelBtn);
+		customFrame.getContentPane().add(enterBtn);
 	}
 	
 	public static void  createEnterLabel()
@@ -67,8 +70,8 @@ public class NoteDialog extends JFrame
 	    enterLabel.setBounds(77,3,225,40); // set postion and width and height of label
 	}
 	
-	
-	
-	
-	
+	public void showDialog(boolean tf)
+	{
+		customFrame.setVisible(tf);
+	}
 }
