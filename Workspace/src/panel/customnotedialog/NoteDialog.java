@@ -45,6 +45,9 @@ public class NoteDialog
 		
 		addComponents();
 		
+		dialogField.setText("");
+		dialogField.requestFocus();
+	
 		customFrame.setVisible(true);
 	}
 	
@@ -74,4 +77,17 @@ public class NoteDialog
 	{
 		customFrame.setVisible(tf);
 	}
+	
+	public String getFieldText()
+	{
+		return dialogField.getText();
+	}
+	
+	public void showDialogError()
+	{
+		dialogField.setText("Note MUST Contain a Name");
+		dialogField.requestFocus(); // setFocous on textfield
+		dialogField.selectAll(); // hilight all text in text field
+	}
+	
 }
