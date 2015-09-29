@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 import menu.buffer.BufferPanel;
 import program.wallpaper.Wallpaper;
 import sql.DataBase;
+import sql.notes.NotesDataBase;
 import sql.system.settings.SystemDatabase;
 import statusbar.topbar.TopBar;
 
@@ -113,6 +114,7 @@ public class LaunchApp
     	// Create objects
     	final DataBase dataBase = new DataBase();
     	final SystemDatabase systemdb = new SystemDatabase();
+    	final NotesDataBase notesdb = new NotesDataBase();
     	
     	// create db location and create the database
     	dataBase.createDBLocation();
@@ -121,6 +123,9 @@ public class LaunchApp
 		
 		// create the systems table in the database
 		systemdb.createSystemTable();
+		
+		// create the notes tavel in the database
+		notesdb.createNotesTable();
     }
     
     /**
