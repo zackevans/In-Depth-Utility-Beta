@@ -2,8 +2,14 @@ package menu.notes;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JList;
@@ -15,6 +21,8 @@ public class NotesList extends JScrollPane
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
+	private static ArrayList <String> noteNames = new ArrayList <String>(); // names of data
+	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
 	private JList list = new JList();
 	BufferPanel bufferPanel;
 	
@@ -23,6 +31,13 @@ public class NotesList extends JScrollPane
 		super();
 		this.bufferPanel = bufferPanel;
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	}
+	
+	public void paintComponent(Graphics g)
+	{		
+		super.paintComponent(g); // personalMenu will not show (Bug Fix)
+		
+		updateListData();
 	}
 	
 	public void initialize()
@@ -65,6 +80,48 @@ public class NotesList extends JScrollPane
 	    });
 	}
 	
+	public void updateListData()
+	{
+		noteNames.clear();
+		loadData();
+		list.setListData(noteNames.toArray());
+	}
+	
+	
+	public void loadData()
+	{	
+		int index = 0;
+		Connection c = null;
+	    Statement stmt = null;
+	    try 
+	    {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
+
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery( "SELECT * FROM PERSONAL_NOTES;" );
+	      while (rs.next()) 
+	      {
+	    	  int id = rs.getInt("ID");
+	    	  String  name = rs.getString("NAME");
+	    	  //DBlocations.put(index, id);
+	    	  noteNames.add(name);
+	    	  index++;
+	      }
+	      
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    
+	    //System.out.println("personal Data Loaded");
+	}
 	
 	
 }
