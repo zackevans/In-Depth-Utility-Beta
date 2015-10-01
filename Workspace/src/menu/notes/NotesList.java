@@ -35,7 +35,7 @@ public class NotesList extends JScrollPane
 	
 	public void paintComponent(Graphics g)
 	{		
-		super.paintComponent(g); // personalMenu will not show (Bug Fix)
+		super.paintComponent(g); 
 		
 		updateListData();
 	}
@@ -75,7 +75,11 @@ public class NotesList extends JScrollPane
 	        @Override
 	        public void mouseClicked(MouseEvent e) 
 	        {  
-	        	
+	        	if (e.getClickCount() == 2)
+	        	{
+	        		int listIndex = list.getSelectedIndex();
+	        		
+	        	}
 	        }
 	    });
 	}

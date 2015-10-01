@@ -10,7 +10,6 @@ import sql.notes.NotesDataBase;
 public class EnterButton extends JButton
 {
 	NotesDataBase notesdb = new NotesDataBase();
-	
 	NoteDialog dialog;
 	
 	public EnterButton (NoteDialog dialog)
@@ -29,20 +28,7 @@ public class EnterButton extends JButton
 			{
 				System.out.println("EnterButton");
 				
-				String noteName = dialog.getFieldText();
-				
-				if (noteName.length() <= 0|| noteName.contains("Note MUST Contain a Name"))
-				{
-					dialog.showDialogError();
-					
-				}
-				
-				else
-				{
-					notesdb.createPersonalNote(noteName);
-					dialog.showDialog(false);
-				}
-				
+				dialog.enterFunction();
 			}
 		});
 	}
