@@ -79,5 +79,31 @@ public class NotesDataBase
 	    
 	    System.out.println("Personal Note Created Successfully");
 	}
+	
+	public void deleteNote(int dbLocation)
+	{
+		Connection c = null;
+	    Statement stmt = null;
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c.setAutoCommit(false);
+	      System.out.println("Opened database successfully");
+
+	      stmt = c.createStatement();
+	      
+	      String sql = "DELETE from PERSONALNOTES where ID = " + dbLocation +";";
+	      
+	      stmt.executeUpdate(sql);
+	      c.commit();
+	      stmt.close();
+	      c.close();
+	    } catch ( Exception e ) {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    
+	    System.out.println("Deleted Item");
+	}
 
 }

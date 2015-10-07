@@ -8,11 +8,14 @@ import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
 
-public class ReturnBtn extends JButton
+public class DeleteButton extends JButton
 {
 	private BufferPanel bufferPanel;
+	private NotesList notesList = new NotesList(bufferPanel);
+	//private LaunchApp launchApp = new LaunchApp();
+	//private DisplayNotes displayNotes = new DisplayNotes(bufferPanel);
 	
-	public ReturnBtn (BufferPanel bufferPanel)
+	public DeleteButton (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
@@ -26,7 +29,7 @@ public class ReturnBtn extends JButton
 	
 	public void createBtn()
 	{
-		setIcon(new ImageIcon("Images/Button_Images/Notes/Return.png"));
+		setIcon(new ImageIcon("Images/Button_Images/Notes/Delete.png"));
 		validate();
 	}
 	
@@ -37,9 +40,9 @@ public class ReturnBtn extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				System.out.println("returnBtn");
-				bufferPanel.showPanel("MAIN_MENU");
+				
 			}
 		});
 	}
+
 }
