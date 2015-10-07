@@ -15,13 +15,13 @@ import launch.app.LaunchApp;
 import menu.buffer.BufferPanel;
 import panel.customnotedialog.NoteDialog;
 
-public class AddNoteBtn extends JButton
+public class AddNoteButton extends JButton
 {
 	private BufferPanel bufferPanel;
 	private LaunchApp launchApp = new LaunchApp();
 	private NoteDialog noteDialog = new NoteDialog();
 	
-	public AddNoteBtn (BufferPanel bufferPanel)
+	public AddNoteButton (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
@@ -35,8 +35,8 @@ public class AddNoteBtn extends JButton
 	
 	public void createButton()
 	{
-		ImageIcon start = new ImageIcon(getClass().getResource("Images/Add.png")); 
-		setIcon(start);
+		setIcon(new ImageIcon("Images/Button_Images/Notes/Add.png"));
+		validate();
 	}
 	
 	public void addListeners()
@@ -54,17 +54,3 @@ public class AddNoteBtn extends JButton
 }
 
 
-
-
-
-//String optionPane = new JOptionPane("Enter Note Title:"
-//        , JOptionPane.QUESTION_MESSAGE
-//        , JOptionPane.CANCEL_OPTION
-//        , null, null, "");
-//
-//optionPane.setWantsInput(true);    
-//
-//JDialog dialog = optionPane.createDialog(null, "Create Note Name");
-//
-//dialog.setLocation(x, y);
-//dialog.setVisible(true);
