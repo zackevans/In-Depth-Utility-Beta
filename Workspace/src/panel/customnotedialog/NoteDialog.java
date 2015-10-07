@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
+import sql.notes.NotesDataBase;
 
 public class NoteDialog 
 {
@@ -15,9 +16,10 @@ public class NoteDialog
 	private static JFrame customFrame = new JFrame(); // Created JFrame VAR.
 	private static JLabel enterLabel = new JLabel("Note Name: ");
 	private LaunchApp launchApp = new LaunchApp(); // created to acess frame location
-	private DialogField dialogField = new DialogField();
+	private DialogField dialogField = new DialogField(this);
 	private CancelBtn cancelBtn = new CancelBtn(this);
 	private EnterButton enterBtn = new EnterButton(this);
+	private NotesDataBase notesdb = new NotesDataBase();
 	
 	public NoteDialog()
 	{
@@ -88,6 +90,23 @@ public class NoteDialog
 		dialogField.setText("Note MUST Contain a Name");
 		dialogField.requestFocus(); // setFocous on textfield
 		dialogField.selectAll(); // hilight all text in text field
+	}
+	
+	public void enterFunction()
+	{
+		String noteName = dialogField.getText();
+		
+		if (noteName.length() <= 0|| noteName.contains("Note MUST Contain a Name"))
+		{
+			showDialogError();
+			
+		}
+		
+		else
+		{
+			notesdb.createPersonalNote(noteName);
+			showDialog(false);
+		}
 	}
 	
 }
