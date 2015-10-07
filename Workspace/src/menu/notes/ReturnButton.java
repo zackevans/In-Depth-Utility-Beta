@@ -8,11 +8,11 @@ import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
 
-public class ReturnBtn extends JButton
+public class ReturnButton extends JButton
 {
 	private BufferPanel bufferPanel;
 	
-	public ReturnBtn (BufferPanel bufferPanel)
+	public ReturnButton (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
