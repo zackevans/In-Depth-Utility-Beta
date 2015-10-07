@@ -27,8 +27,9 @@ public class Notes extends JPanel
 	public static final int btnHeight = 50; // button height
 	public static final int btnPadding = 25; // space between the buttons
 	private NotesList notesList;
-	private AddNoteBtn addNoteBtn;
-	private ReturnBtn returnBtn;
+	private AddNoteButton addNoteButton;
+	private ReturnButton returnButton;
+	private DeleteButton deleteBtn;
 	BufferPanel bufferPanel; // create bufferPanel object
 	
 	/**
@@ -44,20 +45,19 @@ public class Notes extends JPanel
 	{
 		super();
 		this.bufferPanel = bufferPanel;
+		setOpaque(false);
 	}
 	
 	/**
 	 * Function: paintComponent*
 	 * 
-	 * 
-	 * 
 	 */
 	
-	public void paintComponent(Graphics g)
-	{
-		// have list be repainted
-		// have notes body be repainted
-	}
+//	public void paintComponent(Graphics g)
+//	{
+//		super.paintComponent(g); 
+//		
+//	}
 	
 	/**
 	 * Function: initialize
@@ -83,12 +83,14 @@ public class Notes extends JPanel
 	public void createComponents()
 	{
 		notesList = new NotesList(bufferPanel);
-		addNoteBtn = new AddNoteBtn(bufferPanel);
-		returnBtn = new ReturnBtn(bufferPanel);
+		addNoteButton = new AddNoteButton(bufferPanel);
+		returnButton = new ReturnButton(bufferPanel);
+		deleteBtn = new DeleteButton(bufferPanel);
 		
 		notesList.setBounds(0,50,250,445);
-		addNoteBtn.setBounds(280,20,30,30);
-		returnBtn.setBounds(250,20,30,30);
+		addNoteButton.setBounds(280,20,30,30);
+		returnButton.setBounds(250,20,30,30);
+		deleteBtn.setBounds(310,20,30,30);
 	}
 	
 	/**
@@ -101,8 +103,9 @@ public class Notes extends JPanel
 	public void initializeComponents()
 	{
 		notesList.initialize();
-		addNoteBtn.initialize();
-		returnBtn.initialize();
+		addNoteButton.initialize();
+		returnButton.initialize();
+		deleteBtn.initialize();
 	}
 	
 	/**
@@ -121,7 +124,8 @@ public class Notes extends JPanel
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20));
 		
 		add(notesList);
-		add(addNoteBtn);
-		add(returnBtn);
+		add(addNoteButton);
+		add(returnButton);
+		add(deleteBtn);
 	}
 }
