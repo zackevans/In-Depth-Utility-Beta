@@ -68,7 +68,7 @@ public class NotesDataBase
 	      preparedStatement.setString(2,"");
 	      preparedStatement.setString(3,dateFormat.format(date.getTime()));
 	      preparedStatement.setString(4,timeFormat.format(date.getTime()));
-	      preparedStatement.setInt(5,1); // set new note to first postion in the list
+	      preparedStatement.setInt(5,1); // set new note to first postion in the list (puts item on top)
 
 	      preparedStatement.executeUpdate();
 	      preparedStatement.close();
@@ -109,38 +109,10 @@ public class NotesDataBase
 	    System.out.println("Deleted Item");
 	}
 	
-	
-	public int countItems()
+	public void pushListDown()
 	{
-		Connection c = null;
-	    Statement stmt = null;
-	    int returnValue = -1;
-	    
-	    try 
-	    {
-	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection(dbLocation);
-	      c.setAutoCommit(false);
-	     
-
-	      stmt = c.createStatement();
-	      ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM USER_NOTES");
-	      while (rs.next()) 
-	      {
-	    	  //returnValue = rs.getInt("ID");
-	      }
-	      
-	      rs.close();
-	      stmt.close();
-	      c.close();
-	    } 
-	    catch ( Exception e ) 
-	    {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
-	    }
-	    
-	    return returnValue;
+		// get current index of a note
+		// add one to the list position(db) of the index
+		// update the change in the database
 	}
-
 }
