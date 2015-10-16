@@ -104,11 +104,14 @@ public class NoteDialog
 		
 		else
 		{
-			notesdb.createPersonalNote(noteName);
-			showDialog(false);
+			notesdb.createPersonalNote(noteName); // create new note in db
+			 
+			showDialog(false); // hides dialog window
 		}
 		
-		// update the position of all other list items
+		
+		//push list down method call
+		
 		
 	}
 	
