@@ -1,4 +1,4 @@
-package program.wallpaper;
+package panel.wallpaper;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
