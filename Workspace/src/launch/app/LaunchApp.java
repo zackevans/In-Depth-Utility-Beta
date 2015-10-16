@@ -27,7 +27,6 @@ public class LaunchApp
     static BufferPanel bufferPanel = new BufferPanel(); // Created a BufferPanel Class Object.
     public static TopBar topBar; // Created a TopBar Class Object.
     
-    
     /**
      * Main initial method
      * 
@@ -35,6 +34,7 @@ public class LaunchApp
      * Calls Main Database methods 
      * 
      */
+    
     public static void main(String[] args) 
     {
     	SwingUtilities.invokeLater(new Runnable() // Created Runnable thread to run GUI.
@@ -84,8 +84,8 @@ public class LaunchApp
         topBar.initialize();
         
         // Add objects to layer panel.
-        	// wallpaper on bottom and not opaque.
-        	// bufferpanel and top bar are all opaque. 
+        // wallpaper on bottom and not opaque.
+        // bufferpanel and top bar are all opaque. 
         layerPane.add(wallpaper, new Integer(0), 0);
         layerPane.add(bufferPanel, new Integer(1), 0);
         layerPane.add(topBar, new Integer(2), 0);
