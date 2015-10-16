@@ -24,12 +24,14 @@ public class NotesDataBase
 	      System.out.println("Opened database successfully");
 
 	      stmt = c.createStatement();
-	      String sql = "CREATE TABLE if not exists PERSONAL_NOTES" + 
+	      String sql = "CREATE TABLE if not exists USER_NOTES" + 
                   "(ID INTEGER PRIMARY KEY   AUTOINCREMENT, " +
                   " NAME           varchar       NOT NULL, " + 
                   " BODY           varchar               , " + 
                   " DATE           varchar       NOT NULL, " + 
-                  " TIME           varchar       NOT NULL )"; 
+                  " TIME           varchar       NOT NULL, " + 
+	      		  " LIST_POSITION  integer       NOT NULL )";
+	      
 	      stmt.executeUpdate(sql);
 	      stmt.close();
 	      c.close();
@@ -58,14 +60,15 @@ public class NotesDataBase
 	      c.setAutoCommit(false);
 	      System.out.println("Opened database successfully");
 	  
-	      String sql = "INSERT INTO PERSONAL_NOTES (NAME,BODY,DATE,TIME) " +
-	      			   "VALUES (?,?,?,?);";
+	      String sql = "INSERT INTO USER_NOTES (NAME,BODY,DATE,TIME,LIST_POSITION) " +
+	      			   "VALUES (?,?,?,?,?);";
 	      			   	    
 	      PreparedStatement preparedStatement = c.prepareStatement(sql);
 	      preparedStatement.setString(1,noteName);
 	      preparedStatement.setString(2,"");
 	      preparedStatement.setString(3,dateFormat.format(date.getTime()));
 	      preparedStatement.setString(4,timeFormat.format(date.getTime()));
+	      preparedStatement.setInt(5,1); // set new note to first postion in the list
 
 	      preparedStatement.executeUpdate();
 	      preparedStatement.close();
@@ -77,22 +80,22 @@ public class NotesDataBase
 	      System.exit(0);
 	    }
 	    
-	    System.out.println("Personal Note Created Successfully");
+	    System.out.println("Note Created Successfully");
 	}
 	
-	public void deleteNote(int dbLocation)
+	public void deleteNote(int dbNum)
 	{
 		Connection c = null;
 	    Statement stmt = null;
 	    try {
 	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:IDU_Files/IDU_User.db");
+	      c = DriverManager.getConnection(dbLocation);
 	      c.setAutoCommit(false);
 	      System.out.println("Opened database successfully");
 
 	      stmt = c.createStatement();
 	      
-	      String sql = "DELETE from PERSONALNOTES where ID = " + dbLocation +";";
+	      String sql = "DELETE from USER_NOTES where ID = " + dbNum +";";
 	      
 	      stmt.executeUpdate(sql);
 	      c.commit();
@@ -104,6 +107,40 @@ public class NotesDataBase
 	    }
 	    
 	    System.out.println("Deleted Item");
+	}
+	
+	
+	public int countItems()
+	{
+		Connection c = null;
+	    Statement stmt = null;
+	    int returnValue = -1;
+	    
+	    try 
+	    {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
+	     
+
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM USER_NOTES");
+	      while (rs.next()) 
+	      {
+	    	  //returnValue = rs.getInt("ID");
+	      }
+	      
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    
+	    return returnValue;
 	}
 
 }

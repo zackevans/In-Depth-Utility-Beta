@@ -107,6 +107,9 @@ public class NoteDialog
 			notesdb.createPersonalNote(noteName);
 			showDialog(false);
 		}
+		
+		// update the position of all other list items
+		
 	}
 	
 }

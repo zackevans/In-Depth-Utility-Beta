@@ -104,7 +104,7 @@ public class NotesList extends JScrollPane
 	      c.setAutoCommit(false);
 
 	      stmt = c.createStatement();
-	      ResultSet rs = stmt.executeQuery( "SELECT * FROM PERSONAL_NOTES;" );
+	      ResultSet rs = stmt.executeQuery( "SELECT * FROM USER_NOTES;" );
 	      while (rs.next()) 
 	      {
 	    	  int id = rs.getInt("ID");
