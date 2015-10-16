@@ -9,7 +9,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
 import menu.buffer.BufferPanel;
-import program.wallpaper.Wallpaper;
+import panel.wallpaper.Wallpaper;
 import sql.DataBase;
 import sql.notes.NotesDataBase;
 import sql.system.settings.SystemDatabase;
@@ -126,6 +126,8 @@ public class LaunchApp
 		
 		// create the notes tavel in the database
 		notesdb.createNotesTable();
+		
+		System.out.println("Note Count: " + notesdb.countItems());
     }
     
     /**
