@@ -24,6 +24,7 @@ public class NotesList extends JScrollPane
 	private static ArrayList <String> noteNames = new ArrayList <String>(); // names of data
 	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
 	private JList list = new JList();
+	NotesListData notesData = new NotesListData();
 	BufferPanel bufferPanel;
 	
 	public NotesList (BufferPanel bufferPanel)
@@ -87,7 +88,7 @@ public class NotesList extends JScrollPane
 	public void updateListData()
 	{
 		noteNames.clear();
-		loadData();
+		noteNames = notesData.getNoteListData();
 		list.setListData(noteNames.toArray());
 	}
 	
