@@ -110,9 +110,109 @@ public class NotesDataBase
 	}
 	
 	public void pushListDown()
-	{
-		// get current index of a note
-		// add one to the list position(db) of the index
-		// update the change in the database
+	{	
+		for (int i = 1; i <= countItems(); i++)
+		{
+			int listPosition = getListPosition(i); // get list position from [i] row
+			int updatedPosition = listPosition +1; // add 1 to the list position
+			updateListPosition(i, updatedPosition); // set new value to the [i] row
+		}
 	}
+	
+	public int countItems() // counts how may rows there are
+	{
+		Connection c = null;
+	    Statement stmt = null;
+	    int returnValue = -1;
+	    
+	    try 
+	    {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
+	     
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS total FROM USER_NOTES");
+	      
+	      returnValue = rs.getInt("total"); // set return value to value total
+	      
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println(e.getClass().getName() + ": " + e.getMessage());
+	      System.exit(0);
+	    }
+	    
+	    return returnValue;
+	}
+	
+	public int getListPosition(int listNumber)
+	{
+		Connection c = null;
+	    Statement stmt = null;
+	    int rVal = -1;
+	    
+	    try 
+	    {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
+	     
+
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery( "SELECT LIST_POSITION FROM USER_NOTES WHERE ID ="+ listNumber +";" );
+	      
+	      while (rs.next()) 
+	      {
+	    	  rVal = rs.getInt("LIST_POSITION");
+	      }
+	      
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
+	    
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    
+		return rVal;
+	}
+	
+	
+	public void updateListPosition(int row, int listPosition)
+	{
+		Connection dbConnection = null;
+		
+		try 
+	    {
+			Class.forName("org.sqlite.JDBC");
+		    dbConnection = DriverManager.getConnection(dbLocation);
+		    dbConnection.setAutoCommit(false);
+		    
+			String updateTableSQL = "UPDATE USER_NOTES SET LIST_POSITION = ? WHERE ID = ?";
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			preparedStatement.setInt(1, listPosition);
+			preparedStatement.setInt(2, row);
+			
+			dbConnection.commit();
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			dbConnection.setAutoCommit(true);
+			dbConnection.close();
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+		
+	}
+	
 }
