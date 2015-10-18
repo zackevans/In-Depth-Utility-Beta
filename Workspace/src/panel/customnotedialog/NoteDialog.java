@@ -99,20 +99,13 @@ public class NoteDialog
 		if (noteName.length() <= 0|| noteName.contains("Note MUST Contain a Name"))
 		{
 			showDialogError();
-			
 		}
 		
 		else
 		{
+			notesdb.pushListDown();
 			notesdb.createPersonalNote(noteName); // create new note in db
-			 
 			showDialog(false); // hides dialog window
-		}
-		
-		
-		//push list down method call
-		
-		
+		}	
 	}
-	
 }
