@@ -215,4 +215,37 @@ public class NotesDataBase
 		
 	}
 	
+	
+	public String getNoteNameFromPosition(int listPosition)
+	{
+		Connection c = null;
+	    Statement stmt = null;
+	    String rVal = "-1";
+	    try 
+	    {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
+	     
+
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery( "SELECT NAME FROM USER_NOTES WHERE LIST_POSITION = "+ listPosition +";" );
+	      while (rs.next()) 
+	      {
+	    	  rVal = rs.getString("NAME");
+	      }
+	      
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    
+	    return rVal;
+	}
+	
 }
