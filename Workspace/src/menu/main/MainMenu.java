@@ -176,6 +176,7 @@ public class MainMenu extends JPanel
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("calendarBtn");
+				bufferPanel.showPanel("CALENDAR_MENU");
 			}
 		});
 		
