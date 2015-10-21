@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class NotesDataBase 
@@ -111,11 +112,24 @@ public class NotesDataBase
 	
 	public void pushListDown()
 	{	
+		ArrayList<Integer> rowList = new ArrayList<Integer>();
+		
+		rowList.clear();
+		
 		for (int i = 1; i <= countItems(); i++)
 		{
-			int listPosition = getListPosition(i); // get list position from [i] row
+			rowList.add(getID(i));
+		}
+		
+		for (int i = 0; i < countItems(); i++)
+		{
+			int rowNumber = rowList.get(i);
+			
+			int listPosition = getListPosition(rowNumber); // get list position from [i] row
+			
 			int updatedPosition = listPosition +1; // add 1 to the list position
-			updateListPosition(i, updatedPosition); // set new value to the [i] row
+			
+			updateListPosition(rowNumber, updatedPosition); // set new value to the [i] row
 		}
 	}
 	
@@ -149,7 +163,7 @@ public class NotesDataBase
 	    return returnValue;
 	}
 	
-	public int getListPosition(int listNumber)
+	public int getListPosition(int rowNum)
 	{
 		Connection c = null;
 	    Statement stmt = null;
@@ -163,7 +177,7 @@ public class NotesDataBase
 	     
 
 	      stmt = c.createStatement();
-	      ResultSet rs = stmt.executeQuery( "SELECT LIST_POSITION FROM USER_NOTES WHERE ID ="+ listNumber +";" );
+	      ResultSet rs = stmt.executeQuery( "SELECT LIST_POSITION FROM USER_NOTES WHERE ID ="+ rowNum +";" );
 	      
 	      while (rs.next()) 
 	      {
@@ -229,7 +243,9 @@ public class NotesDataBase
 	     
 
 	      stmt = c.createStatement();
+	      
 	      ResultSet rs = stmt.executeQuery( "SELECT NAME FROM USER_NOTES WHERE LIST_POSITION = "+ listPosition +";" );
+	      
 	      while (rs.next()) 
 	      {
 	    	  rVal = rs.getString("NAME");
@@ -248,4 +264,35 @@ public class NotesDataBase
 	    return rVal;
 	}
 	
+	public int getID(int listPosition)
+	{
+		Connection c = null;
+	    Statement stmt = null;
+	    int rVal = -1;
+	    try 
+	    {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
+	     
+
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery( "SELECT ID FROM USER_NOTES WHERE LIST_POSITION = "+ listPosition +";" );
+	      while (rs.next()) 
+	      {
+	    	  rVal = rs.getInt("ID");
+	      }
+	      
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    
+	    return rVal;
+	}
 }
