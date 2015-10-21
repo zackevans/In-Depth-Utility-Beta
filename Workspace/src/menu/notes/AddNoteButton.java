@@ -20,6 +20,7 @@ public class AddNoteButton extends JButton
 	private BufferPanel bufferPanel;
 	private LaunchApp launchApp = new LaunchApp();
 	private NoteDialog noteDialog = new NoteDialog();
+	private NotesList notesList = new NotesList(bufferPanel);
 	
 	public AddNoteButton (BufferPanel bufferPanel)
 	{

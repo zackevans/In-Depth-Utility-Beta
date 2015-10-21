@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
+
 import sql.notes.NotesDataBase;
 
 public class NoteDialog 

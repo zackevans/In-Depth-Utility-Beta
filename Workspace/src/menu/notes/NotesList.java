@@ -78,6 +78,8 @@ public class NotesList extends JScrollPane
 	        {  
 	        	if (e.getClickCount() == 2)
 	        	{
+	        		System.out.println("List Index: " + list.getSelectedIndex());
+	        		
 	        		int listIndex = list.getSelectedIndex();
 	        		
 	        	}
@@ -90,43 +92,10 @@ public class NotesList extends JScrollPane
 		noteNames.clear();
 		noteNames = notesData.getNoteListData();
 		list.setListData(noteNames.toArray());
+	}	
+	
+	public void setListSelection(int listNumber)
+	{
+		list.setSelectedIndex(listNumber);
 	}
-	
-	
-	public void loadData()
-	{	
-		int index = 0;
-		Connection c = null;
-	    Statement stmt = null;
-	    try 
-	    {
-	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection(dbLocation);
-	      c.setAutoCommit(false);
-
-	      stmt = c.createStatement();
-	      ResultSet rs = stmt.executeQuery( "SELECT * FROM USER_NOTES;" );
-	      while (rs.next()) 
-	      {
-	    	  int id = rs.getInt("ID");
-	    	  String  name = rs.getString("NAME");
-	    	  //DBlocations.put(index, id);
-	    	  noteNames.add(name);
-	    	  index++;
-	      }
-	      
-	      rs.close();
-	      stmt.close();
-	      c.close();
-	    } 
-	    catch ( Exception e ) 
-	    {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
-	    }
-	    
-	    //System.out.println("personal Data Loaded");
-	}
-	
-	
 }
