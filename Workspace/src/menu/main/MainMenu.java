@@ -88,7 +88,7 @@ public class MainMenu extends JPanel
 	{
 		// Initialize buttons and set names
 		mainTittleLbl = new JLabel("In Depth Utility");
-		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
+		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2015©");
 		notesBtn = new JButton("Notes");
 		remindersBtn = new JButton ("Reminders");
 		mailBtn = new JButton ("Mail");

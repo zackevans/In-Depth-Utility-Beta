@@ -40,7 +40,7 @@ public class BackMonthButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				System.out.println("Back Month Button");
+				System.out.println("backMonthBtn");
 			}
 		});
 	}

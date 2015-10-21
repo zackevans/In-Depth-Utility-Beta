@@ -23,6 +23,7 @@ public class Calendar extends JPanel
 	private AddMonthButton addMonthButton;
 	private BackMonthButton backMonthButton;
 	private ReturnButton returnButton;
+	private CurrentDayButton currentDayButton;
 	private static JLabel monthLbl;
 	
 	BufferPanel bufferPanel; // create bufferPanel object
@@ -79,6 +80,9 @@ public class Calendar extends JPanel
 		returnButton = new ReturnButton(bufferPanel);
 		returnButton.setBounds(5,20, 30, 30);
 		
+		currentDayButton = new CurrentDayButton(bufferPanel);
+		currentDayButton.setBounds(600, 25, 55, 20);
+		
 		monthLbl = new JLabel("Month");
 		createMonthLbl();
 		
@@ -95,7 +99,9 @@ public class Calendar extends JPanel
 	{
 		addMonthButton.initialize();
 		backMonthButton.initialize();
+		currentDayButton.initialize();
 		returnButton.initialize();
+		
 	}
 	
 	public void layoutComponents()
@@ -106,6 +112,7 @@ public class Calendar extends JPanel
 		add(addMonthButton);
 		add(backMonthButton);
 		add(returnButton);
+		add(currentDayButton);
 		add(monthLbl);
 	}
 	

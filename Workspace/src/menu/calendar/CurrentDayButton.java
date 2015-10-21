@@ -1,35 +1,34 @@
 package menu.calendar;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
 import launch.app.LaunchApp;
 import menu.buffer.BufferPanel;
+import javax.swing.JButton;
 
-public class AddMonthButton extends JButton
+public class CurrentDayButton extends JButton
 {
 	private BufferPanel bufferPanel;
 	private LaunchApp launchApp = new LaunchApp();
-
 	
-	public AddMonthButton (BufferPanel bufferPanel)
+	public CurrentDayButton(BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
 	}
 	
-	public void initialize ()
+	public void initialize()
 	{
 		createButton();
 		addListeners();
 	}
-	
+
 	public void createButton()
 	{
-		setIcon(new ImageIcon("Images/Button_Images/Calendar/Add.png"));
+		setText("Today");
+		setFont(new Font("Helvetica Neue",Font.PLAIN,12));
 		validate();
 	}
 	
@@ -40,7 +39,8 @@ public class AddMonthButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				System.out.println("addMonthBtn");
+				//Return to current day
+				System.out.println("currentDayBtn");
 			}
 		});
 	}
