@@ -107,6 +107,6 @@ public class NoteDialog
 			notesdb.pushListDown();
 			notesdb.createPersonalNote(noteName); // create new note in db
 			showDialog(false); // hides dialog window
-		}	
+		}
 	}
 }
