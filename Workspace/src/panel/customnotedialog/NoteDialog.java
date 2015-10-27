@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
+
 import sql.notes.NotesDataBase;
 
 public class NoteDialog 
@@ -99,17 +100,13 @@ public class NoteDialog
 		if (noteName.length() <= 0|| noteName.contains("Note MUST Contain a Name"))
 		{
 			showDialogError();
-			
 		}
 		
 		else
 		{
-			notesdb.createPersonalNote(noteName);
-			showDialog(false);
+			notesdb.pushListDown();
+			notesdb.createPersonalNote(noteName); // create new note in db
+			showDialog(false); // hides dialog window
 		}
-		
-		// update the position of all other list items
-		
 	}
-	
 }
