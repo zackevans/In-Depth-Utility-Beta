@@ -132,24 +132,11 @@ public class NotesDataBase
     
     public void pushItemsAboveClickedDown (int numberClicked)
     {
-    	ArrayList <Integer> IDList = new ArrayList<Integer>();
-    	
-    	IDList.clear();
-    	
     	for (int i = numberClicked-1; i >= 1; i --) // loop that counts down from number clicked -1
     	{
-    		System.out.println("List Number: " + i + "  ID: " + getID(i));
-    		
-    		
     		int updatedPosition = i + 1;
-//    		IDList.add(getID(i)); // adds the rowIDs t0 the IDList
     		updateListPosition(getID(i), updatedPosition);
-    		System.out.println("ID: " + getID(i) + " Updated Position: " + updatedPosition);
-    	}
-    	
-    	
-    	
-    	
+    	}	
     }
     
     
