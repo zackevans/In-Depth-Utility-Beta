@@ -126,8 +126,6 @@ public class LaunchApp
 		
 		// create the notes tavel in the database
 		notesdb.createNotesTable();
-		
-		System.out.println("Note Count: " + notesdb.countItems());
     }
     
     /**

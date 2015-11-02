@@ -16,6 +16,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import menu.buffer.BufferPanel;
+import sql.notes.NotesDataBase;
 
 public class NotesList extends JScrollPane
 {
@@ -25,7 +26,10 @@ public class NotesList extends JScrollPane
 	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
 	private JList list = new JList();
 	NotesListData notesData = new NotesListData();
+	NotesDataBase notesdb = new NotesDataBase();
 	BufferPanel bufferPanel;
+	public static int lastClick = -1;
+	public static int lastIndex = -1;
 	
 	public NotesList (BufferPanel bufferPanel)
 	{
@@ -35,10 +39,10 @@ public class NotesList extends JScrollPane
 	}
 	
 	public void paintComponent(Graphics g)
-	{		
-		super.paintComponent(g); 
-		
+	{	
 		updateListData();
+		keepSelection();
+		super.paintComponent(g);
 	}
 	
 	public void initialize()
@@ -77,11 +81,19 @@ public class NotesList extends JScrollPane
 	        public void mouseClicked(MouseEvent e) 
 	        {  
 	        	if (e.getClickCount() == 2)
-	        	{
-	        		System.out.println("List Index: " + list.getSelectedIndex());
-	        		
+	        	{	
 	        		int listIndex = list.getSelectedIndex();
+	        		lastIndex = 0; // set slected bar on the last clicked
+	        		int listPosition = listIndex+1;
 	        		
+	        		// created var for the ID(in db) of item clicked on
+	        		int ID = notesdb.getID(listPosition); 
+	        		// updates the item clicked on set to the first list position 
+	        		
+	        		notesdb.pushItemsAboveClickedDown(listPosition);
+	        		notesdb.updateListPosition(ID, 1); 
+	        		
+	        		repaint();
 	        	}
 	        }
 	    });
@@ -98,4 +110,20 @@ public class NotesList extends JScrollPane
 	{
 		list.setSelectedIndex(listNumber);
 	}
+	
+	public void keepSelection()
+	{
+		if (lastIndex != -1)
+		{
+			list.setSelectedIndex(lastIndex);
+		}
+	}
+	
+	public void clearSelections()
+	{
+		list.clearSelection();
+		lastClick = -1;
+		lastIndex = -1;
+	}
+
 }

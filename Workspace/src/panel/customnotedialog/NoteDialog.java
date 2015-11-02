@@ -104,7 +104,7 @@ public class NoteDialog
 		
 		else
 		{
-			notesdb.pushListDown();
+			notesdb.pushWholeListDownOne();
 			notesdb.createPersonalNote(noteName); // create new note in db
 			showDialog(false); // hides dialog window
 		}

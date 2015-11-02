@@ -49,17 +49,6 @@ public class Notes extends JPanel
 	}
 	
 	/**
-	 * Function: paintComponent*
-	 * 
-	 */
-	
-//	public void paintComponent(Graphics g)
-//	{
-//		super.paintComponent(g); 
-//		
-//	}
-	
-	/**
 	 * Function: initialize
 	 * 
 	 * call function to create panel
