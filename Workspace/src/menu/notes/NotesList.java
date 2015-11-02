@@ -16,6 +16,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import menu.buffer.BufferPanel;
+import sql.notes.NotesDataBase;
 
 public class NotesList extends JScrollPane
 {
@@ -25,6 +26,7 @@ public class NotesList extends JScrollPane
 	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
 	private JList list = new JList();
 	NotesListData notesData = new NotesListData();
+	NotesDataBase notesdb = new NotesDataBase();
 	BufferPanel bufferPanel;
 	
 	public NotesList (BufferPanel bufferPanel)
@@ -35,10 +37,9 @@ public class NotesList extends JScrollPane
 	}
 	
 	public void paintComponent(Graphics g)
-	{		
-		super.paintComponent(g); 
-		
+	{	
 		updateListData();
+		super.paintComponent(g); 
 	}
 	
 	public void initialize()
@@ -77,11 +78,21 @@ public class NotesList extends JScrollPane
 	        public void mouseClicked(MouseEvent e) 
 	        {  
 	        	if (e.getClickCount() == 2)
-	        	{
-	        		System.out.println("List Index: " + list.getSelectedIndex());
-	        		
+	        	{	
 	        		int listIndex = list.getSelectedIndex();
+	        		int listPosition = listIndex+1;
 	        		
+	        		System.out.println("List Position: " + listPosition);
+	        		
+	        		// created var for the ID(in db) of item clicked on
+	        		int ID = notesdb.getID(listPosition); 
+	        		// updates the item clicked on set to the first list position 
+	        		
+	        		notesdb.pushItemsAboveClickedDown(listPosition);
+	        		notesdb.updateListPosition(ID, 1); 
+	        		
+	        		setListSelection(0);
+	        		repaint();
 	        	}
 	        }
 	    });

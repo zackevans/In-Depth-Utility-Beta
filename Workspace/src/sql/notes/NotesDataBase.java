@@ -31,7 +31,7 @@ public class NotesDataBase
             " BODY           varchar               , " +
             " DATE           varchar       NOT NULL, " +
             " TIME           varchar       NOT NULL, " +
-            " LIST_POSITION  integer       NOT NULL )";
+            " LIST_POSITION  integer                )";
             
             stmt.executeUpdate(sql);
             stmt.close();
@@ -110,28 +110,49 @@ public class NotesDataBase
         System.out.println("Deleted Item");
     }
     
-    public void pushListDown()
+    public void pushWholeListDownOne()
     {
-        ArrayList<Integer> rowList = new ArrayList<Integer>();
+        ArrayList<Integer> IDList = new ArrayList<Integer>(); // stores the ID number in the database
         
-        rowList.clear();
+        IDList.clear(); // clear row number list
         
-        for (int i = 1; i <= countItems(); i++)
+        for (int i = 1; i <= countItems(); i++) // sets the row number array
         {
-            rowList.add(getID(i));
+            IDList.add(getID(i)); // add the id from the database to the row list
         }
         
-        for (int i = 0; i < countItems(); i++)
+        for (int i = 0; i < countItems(); i++) 
         {
-            int rowNumber = rowList.get(i);
-            
-            int listPosition = getListPosition(rowNumber); // get list position from [i] row
-            
+            int IDNumber = IDList.get(i);
+            int listPosition = getListPosition(IDNumber); // get list position from [i] row
             int updatedPosition = listPosition +1; // add 1 to the list position
-            
-            updateListPosition(rowNumber, updatedPosition); // set new value to the [i] row
+            updateListPosition(IDNumber, updatedPosition); // set new value to the [i] row
         }
     }
+    
+    public void pushItemsAboveClickedDown (int numberClicked)
+    {
+    	ArrayList <Integer> IDList = new ArrayList<Integer>();
+    	
+    	IDList.clear();
+    	
+    	for (int i = numberClicked-1; i >= 1; i --) // loop that counts down from number clicked -1
+    	{
+    		System.out.println("List Number: " + i + "  ID: " + getID(i));
+    		
+    		
+    		int updatedPosition = i + 1;
+//    		IDList.add(getID(i)); // adds the rowIDs t0 the IDList
+    		updateListPosition(getID(i), updatedPosition);
+    		System.out.println("ID: " + getID(i) + " Updated Position: " + updatedPosition);
+    	}
+    	
+    	
+    	
+    	
+    }
+    
+    
     
     public int countItems() // counts how may rows there are
     {
@@ -199,7 +220,7 @@ public class NotesDataBase
     }
     
     
-    public void updateListPosition(int row, int listPosition)
+    public void updateListPosition(int id, int listPosition)
     {
         Connection dbConnection = null;
         
@@ -213,7 +234,7 @@ public class NotesDataBase
             
             PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
             preparedStatement.setInt(1, listPosition);
-            preparedStatement.setInt(2, row);
+            preparedStatement.setInt(2, id);
             
             dbConnection.commit();
             preparedStatement.executeUpdate();
@@ -226,7 +247,6 @@ public class NotesDataBase
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        
     }
     
     
@@ -240,7 +260,6 @@ public class NotesDataBase
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection(dbLocation);
             c.setAutoCommit(false);
-            
             
             stmt = c.createStatement();
             
