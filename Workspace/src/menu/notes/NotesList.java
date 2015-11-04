@@ -28,7 +28,6 @@ public class NotesList extends JScrollPane
 	NotesListData notesData = new NotesListData();
 	NotesDataBase notesdb = new NotesDataBase();
 	BufferPanel bufferPanel;
-	public static int lastClick = -1;
 	public static int lastIndex = -1;
 	
 	public NotesList (BufferPanel bufferPanel)
@@ -80,18 +79,19 @@ public class NotesList extends JScrollPane
 	        @Override
 	        public void mouseClicked(MouseEvent e) 
 	        {  
-	        	if (e.getClickCount() == 2)
+	        	if (e.getClickCount() == 1)
 	        	{	
 	        		int listIndex = list.getSelectedIndex();
-	        		lastIndex = 0; // set slected bar on the last clicked
 	        		int listPosition = listIndex+1;
 	        		
 	        		// created var for the ID(in db) of item clicked on
 	        		int ID = notesdb.getID(listPosition); 
 	        		// updates the item clicked on set to the first list position 
 	        		
-	        		notesdb.pushItemsAboveClickedDown(listPosition);
-	        		notesdb.updateListPosition(ID, 1); 
+	        		notesdb.pushItemsAboveClickedDown(listPosition); // push items above clicked down
+	        		notesdb.updateListPosition(ID, 1); // set item clicked to first
+	        		
+	        		lastIndex = 0; // when item is clicked it is moved to the first place
 	        		
 	        		repaint();
 	        	}
@@ -122,8 +122,11 @@ public class NotesList extends JScrollPane
 	public void clearSelections()
 	{
 		list.clearSelection();
-		lastClick = -1;
 		lastIndex = -1;
 	}
-
+	
+	public int getLastIndex ()
+	{
+		return lastIndex;
+	}
 }
