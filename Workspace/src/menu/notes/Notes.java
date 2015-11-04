@@ -48,6 +48,17 @@ public class Notes extends JPanel
 		setOpaque(false);
 	}
 	
+	
+	
+	public void paintComponent(Graphics g)
+	{	
+		notesList.updateListData();
+		notesList.keepSelection();
+		super.paintComponent(g);
+	}
+	
+	
+	
 	/**
 	 * Function: initialize
 	 * 
