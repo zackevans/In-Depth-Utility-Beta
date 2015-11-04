@@ -84,30 +84,35 @@ public class NotesDataBase
         System.out.println("Note Created Successfully");
     }
     
-    public void deleteNote(int dbNum)
+    public void deleteNote(int idNum)
     {
         Connection c = null;
-        Statement stmt = null;
-        try {
+        
+        try
+        {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection(dbLocation);
             c.setAutoCommit(false);
             System.out.println("Opened database successfully");
             
-            stmt = c.createStatement();
+            String sql = "DELETE from USER_NOTES where ID = ?;";
             
-            String sql = "DELETE from USER_NOTES where ID = " + dbNum +";";
+            PreparedStatement preparedStatement = c.prepareStatement(sql);
+            preparedStatement.setInt(1,idNum);
             
-            stmt.executeUpdate(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
             c.commit();
-            stmt.close();
             c.close();
-        } catch ( Exception e ) {
+        } 
+
+        catch ( Exception e )
+        {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
         
-        System.out.println("Deleted Item");
+        System.out.println("Note Deleted Successfully");
     }
     
     public void pushWholeListDownOne()
@@ -130,6 +135,26 @@ public class NotesDataBase
         }
     }
     
+    public void pushWholeListUpOne()
+    {
+    	ArrayList<Integer> IDList = new ArrayList<Integer>(); // stores the ID number in the database
+        
+        IDList.clear(); // clear row number list
+        
+        for (int i = 1; i <= countItems(); i++) // sets the row number array
+        {
+            IDList.add(getID(i)); // add the id from the database to the row list
+        }
+        
+        for (int i = 0; i < countItems(); i++) 
+        {
+            int IDNumber = IDList.get(i);
+            int listPosition = getListPosition(IDNumber); // get list position from [i] row
+            int updatedPosition = listPosition - 1; // add 1 to the list position
+            updateListPosition(IDNumber, updatedPosition); // set new value to the [i] row
+        }
+    }
+    
     public void pushItemsAboveClickedDown (int numberClicked)
     {
     	for (int i = numberClicked-1; i >= 1; i --) // loop that counts down from number clicked -1
@@ -138,8 +163,6 @@ public class NotesDataBase
     		updateListPosition(getID(i), updatedPosition);
     	}	
     }
-    
-    
     
     public int countItems() // counts how may rows there are
     {
