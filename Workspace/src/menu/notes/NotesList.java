@@ -25,9 +25,11 @@ public class NotesList extends JScrollPane
 	private static ArrayList <String> noteNames = new ArrayList <String>(); // names of data
 	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
 	private JList list = new JList();
-	NotesListData notesData = new NotesListData();
-	NotesDataBase notesdb = new NotesDataBase();
 	BufferPanel bufferPanel;
+	private NotesListData notesData = new NotesListData();
+	private NotesDataBase notesdb = new NotesDataBase();
+	private DisplayNotes dispNotes; 
+	
 	public static int lastIndex = -1;
 	
 	public NotesList (BufferPanel bufferPanel)
@@ -56,6 +58,7 @@ public class NotesList extends JScrollPane
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		list = new JList(); // add data to the list here
 		list.setFont(new Font("Helvetica Neue",Font.PLAIN,17));
+		dispNotes = new DisplayNotes(bufferPanel);
 	}
 	
 	public void layoutComponents()
@@ -93,6 +96,8 @@ public class NotesList extends JScrollPane
 	        		
 	        		lastIndex = 0; // when item is clicked it is moved to the first place
 	        		
+	        		dispNotes.displayNote();
+	        		
 	        		repaint();
 	        	}
 	        }
@@ -128,5 +133,10 @@ public class NotesList extends JScrollPane
 	public int getLastIndex ()
 	{
 		return lastIndex;
+	}
+	
+	public int getDBLocation()
+	{
+		return notesdb.getID(lastIndex+1);
 	}
 }
