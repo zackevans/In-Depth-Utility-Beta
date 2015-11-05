@@ -30,6 +30,7 @@ public class Notes extends JPanel
 	private AddNoteButton addNoteButton;
 	private ReturnButton returnButton;
 	private DeleteButton deleteBtn;
+	private DisplayNotes displayNotes;
 	BufferPanel bufferPanel; // create bufferPanel object
 	
 	/**
@@ -54,6 +55,7 @@ public class Notes extends JPanel
 	{	
 		notesList.updateListData();
 		notesList.keepSelection();
+		displayNotes.repaint();
 		super.paintComponent(g);
 	}
 	
@@ -86,11 +88,13 @@ public class Notes extends JPanel
 		addNoteButton = new AddNoteButton(bufferPanel);
 		returnButton = new ReturnButton(bufferPanel);
 		deleteBtn = new DeleteButton(bufferPanel);
+		displayNotes = new DisplayNotes(bufferPanel);
 		
 		notesList.setBounds(0,50,250,445);
 		addNoteButton.setBounds(280,20,30,30);
 		returnButton.setBounds(250,20,30,30);
 		deleteBtn.setBounds(310,20,30,30);
+		displayNotes.setBounds(250,50,450,445);
 	}
 	
 	/**
@@ -106,6 +110,7 @@ public class Notes extends JPanel
 		addNoteButton.initialize();
 		returnButton.initialize();
 		deleteBtn.initialize();
+		displayNotes.initialize();
 	}
 	
 	/**
@@ -127,5 +132,6 @@ public class Notes extends JPanel
 		add(addNoteButton);
 		add(returnButton);
 		add(deleteBtn);
+		add(displayNotes);
 	}
 }
