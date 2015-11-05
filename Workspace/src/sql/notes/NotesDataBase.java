@@ -206,9 +206,14 @@ public class NotesDataBase
             c = DriverManager.getConnection(dbLocation);
             c.setAutoCommit(false);
             
-            
-            stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT LIST_POSITION FROM USER_NOTES WHERE ID ="+ rowNum +";" );
+
+            String sql = "SELECT LIST_POSITION FROM USER_NOTES WHERE ID = ?;";
+            PreparedStatement preparedStatement = c.prepareStatement(sql);
+            preparedStatement.setInt(1,rowNum);
+
+
+           stmt = c.createStatement();
+           ResultSet rs = preparedStatement.executeQuery();
             
             while (rs.next())
             {
@@ -323,5 +328,68 @@ public class NotesDataBase
         }
         
         return rVal;
+    }
+    
+    
+    public String getNotesBody(int id)
+	{
+		Connection c = null;
+	    Statement stmt = null;
+	    String rVal = "-1";
+	    try 
+	    {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
+	     
+
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery("SELECT BODY FROM USER_NOTES WHERE ID ="+ id +";");
+	      while (rs.next()) 
+	      {
+	    	  rVal = rs.getString("BODY");
+	      }
+	      
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    
+	    return rVal;
+	}
+    
+    public void updateNotesBody (int id, String body)
+    {
+    	Connection dbConnection = null;
+    	
+		try 
+	    {
+			Class.forName("org.sqlite.JDBC");
+		    dbConnection = DriverManager.getConnection(dbLocation);
+		    dbConnection.setAutoCommit(false);
+		    
+			String updateTableSQL = "UPDATE USER_NOTES SET BODY = ? WHERE ID = ?";
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			preparedStatement.setString(1, body);
+			preparedStatement.setInt(2, id);
+			
+			dbConnection.commit();
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			dbConnection.setAutoCommit(true);
+			dbConnection.close();
+	    } 
+		
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
     }
 }
