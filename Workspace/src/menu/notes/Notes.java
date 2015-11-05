@@ -31,6 +31,8 @@ public class Notes extends JPanel
 	private ReturnButton returnButton;
 	private DeleteButton deleteBtn;
 	private DisplayNotes displayNotes;
+	private InfoButton infoButton;
+	private ShareButton shareButton;
 	BufferPanel bufferPanel; // create bufferPanel object
 	
 	/**
@@ -49,7 +51,10 @@ public class Notes extends JPanel
 		setOpaque(false);
 	}
 	
-	
+	/**
+	 * Function: PaintComponent
+	 * 
+	 */
 	
 	public void paintComponent(Graphics g)
 	{	
@@ -89,12 +94,16 @@ public class Notes extends JPanel
 		returnButton = new ReturnButton(bufferPanel);
 		deleteBtn = new DeleteButton(bufferPanel);
 		displayNotes = new DisplayNotes(bufferPanel);
+		infoButton = new InfoButton(bufferPanel);
+		shareButton = new ShareButton(bufferPanel);
 		
 		notesList.setBounds(0,50,250,445);
 		addNoteButton.setBounds(280,20,30,30);
 		returnButton.setBounds(250,20,30,30);
 		deleteBtn.setBounds(310,20,30,30);
 		displayNotes.setBounds(250,50,450,445);
+		infoButton.setBounds(630,20,30,30);
+		shareButton.setBounds(660,20,30,30);
 	}
 	
 	/**
@@ -111,6 +120,8 @@ public class Notes extends JPanel
 		returnButton.initialize();
 		deleteBtn.initialize();
 		displayNotes.initialize();
+		infoButton.initialize();
+		shareButton.initialize();
 	}
 	
 	/**
@@ -133,5 +144,7 @@ public class Notes extends JPanel
 		add(returnButton);
 		add(deleteBtn);
 		add(displayNotes);
+		add(infoButton);
+		add(shareButton);
 	}
 }
