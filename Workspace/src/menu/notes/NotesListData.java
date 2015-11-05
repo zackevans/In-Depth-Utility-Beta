@@ -25,11 +25,4 @@ public class NotesListData
 			sortedNames.add(noteName);
 		}
 	}
-	
-	
-	
-	
-	
-	
-
 }
