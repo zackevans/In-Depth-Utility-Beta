@@ -37,7 +37,7 @@ public class SearchBar extends JTextField implements FocusListener
     protected void paintComponent(Graphics g) 
     {
          g.setColor(getBackground());
-         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
+         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 6, 6);
          super.paintComponent(g);
     }
 
