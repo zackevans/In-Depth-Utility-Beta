@@ -48,7 +48,7 @@ public class EnterPassField extends JPasswordField
  	protected void paintComponent(Graphics g) 
     {
          g.setColor(getBackground()); // set color same as backround
-         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15); // create a round rectangle underField
+         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 6, 6); // create a round rectangle underField
          super.paintComponent(g); // paint all hierarchy
     }
     
@@ -63,7 +63,7 @@ public class EnterPassField extends JPasswordField
     protected void paintBorder(Graphics g) 
     {
          g.setColor(getForeground()); // set color same as backround
-         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15,15); // create and draw border around field
+         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 6,6); // create and draw border around field
     }
     
     public void addListener()
