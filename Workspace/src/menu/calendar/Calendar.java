@@ -1,20 +1,9 @@
 package menu.calendar;
+
 import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.JTable;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.util.*;
 import javax.swing.JPanel;
 import menu.buffer.BufferPanel;
-import menu.notes.AddNoteButton;
-
 
 public class Calendar extends JPanel
 {
@@ -25,8 +14,11 @@ public class Calendar extends JPanel
 	private ReturnButton returnButton;
 	private CurrentDayButton currentDayButton;
 	private static JLabel monthLbl;
-	
+	private static JLabel yrLbl;
 	BufferPanel bufferPanel; // create bufferPanel object
+	String [] Months = {"January", "February", "March",
+			"April", "May", "June", "July", "August",
+			"September", "October", "November", "December"}; 
 	
 	/**
 	 * Constructor: Notes
@@ -67,32 +59,47 @@ public class Calendar extends JPanel
 		createComponents();
 		initializeComponents();
 		layoutComponents();
+		
+		// set month
 	}
 	
 	public void createComponents()
 	{
-		addMonthButton = new AddMonthButton(bufferPanel);
-		addMonthButton.setBounds(140, 50, 30, 30);
-		
 		backMonthButton = new BackMonthButton(bufferPanel);
-		backMonthButton.setBounds(40, 50, 30, 30);
+		backMonthButton.setBounds(575, 25, 20, 20);
 		
-		returnButton = new ReturnButton(bufferPanel);
-		returnButton.setBounds(5,20, 30, 30);
+		addMonthButton = new AddMonthButton(bufferPanel);
+		addMonthButton.setBounds(660, 25, 20, 20);
+		
+	    returnButton = new ReturnButton(bufferPanel);
+    	returnButton.setBounds(0, 65, 30, 20);
 		
 		currentDayButton = new CurrentDayButton(bufferPanel);
 		currentDayButton.setBounds(600, 25, 55, 20);
 		
-		monthLbl = new JLabel("Month");
+		monthLbl = new JLabel("September");
 		createMonthLbl();
+		
+		yrLbl = new JLabel("2015");
+		createYrLbl();
 		
 		
 	}
 	
 	public void createMonthLbl()
 	{
-		monthLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,18));
-		monthLbl.setBounds(78, 50, 200, 30);
+		monthLbl.setFont(new Font("Helvetica Neue",Font.BOLD,32));
+		monthLbl.setBounds(0, 15, 170, 50);
+		//monthLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		monthLbl.setHorizontalAlignment(SwingConstants.CENTER);
+	}
+	
+	public void createYrLbl()
+	{
+		yrLbl.setFont(new Font("Helvectica Neue", Font.PLAIN, 24));
+		yrLbl.setBounds(170,23,80,40);
+		//yrLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		yrLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 
 	public void initializeComponents()
@@ -101,7 +108,6 @@ public class Calendar extends JPanel
 		backMonthButton.initialize();
 		currentDayButton.initialize();
 		returnButton.initialize();
-		
 	}
 	
 	public void layoutComponents()
@@ -114,6 +120,7 @@ public class Calendar extends JPanel
 		add(returnButton);
 		add(currentDayButton);
 		add(monthLbl);
+		add(yrLbl);
 	}
 	
 }
