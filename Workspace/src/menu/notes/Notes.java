@@ -34,6 +34,7 @@ public class Notes extends JPanel
 	private InfoButton infoButton;
 	private ShareButton shareButton;
 	private SearchBar searchBar;
+	private ClearButton clearButton;
 	BufferPanel bufferPanel; // create bufferPanel object
 	
 	/**
@@ -98,6 +99,7 @@ public class Notes extends JPanel
 		infoButton = new InfoButton(bufferPanel);
 		shareButton = new ShareButton(bufferPanel);
 		searchBar = new SearchBar(bufferPanel);
+		clearButton = new ClearButton(bufferPanel);
 		
 		notesList.setBounds(0,50,250,445);
 		addNoteButton.setBounds(280,20,30,30);
@@ -107,6 +109,7 @@ public class Notes extends JPanel
 		infoButton.setBounds(630,20,30,30);
 		shareButton.setBounds(660,20,30,30);
 		searchBar.setBounds(5, 25, 240, 22);
+		clearButton.setBounds(224,25,20,20);
 	}
 	
 	/**
@@ -126,6 +129,7 @@ public class Notes extends JPanel
 		infoButton.initialize();
 		shareButton.initialize();
 		searchBar.initialize();
+		clearButton.initialize();
 	}
 	
 	/**
@@ -143,6 +147,7 @@ public class Notes extends JPanel
 		setLayout(null);
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20));
 		
+		add(clearButton); // must be added first to stay on top
 		add(notesList);
 		add(addNoteButton);
 		add(returnButton);
@@ -151,5 +156,6 @@ public class Notes extends JPanel
 		add(infoButton);
 		add(shareButton);
 		add(searchBar);
+		
 	}
 }
