@@ -99,7 +99,7 @@ public class Notes extends JPanel
 		infoButton = new InfoButton(bufferPanel);
 		shareButton = new ShareButton(bufferPanel);
 		searchBar = new SearchBar(bufferPanel);
-		clearButton = new ClearButton(bufferPanel);
+		clearButton = new ClearButton(bufferPanel,searchBar);
 		
 		notesList.setBounds(0,50,250,445);
 		addNoteButton.setBounds(280,20,30,30);
@@ -141,7 +141,6 @@ public class Notes extends JPanel
 	 * 
 	 */
 	
-	
 	public void layoutComponents()
 	{
 		setLayout(null);
@@ -156,6 +155,5 @@ public class Notes extends JPanel
 		add(infoButton);
 		add(shareButton);
 		add(searchBar);
-		
 	}
 }

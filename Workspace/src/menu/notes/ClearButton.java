@@ -11,35 +11,30 @@ import menu.buffer.BufferPanel;
 public class ClearButton extends JButton
 {
 	BufferPanel bufferPanel;
-	SearchBar searchBar;
+	private SearchBar searchBar;
 	
-	public ClearButton (BufferPanel bufferPanel)
+	public ClearButton (BufferPanel bufferPanel,SearchBar searchBar)
 	{
 		super();
-		setOpaque(false);
-		setContentAreaFilled(false);
-		setBorderPainted(false);
 		this.bufferPanel = bufferPanel;
+		this.searchBar = searchBar;
 	}
 	
 	public void initialize()
 	{
 		createBtn();
 		addListeners();
-		initializeComponents();
 	}
 	
 	public void createBtn()
 	{
+		setOpaque(false);
+		setContentAreaFilled(false);
+		setBorderPainted(false);
 		setIcon(new ImageIcon("Images/Button_Images/Notes/Clear.png"));
 		setPressedIcon(new ImageIcon("Images/Button_Images/TopBar/PressedClear.png"));
 		validate();
 	}
-	
-	public void initializeComponents()
-    {
-    	searchBar = new SearchBar(bufferPanel);
-    }
 	
 	public void addListeners()
 	{
@@ -49,6 +44,9 @@ public class ClearButton extends JButton
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("Clear Button");
+				
+				searchBar.setText("");
+				searchBar.requestFocusInWindow();
 			}
 		});
 	}
