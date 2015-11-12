@@ -60,12 +60,11 @@ public class Notes extends JPanel
 	
 	public void paintComponent(Graphics g)
 	{	
+		super.paintComponent(g);
 		notesList.updateListData();
 		notesList.keepSelection();
 		displayNotes.repaint();
-		super.paintComponent(g);
 	}
-	
 	
 	
 	/**
