@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
-
+import menu.buffer.BufferPanel;
+import menu.notes.DisplayNotes;
 import sql.notes.NotesDataBase;
 
 public class NoteDialog 
@@ -21,6 +22,8 @@ public class NoteDialog
 	private CancelBtn cancelBtn = new CancelBtn(this);
 	private EnterButton enterBtn = new EnterButton(this);
 	private NotesDataBase notesdb = new NotesDataBase();
+	private BufferPanel bufferPanel;
+	private DisplayNotes displayNotes = new DisplayNotes(bufferPanel);
 	
 	public NoteDialog()
 	{
@@ -106,6 +109,7 @@ public class NoteDialog
 		{
 			notesdb.pushWholeListDownOne();
 			notesdb.createPersonalNote(noteName); // create new note in db
+			displayNotes.displayNote();
 			showDialog(false); // hides dialog window
 		}
 	}
