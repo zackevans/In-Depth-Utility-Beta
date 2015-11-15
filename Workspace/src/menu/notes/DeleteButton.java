@@ -43,22 +43,22 @@ public class DeleteButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				System.out.println("Delete Button");
-				int lastIndex = notesList.getLastIndex() +1;
-				int ID = notesdb.getID(lastIndex);
-				
-				System.out.println(ID);
-				
-				if (lastIndex != -1)
-				{
-					notesdb.pushWholeListUpOne();
-					notesdb.deleteNote(ID);
-				}
-				
-				else
-				{
-					System.out.println("There was not a last index ");
-				}
+//				System.out.println("Delete Button");
+//				int lastIndex = notesList.getLastIndex() +1;
+//				int ID = notesdb.getID(lastIndex);
+//				
+//				System.out.println(ID);
+//				
+//				if (lastIndex != -1)
+//				{
+//					notesdb.pushWholeListUpOne();
+//					notesdb.deleteNote(ID);
+//				}
+//				
+//				else
+//				{
+//					System.out.println("There was not a last index ");
+//				}
 
 			}
 		});

@@ -80,4 +80,16 @@ public class SearchBar extends JTextField implements FocusListener
     {
         return showingHint ? "" : super.getText();
     }	
+    
+   public boolean doesTextExist()
+   {
+	   String text = getText();
+	   
+	   if (text.length() > 0)
+	   {
+		   return true;
+	   }
+	   
+	   else return false;
+   }
 }

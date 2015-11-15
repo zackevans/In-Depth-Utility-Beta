@@ -28,6 +28,7 @@ public class NotesList extends JScrollPane
 	BufferPanel bufferPanel;
 	private NotesListData notesData = new NotesListData();
 	private NotesDataBase notesdb = new NotesDataBase();
+	private NotesListData notesListData = new NotesListData();
 	private DisplayNotes dispNotes; 
 	
 	public static int lastIndex = -1;
@@ -37,13 +38,6 @@ public class NotesList extends JScrollPane
 		super();
 		this.bufferPanel = bufferPanel;
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
-	}
-	
-	public void paintComponent(Graphics g)
-	{	
-		updateListData();
-		keepSelection();
-		super.paintComponent(g);
 	}
 	
 	public void initialize()
@@ -94,7 +88,9 @@ public class NotesList extends JScrollPane
 	        		notesdb.pushItemsAboveClickedDown(listPosition); // push items above clicked down
 	        		notesdb.updateListPosition(ID, 1); // set item clicked to first
 	        		
-	        		lastIndex = 0; // when item is clicked it is moved to the first place
+	        		lastIndex = 0;// when item is clicked it is moved to the first place
+	        		updateListData();
+	        		keepSelection();
 	        		
 	        		dispNotes.displayNote();
 	        		
