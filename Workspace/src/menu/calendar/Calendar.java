@@ -2,7 +2,7 @@ package menu.calendar;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.JPanel;
+
 import menu.buffer.BufferPanel;
 
 public class Calendar extends JPanel
@@ -15,6 +15,7 @@ public class Calendar extends JPanel
 	private CurrentDayButton currentDayButton;
 	private static JLabel monthLbl;
 	private static JLabel yrLbl;
+	private Grid grid;
 	BufferPanel bufferPanel; // create bufferPanel object
 	String [] Months = {"January", "February", "March",
 			"April", "May", "June", "July", "August",
@@ -83,7 +84,9 @@ public class Calendar extends JPanel
 		yrLbl = new JLabel("2015");
 		createYrLbl();
 		
-		
+		//grid = new Grid(bufferPanel);
+		grid = new Grid(6,7);
+		grid.setBounds(0, 180, 500, 520);
 	}
 	
 	public void createMonthLbl()
@@ -108,6 +111,7 @@ public class Calendar extends JPanel
 		backMonthButton.initialize();
 		currentDayButton.initialize();
 		returnButton.initialize();
+		grid.initialize();
 	}
 	
 	public void layoutComponents()
@@ -121,6 +125,7 @@ public class Calendar extends JPanel
 		add(currentDayButton);
 		add(monthLbl);
 		add(yrLbl);
+		add(grid);
 	}
 	
 }
