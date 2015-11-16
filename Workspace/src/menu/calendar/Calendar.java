@@ -85,8 +85,8 @@ public class Calendar extends JPanel
 		createYrLbl();
 		
 		//grid = new Grid(bufferPanel);
-		grid = new Grid(6,7);
-		grid.setBounds(0, 180, 500, 520);
+		grid = new Grid(bufferPanel);
+		grid.setBounds(0, 100, 700, 450);
 	}
 	
 	public void createMonthLbl()
@@ -127,5 +127,4 @@ public class Calendar extends JPanel
 		add(yrLbl);
 		add(grid);
 	}
-	
 }

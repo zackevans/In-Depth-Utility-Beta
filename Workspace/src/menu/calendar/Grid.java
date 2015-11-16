@@ -1,6 +1,9 @@
 package menu.calendar;
 
+import java.awt.Color;
+
 import javax.swing.JTable;
+import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -11,16 +14,11 @@ public class Grid extends JTable
 {
 	private BufferPanel bufferPanel;
 	
-	public Grid (int r, int c)
+	public Grid (BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
 	}
-	
-	//public Grid (int rows, int cols)
-	
-		//super();
-	
 	
 	public void initialize()
 	{
@@ -30,7 +28,23 @@ public class Grid extends JTable
 	
 	public void createGrid()
 	{
-		setModel(new DefaultTableModel(6,7));
+//		DefaultTableModel dm = (DefaultTableModel)getModel();
+//		dm.setColumnCount(7);
+//		dm.setRowCount(6);
+//		
+//		dm.fireTableDataChanged(); // notifies the JTable that the mo
+		
+		;
+		
+		DefaultTableModel model = new DefaultTableModel(6,7);
+		model.fireTableDataChanged();
+		setModel(model);
+		setShowGrid(true);
+		setShowHorizontalLines(true);
+		setShowVerticalLines(true);
+		//setBorder(new EtchedBorder(EtchedBorder.RAISED));
+		setGridColor(Color.black);
+		//setModel(new DefaultTableModel(6,7));
 		
 		for (int i = 0; i <= 5; i++)
 		{
@@ -39,8 +53,10 @@ public class Grid extends JTable
 	
 		for (int i = 0; i <= 6; i++)
 		{
-			//getColumnModel().getColumn(i).setPreferredWidth(100);
+			getColumnModel().getColumn(i).setPreferredWidth(100);
 		}
+		
+		repaint();
 	}
 	
 	
