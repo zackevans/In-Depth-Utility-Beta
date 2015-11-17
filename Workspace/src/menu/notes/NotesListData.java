@@ -15,6 +15,12 @@ public class NotesListData
 		return sortedNames;
 	}
 	
+	public ArrayList<String> getSearcNoteListData(String searchText)
+	{
+		sortSearchListNames(searchText);
+		return sortedNames;
+	}
+	
 	public void sortListNames()
 	{
 		sortedNames.clear();
@@ -23,6 +29,21 @@ public class NotesListData
 		{
 			String noteName = notesdb.getNoteNameFromPosition(i);
 			sortedNames.add(noteName);
+		}
+	}
+	
+	public void sortSearchListNames(String searchText)
+	{
+		sortedNames.clear();
+		
+		for (int i = 1; i <= notesdb.countItems(); i++)
+		{
+			String noteName = notesdb.getNoteNameFromPosition(i);
+			
+			if (noteName.contains(searchText)) // checks to see if the searchbar text is in the note
+			{
+				sortedNames.add(noteName);
+			}
 		}
 	}
 }

@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import menu.calendar.Calendar;
 import menu.main.MainMenu;
 import menu.notes.Notes;
 import menu.settings.SettingsMenu;
@@ -44,6 +45,7 @@ public class BufferPanel extends JPanel
 	private Login login;
 	private ScreenSaver screenSaver;
 	private Notes notes;
+	private Calendar calendar;
 	
 	/**
 	 * function: initialize
@@ -78,6 +80,10 @@ public class BufferPanel extends JPanel
 		// Notes
 		notes = new Notes(this);
 		mapPanels.put("NOTES", notes);
+		
+		//Calendar
+		calendar = new Calendar(this);
+		mapPanels.put("CALENDAR_MENU", calendar);
 		
 		// Security Settings
 		settingsMenu = new SettingsMenu(this);
@@ -119,6 +125,9 @@ public class BufferPanel extends JPanel
 		// Notes
 		add(notes);
 		
+		//Calendar
+		add(calendar);
+		
 		// Security Settings
 		add(settingsMenu);
 		add(securitySettings);	
@@ -145,6 +154,9 @@ public class BufferPanel extends JPanel
 		
 		// Notes
 		notes.initialize();
+		
+		//Calendar
+		calendar.initialize();
 		
 		// Security Settings
 		settingsMenu.initialize();
