@@ -36,7 +36,7 @@ public class Grid extends JTable
 		
 		;
 		
-		DefaultTableModel model = new DefaultTableModel(6,7);
+		DefaultTableModel model = new DefaultTableModel(7,7);
 		model.fireTableDataChanged();
 		setModel(model);
 		setShowGrid(true);
@@ -46,7 +46,9 @@ public class Grid extends JTable
 		setGridColor(Color.black);
 		//setModel(new DefaultTableModel(6,7));
 		
-		for (int i = 0; i <= 5; i++)
+		setRowHeight(0, 23);
+		
+		for (int i = 1; i <= 6; i++)
 		{
 			setRowHeight(i, 63);
 		}

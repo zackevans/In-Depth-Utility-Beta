@@ -73,7 +73,7 @@ public class Calendar extends JPanel
 		addMonthButton.setBounds(660, 25, 20, 20);
 		
 	    returnButton = new ReturnButton(bufferPanel);
-    	returnButton.setBounds(0, 65, 30, 20);
+    	returnButton.setBounds(0, 55, 30, 20);
 		
 		currentDayButton = new CurrentDayButton(bufferPanel);
 		currentDayButton.setBounds(600, 25, 55, 20);
@@ -86,13 +86,13 @@ public class Calendar extends JPanel
 		
 		//grid = new Grid(bufferPanel);
 		grid = new Grid(bufferPanel);
-		grid.setBounds(0, 100, 700, 450);
+		grid.setBounds(0, 77, 700, 450);
 	}
 	
 	public void createMonthLbl()
 	{
 		monthLbl.setFont(new Font("Helvetica Neue",Font.BOLD,32));
-		monthLbl.setBounds(0, 15, 170, 50);
+		monthLbl.setBounds(0, 12, 170, 50);
 		//monthLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		monthLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
@@ -100,7 +100,7 @@ public class Calendar extends JPanel
 	public void createYrLbl()
 	{
 		yrLbl.setFont(new Font("Helvectica Neue", Font.PLAIN, 24));
-		yrLbl.setBounds(170,23,80,40);
+		yrLbl.setBounds(170,20,80,40);
 		//yrLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		yrLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
