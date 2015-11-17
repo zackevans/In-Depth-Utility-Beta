@@ -27,24 +27,11 @@ public class Grid extends JTable
 	}
 	
 	public void createGrid()
-	{
-//		DefaultTableModel dm = (DefaultTableModel)getModel();
-//		dm.setColumnCount(7);
-//		dm.setRowCount(6);
-//		
-//		dm.fireTableDataChanged(); // notifies the JTable that the mo
-		
-		;
-		
+	{	
 		DefaultTableModel model = new DefaultTableModel(7,7);
 		model.fireTableDataChanged();
 		setModel(model);
-		setShowGrid(true);
-		setShowHorizontalLines(true);
-		setShowVerticalLines(true);
-		//setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		setGridColor(Color.black);
-		//setModel(new DefaultTableModel(6,7));
 		
 		setRowHeight(0, 23);
 		
@@ -57,7 +44,6 @@ public class Grid extends JTable
 		{
 			getColumnModel().getColumn(i).setPreferredWidth(100);
 		}
-		
 		repaint();
 	}
 	
