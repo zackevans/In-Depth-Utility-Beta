@@ -64,8 +64,10 @@ public class Notes extends JPanel
 		
 		if (searchBar.doesTextExist() == true)
 		{
-			System.out.println("there is text");
-			
+//			notesList.updateSearchListData();
+//			notesList.clearSelections();
+//			displayNotes.repaint();
+//			System.out.println("searchText");
 		}
 		
 		else

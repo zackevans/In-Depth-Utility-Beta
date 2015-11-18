@@ -29,6 +29,7 @@ public class NotesList extends JScrollPane
 	private NotesListData notesData = new NotesListData();
 	private NotesDataBase notesdb = new NotesDataBase();
 	private NotesListData notesListData = new NotesListData();
+	private SearchBar searchBar = new SearchBar(bufferPanel);
 	private DisplayNotes dispNotes; 
 	
 	public static int lastIndex = -1;
@@ -105,7 +106,14 @@ public class NotesList extends JScrollPane
 		noteNames.clear();
 		noteNames = notesData.getNoteListData();
 		list.setListData(noteNames.toArray());
-	}	
+	}
+	
+//	public void updateSearchListData()
+//	{
+//		noteNames.clear();
+//		noteNames = notesData.getSearcNoteListData(searchBar.getText());
+//		list.setListData(noteNames.toArray());
+//	}
 	
 	public void setListSelection(int listNumber)
 	{
