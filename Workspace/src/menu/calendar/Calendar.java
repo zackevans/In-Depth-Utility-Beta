@@ -13,8 +13,7 @@ public class Calendar extends JPanel
 	private BackMonthButton backMonthButton;
 	private ReturnButton returnButton;
 	private CurrentDayButton currentDayButton;
-	private static JLabel monthLbl;
-	private static JLabel yrLbl;
+	private MonthYearLabel ymLabel;
 	private Grid grid;
 	BufferPanel bufferPanel; // create bufferPanel object
 	String [] Months = {"January", "February", "March",
@@ -38,17 +37,6 @@ public class Calendar extends JPanel
 	}
 	
 	/**
-	 * Function: paintComponent*
-	 * 
-	 */
-	
-//	public void paintComponent(Graphics g)
-//	{
-//		super.paintComponent(g); 
-//		
-//	}
-	
-	/**
 	 * Function: initialize
 	 * 
 	 * call function to create panel
@@ -60,8 +48,6 @@ public class Calendar extends JPanel
 		createComponents();
 		initializeComponents();
 		layoutComponents();
-		
-		// set month
 	}
 	
 	public void createComponents()
@@ -73,36 +59,19 @@ public class Calendar extends JPanel
 		addMonthButton.setBounds(660, 25, 20, 20);
 		
 	    returnButton = new ReturnButton(bufferPanel);
-    	returnButton.setBounds(0, 60, 30, 20);
+    	returnButton.setBounds(0, 20, 30, 20);
 		
 		currentDayButton = new CurrentDayButton(bufferPanel);
 		currentDayButton.setBounds(600, 25, 55, 20);
 		
-		monthLbl = new JLabel("September");
-		createMonthLbl();
-		
-		yrLbl = new JLabel("2015");
-		createYrLbl();
+		ymLabel = new MonthYearLabel(bufferPanel);
+		ymLabel.setBounds(3, 40, 300, 40);
 		
 		grid = new Grid(bufferPanel);
 		grid.setBounds(0, 80, 700, 450);
 	}
 	
-	public void createMonthLbl()
-	{
-		monthLbl.setFont(new Font("Helvetica Neue",Font.BOLD,32));
-		monthLbl.setBounds(0, 12, 170, 50);
-		//monthLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		monthLbl.setHorizontalAlignment(SwingConstants.CENTER);
-	}
 	
-	public void createYrLbl()
-	{
-		yrLbl.setFont(new Font("Helvectica Neue", Font.PLAIN, 24));
-		yrLbl.setBounds(170,23,80,40);
-		//yrLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		yrLbl.setHorizontalAlignment(SwingConstants.CENTER);
-	}
 
 	public void initializeComponents()
 	{
@@ -111,6 +80,7 @@ public class Calendar extends JPanel
 		currentDayButton.initialize();
 		returnButton.initialize();
 		grid.initialize();
+		ymLabel.initialize();
 	}
 	
 	public void layoutComponents()
@@ -122,8 +92,7 @@ public class Calendar extends JPanel
 		add(backMonthButton);
 		add(returnButton);
 		add(currentDayButton);
-		add(monthLbl);
-		add(yrLbl);
+		add(ymLabel);
 		add(grid);
 	}
 }
