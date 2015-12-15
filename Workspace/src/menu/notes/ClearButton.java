@@ -45,8 +45,8 @@ public class ClearButton extends JButton
 			{
 				System.out.println("Clear Button");
 				
-				searchBar.setText("");
-				searchBar.requestFocusInWindow();
+				searchBar.textField.setText("");
+				searchBar.textField.requestFocusInWindow();
 			}
 		});
 	}

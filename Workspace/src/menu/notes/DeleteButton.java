@@ -12,16 +12,16 @@ import sql.notes.NotesDataBase;
 
 public class DeleteButton extends JButton
 {
-	private BufferPanel bufferPanel;
-	private NotesList notesList = new NotesList(bufferPanel);
+	private Notes notes;
+	private NotesList notesList = new NotesList(notes);
 	private NotesDataBase notesdb = new NotesDataBase();
 	//private LaunchApp launchApp = new LaunchApp();
 	//private DisplayNotes displayNotes = new DisplayNotes(bufferPanel);
 	
-	public DeleteButton (BufferPanel bufferPanel)
+	public DeleteButton (Notes notes)
 	{
 		super();
-		this.bufferPanel = bufferPanel;
+		this.notes = notes;
 	}
 	
 	public void initialize()

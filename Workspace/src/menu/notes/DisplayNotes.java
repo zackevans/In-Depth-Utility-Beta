@@ -13,16 +13,16 @@ import sql.notes.NotesDataBase;
 
 public class DisplayNotes extends JScrollPane
 {
-	BufferPanel bufferPanel;
+	Notes notes;
 	NotesDataBase notesdb = new NotesDataBase();
-	NotesList notesList = new NotesList(bufferPanel);
+	NotesList notesList = new NotesList(notes);
 	private static JTextArea textArea;
 	
 	
-	public DisplayNotes(BufferPanel bufferPanel)
+	public DisplayNotes(Notes notes)
 	{
 		super();
-		this.bufferPanel = bufferPanel;
+		this.notes = notes;
 	}
 	
 	
