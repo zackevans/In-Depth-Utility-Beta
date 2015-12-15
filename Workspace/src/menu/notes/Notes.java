@@ -36,6 +36,7 @@ public class Notes extends JPanel
 	private SearchBar searchBar;
 	private ClearButton clearButton;
 	BufferPanel bufferPanel; // create bufferPanel object
+	String searchText = "-1";
 	
 	/**
 	 * Constructor: Notes
@@ -64,10 +65,10 @@ public class Notes extends JPanel
 		
 		if (searchBar.doesTextExist() == true)
 		{
-//			notesList.updateSearchListData();
-//			notesList.clearSelections();
-//			displayNotes.repaint();
-//			System.out.println("searchText");
+			notesList.updateSearchListData(searchBar.textField.getText());
+			notesList.clearSelections();
+			displayNotes.repaint();
+			notesList.repaint();
 		}
 		
 		else
@@ -77,7 +78,6 @@ public class Notes extends JPanel
 			displayNotes.repaint();
 		}
 	}
-	
 	
 	/**
 	 * Function: initialize
@@ -102,14 +102,14 @@ public class Notes extends JPanel
 	
 	public void createComponents()
 	{
-		notesList = new NotesList(bufferPanel);
-		addNoteButton = new AddNoteButton(bufferPanel);
+		notesList = new NotesList(this);
+		addNoteButton = new AddNoteButton(this);
 		returnButton = new ReturnButton(bufferPanel);
-		deleteBtn = new DeleteButton(bufferPanel);
-		displayNotes = new DisplayNotes(bufferPanel);
+		deleteBtn = new DeleteButton(this);
+		displayNotes = new DisplayNotes(this);
 		infoButton = new InfoButton(bufferPanel);
 		shareButton = new ShareButton(bufferPanel);
-		searchBar = new SearchBar(bufferPanel);
+		searchBar = new SearchBar(this);
 		clearButton = new ClearButton(bufferPanel,searchBar);
 		
 		notesList.setBounds(0,50,250,445);
@@ -119,7 +119,7 @@ public class Notes extends JPanel
 		displayNotes.setBounds(250,50,450,445);
 		infoButton.setBounds(630,20,30,30);
 		shareButton.setBounds(660,20,30,30);
-		searchBar.setBounds(5, 25, 240, 22);
+		searchBar.textField.setBounds(5, 25, 240, 22);
 		clearButton.setBounds(224,25,20,20);
 	}
 	
@@ -165,6 +165,6 @@ public class Notes extends JPanel
 		add(displayNotes);
 		add(infoButton);
 		add(shareButton);
-		add(searchBar);
+		add(searchBar.textField);
 	}
 }

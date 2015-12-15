@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import launch.app.LaunchApp;
 import menu.buffer.BufferPanel;
 import menu.notes.DisplayNotes;
+import menu.notes.Notes;
 import sql.notes.NotesDataBase;
 
 public class NoteDialog 
@@ -17,17 +18,19 @@ public class NoteDialog
 	public static final int Window_Height = 167; // Standard Dialog size
 	private static JFrame customFrame = new JFrame(); // Created JFrame VAR.
 	private static JLabel enterLabel = new JLabel("Note Name: ");
+	private Notes notes;
 	private LaunchApp launchApp = new LaunchApp(); // created to acess frame location
 	private DialogField dialogField = new DialogField(this);
 	private CancelBtn cancelBtn = new CancelBtn(this);
 	private EnterButton enterBtn = new EnterButton(this);
 	private NotesDataBase notesdb = new NotesDataBase();
 	private BufferPanel bufferPanel;
-	private DisplayNotes displayNotes = new DisplayNotes(bufferPanel);
+	private DisplayNotes displayNotes = new DisplayNotes(notes);
 	
-	public NoteDialog()
+	public NoteDialog(Notes notes)
 	{
-		
+		super();
+		this.notes = notes;
 	}
 	
 	public void launchDialog()

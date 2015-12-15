@@ -2,20 +2,13 @@ package menu.notes;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-
-import menu.buffer.BufferPanel;
 import sql.notes.NotesDataBase;
 
 public class NotesList extends JScrollPane
@@ -23,21 +16,20 @@ public class NotesList extends JScrollPane
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
 	private static ArrayList <String> noteNames = new ArrayList <String>(); // names of data
-	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
 	private JList list = new JList();
-	BufferPanel bufferPanel;
 	private NotesListData notesData = new NotesListData();
 	private NotesDataBase notesdb = new NotesDataBase();
 	private NotesListData notesListData = new NotesListData();
-	private SearchBar searchBar = new SearchBar(bufferPanel);
+	private Notes notes;
+	private SearchBar searchBar;
 	private DisplayNotes dispNotes; 
 	
 	public static int lastIndex = -1;
 	
-	public NotesList (BufferPanel bufferPanel)
+	public NotesList (Notes notes)
 	{
 		super();
-		this.bufferPanel = bufferPanel;
+		this.notes = notes;
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
@@ -53,7 +45,8 @@ public class NotesList extends JScrollPane
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		list = new JList(); // add data to the list here
 		list.setFont(new Font("Helvetica Neue",Font.PLAIN,17));
-		dispNotes = new DisplayNotes(bufferPanel);
+		dispNotes = new DisplayNotes(notes);
+		searchBar = new SearchBar(notes);
 	}
 	
 	public void layoutComponents()
@@ -90,8 +83,18 @@ public class NotesList extends JScrollPane
 	        		notesdb.updateListPosition(ID, 1); // set item clicked to first
 	        		
 	        		lastIndex = 0;// when item is clicked it is moved to the first place
-	        		updateListData();
-	        		keepSelection();
+	        		
+	        		if (searchBar.doesTextExist() == true)
+	        		{
+	        			updateSearchListData(searchBar.textField.getText());
+	        			clearSelections();
+	        		}
+	        		
+	        		else
+	        		{
+	        			updateListData();
+		        		keepSelection();
+	        		}
 	        		
 	        		dispNotes.displayNote();
 	        		
@@ -108,12 +111,12 @@ public class NotesList extends JScrollPane
 		list.setListData(noteNames.toArray());
 	}
 	
-//	public void updateSearchListData()
-//	{
-//		noteNames.clear();
-//		noteNames = notesData.getSearcNoteListData(searchBar.getText());
-//		list.setListData(noteNames.toArray());
-//	}
+	public void updateSearchListData(String searchText)
+	{
+		noteNames.clear();
+		noteNames = notesData.getSearcNoteListData(searchText);
+		list.setListData(noteNames.toArray());
+	}
 	
 	public void setListSelection(int listNumber)
 	{

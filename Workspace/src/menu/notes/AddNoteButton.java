@@ -17,15 +17,15 @@ import panel.customnotedialog.NoteDialog;
 
 public class AddNoteButton extends JButton
 {
-	private BufferPanel bufferPanel;
+	private Notes notes;
 	private LaunchApp launchApp = new LaunchApp();
-	private NoteDialog noteDialog = new NoteDialog();
-	private NotesList notesList = new NotesList(bufferPanel);
+	private NoteDialog noteDialog = new NoteDialog(notes);
+	private NotesList notesList = new NotesList(notes);
 	
-	public AddNoteButton (BufferPanel bufferPanel)
+	public AddNoteButton (Notes notes)
 	{
 		super();
-		this.bufferPanel = bufferPanel;
+		this.notes = notes;
 	}
 	
 	public void initialize ()
