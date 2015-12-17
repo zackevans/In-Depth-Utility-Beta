@@ -1,13 +1,16 @@
 package menu.notes;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
-import java.awt.Graphics;
-
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class SearchBar 
+import program.searchbar.SearchBarShell;
+
+public class SearchBar
 {
-	static JTextField textField = new JTextField();
-	
+	static JTextField textField = new SearchBarShell();
+	JLabel searchLabel = new JLabel("Search");
 	Notes notes;
 	
     public SearchBar (Notes notes) 
@@ -18,7 +21,25 @@ public class SearchBar
     
     public void initialize()
     {
-    	
+    	 textField.addFocusListener(new FocusListener() {
+
+             @Override
+             public void focusGained(FocusEvent e) 
+             {
+            	 searchLabel.setVisible(false);
+             }
+
+             @Override
+             public void focusLost(FocusEvent e) 
+             {
+            	 if (doesTextExist() ==  false)
+            	 {
+            		 searchLabel.setVisible(true);
+            	 }
+             }
+         });
+    	 
+    	searchLabel.setOpaque(false);
     }
     
     public boolean doesTextExist()
