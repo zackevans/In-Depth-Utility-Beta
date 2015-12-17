@@ -120,6 +120,7 @@ public class Notes extends JPanel
 		infoButton.setBounds(630,20,30,30);
 		shareButton.setBounds(660,20,30,30);
 		searchBar.textField.setBounds(5, 25, 240, 22);
+		searchBar.searchLabel.setBounds(8, 25, 240, 22);
 		clearButton.setBounds(224,25,20,20);
 	}
 	
@@ -157,6 +158,7 @@ public class Notes extends JPanel
 		setLayout(null);
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20));
 		
+		add(searchBar.searchLabel); // must be added first to stay on top
 		add(clearButton); // must be added first to stay on top
 		add(notesList);
 		add(addNoteButton);
@@ -166,5 +168,6 @@ public class Notes extends JPanel
 		add(infoButton);
 		add(shareButton);
 		add(searchBar.textField);
+		
 	}
 }
