@@ -44,8 +44,6 @@ public class DisplayNotes extends JScrollPane
 	public void displayNote()
 	{
 		int id = notesList.getDBLocation();
-		
-		System.out.println("ID: " + id);
 	
 		if (id != -1)
 		{

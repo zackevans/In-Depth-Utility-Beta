@@ -72,32 +72,35 @@ public class NotesList extends JScrollPane
 	        {  
 	        	if (e.getClickCount() == 1)
 	        	{	
-	        		int listIndex = list.getSelectedIndex();
-	        		int listPosition = listIndex+1;
-	        		
-	        		// created var for the ID(in db) of item clicked on
-	        		int ID = notesdb.getID(listPosition); 
-	        		// updates the item clicked on set to the first list position 
-	        		
-	        		notesdb.pushItemsAboveClickedDown(listPosition); // push items above clicked down
-	        		notesdb.updateListPosition(ID, 1); // set item clicked to first
-	        		
-	        		lastIndex = 0;// when item is clicked it is moved to the first place
-	        		
 	        		if (searchBar.doesTextExist() == true)
 	        		{
-	        			updateSearchListData(searchBar.textField.getText());
-	        			clearSelections();
+	        			int listIndex = list.getSelectedIndex(); // starts at 0
+	        			
+	        			
+	        			
+	        			
+	        			
 	        		}
 	        		
 	        		else
 	        		{
+	        			int listIndex = list.getSelectedIndex();
+		        		int listPosition = listIndex+1; 
+		        		
+		        		// created var for the ID(in db) of item clicked on
+		        		int ID = notesdb.getID(listPosition); 
+		        		// updates the item clicked on set to the first list position 
+		        		
+		        		notesdb.pushItemsAboveClickedDown(listPosition); // push items above clicked down
+		        		notesdb.updateListPosition(ID, 1); // set item clicked to first
+		        		
+		        		lastIndex = 0;// when item is clicked it is moved to the first place
+	        			
 	        			updateListData();
 		        		keepSelection();
 	        		}
 	        		
 	        		dispNotes.displayNote();
-	        		
 	        		repaint();
 	        	}
 	        }
