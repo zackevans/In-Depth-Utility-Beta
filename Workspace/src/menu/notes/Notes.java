@@ -59,25 +59,25 @@ public class Notes extends JPanel
 	 * 
 	 */
 	
-	public void paintComponent(Graphics g)
-	{	
-		super.paintComponent(g);
-		
-		if (searchBar.doesTextExist() == true)
-		{
-			notesList.updateSearchListData(searchBar.textField.getText());
-			notesList.clearSelections();
-			displayNotes.repaint();
-			notesList.repaint();
-		}
-		
-		else
-		{
-			notesList.updateListData();
-			notesList.keepSelection();
-			displayNotes.repaint();
-		}
-	}
+//	public void paintComponent(Graphics g)
+//	{	
+//		super.paintComponent(g);
+//		
+//		if (searchBar.doesTextExist() == true)
+//		{
+//			notesList.updateSearchListData(searchBar.textField.getText());
+//			notesList.clearSelections();
+//			displayNotes.repaint();
+//			notesList.repaint();
+//		}
+//		
+//		else
+//		{
+//			notesList.updateListData();
+//			notesList.keepSelection();
+//			displayNotes.repaint();
+//		}
+//	}
 	
 	/**
 	 * Function: initialize
