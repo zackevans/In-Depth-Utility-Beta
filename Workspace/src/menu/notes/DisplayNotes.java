@@ -13,10 +13,12 @@ import sql.notes.NotesDataBase;
 
 public class DisplayNotes extends JScrollPane
 {
+	private static JTextArea textArea;
 	Notes notes;
 	NotesDataBase notesdb = new NotesDataBase();
 	NotesList notesList = new NotesList(notes);
-	private static JTextArea textArea;
+	SearchBar searchBar = new SearchBar(notes);
+	
 	
 	
 	public DisplayNotes(Notes notes)
@@ -41,15 +43,9 @@ public class DisplayNotes extends JScrollPane
 		setViewportView(textArea);
 	}
 	
-	public void displayNote()
+	public void displayNote(int ID)
 	{
-		int id = notesList.getDBLocation();
-	
-		if (id != -1)
-		{
-			String noteText = notesdb.getNotesBody(id);
-			textArea.setText(noteText);
-		}
+		textArea.setText(notesdb.getNotesBody(ID));
 	}
 	
 	
@@ -74,12 +70,12 @@ public class DisplayNotes extends JScrollPane
 			}
 	    });
 	}
-	
+
 	public void updateChange()
 	{
 			int id = notesList.getDBLocation();
 			String currentText = textArea.getText();
-			notesdb.updateNotesBody(id, currentText);
+			notesdb.updateNotesBody(id, currentText);		
 	 }
 
 }

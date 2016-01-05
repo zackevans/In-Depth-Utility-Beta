@@ -106,7 +106,7 @@ public class NotesDataBase
             c.close();
         } 
 
-        catch ( Exception e )
+        catch (Exception e)
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);

@@ -1,20 +1,14 @@
 package menu.notes;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.swing.JPanel;
-
 import sql.notes.NotesDataBase;
 
 public class NotesListData 
 {
 	NotesDataBase notesdb = new NotesDataBase();
 	private static ArrayList <String> sortedNames = new ArrayList <String>(); // names of data
-	private static Map <Integer,Integer> newOldListPosition = new HashMap <Integer,Integer> (); // KEY: current list position VALUE: corresponding old key 
-	//private static Map <Integer,Integer> sortedNoteIDMap = new HashMap <Integer,Integer> (); //KEY:Orginal unsorted note listNumber(JList)  VALUE: (ID) in db
-	//private static Map <Integer, Integer> sortedPositionMap = new HashMap <Integer,Integer> ();
+	//private static ArrayList <Integer> searchIDs = new ArrayList <Integer>(); //INDEX: position in list(0) VAlUE: ID of note
+	//private static Map <Integer,Integer> newOldListPosition = new HashMap <Integer,Integer> (); // KEY: current list position VALUE: corresponding old key 
 	
 	public ArrayList<String> getNoteListData()
 	{
@@ -39,10 +33,10 @@ public class NotesListData
 		}
 	}
 	
+	
 	public void sortSearchListNames(String searchText)
 	{
-		sortedNames.clear();
-		int listPosition = 1; // where it is relative to the JList
+		sortedNames.clear();	
 		
 		for (int i = 1; i <= notesdb.countItems(); i++)
 		{
@@ -50,11 +44,35 @@ public class NotesListData
 			
 			if (noteName.contains(searchText)) // checks to see if the searchbar text is in the note
 			{
-				sortedNames.add(noteName);
-				newOldListPosition.put(listPosition,i);			
+				sortedNames.add(noteName);			
 			}
-			
-			listPosition++;
 		}
 	}
+	
+//	public void moveListItemUp(int index)
+//	{
+//		String name = sortedNames.get(index);
+//		sortedNames.remove(index);
+//		sortedNames.add(0, name);
+//	}
+	
+	
+//	public void sortSearchListNames(String searchText)
+//	{
+//		sortedNames.clear();
+//		int listPosition = 1; // where it is relative to the JList	
+//		
+//		for (int i = 1; i <= notesdb.countItems(); i++)
+//		{
+//			String noteName = notesdb.getNoteNameFromPosition(i);
+//			
+//			if (noteName.contains(searchText)) // checks to see if the searchbar text is in the note
+//			{
+//				sortedNames.add(noteName);
+//				//newOldListPosition.put(listPosition,i);			
+//			}
+//			
+//			//listPosition++;
+//		}
+//	}
 }

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
+import menu.notes.Notes;
 
 /**
  * @author ZackEvans
@@ -20,7 +21,6 @@ import menu.buffer.BufferPanel;
  * 
  * Main menu screen (Panel)
  */
-
 
 public class MainMenu extends JPanel 
 {
@@ -43,6 +43,8 @@ public class MainMenu extends JPanel
 	private JButton calendarBtn; // created button object
 	private JButton settingsBtn; // Create setting button
 	private JButton aboutBtn; // Create about button
+	private static int noteBtnClickCount = 0;
+	Notes notes;
 	
 	/**
 	 * Constructor: MainMenu
@@ -95,6 +97,7 @@ public class MainMenu extends JPanel
 		calendarBtn = new JButton("Calendar");
 		settingsBtn = new JButton ("Settings Menu");
 		aboutBtn = new JButton ("About IDU");
+		notes = new Notes (bufferPanel);
 		
 		// call set up methods
 		createMainTittleLable();
@@ -148,7 +151,20 @@ public class MainMenu extends JPanel
 			public void actionPerformed(ActionEvent arg0) // function: action when button is clicked. Passed pram is not used
 			{
 				System.out.println("notesBtn");
-				bufferPanel.showPanel("NOTES");
+				
+				// if notes is clicked on the first time then it loads data 
+				if(noteBtnClickCount == 0) 
+				{
+					notes.loadData();
+					bufferPanel.showPanel("NOTES");
+				}
+				
+				else 
+				{
+					bufferPanel.showPanel("NOTES");
+				}
+				
+				noteBtnClickCount++;
 			}
 		});
 		

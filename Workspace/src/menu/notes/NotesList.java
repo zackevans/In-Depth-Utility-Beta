@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JList;
@@ -15,14 +14,15 @@ public class NotesList extends JScrollPane
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
-	private static ArrayList <String> noteNames = new ArrayList <String>(); // names of data
-	private JList list = new JList();
+	//private static ArrayList <String> noteNames = new ArrayList <String>(); // names of data
+	private static JList list = new JList();
 	private NotesListData notesData = new NotesListData();
 	private NotesDataBase notesdb = new NotesDataBase();
 	private NotesListData notesListData = new NotesListData();
 	private Notes notes;
 	private SearchBar searchBar;
 	private DisplayNotes dispNotes; 
+	public static int lastID = -1;
 	
 	public static int lastIndex = -1;
 	
@@ -54,6 +54,16 @@ public class NotesList extends JScrollPane
 		setViewportView(list);	
 	}
 	
+	public void loadData()
+	{
+		list.setListData(notesData.getNoteListData().toArray());
+	}
+	
+	public void loadSearchData(String searchText)
+	{
+		list.setListData(notesData.getSearcNoteListData(searchText).toArray());
+	}
+	
 	public void addListeners()
 	{
 		list.addMouseListener(new MouseListener() 
@@ -74,79 +84,140 @@ public class NotesList extends JScrollPane
 	        	{	
 	        		if (searchBar.doesTextExist() == true)
 	        		{
-	        			int listIndex = list.getSelectedIndex(); // starts at 0
+	        			int listIndex = list.getSelectedIndex();
 	        			
-	        			
-	        			
-	        			
-	        			
+	        			//notesData.moveListItemUp(listIndex);
 	        		}
 	        		
 	        		else
 	        		{
 	        			int listIndex = list.getSelectedIndex();
 		        		int listPosition = listIndex+1; 
-		        		
-		        		// created var for the ID(in db) of item clicked on
-		        		int ID = notesdb.getID(listPosition); 
-		        		// updates the item clicked on set to the first list position 
+	        			
+		        		lastID = notesdb.getID(listPosition);
 		        		
 		        		notesdb.pushItemsAboveClickedDown(listPosition); // push items above clicked down
-		        		notesdb.updateListPosition(ID, 1); // set item clicked to first
+		        		notesdb.updateListPosition(lastID, 1);
 		        		
-		        		lastIndex = 0;// when item is clicked it is moved to the first place
-	        			
-	        			updateListData();
-		        		keepSelection();
+		        		loadData();
+		        		setListSeclection(0); // set it to the first item
+		        		dispNotes.displayNote(lastID);
 	        		}
-	        		
-	        		dispNotes.displayNote();
-	        		repaint();
 	        	}
 	        }
 	    });
 	}
 	
-	public void updateListData()
-	{
-		noteNames.clear();
-		noteNames = notesData.getNoteListData();
-		list.setListData(noteNames.toArray());
-	}
-	
-	public void updateSearchListData(String searchText)
-	{
-		noteNames.clear();
-		noteNames = notesData.getSearcNoteListData(searchText);
-		list.setListData(noteNames.toArray());
-	}
-	
-	public void setListSelection(int listNumber)
+	public void setListSeclection(int listNumber)
 	{
 		list.setSelectedIndex(listNumber);
 	}
 	
-	public void keepSelection()
-	{
-		if (lastIndex != -1)
-		{
-			list.setSelectedIndex(lastIndex);
-		}
-	}
-	
-	public void clearSelections()
-	{
-		list.clearSelection();
-		lastIndex = -1;
-	}
-	
-	public int getLastIndex ()
-	{
-		return lastIndex;
-	}
-	
 	public int getDBLocation()
 	{
-		return notesdb.getID(lastIndex+1);
+		return lastID; // returns ID of last note clicked
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+//	public void addListeners()
+//	{
+//		list.addMouseListener(new MouseListener() 
+//		{
+//	        @Override
+//	        public void mouseReleased(MouseEvent e) {}
+//	        @Override
+//	        public void mousePressed(MouseEvent e) {}
+//	        @Override
+//	        public void mouseExited(MouseEvent e) {}
+//	        @Override
+//	        public void mouseEntered(MouseEvent e) {}
+//	        
+//	        @Override
+//	        public void mouseClicked(MouseEvent e) 
+//	        {  
+//	        	if (e.getClickCount() == 1)
+//	        	{	
+//	        		if (searchBar.doesTextExist() == true)
+//	        		{
+//	        			int listIndex = list.getSelectedIndex(); // starts at 0
+//	        			
+//	        			
+//	        			
+//	        			
+//	        			
+//	        		}
+//	        		
+//	        		else
+//	        		{
+//	        			int listIndex = list.getSelectedIndex();
+//		        		int listPosition = listIndex+1; 
+//		        		
+//		        		// created var for the ID(in db) of item clicked on
+//		        		int ID = notesdb.getID(listPosition); 
+//		        		// updates the item clicked on set to the first list position 
+//		        		
+//		        		notesdb.pushItemsAboveClickedDown(listPosition); // push items above clicked down
+//		        		notesdb.updateListPosition(ID, 1); // set item clicked to first
+//		        		
+//		        		lastIndex = 0;// when item is clicked it is moved to the first place
+//	        			
+//	        			updateListData();
+//		        		keepSelection();
+//	        		}
+//	        		
+//	        		dispNotes.displayNote();
+//	        		repaint();
+//	        	}
+//	        }
+//	    });
+//	}
+	
+//	public void updateListData()
+//	{
+//		noteNames.clear();
+//		noteNames = notesData.getNoteListData();
+//		list.setListData(noteNames.toArray());
+//	}
+//	
+//	public void updateSearchListData(String searchText)
+//	{
+//		noteNames.clear();
+//		noteNames = notesData.getSearcNoteListData(searchText);
+//		list.setListData(noteNames.toArray());
+//	}
+//	
+//	public void setListSelection(int listNumber)
+//	{
+//		list.setSelectedIndex(listNumber);
+//	}
+//	
+//	public void keepSelection()
+//	{
+//		if (lastIndex != -1)
+//		{
+//			list.setSelectedIndex(lastIndex);
+//		}
+//	}
+//	
+//	public void clearSelections()
+//	{
+//		list.clearSelection();
+//		lastIndex = -1;
+//	}
+//	
+//	public int getLastIndex ()
+//	{
+//		return lastIndex;
+//	}
+//	
+//	public int getDBLocation()
+//	{
+//		return notesdb.getID(lastIndex+1);
+//	}
 }

@@ -112,8 +112,9 @@ public class NoteDialog
 		{
 			notesdb.pushWholeListDownOne();
 			notesdb.createPersonalNote(noteName); // create new note in db
-			displayNotes.displayNote();
+			//displayNotes.displayNote();
 			showDialog(false); // hides dialog window
+			// call notelist.load data or if statemnt
 		}
 	}
 }

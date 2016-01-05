@@ -26,7 +26,7 @@ public class Notes extends JPanel
 	public static final int btnWidth = 150; // button width
 	public static final int btnHeight = 50; // button height
 	public static final int btnPadding = 25; // space between the buttons
-	private NotesList notesList;
+	private static NotesList notesList;
 	private AddNoteButton addNoteButton;
 	private ReturnButton returnButton;
 	private DeleteButton deleteBtn;
@@ -53,31 +53,6 @@ public class Notes extends JPanel
 		this.bufferPanel = bufferPanel;
 		setOpaque(false);
 	}
-	
-	/**
-	 * Function: PaintComponent
-	 * 
-	 */
-	
-//	public void paintComponent(Graphics g)
-//	{	
-//		super.paintComponent(g);
-//		
-//		if (searchBar.doesTextExist() == true)
-//		{
-//			notesList.updateSearchListData(searchBar.textField.getText());
-//			notesList.clearSelections();
-//			displayNotes.repaint();
-//			notesList.repaint();
-//		}
-//		
-//		else
-//		{
-//			notesList.updateListData();
-//			notesList.keepSelection();
-//			displayNotes.repaint();
-//		}
-//	}
 	
 	/**
 	 * Function: initialize
@@ -168,6 +143,10 @@ public class Notes extends JPanel
 		add(infoButton);
 		add(shareButton);
 		add(searchBar.textField);
-		
+	}
+	
+	public static void loadData()
+	{
+		notesList.loadData();
 	}
 }
