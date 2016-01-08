@@ -10,6 +10,11 @@ public class NotesListData
 	//private static ArrayList <Integer> searchIDs = new ArrayList <Integer>(); //INDEX: position in list(0) VAlUE: ID of note
 	//private static Map <Integer,Integer> newOldListPosition = new HashMap <Integer,Integer> (); // KEY: current list position VALUE: corresponding old key 
 	
+	public ArrayList<String> getRawNoteListData()
+	{
+		return sortedNames;
+	}
+	
 	public ArrayList<String> getNoteListData()
 	{
 		sortListNames(); // puts names in correct sequence
@@ -49,12 +54,12 @@ public class NotesListData
 		}
 	}
 	
-//	public void moveListItemUp(int index)
-//	{
-//		String name = sortedNames.get(index);
-//		sortedNames.remove(index);
-//		sortedNames.add(0, name);
-//	}
+	public void moveListItemUp(int index)
+	{
+		String name = sortedNames.get(index);
+		sortedNames.remove(index);
+		sortedNames.add(0, name);
+	}
 	
 	
 //	public void sortSearchListNames(String searchText)

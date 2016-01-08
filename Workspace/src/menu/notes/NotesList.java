@@ -54,6 +54,11 @@ public class NotesList extends JScrollPane
 		setViewportView(list);	
 	}
 	
+	public void loadRawData()
+	{
+		list.setListData(notesData.getRawNoteListData().toArray());
+	}
+	
 	public void loadData()
 	{
 		list.setListData(notesData.getNoteListData().toArray());
@@ -86,7 +91,9 @@ public class NotesList extends JScrollPane
 	        		{
 	        			int listIndex = list.getSelectedIndex();
 	        			
-	        			//notesData.moveListItemUp(listIndex);
+	        			notesData.moveListItemUp(listIndex);
+	        			loadRawData();
+	        			setListSeclection(0);
 	        		}
 	        		
 	        		else
