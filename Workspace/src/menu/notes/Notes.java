@@ -26,7 +26,7 @@ public class Notes extends JPanel
 	public static final int btnWidth = 150; // button width
 	public static final int btnHeight = 50; // button height
 	public static final int btnPadding = 25; // space between the buttons
-	private NotesList notesList;
+	private static NotesList notesList;
 	private AddNoteButton addNoteButton;
 	private ReturnButton returnButton;
 	private DeleteButton deleteBtn;
@@ -53,32 +53,7 @@ public class Notes extends JPanel
 		this.bufferPanel = bufferPanel;
 		setOpaque(false);
 	}
-	
-	/**
-	 * Function: PaintComponent
-	 * 
-	 */
-	
-	public void paintComponent(Graphics g)
-	{	
-		super.paintComponent(g);
-		
-		if (searchBar.doesTextExist() == true)
-		{
-			notesList.updateSearchListData(searchBar.textField.getText());
-			notesList.clearSelections();
-			displayNotes.repaint();
-			notesList.repaint();
-		}
-		
-		else
-		{
-			notesList.updateListData();
-			notesList.keepSelection();
-			displayNotes.repaint();
-		}
-	}
-	
+
 	/**
 	 * Function: initialize
 	 * 
@@ -112,7 +87,7 @@ public class Notes extends JPanel
 		searchBar = new SearchBar(this);
 		clearButton = new ClearButton(bufferPanel,searchBar);
 		
-		notesList.setBounds(0,50,250,445);
+		NotesList.scrollPane.setBounds(0,50,250,445);
 		addNoteButton.setBounds(280,20,30,30);
 		returnButton.setBounds(250,20,30,30);
 		deleteBtn.setBounds(310,20,30,30);
@@ -160,7 +135,7 @@ public class Notes extends JPanel
 		
 		add(searchBar.searchLabel); // must be added first to stay on top
 		add(clearButton); // must be added first to stay on top
-		add(notesList);
+		add(notesList.scrollPane);
 		add(addNoteButton);
 		add(returnButton);
 		add(deleteBtn);
@@ -168,6 +143,10 @@ public class Notes extends JPanel
 		add(infoButton);
 		add(shareButton);
 		add(searchBar.textField);
-		
+	}
+	
+	public static void loadData()
+	{
+		notesList.loadData();
 	}
 }

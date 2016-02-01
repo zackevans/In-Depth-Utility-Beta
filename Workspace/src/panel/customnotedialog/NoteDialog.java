@@ -10,6 +10,8 @@ import launch.app.LaunchApp;
 import menu.buffer.BufferPanel;
 import menu.notes.DisplayNotes;
 import menu.notes.Notes;
+import menu.notes.NotesList;
+import menu.notes.SearchBar;
 import sql.notes.NotesDataBase;
 
 public class NoteDialog 
@@ -19,6 +21,8 @@ public class NoteDialog
 	private static JFrame customFrame = new JFrame(); // Created JFrame VAR.
 	private static JLabel enterLabel = new JLabel("Note Name: ");
 	private Notes notes;
+	private NotesList notesList;
+	private SearchBar searchBar = new SearchBar(notes);
 	private LaunchApp launchApp = new LaunchApp(); // created to acess frame location
 	private DialogField dialogField = new DialogField(this);
 	private CancelBtn cancelBtn = new CancelBtn(this);
@@ -27,10 +31,11 @@ public class NoteDialog
 	private BufferPanel bufferPanel;
 	private DisplayNotes displayNotes = new DisplayNotes(notes);
 	
-	public NoteDialog(Notes notes)
+	public NoteDialog(Notes notes,NotesList notesList)
 	{
 		super();
 		this.notes = notes;
+		this.notesList = notesList;
 	}
 	
 	public void launchDialog()
@@ -92,7 +97,7 @@ public class NoteDialog
 		return dialogField.getText();
 	}
 	
-	public void showDialogError()
+	public void showDialogError() 
 	{
 		dialogField.setText("Note MUST Contain a Name");
 		dialogField.requestFocus(); // setFocous on textfield
@@ -103,7 +108,7 @@ public class NoteDialog
 	{
 		String noteName = dialogField.getText();
 		
-		if (noteName.length() <= 0|| noteName.contains("Note MUST Contain a Name"))
+		if (noteName.length() <= 0 || noteName.contains("Note MUST Contain a Name"))
 		{
 			showDialogError();
 		}
@@ -112,8 +117,16 @@ public class NoteDialog
 		{
 			notesdb.pushWholeListDownOne();
 			notesdb.createPersonalNote(noteName); // create new note in db
-			displayNotes.displayNote();
 			showDialog(false); // hides dialog window
+			
+			searchBar.clearTextField();
+			//searchBar.showSearchLabel();
+			notesList.loadData();
+			notesList.setListSeclection(0);
+			
+			notesList.setLastID(-1); // set ID to -1 so clearDisplay() doesent clear current noteBody
+			displayNotes.clearDisplay();
+			notesList.setLastID(notesdb.getID(1));
 		}
 	}
 }

@@ -19,8 +19,8 @@ public class AddNoteButton extends JButton
 {
 	private Notes notes;
 	private LaunchApp launchApp = new LaunchApp();
-	private NoteDialog noteDialog = new NoteDialog(notes);
 	private NotesList notesList = new NotesList(notes);
+	private NoteDialog noteDialog = new NoteDialog(notes,notesList);
 	
 	public AddNoteButton (Notes notes)
 	{

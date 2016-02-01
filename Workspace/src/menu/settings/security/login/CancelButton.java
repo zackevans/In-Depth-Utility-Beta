@@ -4,17 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
-import menu.settings.security.passconfirm.PasswordConfirm;
-import sql.system.settings.SystemDatabase;
 
 public class CancelButton extends JButton
 {
 	BufferPanel bufferPanel;
-	private PasswordConfirm passConfirm = new PasswordConfirm(bufferPanel);
-	private SystemDatabase systemdb = new SystemDatabase();
 	
 	public CancelButton (BufferPanel bufferPanel)
 	{
