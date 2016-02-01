@@ -148,4 +148,8 @@ public class LaunchApp
     	return frame.getY(); // get Y cord from frame
     }
     
+    public JFrame getFrame()
+    {
+    	return frame;
+    }
 }
