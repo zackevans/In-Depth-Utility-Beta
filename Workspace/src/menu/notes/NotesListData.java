@@ -1,14 +1,17 @@
 package menu.notes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import sql.notes.NotesDataBase;
 
 public class NotesListData 
 {
 	NotesDataBase notesdb = new NotesDataBase();
 	private static ArrayList <String> sortedNames = new ArrayList <String>(); // names of data
-	//private static ArrayList <Integer> searchIDs = new ArrayList <Integer>(); //INDEX: position in list(0) VAlUE: ID of note
-	//private static Map <Integer,Integer> newOldListPosition = new HashMap <Integer,Integer> (); // KEY: current list position VALUE: corresponding old key 
+	private static ArrayList<Integer> oldListPositions = new ArrayList <Integer>();
+	private static Map <Integer,Integer> newOldListPosition = new HashMap <Integer,Integer> (); // KEY: current list position VALUE: corresponding old key 
 	
 	public ArrayList<String> getRawNoteListData()
 	{
@@ -38,7 +41,6 @@ public class NotesListData
 		}
 	}
 	
-	
 	public void sortSearchListNames(String searchText)
 	{
 		sortedNames.clear();	
@@ -59,25 +61,33 @@ public class NotesListData
 		String name = sortedNames.get(index);
 		sortedNames.remove(index);
 		sortedNames.add(0, name);
+		
+		int position = oldListPositions.get(index);
+		oldListPositions.remove(index);
+		oldListPositions.add(0,position);
 	}
 	
 	
-//	public void sortSearchListNames(String searchText)
-//	{
-//		sortedNames.clear();
-//		int listPosition = 1; // where it is relative to the JList	
-//		
-//		for (int i = 1; i <= notesdb.countItems(); i++)
-//		{
-//			String noteName = notesdb.getNoteNameFromPosition(i);
-//			
-//			if (noteName.contains(searchText)) // checks to see if the searchbar text is in the note
-//			{
-//				sortedNames.add(noteName);
-//				//newOldListPosition.put(listPosition,i);			
-//			}
-//			
-//			//listPosition++;
-//		}
-//	}
+	public void loadOldListPositions(String searchText)
+	{
+		int listPosition = 0;
+		oldListPositions.clear();
+		
+		for(int i = 0; i <= notesdb.countItems(); i++) 
+		{	
+			String noteName = notesdb.getNoteNameFromPosition(i);
+			
+			if(noteName.contains(searchText)) 
+			{
+				oldListPositions.add(listPosition);		
+			}
+			
+			listPosition++;
+		}
+	}
+	
+	public int getOldEquivalentPosition(int currentPosition)
+	{
+		return oldListPositions.get(currentPosition);
+	}
 }
