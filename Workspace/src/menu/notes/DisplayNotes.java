@@ -17,9 +17,7 @@ public class DisplayNotes extends JScrollPane
 	Notes notes;
 	NotesDataBase notesdb = new NotesDataBase();
 	NotesList notesList = new NotesList(notes);
-	SearchBar searchBar = new SearchBar(notes);
-	
-	
+	SearchBar searchBar = new SearchBar(notes);	
 	
 	public DisplayNotes(Notes notes)
 	{
@@ -52,8 +50,7 @@ public class DisplayNotes extends JScrollPane
 	public void documentChange()
 	{
 		textArea.getDocument().addDocumentListener(new DocumentListener()
-	    {
-	
+	    {	
 			public void changedUpdate(DocumentEvent arg0) 
 			{
 	        	   
@@ -73,9 +70,17 @@ public class DisplayNotes extends JScrollPane
 
 	public void updateChange()
 	{
-			int id = notesList.getDBLocation();
-			String currentText = textArea.getText();
-			notesdb.updateNotesBody(id, currentText);		
-	 }
-
+			int id = notesList.getLastID();
+			
+			if (id != -1)
+			{
+				String currentText = textArea.getText();
+				notesdb.updateNotesBody(id, currentText);
+			}		
+	}
+	
+	public void clearDisplay()
+	{
+		textArea.setText("");
+	}
 }
