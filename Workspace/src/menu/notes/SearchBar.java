@@ -12,9 +12,10 @@ import program.searchbar.SearchBarShell;
 public class SearchBar
 {
 	Notes notes;
-	static JTextField textField = new SearchBarShell();
+	public static JTextField textField = new SearchBarShell();
 	JLabel searchLabel = new JLabel("Search");
 	NotesList notesList = new NotesList(notes);
+	NotesListData notesData = new NotesListData();
 	
     public SearchBar (Notes notes) 
     {
@@ -55,11 +56,14 @@ public class SearchBar
     		public void insertUpdate(DocumentEvent arg0) 
     		{
     			notesList.loadSearchData(textField.getText());
+    			notesData.loadOldListPositions(textField.getText());
+    			
     		}
     		
     		public void removeUpdate(DocumentEvent arg0) 
     		{
     			notesList.loadSearchData(textField.getText());
+    			notesData.loadOldListPositions(textField.getText());
     		}
     	});
     }
@@ -75,6 +79,16 @@ public class SearchBar
  	   }
  	   
  	   else return false;
+    }
+    
+    public void clearTextField()
+    {
+    	textField.setText("");
+    }
+    
+    public void showSearchLabel()
+    {
+    	searchLabel.setVisible(true);
     }
 }
     
