@@ -26,7 +26,7 @@ public class NotesDataBase
             
             stmt = c.createStatement();
             String sql = "CREATE TABLE if not exists USER_NOTES" +
-            "(ID INTEGER PRIMARY KEY   AUTOINCREMENT, " +
+            "(ID INTEGER PRIMARY KEY   AUTOINCREMENT," +
             " NAME           varchar       NOT NULL, " +
             " BODY           varchar               , " +
             " DATE           varchar       NOT NULL, " +
@@ -45,7 +45,6 @@ public class NotesDataBase
         
         System.out.println("Notes Table created successfully");
     }
-    
     
     public void createPersonalNote(String noteName)
     {
@@ -75,7 +74,9 @@ public class NotesDataBase
             preparedStatement.close();
             c.commit();
             c.close();
-        } catch ( Exception e )
+        }
+        
+        catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
@@ -164,6 +165,14 @@ public class NotesDataBase
     	}	
     }
     
+    public void pushItemsBelowUp (int numberClicked)
+    {
+//    	for (int i = numberClicked -1; i <= countItems(); i++)
+//    	{
+//    		System.out.println(i);
+//    	}
+    }
+    
     public int countItems() // counts how may rows there are
     {
         Connection c = null;
@@ -234,7 +243,6 @@ public class NotesDataBase
         return rVal;
     }
     
-    
     public void updateListPosition(int id, int listPosition)
     {
         Connection dbConnection = null;
@@ -263,8 +271,7 @@ public class NotesDataBase
             System.exit(0);
         }
     }
-    
-    
+     
     public String getNoteNameFromPosition(int listPosition)
     {
         Connection c = null;
@@ -329,7 +336,6 @@ public class NotesDataBase
         
         return rVal;
     }
-    
     
     public String getNotesBody(int id)
 	{
