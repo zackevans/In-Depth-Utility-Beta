@@ -2,6 +2,7 @@ package menu.notes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,8 +27,13 @@ public class ShareButton extends JButton
 	
 	public void createBtn()
 	{
-		setIcon(new ImageIcon("Images/Button_Images/Notes/Share.png"));
-		validate();
+		URL url = AddNoteButton.class.getResource("/Button_Images/Notes/Share.png");
+		ImageIcon icon = new ImageIcon(url);
+		setIcon(icon);
+		
+		
+//		setIcon(new ImageIcon("Images/Button_Images/Notes/Share.png"));
+//		validate();
 	}
 	
 	public void addListeners()
