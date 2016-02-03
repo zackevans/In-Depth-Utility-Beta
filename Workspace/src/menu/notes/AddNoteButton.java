@@ -1,11 +1,12 @@
 package menu.notes;
 
-
 import java.awt.Dimension;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -36,8 +37,9 @@ public class AddNoteButton extends JButton
 	
 	public void createButton()
 	{
-		setIcon(new ImageIcon("Images/Button_Images/Notes/Add.png"));
-		validate();
+		URL url = AddNoteButton.class.getResource("/Button_Images/Notes/Add.png");
+		ImageIcon icon = new ImageIcon(url);
+		setIcon(icon);
 	}
 	
 	public void addListeners()

@@ -2,6 +2,7 @@ package menu.notes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,12 +29,16 @@ public class ClearButton extends JButton
 	
 	public void createBtn()
 	{
+		URL clearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/Clear.png");
+		URL pressedClearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/ClearPressed.png");
+		
 		setOpaque(false);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
-		setIcon(new ImageIcon("Images/Button_Images/Notes/Clear.png"));
-		setPressedIcon(new ImageIcon("Images/Button_Images/TopBar/PressedClear.png"));
-		validate();
+		
+		setIcon(new ImageIcon(clearBtnUrl));
+		setPressedIcon(new ImageIcon(pressedClearBtnUrl));
+		///validate();
 	}
 	
 	public void addListeners()

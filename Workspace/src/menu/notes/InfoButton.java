@@ -2,6 +2,7 @@ package menu.notes;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,9 +26,10 @@ public class InfoButton extends JButton
 	}
 	
 	public void createBtn()
-	{
-		setIcon(new ImageIcon("Images/Button_Images/Notes/Info.png"));
-		validate();
+	{	
+		URL url = InfoButton.class.getResource("/Button_Images/Notes/info.png");
+		ImageIcon icon = new ImageIcon(url);
+		setIcon(icon);	
 	}
 
 	
