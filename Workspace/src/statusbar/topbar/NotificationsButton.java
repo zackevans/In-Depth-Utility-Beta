@@ -1,14 +1,13 @@
 package statusbar.topbar;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import menu.buffer.BufferPanel;
+
 
 public class NotificationsButton extends JButton
 {
@@ -28,11 +27,15 @@ public class NotificationsButton extends JButton
 	
 	public void createBtn()
 	{
+		URL btnURL = NotificationsButton.class.getResource("/Button_Images/TopBar/Notifications.png");
+		URL pressedBtnURL = NotificationsButton.class.getResource("/Button_Images/TopBar/NotificationsClicked.png");
+		ImageIcon btnImg = new ImageIcon(btnURL);
+		ImageIcon btnPressedImg = new ImageIcon(pressedBtnURL);
+		
 		setFocusable(false);
 		setBorderPainted(false);
-		setIcon(new ImageIcon("Images/Button_Images/TopBar/Notifications.png"));
-		setPressedIcon(new ImageIcon("Images/Button_Images/TopBar/NotificationsClicked.png"));
-		validate();
+		setIcon(btnImg);
+		setPressedIcon(btnPressedImg);
 	}
 	
 	public void addListeners()
@@ -46,5 +49,4 @@ public class NotificationsButton extends JButton
 			}
 		});
 	}
-
 }
