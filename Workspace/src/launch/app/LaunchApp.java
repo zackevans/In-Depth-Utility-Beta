@@ -3,7 +3,11 @@ package launch.app;
 
 // Imports 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
@@ -21,12 +25,12 @@ public class LaunchApp
 	// Created locked VAR. 
 	public static final int Window_Width = 700; 
 	public static final int Window_Height = 500;
-	private static JFrame frame = new JFrame(); // Created JFrame VAR. 
+	private static JFrame frame = new JFrame(); // Created JFrame VAR.
+	private static Image wallpaperImage = null;
     private static JLayeredPane layerPane = new JLayeredPane(); // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
     private static Wallpaper wallpaper;  // Created a Wallpaper Class Object.
     static BufferPanel bufferPanel = new BufferPanel(); // Created a BufferPanel Class Object.
     public static TopBar topBar; // Created a TopBar Class Object.
-    
     
     /**
      * Main initial method
@@ -39,6 +43,7 @@ public class LaunchApp
     {
     	SwingUtilities.invokeLater(new Runnable() // Created Runnable thread to run GUI.
 		{
+			@Override
 			public void run() 
 			{
 				createAndShowGUI(); // Method Call to create program.
@@ -71,10 +76,14 @@ public class LaunchApp
         bufferPanel.initialize();    
         bufferPanel.setSize(frame.getWidth(),frame.getHeight());
         
-        // Initialize wallpaper object.
-        // TODO put image on JLabel and resize to fit the Frame size.
+        // Create url for the image location so it can be added to the program
         // Image Path: /Library/Desktop Pictures/Wave.jpg
-        wallpaper = new Wallpaper("Images/Wallpaper/mavericks_2560.jpg");
+        URL url = LaunchApp.class.getResource("/Wallpaper/mavericks_2560.jpg");
+        
+        //Create wallpaper image var and ini it 
+        createWallpaperImage(url);
+        // create wallpaper object
+        wallpaper = new Wallpaper(wallpaperImage);
         
         // Initialize top bar object.
         // Set location and size of top bar object.
@@ -151,5 +160,19 @@ public class LaunchApp
     public JFrame getFrame()
     {
     	return frame;
+    }
+    
+    public static void createWallpaperImage(URL url)
+    {
+    	try 
+    	{
+    		wallpaperImage = ImageIO.read(url);
+ 		} 
+    	catch (IOException e) 
+    	{
+    		// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 			System.err.println("WallPaper Failed to Load");
+ 		} 
     }
 }
