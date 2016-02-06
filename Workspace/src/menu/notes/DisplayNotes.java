@@ -8,7 +8,6 @@ import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import menu.buffer.BufferPanel;
 import sql.notes.NotesDataBase;
 
 public class DisplayNotes extends JScrollPane
@@ -51,16 +50,19 @@ public class DisplayNotes extends JScrollPane
 	{
 		textArea.getDocument().addDocumentListener(new DocumentListener()
 	    {	
+			@Override
 			public void changedUpdate(DocumentEvent arg0) 
 			{
 	        	   
 			}
+			@Override
 			public void insertUpdate(DocumentEvent arg0) 
 			{
 				updateChange();
 				
 			}
 	
+			@Override
 			public void removeUpdate(DocumentEvent arg0) 
 			{
 				updateChange();

@@ -1,12 +1,18 @@
 package panel.wallpaper;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.net.URL;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import menu.notes.AddNoteButton;
 
 public class Wallpaper extends JPanel
 {

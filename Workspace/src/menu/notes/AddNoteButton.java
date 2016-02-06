@@ -1,19 +1,13 @@
 package menu.notes;
 
-import java.awt.Dimension;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 import launch.app.LaunchApp;
-import menu.buffer.BufferPanel;
 import panel.customnotedialog.NoteDialog;
 
 public class AddNoteButton extends JButton
