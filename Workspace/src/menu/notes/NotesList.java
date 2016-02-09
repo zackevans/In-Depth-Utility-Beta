@@ -2,13 +2,13 @@ package menu.notes;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+
 import sql.notes.NotesDataBase;
 
 public class NotesList
@@ -89,32 +89,35 @@ public class NotesList
 	        {  
 	        	if (e.getClickCount() == 1)
 	        	{	
-	        		if (searchBar.doesTextExist() == true)
+	        		if (list.getSelectedIndex() != -1) // checks if a list item was clicked
 	        		{
-	        			int listIndex = list.getSelectedIndex();
-	        			int listPosition = notesData.getOldEquivalentPosition(listIndex);
-	        			
-	        			lastID = notesdb.getID(listPosition);
-	        			
-	        			notesData.moveListItemUp(listIndex);
-	        			loadRawData();
-	        			setListSeclection(0);
-	        			dispNotes.displayNote(lastID);
-	        		}
-	        		
-	        		else
-	        		{
-	        			int listIndex = list.getSelectedIndex();
-		        		int listPosition = listIndex+1; 
-	        			
-		        		lastID = notesdb.getID(listPosition);
+	        			if (searchBar.doesTextExist() == true) // if text exists 
+		        		{
+		        			int listIndex = list.getSelectedIndex();
+		        			int listPosition = notesData.getOldEquivalentPosition(listIndex);
+		        			
+		        			lastID = notesdb.getID(listPosition);
+		        			
+		        			notesData.moveListItemUp(listIndex);
+		        			loadRawData();
+		        			setListSeclection(0);
+		        			dispNotes.displayNote(lastID);
+		        		}
 		        		
-		        		notesdb.pushItemsAboveClickedDown(listPosition); // push items above clicked down
-		        		notesdb.updateListPosition(lastID, 1);
-		        		
-		        		loadData();
-		        		setListSeclection(0); // set it to the first item
-		        		dispNotes.displayNote(lastID);
+		        		else // if text doesent exist
+		        		{
+		        			int listIndex = list.getSelectedIndex();
+			        		int listPosition = listIndex+1; 
+		        			
+			        		lastID = notesdb.getID(listPosition);
+			        		
+			        		notesdb.pushItemsAboveClickedDown(listPosition); // push items above clicked down
+			        		notesdb.updateListPosition(lastID, 1);
+			        		
+			        		loadData();
+			        		setListSeclection(0); // set it to the first item
+			        		dispNotes.displayNote(lastID);
+		        		}
 	        		}
 	        	}
 	        }

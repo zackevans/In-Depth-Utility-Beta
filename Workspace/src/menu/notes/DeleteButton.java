@@ -18,6 +18,7 @@ public class DeleteButton extends JButton
 	private SearchBar searchBar = new SearchBar(notes);
 	private NotesDataBase notesdb = new NotesDataBase();
 	private LaunchApp launchApp =  new LaunchApp();
+	private DisplayNotes displayNotes = new DisplayNotes(notes);
 	
 	public DeleteButton (Notes notes)
 	{
@@ -62,6 +63,7 @@ public class DeleteButton extends JButton
 						notesdb.deleteNote(ID);
 						notesList.loadData();
 						notesList.setLastID(-1);
+						displayNotes.clearDisplay();
 					}
 					
 					else
