@@ -20,7 +20,7 @@ public class NotesListData
 	
 	public ArrayList<String> getNoteListData()
 	{
-		sortListNames(); // puts names in correct sequence
+		sortListNames(); // puts names in correct sequence from db
 		return sortedNames;
 	}
 	
@@ -84,6 +84,11 @@ public class NotesListData
 			
 			listPosition++;
 		}
+	}
+	
+	public void removeNameElement(int index)
+	{
+		sortedNames.remove(index);
 	}
 	
 	public int getOldEquivalentPosition(int currentPosition)

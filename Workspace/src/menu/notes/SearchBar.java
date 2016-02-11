@@ -31,6 +31,31 @@ public class SearchBar
     
     public void addListeners()
     {
+    	
+    	
+    	textField.getDocument().addDocumentListener(new DocumentListener() 
+    	{
+    		@Override
+			public void changedUpdate(DocumentEvent arg0) {}
+    		
+    		@Override
+			public void insertUpdate(DocumentEvent arg0) 
+    		{
+    			notesList.loadSearchData(textField.getText());
+    			notesData.loadOldListPositions(textField.getText());
+    			notesList.setLastID(-1);
+    		}
+    		
+    		@Override
+			public void removeUpdate(DocumentEvent arg0) 
+    		{
+    			notesList.loadSearchData(textField.getText());
+    			notesData.loadOldListPositions(textField.getText());
+    			notesList.setLastID(-1);
+    		}
+    	});
+    	
+    	
     	textField.addFocusListener(new FocusListener() 
     	{
             @Override
@@ -48,24 +73,6 @@ public class SearchBar
            	 	}
             }
         });
-    	
-    	textField.getDocument().addDocumentListener(new DocumentListener() 
-    	{
-    		public void changedUpdate(DocumentEvent arg0) {}
-    		
-    		public void insertUpdate(DocumentEvent arg0) 
-    		{
-    			notesList.loadSearchData(textField.getText());
-    			notesData.loadOldListPositions(textField.getText());
-    			
-    		}
-    		
-    		public void removeUpdate(DocumentEvent arg0) 
-    		{
-    			notesList.loadSearchData(textField.getText());
-    			notesData.loadOldListPositions(textField.getText());
-    		}
-    	});
     }
     
     

@@ -19,6 +19,7 @@ public class DeleteButton extends JButton
 	private NotesDataBase notesdb = new NotesDataBase();
 	private LaunchApp launchApp =  new LaunchApp();
 	private DisplayNotes displayNotes = new DisplayNotes(notes);
+	private NotesListData notesData = new NotesListData();
 	
 	public DeleteButton (Notes notes)
 	{
@@ -50,7 +51,25 @@ public class DeleteButton extends JButton
 				
 				if (searchBar.doesTextExist() == true)
 				{
+					int ID = notesList.getLastID();
 					
+					if (ID != -1)
+					{
+						notesdb.pushWholeListUpOne();
+						notesdb.deleteNote(ID);
+						notesData.removeNameElement(0);
+						notesList.setLastID(-1);
+						displayNotes.clearDisplay();
+						notesList.loadRawData();
+					}
+					
+					else
+					{
+						JOptionPane.showMessageDialog(launchApp.getFrame(),
+								  "No Item Was Seclected",
+								  "Delete Warning",
+								  JOptionPane.WARNING_MESSAGE);
+					}
 				}
 				
 				else
