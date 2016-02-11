@@ -61,12 +61,6 @@ public class DeleteButton extends JButton
 						notesList.setLastID(-1);
 						displayNotes.clearDisplay();
 						notesList.loadRawData();
-						
-
-						
-						
-						//System.out.println();
-						
 					}
 					
 					else

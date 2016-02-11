@@ -40,7 +40,7 @@ public class LaunchApp
      * 
      */
     public static void main(String[] args) 
-    {
+    {	
     	SwingUtilities.invokeLater(new Runnable() // Created Runnable thread to run GUI.
 		{
 			@Override
