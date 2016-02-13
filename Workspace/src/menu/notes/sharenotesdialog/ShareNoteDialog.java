@@ -2,8 +2,6 @@ package menu.notes.sharenotesdialog;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -16,8 +14,8 @@ public class ShareNoteDialog
 	public static final int Window_Width = 150; // Standard Dialog size
 	public static final int Window_Height = 167; // Standard Dialog size
 	private LaunchApp launchApp = new LaunchApp();
-	private ShareList  shareList;
-	private static JFrame customFrame = new JFrame(); // Created JFrame VAR.
+	private ShareList shareList;
+	public static JFrame customFrame = new JFrame(); // Created JFrame VAR.
 	private Notes notes;
 	
 	
@@ -46,9 +44,9 @@ public class ShareNoteDialog
 		customFrame.setBackground(Color.WHITE);
 		customFrame.setOpacity(.45f);
 		
-		addComponents();
+		createComponents();
 		
-		customFrame.getContentPane().setLayout(null);
+		//customFrame.getContentPane().setLayout(null);
 		
 		addComponents();
 		addListeners();
@@ -56,12 +54,11 @@ public class ShareNoteDialog
 		customFrame.setVisible(true);
 	}
 	
-	
 	public void createComponents()
 	{
-		shareList = new ShareList();
+		shareList = new ShareList (this);
 		
-		ShareList.list.setBounds(0, 0, Window_Width, Window_Height);
+		shareList.initialize();
 	}
 	
 	public void addComponents()
@@ -69,19 +66,18 @@ public class ShareNoteDialog
 		customFrame.add(ShareList.list);
 	}
 	
-	
 	public void addListeners()
 	{
-		customFrame.addFocusListener(new FocusListener() 
-    	{
-            @Override
-            public void focusLost(FocusEvent e) // when the frame is unslected it goes away
-            {
-           	 	customFrame.setVisible(false); 
-            }
-            
-            @Override
-            public void focusGained(FocusEvent e) {} // not needed currently
-        });
+//		customFrame.addFocusListener(new FocusListener() 
+//    	{
+//            @Override
+//            public void focusLost(FocusEvent e) // when the frame is unslected it goes away
+//            {
+//           	 	customFrame.setVisible(false); 
+//            }
+//            
+//            @Override
+//            public void focusGained(FocusEvent e) {} // not needed currently
+//        });
 	}
 }
