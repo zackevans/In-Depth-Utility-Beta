@@ -29,9 +29,9 @@ public class ShareButton extends JButton
 	
 	public void createBtn()
 	{
-		URL url = ShareButton.class.getResource("/Button_Images/Notes/Share.png");
-		ImageIcon icon = new ImageIcon(url);
-		setIcon(icon);
+		URL url = ShareButton.class.getResource("/Button_Images/Notes/Share.png"); // get button image
+		ImageIcon icon = new ImageIcon(url); // create image
+		setIcon(icon); // set the image
 	}
 	
 	public void addListeners()
@@ -43,7 +43,7 @@ public class ShareButton extends JButton
 			{
 				System.out.println("shareBtn");
 				
-				shareDialog.launchDialog();
+				shareDialog.launchDialog(); // show window next to frame
 			}
 		});
 	}
