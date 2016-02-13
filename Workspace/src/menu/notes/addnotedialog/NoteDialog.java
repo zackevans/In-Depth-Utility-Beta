@@ -1,4 +1,4 @@
-package panel.customnotedialog;
+package menu.notes.addnotedialog;
 
 import java.awt.Dimension;
 import java.awt.Font;
