@@ -7,16 +7,18 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import menu.buffer.BufferPanel;
+import menu.notes.sharenotesdialog.ShareNoteDialog;
 
 public class ShareButton extends JButton
 {
-	private BufferPanel bufferPanel;
+	private Notes notes;
+	private ShareNoteDialog shareDialog = new ShareNoteDialog(notes);
+	private static boolean clicked = false;
 	
-	public ShareButton (BufferPanel bufferPanel)
+	public ShareButton (Notes notes)
 	{
 		super();
-		this.bufferPanel = bufferPanel;
+		this.notes = notes;
 	}
 	
 	public void initialize()
@@ -40,10 +42,9 @@ public class ShareButton extends JButton
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("shareBtn");
+				
+				shareDialog.launchDialog();
 			}
 		});
 	}
-	
-	
-
 }
