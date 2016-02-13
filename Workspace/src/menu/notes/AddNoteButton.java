@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import launch.app.LaunchApp;
-import panel.customnotedialog.NoteDialog;
+import menu.notes.addnotedialog.NoteDialog;
 
 public class AddNoteButton extends JButton
 {

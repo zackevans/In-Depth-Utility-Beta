@@ -38,7 +38,6 @@ public class ClearButton extends JButton
 		
 		setIcon(new ImageIcon(clearBtnUrl));
 		setPressedIcon(new ImageIcon(pressedClearBtnUrl));
-		///validate();
 	}
 	
 	public void addListeners()

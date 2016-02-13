@@ -1,7 +1,8 @@
 package menu.calendar;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
 
@@ -95,4 +96,5 @@ public class Calendar extends JPanel
 		add(ymLabel);
 		add(grid);
 	}
+
 }

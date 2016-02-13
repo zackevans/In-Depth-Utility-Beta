@@ -19,7 +19,15 @@ import sql.notes.NotesDataBase;
 import sql.system.settings.SystemDatabase;
 import statusbar.topbar.TopBar;
 
-// Main Class: 
+/**
+ * @author ZackEvans
+ * Class: Launch App
+ *  
+ * class that contains the main method.
+ * main jframe and GUI is set up.
+ * db is setup
+ */
+
 public class LaunchApp 
 {
 	// Created locked VAR. 
