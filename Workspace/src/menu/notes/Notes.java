@@ -87,7 +87,7 @@ public class Notes extends JPanel
 		deleteBtn = new DeleteButton(this);
 		displayNotes = new DisplayNotes(this);
 		infoButton = new InfoButton(bufferPanel);
-		shareButton = new ShareButton(this);
+		shareButton = new ShareButton(bufferPanel, this);
 		searchBar = new SearchBar(this);
 		clearButton = new ClearButton(bufferPanel,searchBar);
 		

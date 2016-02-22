@@ -7,32 +7,46 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
 import launch.app.LaunchApp;
+import menu.buffer.BufferPanel;
 import menu.notes.Notes;
 
 public class ShareNoteDialog 
 {
+	BufferPanel bufferPanel;
 	public static final int Window_Width = 150; // Standard Dialog size
 	public static final int Window_Height = 167; // Standard Dialog size
-	private LaunchApp launchApp = new LaunchApp();
-	private ShareList shareList;
 	public static JFrame customFrame = new JFrame(); // Created JFrame VAR.
+	private LaunchApp launchApp; 
 	private Notes notes;
+	private ShareList shareList;
+	private boolean clicked = false;
 	
-	
-	public ShareNoteDialog(Notes notes)
+	public ShareNoteDialog(BufferPanel bufferPanel, Notes notes)
 	{
 		super();
 		this.notes = notes;
+		this.bufferPanel = bufferPanel;
 		customFrame.setUndecorated(true); // removes status bar from frame
 	}
 	
 	public void launchDialog()
 	{
-		createAndShowGUI();
+		if (clicked == false)
+		{
+			createAndShowGUI();
+			clicked = true;
+		}
+		
+		else
+		{
+			showWindow();
+		}
 	}
 	
 	public void createAndShowGUI()
 	{
+		createComponents(); // create components first before using launch app
+		
 		int x = launchApp.frameXPosition()+700 ; //  centers window for x
 		int y = launchApp.frameYPosition()+ 42 ; // centers window for y
 		
@@ -41,43 +55,33 @@ public class ShareNoteDialog
 		customFrame.getRootPane().setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		customFrame.setResizable(false);
 		customFrame.setLocation(x, y); // set frame in center of main frame 
-		customFrame.setBackground(Color.WHITE);
-		customFrame.setOpacity(.45f);
-		
-		createComponents();
-		
-		//customFrame.getContentPane().setLayout(null);
+		//customFrame.setBackground(Color.WHITE);
+		//customFrame.setBackground(new Color(0,0,0,64));
 		
 		addComponents();
-		addListeners();
 		
+		customFrame.setVisible(true);
+	}
+	
+	public void showWindow()
+	{
+		int x = launchApp.frameXPosition()+700 ; //  centers window for x
+		int y = launchApp.frameYPosition()+ 42 ; // centers window for y
+		customFrame.setLocation(x, y); // set frame in center of main frame 
+		ShareList.list.clearSelection();
 		customFrame.setVisible(true);
 	}
 	
 	public void createComponents()
 	{
-		shareList = new ShareList (this);
+		shareList = new ShareList (bufferPanel, notes, this);
+		launchApp = new LaunchApp();
 		
 		shareList.initialize();
 	}
 	
 	public void addComponents()
 	{
-		customFrame.add(ShareList.list);
-	}
-	
-	public void addListeners()
-	{
-//		customFrame.addFocusListener(new FocusListener() 
-//    	{
-//            @Override
-//            public void focusLost(FocusEvent e) // when the frame is unslected it goes away
-//            {
-//           	 	customFrame.setVisible(false); 
-//            }
-//            
-//            @Override
-//            public void focusGained(FocusEvent e) {} // not needed currently
-//        });
+		customFrame.getContentPane().add(ShareList.list);
 	}
 }

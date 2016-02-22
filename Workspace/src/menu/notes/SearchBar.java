@@ -30,9 +30,7 @@ public class SearchBar
     }
     
     public void addListeners()
-    {
-    	
-    	
+    {  	
     	textField.getDocument().addDocumentListener(new DocumentListener() 
     	{
     		@Override
@@ -55,7 +53,6 @@ public class SearchBar
     		}
     	});
     	
-    	
     	textField.addFocusListener(new FocusListener() 
     	{
             @Override
@@ -75,27 +72,21 @@ public class SearchBar
         });
     }
     
-    
     public boolean doesTextExist()
     {
- 	   String text = textField.getText();
- 	   
- 	   if (text.length() > 0)
- 	   {
- 		   return true;
- 	   }
- 	   
- 	   else return false;
+    	String text = textField.getText();
+    	
+    	if (text.length() > 0)
+    	{
+    		return true;
+    	}
+    	
+    	else return false;
     }
     
     public void clearTextField()
     {
     	textField.setText("");
-    }
-    
-    public void showSearchLabel()
-    {
-    	searchLabel.setVisible(true);
     }
 }
     

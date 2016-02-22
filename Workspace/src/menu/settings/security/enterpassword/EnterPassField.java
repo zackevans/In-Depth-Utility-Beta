@@ -5,6 +5,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JPasswordField;
+
 import menu.buffer.BufferPanel;
 import menu.settings.security.passconfirm.PasswordConfirm;
 import sql.system.settings.SystemDatabase;
@@ -45,7 +46,8 @@ public class EnterPassField extends JPasswordField
 	 *  paint rectange
 	 */
 
- 	protected void paintComponent(Graphics g) 
+ 	@Override
+	protected void paintComponent(Graphics g) 
     {
          g.setColor(getBackground()); // set color same as backround
          g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 6, 6); // create a round rectangle underField
@@ -60,7 +62,8 @@ public class EnterPassField extends JPasswordField
  	 * draw border around passfield
  	 */
  	
-    protected void paintBorder(Graphics g) 
+    @Override
+	protected void paintBorder(Graphics g) 
     {
          g.setColor(getForeground()); // set color same as backround
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 6,6); // create and draw border around field
@@ -70,10 +73,13 @@ public class EnterPassField extends JPasswordField
     {
     	addKeyListener(new KeyAdapter() 
 		{
+			@Override
 			public void keyReleased(KeyEvent e) {}
-		    public void keyTyped(KeyEvent e) {}
+		    @Override
+			public void keyTyped(KeyEvent e) {}
 
-		    public void keyPressed(KeyEvent e) 
+		    @Override
+			public void keyPressed(KeyEvent e) 
 		    {
 		    	String pass = ep.getPassword(); // get pass word from textfield 
 				String dbPass = sd.getPassword(); // get pass from database 
@@ -90,7 +96,6 @@ public class EnterPassField extends JPasswordField
 					{
 						ep.showWarning(true); // show warrning
 						ep.clearFields();
-						ep.setDefaultFocus();
 					}
 		    	}
 
