@@ -1,4 +1,5 @@
 package menu.notes;
+
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -27,6 +28,7 @@ public class SearchBar
     {
     	addListeners();
     	searchLabel.setOpaque(false);
+    	//searchLabel.setVisible(true);
     }
     
     public void addListeners()

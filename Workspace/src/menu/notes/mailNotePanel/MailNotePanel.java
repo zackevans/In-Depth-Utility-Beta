@@ -1,9 +1,7 @@
 package menu.notes.mailNotePanel;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
@@ -18,6 +16,7 @@ public class MailNotePanel extends JPanel
 	private CancelButton cancleBtn;
 	private EnterButton enterBtn;
 	private To toField;
+	private From fromField;
 	
 	
 	public MailNotePanel(BufferPanel bufferPanel, Notes notes)
@@ -26,7 +25,7 @@ public class MailNotePanel extends JPanel
 		setOpaque(false);
 		this.bufferPanel = bufferPanel;
 		this.notes = notes;
-		setBorder(BorderFactory.createLineBorder(Color.RED));
+		//setBorder(BorderFactory.createLineBorder(Color.RED));
 	}
 	
 	public void initialize()
@@ -41,10 +40,17 @@ public class MailNotePanel extends JPanel
 		cancleBtn = new CancelButton(bufferPanel);
 		enterBtn = new EnterButton(bufferPanel);
 		toField = new To();
+		fromField = new From();
 		
 		cancleBtn.setBounds(480, 440, 100, 25); 
 		enterBtn.setBounds(585, 440, 100, 25);
-		To.textField.setBounds(-2, 13, Window_Width+6, 35);
+		
+		To.textField.setBounds(30, 15, Window_Width+6, 35);
+		toField.toLabel.setBounds(0, 15, 30, 35);
+		
+		From.textField.setBounds(45, 50, Window_Width+6, 35);
+		fromField.fromLabel.setBounds(0, 50,45, 35);
+		
 	}
 	
 	public void initializeComponents()
@@ -52,6 +58,7 @@ public class MailNotePanel extends JPanel
 		cancleBtn.initialize();
 		enterBtn.initialize();
 		toField.initialize();
+		fromField.initialize();
 	}	
 	
 	public void addComponents()
@@ -59,10 +66,12 @@ public class MailNotePanel extends JPanel
 		setLayout(null);
 		setPreferredSize(new Dimension(Window_Width,Window_Height));
 		
+		add(toField.toLabel);
+		add(fromField.fromLabel);
 		add(cancleBtn);
 		add(enterBtn);
 		add(To.textField);
+		add(From.textField);
+	
 	}
-	
-	
 }
