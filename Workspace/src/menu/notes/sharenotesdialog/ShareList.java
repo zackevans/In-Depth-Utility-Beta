@@ -11,6 +11,7 @@ import javax.swing.JList;
 import menu.buffer.BufferPanel;
 import menu.notes.Notes;
 import menu.notes.mailNotePanel.MailNotePanel;
+import menu.notes.mailNotePanel.SeclectNote;
 
 public class ShareList 
 {
@@ -18,6 +19,7 @@ public class ShareList
 	private Notes notes;
 	private ShareNoteDialog shareNoteDialog;
 	private MailNotePanel mailNotePanel;
+	private SeclectNote seclectNote;
 	public static  JList list = new JList();
 	String[] listElemets = {"Mail", "Export"};
 	
@@ -39,6 +41,7 @@ public class ShareList
 	public void createComponents()
 	{
 		mailNotePanel = new MailNotePanel(bufferPanel,notes);
+		seclectNote = new SeclectNote();
 	}
 
 	public void createList()
@@ -88,10 +91,8 @@ public class ShareList
 	        		{
 	        			// show mail panel
 	        			bufferPanel.showPanel("MAIL_NOTES_PANEL");
-	        			
-	        			
-	        			
-	        			System.out.println("asfdsfa");
+	        			mailNotePanel.clearAllFields();
+	        			seclectNote.updateData();
 	        		}
 	        		
 	        		if(indexClicked == 1)
