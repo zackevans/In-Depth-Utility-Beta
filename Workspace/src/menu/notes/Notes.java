@@ -1,7 +1,6 @@
 package menu.notes;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
@@ -14,6 +13,7 @@ import menu.buffer.BufferPanel;
  * panel that holds all notes components
  */
 
+@SuppressWarnings("serial")
 public class Notes extends JPanel
 {
 	public static final int Window_Width = 700;
@@ -39,6 +39,7 @@ public class Notes extends JPanel
 	String searchText = "-1";
 	
 	/**
+	 * @author ZackEvans
 	 * Constructor: Notes
 	 * @param bufferPanel
 	 * 
@@ -55,9 +56,10 @@ public class Notes extends JPanel
 	}
 
 	/**
+	 * @author ZackEvans
 	 * Function: initialize
 	 * 
-	 * call function to create panel
+	 * call functions that set up the basic panel
 	 * 
 	 */
 	
@@ -69,6 +71,7 @@ public class Notes extends JPanel
 	}
 	
 	/**
+	 * @author ZackEvans
 	 * Function: create Components
 	 * 
 	 * create objects
@@ -77,16 +80,18 @@ public class Notes extends JPanel
 	
 	public void createComponents()
 	{
+		// creates objects for GUI elements needed
 		notesList = new NotesList(this);
 		addNoteButton = new AddNoteButton(this);
 		returnButton = new ReturnButton(bufferPanel);
 		deleteBtn = new DeleteButton(this);
 		displayNotes = new DisplayNotes(this);
 		infoButton = new InfoButton(bufferPanel);
-		shareButton = new ShareButton(bufferPanel);
+		shareButton = new ShareButton(bufferPanel, this);
 		searchBar = new SearchBar(this);
 		clearButton = new ClearButton(bufferPanel,searchBar);
 		
+		// sets location for GUI components 
 		NotesList.scrollPane.setBounds(0,50,250,445);
 		addNoteButton.setBounds(280,20,30,30);
 		returnButton.setBounds(250,20,30,30);
@@ -94,12 +99,13 @@ public class Notes extends JPanel
 		displayNotes.setBounds(250,50,450,445);
 		infoButton.setBounds(630,20,30,30);
 		shareButton.setBounds(660,20,30,30);
-		searchBar.textField.setBounds(5, 25, 240, 22);
+		SearchBar.textField.setBounds(5, 25, 240, 22);
 		searchBar.searchLabel.setBounds(8, 25, 240, 22);
 		clearButton.setBounds(224,25,20,20);
 	}
 	
 	/**
+	 * @author ZackEvans
 	 * Function: initializeComponents
 	 * 
 	 * call initialize methods
@@ -120,6 +126,7 @@ public class Notes extends JPanel
 	}
 	
 	/**
+	 * @author ZackEvans
 	 * Function: layoutComponents
 	 * 
 	 * set panel layout not nothing
@@ -135,15 +142,25 @@ public class Notes extends JPanel
 		
 		add(searchBar.searchLabel); // must be added first to stay on top
 		add(clearButton); // must be added first to stay on top
-		add(notesList.scrollPane);
+		add(NotesList.scrollPane);
 		add(addNoteButton);
 		add(returnButton);
 		add(deleteBtn);
 		add(displayNotes);
 		add(infoButton);
 		add(shareButton);
-		add(searchBar.textField);
+		add(SearchBar.textField);
 	}
+	
+	
+	/**
+	 * @author ZackEvans
+	 * Function: loadData
+	 * 
+	 * reloads notes list to defult data
+	 * Called when notes is clicked the first time
+	 * 
+	 */
 	
 	public static void loadData()
 	{

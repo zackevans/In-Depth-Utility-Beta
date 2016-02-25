@@ -1,12 +1,10 @@
 package menu.main;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -43,10 +41,12 @@ public class MainMenu extends JPanel
 	private JButton calendarBtn; // created button object
 	private JButton settingsBtn; // Create setting button
 	private JButton aboutBtn; // Create about button
+	private boolean noteBtnClicked = false;
 	private static int noteBtnClickCount = 0;
 	Notes notes;
 	
 	/**
+	 * @author ZackEvans
 	 * Constructor: MainMenu
 	 * @param bufferPanel
 	 * 
@@ -64,6 +64,7 @@ public class MainMenu extends JPanel
 	}
 	
 	/**
+	 * @author ZackEvans
 	 * function: initialize
 	 * 
 	 * Call all main methods
@@ -79,6 +80,7 @@ public class MainMenu extends JPanel
 	
 	
 	/**
+	 * @author ZackEvans
 	 * Function: Create components
 	 * 
 	 * Initilize panels and set Button/Label names
@@ -112,6 +114,7 @@ public class MainMenu extends JPanel
 	
 	
 	/**
+	 * @author ZackEvans
 	 * Function: layoutComponents
 	 * 
 	 * set panel layout
@@ -137,6 +140,7 @@ public class MainMenu extends JPanel
 	}
 	
 	/**
+	 * @author ZackEvans
 	 * Function: addListeners
 	 * 
 	 * add a action listener to each button on panel
@@ -145,6 +149,16 @@ public class MainMenu extends JPanel
 	
 	public void addListeners()
 	{
+		
+		/**
+		 * @author ZackEvans
+		 * Action Listener Acts On: notes button 
+		 * 
+		 * check to see if the notes button has been clicked.
+		 * if it has not been clicked it loads basic data from db.
+		 * if the note panel has been displayed then just show the panel.
+		 */
+		
 		notesBtn.addActionListener(new ActionListener() // add action listener to button
 		{
 			@Override
@@ -152,19 +166,18 @@ public class MainMenu extends JPanel
 			{
 				System.out.println("notesBtn");
 				
-				// if notes is clicked on the first time then it loads data 
-				if(noteBtnClickCount == 0) 
+				// if notes is clicked on the first time then it loads data to set 
+				if(noteBtnClicked == false) 
 				{
-					notes.loadData();
-					bufferPanel.showPanel("NOTES");
+					notes.loadData(); // load notes names from db and put in increasing order
+					bufferPanel.showPanel("NOTES"); // show the notes panel
+					noteBtnClicked = true; // set var to show panel has been clicked
 				}
 				
 				else 
 				{
-					bufferPanel.showPanel("NOTES");
+					bufferPanel.showPanel("NOTES"); // show notes panel
 				}
-				
-				noteBtnClickCount++;
 			}
 		});
 		
@@ -218,6 +231,7 @@ public class MainMenu extends JPanel
 	}
 	
 	/**
+	 * @author ZackEvans
 	 * Function: createMainTittleLable
 	 * 
 	 * Set font and textsize
@@ -233,6 +247,7 @@ public class MainMenu extends JPanel
 	}
 	
 	/**
+	 * @author ZackEvans
 	 * Function: createBottomLabel
 	 * 
 	 * Set font and textsize
@@ -243,12 +258,13 @@ public class MainMenu extends JPanel
 	public static void  createBottomLabel()
 	{
 		companyNameLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12)); // set font and set text size = 12
-	    int y = (int) (Window_Width)/2+90; // set the vertical position
+	    int y = (Window_Width)/2+90; // set the vertical position
 	    companyNameLbl.setBounds(480, y,225,40); // set postion and width and height of label
 	}
 	
 	
 	/**
+	 * @author ZackEvans
 	 * Function: createPersonalButton, createSchoolButton(), createComputerButton(),
 	 * 			 createSettingsButton(), createAboutMenu ()
 	 * 

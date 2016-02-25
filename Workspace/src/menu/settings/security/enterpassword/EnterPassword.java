@@ -200,7 +200,7 @@ public class EnterPassword extends JPanel
 	public static void  createBottomLabel() 
 	{
 		companyNameLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12)); // set font
-	    int y = (int) (Window_Width)/2+90; // find y
+	    int y = (Window_Width)/2+90; // find y
 	    companyNameLbl.setBounds(480, y,225,40); // set size and location
 	}
 	
@@ -212,7 +212,7 @@ public class EnterPassword extends JPanel
 	
 	public static void createIncorrectLabel()
 	{
-		int x = (int) (Window_Height) / 2+30; // find x
+		int x = (Window_Height) / 2+30; // find x
 		incorrectLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font
 		incorrectLbl.setBounds(x,140,225,40); // set size and location
 		incorrectLbl.setForeground(Color.red); // set text color red

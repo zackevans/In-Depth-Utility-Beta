@@ -1,17 +1,14 @@
 package menu.buffer;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import menu.calendar.Calendar;
 import menu.main.MainMenu;
 import menu.notes.Notes;
+import menu.notes.mailNotePanel.MailNotePanel;
 import menu.settings.SettingsMenu;
 import menu.settings.security.SecuritySettings;
 import menu.settings.security.enterpassword.EnterPassword;
@@ -20,7 +17,6 @@ import menu.settings.security.passconfirm.PasswordConfirm;
 import menu.settings.security.removepass.RemovePassword;
 import panel.screensaver.ScreenSaver;
 import sql.system.settings.SystemDatabase;
-import statusbar.topbar.TopBar;
 
 /**
  * @author ZackEvans
@@ -45,6 +41,7 @@ public class BufferPanel extends JPanel
 	private Login login;
 	private ScreenSaver screenSaver;
 	private Notes notes;
+	private MailNotePanel mailNotePanel;
 	private Calendar calendar;
 	
 	/**
@@ -80,6 +77,9 @@ public class BufferPanel extends JPanel
 		// Notes
 		notes = new Notes(this);
 		mapPanels.put("NOTES", notes);
+		
+		mailNotePanel = new MailNotePanel(this,notes);
+		mapPanels.put("MAIL_NOTES_PANEL", mailNotePanel);
 		
 		//Calendar
 		calendar = new Calendar(this);
@@ -124,6 +124,7 @@ public class BufferPanel extends JPanel
 		
 		// Notes
 		add(notes);
+		add(mailNotePanel);
 		
 		//Calendar
 		add(calendar);
@@ -154,6 +155,7 @@ public class BufferPanel extends JPanel
 		
 		// Notes
 		notes.initialize();
+		mailNotePanel.initialize();
 		
 		//Calendar
 		calendar.initialize();

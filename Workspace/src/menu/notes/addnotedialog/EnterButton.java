@@ -1,4 +1,4 @@
-package panel.customnotedialog;
+package menu.notes.addnotedialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
