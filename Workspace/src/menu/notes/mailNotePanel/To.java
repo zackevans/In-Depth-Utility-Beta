@@ -17,7 +17,6 @@ public class To
 	
 	 public void initialize()
 	 {
-		 addListeners();
 		 createComponents(); 
 	 }
 	 
@@ -27,27 +26,6 @@ public class To
 		 toLabel.setOpaque(true);
 		 
 		 textField.setBorder(null);
-	 }
-	 
-	 public void addListeners()
-	 {
-//		textField.addFocusListener(new FocusListener() 
-//    	{
-//            @Override
-//            public void focusGained(FocusEvent e) 
-//            {
-//            	toLabel.setVisible(false);
-//            }
-//
-//            @Override
-//            public void focusLost(FocusEvent e) 
-//            {
-//           	 	if (doesTextExist() == false)
-//           	 	{
-//           	 		toLabel.setVisible(true);
-//           	 	}
-//            }
-//        });
 	 }
 	 
 	 public boolean doesTextExist()

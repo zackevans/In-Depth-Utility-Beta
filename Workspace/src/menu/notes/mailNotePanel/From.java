@@ -1,8 +1,6 @@
 package menu.notes.mailNotePanel;
 
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -23,35 +21,9 @@ public class From
 		fromLabel.setBackground(Color.WHITE);
 		fromLabel.setOpaque(true);
 		fromLabel.setVisible(true);
-		fromLabel.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
-		//textField.setBorder(null);
-		textField.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.BLACK));
+		fromLabel.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Color.BLACK)); // set only the top of border black
+		textField.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Color.BLACK)); 
 	}
-	 
-	 public void addListeners()
-	 {
-		textField.addFocusListener(new FocusListener() 
-    	{
-            @Override
-            public void focusGained(FocusEvent e) 
-            {
-            	System.out.println("gained");
-            	
-            	fromLabel.setVisible(false);
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) 
-            {
-           	 	if (doesTextExist() == false)
-           	 	{
-           	 		System.out.println("lost");
-           	 		
-           	 		fromLabel.setVisible(true);
-           	 	}
-            }
-        });
-	 }
 	 
 	 public boolean doesTextExist()
 	 {
