@@ -165,14 +165,6 @@ public class NotesDataBase
     	}	
     }
     
-    public void pushItemsBelowUp (int numberClicked)
-    {
-//    	for (int i = numberClicked -1; i <= countItems(); i++)
-//    	{
-//    		System.out.println(i);
-//    	}
-    }
-    
     public int countItems() // counts how may rows there are
     {
         Connection c = null;
@@ -271,6 +263,41 @@ public class NotesDataBase
             System.exit(0);
         }
     }
+    
+    
+    public String getNoteName(int ID)
+    {
+    	Connection c = null;
+        Statement stmt = null;
+        String rVal = "-1";
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation);
+            c.setAutoCommit(false);
+            
+            stmt = c.createStatement();
+            
+            ResultSet rs = stmt.executeQuery( "SELECT NAME FROM USER_NOTES WHERE ID = "+ ID +";" );
+            
+            while (rs.next()) 
+            {
+                rVal = rs.getString("NAME");
+            }
+            
+            rs.close();
+            stmt.close();
+            c.close();
+        } 
+        catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        
+        return rVal;
+    }
+    
      
     public String getNoteNameFromPosition(int listPosition)
     {
