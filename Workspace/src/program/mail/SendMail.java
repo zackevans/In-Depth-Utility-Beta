@@ -12,7 +12,6 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail 
 {
-	
 	public static void sendNoteEMail(String[] to, String subject, String body) 
 	{
 		String from = "idunoreply@gmail.com";
