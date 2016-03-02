@@ -14,7 +14,7 @@ public class MailNotePanel extends JPanel
 	BufferPanel bufferPanel;
 	Notes notes;
 	private CancelButton cancleBtn;
-	private EnterButton enterBtn;
+	private SendButton sendBtn;
 	private To toField;
 	private From fromField;
 	private SeclectNote seclectNote;
@@ -39,7 +39,7 @@ public class MailNotePanel extends JPanel
 	public void createComponents()
 	{
 		cancleBtn = new CancelButton(bufferPanel);
-		enterBtn = new EnterButton(bufferPanel);
+		sendBtn = new SendButton(bufferPanel);
 		toField = new To();
 		fromField = new From();
 		seclectNote = new SeclectNote();
@@ -47,7 +47,7 @@ public class MailNotePanel extends JPanel
 		addComments = new AdditionalComments();
 		
 		cancleBtn.setBounds(480, 440, 100, 25); 
-		enterBtn.setBounds(585, 440, 100, 25);
+		sendBtn.setBounds(585, 440, 100, 25);
 		
 		To.textField.setBounds(30, 15, Window_Width-30, 35); // - 30 bc of the label that takes space
 		toField.toLabel.setBounds(0, 15, 30, 35);
@@ -57,7 +57,6 @@ public class MailNotePanel extends JPanel
 		
 		seclectNote.comboBox.setBounds(-5, 85, Window_Width + 10, 20); 
 		
-		previewNote.label.setBounds(0, 104, 75, 15);
 		previewNote.setBounds(0, 119, Window_Width, 200); // 104
 		
 		addComments.setBounds(0, 319, Window_Width, 115);
@@ -67,7 +66,7 @@ public class MailNotePanel extends JPanel
 	public void initializeComponents()
 	{
 		cancleBtn.initialize();
-		enterBtn.initialize();
+		sendBtn.initialize();
 		toField.initialize();
 		fromField.initialize();
 		seclectNote.initialize();
@@ -84,11 +83,10 @@ public class MailNotePanel extends JPanel
 		add(fromField.fromLabel);
 		add(addComments.commentLabel);
 		add(cancleBtn);
-		add(enterBtn);
+		add(sendBtn);
 		add(To.textField);
 		add(From.textField);
-		add(seclectNote.comboBox);
-		add(previewNote.label);
+		add(SeclectNote.comboBox);
 		add(previewNote);
 		add(addComments);
 	}
@@ -99,5 +97,6 @@ public class MailNotePanel extends JPanel
 		From.textField.setText("");
 		PreviewNote.textArea.setText("");
 		AdditionalComments.textArea.setText("");
+		AdditionalComments.commentLabel.setVisible(true);
 	}
 }

@@ -18,6 +18,7 @@ public class SeclectNote
 	private NotesListData notesListData = new NotesListData();
 	private NotesDataBase notesdb = new NotesDataBase();
 	private PreviewNote previewNote = new PreviewNote();
+	public static int lastID = -1;
 	
 	public SeclectNote()
 	{
@@ -40,11 +41,15 @@ public class SeclectNote
                
             	if (noteNumber != 0)
             	{
-            		int ID = notesdb.getID(noteNumber);
-            		previewNote.displayNote(ID);
+            		lastID = notesdb.getID(noteNumber);
+            		previewNote.displayNote(lastID);
             	}
                
-               else if (noteNumber == 0) previewNote.clearField();	   	
+               else if (noteNumber == 0) 
+               {
+            	   previewNote.clearField();
+            	   lastID = -1;
+               }
             }
         });   
 	}
@@ -63,4 +68,14 @@ public class SeclectNote
 		
 		comboBox.setModel(model);
 	}	
+	
+	public int getLastID ()
+	{
+		return lastID;
+	}
+	
+	public String getNoteName()
+	{
+		return comboBox.getItemAt(comboBox.getSelectedIndex());
+	}
 }
