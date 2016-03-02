@@ -97,5 +97,6 @@ public class MailNotePanel extends JPanel
 		From.textField.setText("");
 		PreviewNote.textArea.setText("");
 		AdditionalComments.textArea.setText("");
+		AdditionalComments.commentLabel.setVisible(true);
 	}
 }

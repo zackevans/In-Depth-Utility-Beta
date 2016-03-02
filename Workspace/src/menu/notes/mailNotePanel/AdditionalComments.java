@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 public class AdditionalComments extends JScrollPane 
 {
 	public static JTextArea textArea = new JTextArea();
-	public JLabel commentLabel = new JLabel(" Additional Comments:");
+	public static JLabel commentLabel = new JLabel("  Additional Comments:");
 	
 	public AdditionalComments()
 	{
@@ -33,6 +33,7 @@ public class AdditionalComments extends JScrollPane
 		commentLabel.setVisible(true);
 		commentLabel.setForeground(Color.black);
 		setViewportView(textArea);
+		//commentLabel.setBorder(BorderFactory.createLineBorder(Color.RED));
 	}
 	
 	public void addListeners()
