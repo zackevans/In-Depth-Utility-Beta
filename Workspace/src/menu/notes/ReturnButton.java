@@ -27,7 +27,7 @@ public class ReturnButton extends JButton
 	
 	public void createBtn()
 	{
-		URL url = AddNoteButton.class.getResource("/Button_Images/Notes/Return.png");
+		URL url = AddNoteButton.class.getResource("/Button_Images/Notes/NotesPanel/Return.png");
 		ImageIcon icon = new ImageIcon(url);
 		setIcon(icon);
 	}
