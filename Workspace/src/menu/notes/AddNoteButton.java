@@ -31,7 +31,7 @@ public class AddNoteButton extends JButton
 	
 	public void createButton()
 	{
-		URL url = AddNoteButton.class.getResource("/Button_Images/Notes/Add.png");
+		URL url = AddNoteButton.class.getResource("/Button_Images/Notes/NotesPanel/Add.png");
 		ImageIcon icon = new ImageIcon(url);
 		setIcon(icon);
 	}

@@ -27,7 +27,7 @@ public class InfoButton extends JButton
 	
 	public void createBtn()
 	{	
-		URL url = InfoButton.class.getResource("/Button_Images/Notes/info.png");
+		URL url = InfoButton.class.getResource("/Button_Images/Notes/NotesPanel/info.png");
 		ImageIcon icon = new ImageIcon(url);
 		setIcon(icon);	
 	}

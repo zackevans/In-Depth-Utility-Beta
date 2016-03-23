@@ -29,8 +29,8 @@ public class ClearButton extends JButton
 	
 	public void createBtn()
 	{
-		URL clearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/Clear.png");
-		URL pressedClearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/ClearPressed.png");
+		URL clearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/NotesPanel/Clear.png");
+		URL pressedClearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/NotesPanel/ClearPressed.png");
 		
 		setOpaque(false);
 		setContentAreaFilled(false);
