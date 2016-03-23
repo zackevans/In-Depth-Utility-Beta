@@ -1,4 +1,4 @@
-package menu.notes.mailNotePanel;
+package menu.notes.mailnotepanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +18,7 @@ public class SendButton extends JButton
 	private SendMail mail = new SendMail();
 	private NotesDataBase notesdb = new NotesDataBase();
 	private AdditionalComments additionalNotes = new AdditionalComments();
+	private ErrorPanel errorPanel = new ErrorPanel();
 
 	public SendButton (BufferPanel bufferPanel)
 	{
@@ -44,22 +45,48 @@ public class SendButton extends JButton
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("Send button");
-				int id = seclectNote.getLastID();
 				
-				if (id != -1)
+				if(to.textField.getText().length() != 0 && from.textField.getText().length() !=0 && seclectNote.comboBox.getSelectedIndex() != 0)
 				{
-					String[] to = {To.textField.getText()};
-					String fromField = From.textField.getText();
-					String subject = seclectNote.getNoteName();
-					String body = notesdb.getNotesBody(id);
-					String additionalComments = additionalNotes.textArea.getText();
+					int id = seclectNote.getLastID();
 					
-					String finalBody = body + "\n\n" + additionalComments + "\n\n" + "-" + fromField;
+					if (id != -1)
+					{
+						String[] to = {To.textField.getText()};
+						String fromField = From.textField.getText();
+						String subject = seclectNote.getNoteName();
+						String body = notesdb.getNotesBody(id);
+						String additionalComments = additionalNotes.textArea.getText();
+						
+						String finalBody = body + "\n\n" + additionalComments + "\n\n" + "-" + fromField;
+						
+						bufferPanel.showPanel("NOTES");
+						
+						Thread sendMail = new Thread(new PushEmail(to, subject, finalBody)); // create new thred to send email	
+						sendMail.start(); // start execution of the thred
+					}
 					
-					bufferPanel.showPanel("NOTES");
+					errorPanel.hideAllErrors();
+				}
+				
+				else
+				{	
+					errorPanel.hideAllErrors();
 					
-					Thread sendMail = new Thread(new PushEmail(to, subject, finalBody)); // create new thred to send email	
-					sendMail.start(); // start execution of the thred
+					if(to.isValidEmailAddress(to.textField.getText()) == false)
+					{						
+						errorPanel.toFieldError.setVisible(true);
+					}
+					
+					if(from.textField.getText().length() == 0)
+					{
+						errorPanel.fromFieldError.setVisible(true);
+					}
+					
+					if (seclectNote.comboBox.getSelectedIndex() == 0)
+					{
+						errorPanel.seclectNoteErrror.setVisible(true);
+					}
 				}
 			}
 		});
@@ -70,7 +97,7 @@ class PushEmail implements Runnable
 {
 	private SendMail mail = new SendMail();
 	String[] to;
-	String subject; 
+	String subject;
 	String body;
 	
 	public PushEmail(String[] to, String subject, String body)
