@@ -36,7 +36,6 @@ public class Notes extends JPanel
 	private SearchBar searchBar;
 	private ClearButton clearButton;
 	BufferPanel bufferPanel; // create bufferPanel object
-	String searchText = "-1";
 	
 	/**
 	 * @author ZackEvans
@@ -151,7 +150,6 @@ public class Notes extends JPanel
 		add(shareButton);
 		add(SearchBar.textField);
 	}
-	
 	
 	/**
 	 * @author ZackEvans

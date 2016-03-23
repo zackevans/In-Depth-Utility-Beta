@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import menu.calendar.Calendar;
 import menu.main.MainMenu;
 import menu.notes.Notes;
-import menu.notes.mailNotePanel.MailNotePanel;
+import menu.notes.mailnotepanel.MailNotePanel;
 import menu.settings.SettingsMenu;
 import menu.settings.security.SecuritySettings;
 import menu.settings.security.enterpassword.EnterPassword;

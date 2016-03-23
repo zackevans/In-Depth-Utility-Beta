@@ -56,8 +56,6 @@ public class ShareNoteDialog
 		customFrame.getRootPane().setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		customFrame.setResizable(false);
 		customFrame.setLocation(x, y); // set frame in center of main frame 
-		//customFrame.setBackground(Color.WHITE);
-		//customFrame.setBackground(new Color(0,0,0,64));
 		
 		addComponents();
 		
