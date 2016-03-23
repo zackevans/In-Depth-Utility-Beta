@@ -1,7 +1,8 @@
-package menu.notes.mailNotePanel;
+package menu.notes.mailnotepanel;
 
 import java.awt.Dimension;
 
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
@@ -11,6 +12,8 @@ public class MailNotePanel extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
+	JLayeredPane layerPane = new JLayeredPane();
+	JPanel contentPanel = new JPanel();
 	BufferPanel bufferPanel;
 	Notes notes;
 	private CancelButton cancleBtn;
@@ -20,13 +23,14 @@ public class MailNotePanel extends JPanel
 	private SeclectNote seclectNote;
 	private PreviewNote previewNote;
 	private AdditionalComments addComments;
+	private ErrorPanel errorPanel;
 	
 	public MailNotePanel(BufferPanel bufferPanel, Notes notes)
 	{
 		super();
-		setOpaque(false);
 		this.bufferPanel = bufferPanel;
 		this.notes = notes;
+		setOpaque(false);
 	}
 	
 	public void initialize()
@@ -38,14 +42,15 @@ public class MailNotePanel extends JPanel
 	
 	public void createComponents()
 	{
-		cancleBtn = new CancelButton(bufferPanel);
-		sendBtn = new SendButton(bufferPanel);
 		toField = new To();
 		fromField = new From();
+		errorPanel = new ErrorPanel();
 		seclectNote = new SeclectNote();
 		previewNote = new PreviewNote();
+		sendBtn = new SendButton(bufferPanel);
 		addComments = new AdditionalComments();
-		
+		cancleBtn = new CancelButton(bufferPanel);
+
 		cancleBtn.setBounds(480, 440, 100, 25); 
 		sendBtn.setBounds(585, 440, 100, 25);
 		
@@ -61,14 +66,15 @@ public class MailNotePanel extends JPanel
 		
 		addComments.setBounds(0, 319, Window_Width, 115);
 		addComments.commentLabel.setBounds(0, 320, 200, 15);
-	}
+	}	
 
 	public void initializeComponents()
 	{
-		cancleBtn.initialize();
 		sendBtn.initialize();
 		toField.initialize();
+		cancleBtn.initialize();
 		fromField.initialize();
+		errorPanel.initialize();
 		seclectNote.initialize();
 		previewNote.initialize();
 		addComments.initialize();
@@ -79,16 +85,37 @@ public class MailNotePanel extends JPanel
 		setLayout(null);
 		setPreferredSize(new Dimension(Window_Width,Window_Height));
 		
-		add(toField.toLabel);
-		add(fromField.fromLabel);
-		add(addComments.commentLabel);
-		add(cancleBtn);
-		add(sendBtn);
-		add(To.textField);
-		add(From.textField);
-		add(SeclectNote.comboBox);
-		add(previewNote);
-		add(addComments);
+		createContentPanel();
+	
+		contentPanel.setBounds(0, 0, Window_Width,Window_Height);
+		errorPanel.setBounds(0, 0, Window_Width,Window_Height);
+		
+		layerPane.add(contentPanel, new Integer(0),0);
+		layerPane.add(errorPanel, new Integer(1),0);
+		
+		layerPane.setBounds(0, 0,Window_Width,Window_Height);
+		
+		add(layerPane);
+	}
+	
+	
+	public void createContentPanel()
+	{
+		contentPanel.setOpaque(false);
+		contentPanel.setLayout(null);
+		contentPanel.setPreferredSize(new Dimension(Window_Width,Window_Height-50));
+		//contentPanel.setBorder(BorderFactory.createLineBorder(Color.red));
+		
+		contentPanel.add(toField.toLabel);
+		contentPanel.add(fromField.fromLabel);
+		contentPanel.add(addComments.commentLabel);
+		contentPanel.add(cancleBtn);
+		contentPanel.add(sendBtn);
+		contentPanel.add(To.textField);
+		contentPanel.add(From.textField);
+		contentPanel.add(SeclectNote.comboBox);
+		contentPanel.add(previewNote);
+		contentPanel.add(addComments);
 	}
 	
 	public void clearAllFields()

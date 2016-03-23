@@ -1,4 +1,4 @@
-package menu.notes.mailNotePanel;
+package menu.notes.mailnotepanel;
 
 import java.awt.Color;
 import java.awt.event.FocusEvent;

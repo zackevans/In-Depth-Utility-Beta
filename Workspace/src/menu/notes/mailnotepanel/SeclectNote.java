@@ -1,4 +1,4 @@
-package menu.notes.mailNotePanel;
+package menu.notes.mailnotepanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +18,7 @@ public class SeclectNote
 	private NotesListData notesListData = new NotesListData();
 	private NotesDataBase notesdb = new NotesDataBase();
 	private PreviewNote previewNote = new PreviewNote();
+	ErrorPanel errorPanel = new ErrorPanel();
 	public static int lastID = -1;
 	
 	public SeclectNote()
@@ -43,12 +44,14 @@ public class SeclectNote
             	{
             		lastID = notesdb.getID(noteNumber);
             		previewNote.displayNote(lastID);
+            		errorPanel.seclectNoteErrror.setVisible(false);
             	}
                
                else if (noteNumber == 0) 
                {
             	   previewNote.clearField();
             	   lastID = -1;
+            	   errorPanel.seclectNoteErrror.setVisible(true);
                }
             }
         });   

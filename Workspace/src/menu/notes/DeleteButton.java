@@ -35,7 +35,7 @@ public class DeleteButton extends JButton
 	
 	public void createBtn()
 	{
-		URL iconURL = DeleteButton.class.getResource("/Button_Images/Notes/Delete.png");
+		URL iconURL = DeleteButton.class.getResource("/Button_Images/Notes/NotesPanel/Delete.png");
 		ImageIcon img = new ImageIcon(iconURL);
 		setIcon(img);
 	}

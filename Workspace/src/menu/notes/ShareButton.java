@@ -41,7 +41,7 @@ public class ShareButton extends JButton
 	
 	public void createBtn()
 	{
-		URL url = ShareButton.class.getResource("/Button_Images/Notes/Share.png"); // get button image
+		URL url = ShareButton.class.getResource("/Button_Images/Notes/NotesPanel/Share.png"); // get button image
 		ImageIcon icon = new ImageIcon(url); // create image
 		setIcon(icon); // set the image
 	}

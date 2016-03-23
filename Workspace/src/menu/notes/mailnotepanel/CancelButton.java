@@ -1,4 +1,4 @@
-package menu.notes.mailNotePanel;
+package menu.notes.mailnotepanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +10,7 @@ import menu.buffer.BufferPanel;
 public class CancelButton extends JButton
 {
 	BufferPanel bufferPanel;
+	ErrorPanel errorPanel = new ErrorPanel();
 
 	public CancelButton (BufferPanel bufferPanel)
 	{
@@ -37,6 +38,8 @@ public class CancelButton extends JButton
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.out.println("Cancel button");
+				
+				errorPanel.hideAllErrors();
 				
 				bufferPanel.showPanel("NOTES");
 			}
