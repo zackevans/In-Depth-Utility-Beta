@@ -31,7 +31,7 @@ public class Notes extends JPanel
 	private ReturnButton returnButton;
 	private DeleteButton deleteBtn;
 	private DisplayNotes displayNotes;
-	private InfoButton infoButton;
+	public static InfoButton infoButton;
 	private ShareButton shareButton;
 	private SearchBar searchBar;
 	private ClearButton clearButton;

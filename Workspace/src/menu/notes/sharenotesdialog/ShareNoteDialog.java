@@ -12,10 +12,11 @@ import menu.notes.Notes;
 
 public class ShareNoteDialog 
 {
+	public static JFrame customFrame = new JFrame();  // Created JFrame VAR.
+	
 	BufferPanel bufferPanel;
 	public static final int Window_Width = 150; // Standard Dialog size
 	public static final int Window_Height = 167; // Standard Dialog size
-	public static JFrame customFrame = new JFrame(); // Created JFrame VAR.
 	private LaunchApp launchApp; 
 	private Notes notes;
 	private ShareList shareList;
