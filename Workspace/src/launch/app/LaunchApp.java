@@ -12,10 +12,20 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
+import org.quartz.CronScheduleBuilder;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
+import org.quartz.impl.StdSchedulerFactory;
+
 import menu.buffer.BufferPanel;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;
 import sql.notes.NotesDataBase;
+import sql.saveandsend.SaveAndSendDataBase;
 import sql.system.settings.SystemDatabase;
 import statusbar.topbar.TopBar;
 
@@ -33,9 +43,9 @@ public class LaunchApp
 	// Created locked VAR. 
 	public static final int Window_Width = 700; 
 	public static final int Window_Height = 500;
-	private static JFrame frame = new JFrame(); // Created JFrame VAR.
+	private JFrame frame = new JFrame(); // Created JFrame VAR.
 	private static Image wallpaperImage = null;
-    private static JLayeredPane layerPane = new JLayeredPane(); // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
+    private JLayeredPane layerPane = new JLayeredPane(); // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
     private static Wallpaper wallpaper;  // Created a Wallpaper Class Object.
     static BufferPanel bufferPanel = new BufferPanel(); // Created a BufferPanel Class Object.
     public static TopBar topBar; // Created a TopBar Class Object.
@@ -54,7 +64,9 @@ public class LaunchApp
 			@Override
 			public void run() 
 			{
-				createAndShowGUI(); // Method Call to create program.
+				LaunchApp app = new LaunchApp();
+				
+				app.createAndShowGUI(); // Method Call to create program.
 			}
 		});
     	
@@ -68,7 +80,7 @@ public class LaunchApp
      * TODO Create a Wrapper so the main panel will be able to auto resize (See IDU Beta 1 Resize) 
      */
     
-    private static void createAndShowGUI()
+    private void createAndShowGUI()
     {
     	//sets size restraints
     	frame.setSize(Window_Width, Window_Height); 
@@ -113,6 +125,8 @@ public class LaunchApp
         frame.getContentPane().add(layerPane);
         frame.pack();
         frame.setVisible(true);
+        
+        createCheckAndSendEmailJob();
     }
     
     /**
@@ -126,12 +140,13 @@ public class LaunchApp
      * Initialize system db table
      */
     
-    private static void dataBaseCalls()
+    private static void dataBaseCalls() 
     {
     	// Create objects
     	final DataBase dataBase = new DataBase();
     	final SystemDatabase systemdb = new SystemDatabase();
     	final NotesDataBase notesdb = new NotesDataBase();
+    	final SaveAndSendDataBase snsdb = new SaveAndSendDataBase();
     	
     	// create db location and create the database
     	dataBase.createDBLocation();
@@ -141,8 +156,39 @@ public class LaunchApp
 		// create the systems table in the database
 		systemdb.createSystemTable();
 		
-		// create the notes tavel in the database
+		// create the notes table in the database
 		notesdb.createNotesTable();
+		
+		//create the notes
+		snsdb.createSaveAndSendTable();
+    }
+    
+    
+    public void createCheckAndSendEmailJob()
+    {
+    	JobDetail job = JobBuilder.newJob(CheckAndSendEmail.class)
+    			.withIdentity("CheckAndSendEmailJob", "emailJobs").build();
+    	
+    	Trigger trigger = TriggerBuilder
+    			.newTrigger()
+    			.withIdentity("CheckAndSendEmail", "emailTriggers")
+    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/30 * 1/1 * ? *")) 
+    			.build();
+    
+    	Scheduler scheduler;
+    	
+		try 
+		{
+			scheduler = new StdSchedulerFactory().getScheduler();
+			scheduler.start();
+	    	scheduler.scheduleJob(job, trigger);
+		} 
+		
+		catch (SchedulerException e) 
+		{
+			System.out.println("createCheckAndSendEmailJob() - Unable to Create Email Job");
+			e.printStackTrace();
+		}
     }
     
     /**

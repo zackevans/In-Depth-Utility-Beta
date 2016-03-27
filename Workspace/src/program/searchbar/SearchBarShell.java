@@ -1,12 +1,12 @@
 package program.searchbar;
 
 import java.awt.Graphics;
-import java.awt.Shape;
 
 import javax.swing.JTextField;
 
 public class SearchBarShell extends JTextField
 {	
+	@Override
 	protected void paintComponent(Graphics g) 
     {
          g.setColor(getBackground());
@@ -14,7 +14,8 @@ public class SearchBarShell extends JTextField
          super.paintComponent(g);
     }
 
-    protected void paintBorder(Graphics g) 
+    @Override
+	protected void paintBorder(Graphics g) 
     {
          g.setColor(getForeground());
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 6, 6);
