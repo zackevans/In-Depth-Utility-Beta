@@ -36,6 +36,7 @@ public class DisplayNotes extends JScrollPane
 		setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		textArea = new JTextArea();
+		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
 		setViewportView(textArea);
 	}
