@@ -26,6 +26,7 @@ import panel.wallpaper.Wallpaper;
 import sql.DataBase;
 import sql.notes.NotesDataBase;
 import sql.saveandsend.SaveAndSendDataBase;
+import sql.saveandsend.SaveAndSendSettingsDataBase;
 import sql.system.settings.SystemDatabase;
 import statusbar.topbar.TopBar;
 
@@ -65,7 +66,6 @@ public class LaunchApp
 			public void run() 
 			{
 				LaunchApp app = new LaunchApp();
-				
 				app.createAndShowGUI(); // Method Call to create program.
 			}
 		});
@@ -147,6 +147,7 @@ public class LaunchApp
     	final SystemDatabase systemdb = new SystemDatabase();
     	final NotesDataBase notesdb = new NotesDataBase();
     	final SaveAndSendDataBase snsdb = new SaveAndSendDataBase();
+    	final SaveAndSendSettingsDataBase saveAndSendSettingsdb = new SaveAndSendSettingsDataBase();
     	
     	// create db location and create the database
     	dataBase.createDBLocation();
@@ -159,14 +160,15 @@ public class LaunchApp
 		// create the notes table in the database
 		notesdb.createNotesTable();
 		
-		//create the notes
+		//create the save and send email services
 		snsdb.createSaveAndSendTable();
+		saveAndSendSettingsdb.createSaveAndSendSettingsTable();
     }
     
     
     public void createCheckAndSendEmailJob()
     {
-    	JobDetail job = JobBuilder.newJob(CheckAndSendEmail.class)
+    	JobDetail job = JobBuilder.newJob(CheckAndSendEmailJob.class)
     			.withIdentity("CheckAndSendEmailJob", "emailJobs").build();
     	
     	Trigger trigger = TriggerBuilder

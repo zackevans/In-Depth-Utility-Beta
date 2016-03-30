@@ -12,7 +12,7 @@ import org.quartz.JobExecutionException;
 import program.mail.SendMail;
 import sql.saveandsend.SaveAndSendDataBase;
 
-public class CheckAndSendEmail implements Job
+public class CheckAndSendEmailJob implements Job
 {
 	private SaveAndSendDataBase saveAndSendDb = new SaveAndSendDataBase();
 	private SendMail sendEmail = new SendMail();
