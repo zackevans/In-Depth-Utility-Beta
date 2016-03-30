@@ -10,9 +10,12 @@ import java.net.URLConnection;
 import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
+import menu.notes.Notes;
 import menu.notes.notemailerrordialog.MailNoteErrorDialog;
 import program.mail.SendMail;
 import sql.notes.NotesDataBase;
+import sql.saveandsend.SaveAndSendDataBase;
+import sql.saveandsend.SaveAndSendSettingsDataBase;
 
 public class SendButton extends JButton
 {
@@ -21,10 +24,13 @@ public class SendButton extends JButton
 	private From from;
 	private SeclectNote seclectNote;
 	private SendMail mail;
+	private Notes notes;
 	private NotesDataBase notesdb;
 	private AdditionalComments additionalNotes;
-	private MailNoteErrorDialog mailNoteErrorDialog; 
 	private ErrorPanel errorPanel;
+	private SaveAndSendDataBase saveAndSendDataBase;
+	private SaveAndSendSettingsDataBase saveAndSendSettingsDataBase;
+	private MailNoteErrorDialog mailNoteErrorDialog;
 
 	public SendButton (BufferPanel bufferPanel)
 	{
@@ -44,10 +50,13 @@ public class SendButton extends JButton
 		to = new To();
 		from = new From();
 		mail = new SendMail();
+		notes = new Notes(bufferPanel);
 		seclectNote = new SeclectNote();
 		notesdb = new NotesDataBase();
 		additionalNotes = new AdditionalComments();
 		errorPanel = new ErrorPanel();
+		saveAndSendDataBase = new SaveAndSendDataBase();
+		saveAndSendSettingsDataBase = new SaveAndSendSettingsDataBase();
 		mailNoteErrorDialog = new MailNoteErrorDialog(bufferPanel);
 	}
 	
@@ -101,7 +110,18 @@ public class SendButton extends JButton
 						
 						String finalBody = body + "\n\n" + additionalComments + "\n\n" + "-" + fromField;
 						
-						mailNoteErrorDialog.launchDialog(to,subject,finalBody);
+						if(saveAndSendSettingsDataBase.getNeverShow() == true)
+						{
+							saveAndSendDataBase.createSavedEmail(to, subject ,finalBody);
+							mailNoteErrorDialog.errorFrame.setVisible(false);
+							notes.infoButton.requestFocusInWindow();
+							bufferPanel.showPanel("NOTES");
+						}
+						
+						else
+						{
+							mailNoteErrorDialog.launchDialog(to, subject, finalBody);
+						}
 					}
 					
 					errorPanel.hideAllErrors();
