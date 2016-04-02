@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import menu.calendar.Calendar;
 import menu.main.MainMenu;
 import menu.notes.Notes;
+import menu.notes.exportnotepanel.ExportNotePanel;
 import menu.notes.mailnotepanel.MailNotePanel;
 import menu.settings.SettingsMenu;
 import menu.settings.security.SecuritySettings;
@@ -42,6 +43,7 @@ public class BufferPanel extends JPanel
 	private ScreenSaver screenSaver;
 	private Notes notes;
 	private MailNotePanel mailNotePanel;
+	private ExportNotePanel exportNotePanel;
 	private Calendar calendar;
 	
 	/**
@@ -80,6 +82,9 @@ public class BufferPanel extends JPanel
 		
 		mailNotePanel = new MailNotePanel(this,notes);
 		mapPanels.put("MAIL_NOTES_PANEL", mailNotePanel);
+		
+		exportNotePanel = new ExportNotePanel(this);
+		mapPanels.put("EXPORT_NOTE_PANEL", exportNotePanel);
 		
 		//Calendar
 		calendar = new Calendar(this);
@@ -125,6 +130,7 @@ public class BufferPanel extends JPanel
 		// Notes
 		add(notes);
 		add(mailNotePanel);
+		add(exportNotePanel);
 		
 		//Calendar
 		add(calendar);
@@ -156,6 +162,7 @@ public class BufferPanel extends JPanel
 		// Notes
 		notes.initialize();
 		mailNotePanel.initialize();
+		exportNotePanel.initialize();
 		
 		//Calendar
 		calendar.initialize();
