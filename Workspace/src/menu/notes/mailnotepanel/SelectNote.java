@@ -10,7 +10,7 @@ import javax.swing.JComboBox;
 import menu.notes.NotesListData;
 import sql.notes.NotesDataBase;
 
-public class SeclectNote
+public class SelectNote
 {
 	static JComboBox <String> comboBox = new JComboBox <String>();
 	public static ArrayList <String> sortedNames = new ArrayList <String>(); // names of data
@@ -21,7 +21,7 @@ public class SeclectNote
 	ErrorPanel errorPanel = new ErrorPanel();
 	public static int lastID = -1;
 	
-	public SeclectNote()
+	public SelectNote()
 	{
 		super();
 	}
