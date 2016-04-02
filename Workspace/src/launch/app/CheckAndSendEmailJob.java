@@ -39,6 +39,8 @@ public class CheckAndSendEmailJob implements Job
 					sendEmail.sendNoteEMail(to, subject, body);
 					
 					saveAndSendDb.deleteSavedEmail(i);
+					
+					System.out.println("Send Email Job complete");
 				}
 			}	
 		}

@@ -22,7 +22,7 @@ public class SendButton extends JButton
 	BufferPanel bufferPanel;
 	private To to;
 	private From from;
-	private SeclectNote seclectNote;
+	private SelectNote selectNote;
 	private SendMail mail;
 	private Notes notes;
 	private NotesDataBase notesdb;
@@ -51,7 +51,7 @@ public class SendButton extends JButton
 		from = new From();
 		mail = new SendMail();
 		notes = new Notes(bufferPanel);
-		seclectNote = new SeclectNote();
+		selectNote = new SelectNote();
 		notesdb = new NotesDataBase();
 		additionalNotes = new AdditionalComments();
 		errorPanel = new ErrorPanel();
@@ -74,17 +74,17 @@ public class SendButton extends JButton
 			{
 				System.out.println("Send button");
 						
-				if(to.textField.getText().length() != 0 && from.textField.getText().length() !=0 && seclectNote.comboBox.getSelectedIndex() != 0)
+				if(to.textField.getText().length() != 0 && from.textField.getText().length() !=0 && selectNote.comboBox.getSelectedIndex() != 0)
 				{
 					if (isNetworkAvailable())
 					{
-						int id = seclectNote.getLastID();
+						int id = selectNote.getLastID();
 						
 						if (id != -1)
 						{
 							String[] to = {To.textField.getText()};
 							String fromField = From.textField.getText();
-							String subject = seclectNote.getNoteName();
+							String subject = selectNote.getNoteName();
 							
 							String body = notesdb.getNotesBody(id);
 							String additionalComments = additionalNotes.textArea.getText();
@@ -100,11 +100,11 @@ public class SendButton extends JButton
 					
 					else
 					{
-						int id = seclectNote.getLastID();
+						int id = selectNote.getLastID();
 						
 						String[] to = {To.textField.getText()};
 						String fromField = From.textField.getText();
-						String subject = seclectNote.getNoteName();
+						String subject = selectNote.getNoteName();
 						String body = notesdb.getNotesBody(id);
 						String additionalComments = additionalNotes.textArea.getText();
 						
@@ -141,7 +141,7 @@ public class SendButton extends JButton
 						errorPanel.fromFieldError.setVisible(true);
 					}
 					
-					if (seclectNote.comboBox.getSelectedIndex() == 0)
+					if (selectNote.comboBox.getSelectedIndex() == 0)
 					{
 						errorPanel.seclectNoteErrror.setVisible(true);
 					}
