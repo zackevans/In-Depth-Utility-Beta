@@ -9,12 +9,12 @@ import javax.swing.border.TitledBorder;
 
 import sql.notes.NotesDataBase;
 
-public class PreviewExportNote extends JScrollPane
+public class ExportPreviewNote extends JScrollPane
 {
 	public static JTextArea textArea = new JTextArea();
-	NotesDataBase notesdb = new NotesDataBase();
+	private NotesDataBase notesdb = new NotesDataBase();
 	
-	public PreviewExportNote()
+	public ExportPreviewNote()
 	{
 		super();
 	}
@@ -45,4 +45,5 @@ public class PreviewExportNote extends JScrollPane
 	{
 		textArea.setText("");
 	}
+	
 }

@@ -7,49 +7,53 @@ import javax.swing.event.DocumentListener;
 
 import program.searchbar.SearchBarShell;
 
-public class FileNameField 
+public class FileDirectoryField 
 {
-	public static JTextField fileNameTextField = new SearchBarShell();
-	public JLabel fileNameLabel = new JLabel("File Name:");
+	public static JTextField fileDirectoryTextField = new SearchBarShell();
+	public JLabel fileDirectoryLabel = new JLabel("Location: ");
+	
 	private ExportErrorNotePanel exportErrorNotePanel;
 	
-	public FileNameField ()
+	public FileDirectoryField ()
 	{
 		
 	}
 	
 	public void initialize()
 	{
+		createObjects();
 		createComponents();
 		addListeners();
 	}
 	
-	public void createComponents()
+	public void createObjects()
 	{
 		exportErrorNotePanel = new ExportErrorNotePanel();
 	}
 	
+	public void createComponents()
+	{
+		//locationLabel.setBorder(BorderFactory.createLineBorder(Color.red));
+		fileDirectoryTextField.setEditable(false);
+	}
+	
 	public void addListeners()
 	{
-		fileNameTextField.getDocument().addDocumentListener(new DocumentListener() 
+		fileDirectoryTextField.getDocument().addDocumentListener(new DocumentListener() 
 		{
 			@Override
 			public void removeUpdate(DocumentEvent e) 
 			{
-				exportErrorNotePanel.checkFileWarning(); // check to see if file exists
-				
-				if (fileNameTextField.getText().length() == 0)
+				if(fileDirectoryTextField.getText().length() == 0)
 				{
-					exportErrorNotePanel.fileNameError.setVisible(true);
+					exportErrorNotePanel.drictoryError.setVisible(true);
 				}
-				
 			}
 			
 			@Override
 			public void insertUpdate(DocumentEvent e) 
 			{
-				exportErrorNotePanel.checkFileWarning();
-				exportErrorNotePanel.fileNameError.setVisible(false);
+				exportErrorNotePanel.drictoryError.setVisible(false);
 			}
 			
 			@Override

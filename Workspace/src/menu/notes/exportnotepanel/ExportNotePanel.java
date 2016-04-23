@@ -2,6 +2,7 @@ package menu.notes.exportnotepanel;
 
 import java.awt.Dimension;
 
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
@@ -10,14 +11,18 @@ public class ExportNotePanel extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
+	
 	BufferPanel bufferPanel;
-	private SelectExportNote selectExportNote;
-	private PreviewExportNote previewExportNote;
+	JPanel contentPanel = new JPanel();
+	
 	private FileNameField fileNameField;
-	private LocationField locationField;
-	private ChooseLocationButton chooseButton;
-	private CancelButton cancelButton;
+	private ExportErrorNotePanel exportErrorNotePanel;
+	private FileDirectoryField fileDirectoryField;
+	private ChooseButton chooseButton;
 	private ExportButton exportButton;
+	private SelectExportNote selectExportNote;
+	private ExportPreviewNote exportPreviewNote;
+	private ExportCancelButton exportCancelButton;
 	
 	public ExportNotePanel(BufferPanel bufferPanel)
 	{
@@ -29,44 +34,46 @@ public class ExportNotePanel extends JPanel
 	public void initialize()
 	{
 		createComponents();
-		initializeComponents();
 		addComponents();
+		initializeComponents();
 	}
 	
 	public void createComponents()
 	{
-		selectExportNote = new SelectExportNote();
-		previewExportNote = new PreviewExportNote();
 		fileNameField = new FileNameField();
-		locationField = new LocationField();
-		chooseButton = new ChooseLocationButton();
-		cancelButton = new CancelButton(bufferPanel);
+		exportErrorNotePanel = new ExportErrorNotePanel();
+		fileDirectoryField = new FileDirectoryField();
+		chooseButton = new ChooseButton();
 		exportButton = new ExportButton(bufferPanel);
+		selectExportNote = new SelectExportNote();
+		exportPreviewNote = new ExportPreviewNote();
+		exportCancelButton = new ExportCancelButton(bufferPanel);
 		
-		selectExportNote.comboBox.setBounds(150,30,400,20);
-		previewExportNote.setBounds(0, 65, 700, 250);
-		
+		fileNameField.fileNameTextField.setBounds(225,350,225,22);
 		fileNameField.fileNameLabel.setBounds(150, 350, 75, 22);
-		fileNameField.fileNameField.setBounds(225,350,225,22);
 		
-		locationField.locationLabel.setBounds(150, 380, 75, 22);
-		locationField.locationField.setBounds(225, 380, 225, 22);
+		fileDirectoryField.fileDirectoryTextField.setBounds(225, 380, 225, 22);
+		fileDirectoryField.fileDirectoryLabel.setBounds(150, 380, 75, 22);
 		
 		chooseButton.setBounds(455, 380, 100, 25);
 		
-		cancelButton.setBounds(480, 440, 100, 25); 
 		exportButton.setBounds(585, 440, 100, 25);
+		exportCancelButton.setBounds(480, 440, 100, 25);
+		
+		selectExportNote.comboBox.setBounds(150,30,400,20);
+		exportPreviewNote.setBounds(0, 65, 700, 250);
 	}
 	
 	public void initializeComponents()
 	{
-		selectExportNote.initialize();
-		previewExportNote.initialize();
-		fileNameField.initialize();
-		locationField.initialize();
 		chooseButton.initialize();
-		cancelButton.initialize();
+		fileDirectoryField.initialize();
+		fileNameField.initialize();
+		exportErrorNotePanel.initialize();
 		exportButton.initialize();
+		selectExportNote.initialize();
+		exportPreviewNote.initialize();
+		exportCancelButton.initialize();
 	}
 	
 	public void addComponents()
@@ -74,14 +81,46 @@ public class ExportNotePanel extends JPanel
 		setLayout(null);
 		setPreferredSize(new Dimension(Window_Width,Window_Height));
 		
-		add(selectExportNote.comboBox);
-		add(previewExportNote);
-		add(fileNameField.fileNameLabel);
-		add(fileNameField.fileNameField);
-		add(locationField.locationLabel);
-		add(locationField.locationField);
-		add(chooseButton);
-		add(cancelButton);
-		add(exportButton);
+		createContentPanel();
+		
+		JLayeredPane layerPane = new JLayeredPane();
+		
+		layerPane.add(contentPanel, new Integer(0),0);
+		layerPane.add(exportErrorNotePanel, new Integer(1),0);
+		
+		contentPanel.setBounds(0, 0, Window_Width,Window_Height);
+		layerPane.setBounds(0, 0,Window_Width,Window_Height);
+		exportErrorNotePanel.setBounds(0, 0, Window_Width,Window_Height);
+		
+		add(layerPane);
+	}
+	
+	public void createContentPanel()
+	{
+		contentPanel.setOpaque(false);
+		contentPanel.setLayout(null);
+		contentPanel.setPreferredSize(new Dimension(Window_Width,Window_Height-50));
+		
+		contentPanel.add(fileNameField.fileNameTextField);
+		contentPanel.add(fileNameField.fileNameLabel);
+		
+		contentPanel.add(fileDirectoryField.fileDirectoryTextField);
+		contentPanel.add(fileDirectoryField.fileDirectoryLabel);
+		
+		contentPanel.add(chooseButton);
+		
+		contentPanel.add(exportButton);
+		contentPanel.add(exportCancelButton);
+		
+		contentPanel.add(selectExportNote.comboBox);
+		contentPanel.add(exportPreviewNote);
+	}
+	
+	public void clearAllField()
+	{
+		fileDirectoryField.fileDirectoryTextField.setText("");
+		exportPreviewNote.textArea.setText("");
+		fileNameField.fileNameTextField.setText("");
+		selectExportNote.comboBox.setSelectedIndex(0);
 	}
 }

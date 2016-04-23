@@ -1,4 +1,4 @@
-package menu.notes.exportnotepanel;
+package menu.notes.samenamedialog;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,12 +10,11 @@ import menu.buffer.BufferPanel;
 public class CancelButton extends JButton
 {
 	BufferPanel bufferPanel;
-
-	public CancelButton (BufferPanel bufferPanel)
-	{
+	
+	public CancelButton(BufferPanel bufferPanel)
+	{	
 		super();
 		this.bufferPanel = bufferPanel;
-		initialize();
 	}
 	
 	public void initialize()
@@ -27,6 +26,7 @@ public class CancelButton extends JButton
 	public void createBtn()
 	{
 		setText("Cancel");
+		setFocusable(false);
 	}
 	
 	public void addListeners()
@@ -36,9 +36,10 @@ public class CancelButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				bufferPanel.showPanel("NOTES");
+				SameNameDialog sameNameDialog = new SameNameDialog(bufferPanel);
+				
+				sameNameDialog.sameNameDialogFrame.setVisible(false);
 			}
 		});
 	}
-
 }
