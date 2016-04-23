@@ -1,52 +1,13 @@
-package launch.app;
+package program.util;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.quartz.Job;
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
-
-import program.mail.SendMail;
-import sql.saveandsend.SaveAndSendDataBase;
-
-public class CheckAndSendEmailJob implements Job
+public class NetworkUtil 
 {
-	private SaveAndSendDataBase saveAndSendDb = new SaveAndSendDataBase();
-	private SendMail sendEmail = new SendMail();
-	
-	
-	@Override
-	public void execute(JobExecutionContext arg0) throws JobExecutionException 
-	{
-		if (isNetworkAvailable())
-		{
-			if(saveAndSendDb.countItems() > 0)
-			{
-				int firstdbIndex = saveAndSendDb.getFirstIndex();
-				int numberOfItemsIndb = saveAndSendDb.countItems();
-			
-				System.out.println();
-				
-				for(int i = firstdbIndex; i < firstdbIndex + numberOfItemsIndb; i++)
-				{
-					String[] to = {saveAndSendDb.getToAddress(i)};
-					String subject = saveAndSendDb.getSubject(i);
-					String body  = saveAndSendDb.getBody(i);
-					
-					sendEmail.sendNoteEMail(to, subject, body);
-					
-					saveAndSendDb.deleteSavedEmail(i);
-					
-					System.out.println("Send Email Job complete");
-				}
-			}	
-		}
-	}
-	
-	private static boolean isNetworkAvailable() 
+	public static boolean isNetworkAvailable() 
 	{                                                                                                                                                                                                 
 	    try 
 	    {                                                                                                                                                                                                                                 
