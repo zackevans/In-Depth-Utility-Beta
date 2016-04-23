@@ -30,7 +30,7 @@ public class ErrorPanel extends JPanel
 	
 	public void createComponents()
 	{
-		URL url = ErrorPanel.class.getResource("/Button_Images/Notes/NoteMail/Error.png");
+		URL url = ErrorPanel.class.getResource("/Button_Images/Notes/NoteErrors/Error.png");
 		ImageIcon errorIcon = new ImageIcon(url);
 		
 		toFieldError.setIcon(errorIcon);
@@ -39,7 +39,7 @@ public class ErrorPanel extends JPanel
 		
 		toFieldError.setToolTipText("Enter a Valid Email");
 		fromFieldError.setToolTipText("Enter a name");
-		seclectNoteErrror.setToolTipText("Seclect a note to send");
+		seclectNoteErrror.setToolTipText("Select a note");
 		
 		toFieldError.setBounds(660,18,30,30);
 		fromFieldError.setBounds(660,52,30,30);

@@ -10,10 +10,13 @@ import javax.swing.JList;
 
 import menu.buffer.BufferPanel;
 import menu.notes.Notes;
+import menu.notes.ShareButton;
+import menu.notes.exportnotepanel.ExportErrorNotePanel;
+import menu.notes.exportnotepanel.ExportNotePanel;
+import menu.notes.exportnotepanel.SelectExportNote;
 import menu.notes.mailnotepanel.ErrorPanel;
 import menu.notes.mailnotepanel.MailNotePanel;
-import menu.notes.mailnotepanel.SeclectNote;
-
+import menu.notes.mailnotepanel.SelectNote;
 
 public class ShareList 
 {
@@ -21,10 +24,14 @@ public class ShareList
 	private Notes notes;
 	private ShareNoteDialog shareNoteDialog;
 	private MailNotePanel mailNotePanel;
-	private SeclectNote seclectNote;
+	private SelectNote selectNote;
+	private SelectExportNote selectExportNote = new SelectExportNote();
+	private ShareButton shareButton = new ShareButton(bufferPanel, notes);
+//	private menu.notes.exportnotepanel.ErrorPanel exportErrorPanel = new menu.notes.exportnotepanel.ErrorPanel();
 	public static  JList list = new JList();
 	String[] listElemets = {"Mail", "Export"};
-	private ErrorPanel errorPanel = new ErrorPanel();
+	private ErrorPanel mailErrorPanel = new ErrorPanel();
+	private ExportErrorNotePanel exportErrorPanel;
 	
 	public ShareList(BufferPanel bufferPanel,Notes notes, ShareNoteDialog shareNoteDialog)
 	{
@@ -44,7 +51,8 @@ public class ShareList
 	public void createComponents()
 	{
 		mailNotePanel = new MailNotePanel(bufferPanel,notes);
-		seclectNote = new SeclectNote();
+		selectNote = new SelectNote();
+		exportErrorPanel = new ExportErrorNotePanel();
 	}
 
 	public void createList()
@@ -93,16 +101,21 @@ public class ShareList
 	        		if(indexClicked == 0)
 	        		{
 	        			// show mail panel
-	        			
 	        			bufferPanel.showPanel("MAIL_NOTES_PANEL");
 	        			mailNotePanel.clearAllFields();
-	        			seclectNote.updateData();
-	        			errorPanel.hideAllErrors();
+	        			selectNote.updateData();
+	        			mailErrorPanel.hideAllErrors();
 	        		}
 	        		
 	        		if(indexClicked == 1)
 	        		{
 	        			// show export menu
+	        			ExportNotePanel exportNotePanel = new ExportNotePanel(bufferPanel);
+	        			
+	        			bufferPanel.showPanel("EXPORT_NOTE_PANEL");
+	        			selectExportNote.updateData();
+	        			exportNotePanel.clearAllField();
+	        			exportErrorPanel.hideAllErrors();
 	        		}
 	        		
 	        		shareNoteDialog.customFrame.setVisible(false);	

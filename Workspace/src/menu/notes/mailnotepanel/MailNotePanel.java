@@ -20,7 +20,7 @@ public class MailNotePanel extends JPanel
 	private SendButton sendBtn;
 	private To toField;
 	private From fromField;
-	private SeclectNote seclectNote;
+	private SelectNote selectNote;
 	private PreviewNote previewNote;
 	private AdditionalComments addComments;
 	private ErrorPanel errorPanel;
@@ -45,7 +45,7 @@ public class MailNotePanel extends JPanel
 		toField = new To();
 		fromField = new From();
 		errorPanel = new ErrorPanel();
-		seclectNote = new SeclectNote();
+		selectNote = new SelectNote();
 		previewNote = new PreviewNote();
 		sendBtn = new SendButton(bufferPanel);
 		addComments = new AdditionalComments();
@@ -60,7 +60,7 @@ public class MailNotePanel extends JPanel
 		From.textField.setBounds(45, 50, Window_Width-30, 35);
 		fromField.fromLabel.setBounds(0, 50,45, 35);
 		
-		seclectNote.comboBox.setBounds(-5, 85, Window_Width + 10, 20); 
+		selectNote.comboBox.setBounds(-5, 85, Window_Width + 10, 20); 
 		
 		previewNote.setBounds(0, 119, Window_Width, 200); // 104
 		
@@ -75,7 +75,7 @@ public class MailNotePanel extends JPanel
 		cancleBtn.initialize();
 		fromField.initialize();
 		errorPanel.initialize();
-		seclectNote.initialize();
+		selectNote.initialize();
 		previewNote.initialize();
 		addComments.initialize();
 	}	
@@ -113,7 +113,7 @@ public class MailNotePanel extends JPanel
 		contentPanel.add(sendBtn);
 		contentPanel.add(To.textField);
 		contentPanel.add(From.textField);
-		contentPanel.add(SeclectNote.comboBox);
+		contentPanel.add(SelectNote.comboBox);
 		contentPanel.add(previewNote);
 		contentPanel.add(addComments);
 	}

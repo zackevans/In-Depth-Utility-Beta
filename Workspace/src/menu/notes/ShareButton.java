@@ -17,7 +17,6 @@ public class ShareButton extends JButton
 	private Notes notes;
 	private ShareNoteDialog shareDialog; 
 	private ShareList shareList;
-	private static boolean clicked = false;
 	
 	public ShareButton (BufferPanel bufferPanel,Notes notes)
 	{
@@ -56,6 +55,7 @@ public class ShareButton extends JButton
 				System.out.println("shareBtn");
 				
 				shareDialog.launchDialog(); // show window next to frame
+					
 			}
 		});
 	}

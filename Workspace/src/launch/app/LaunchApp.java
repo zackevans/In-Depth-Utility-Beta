@@ -21,6 +21,7 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
+import launch.jobs.CheckAndSendEmailJob;
 import menu.buffer.BufferPanel;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;
@@ -44,9 +45,9 @@ public class LaunchApp
 	// Created locked VAR. 
 	public static final int Window_Width = 700; 
 	public static final int Window_Height = 500;
-	private JFrame frame = new JFrame(); // Created JFrame VAR.
+	public static JFrame frame = new JFrame(); // Created JFrame VAR. MUST be static for popups to position correctly
 	private static Image wallpaperImage = null;
-    private JLayeredPane layerPane = new JLayeredPane(); // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
+    private static JLayeredPane layerPane = new JLayeredPane(); // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
     private static Wallpaper wallpaper;  // Created a Wallpaper Class Object.
     static BufferPanel bufferPanel = new BufferPanel(); // Created a BufferPanel Class Object.
     public static TopBar topBar; // Created a TopBar Class Object.
@@ -65,8 +66,7 @@ public class LaunchApp
 			@Override
 			public void run() 
 			{
-				LaunchApp app = new LaunchApp();
-				app.createAndShowGUI(); // Method Call to create program.
+				createAndShowGUI(); // Method Call to create program.
 			}
 		});
     	
@@ -80,7 +80,7 @@ public class LaunchApp
      * TODO Create a Wrapper so the main panel will be able to auto resize (See IDU Beta 1 Resize) 
      */
     
-    private void createAndShowGUI()
+    private static void createAndShowGUI()
     {
     	//sets size restraints
     	frame.setSize(Window_Width, Window_Height); 
@@ -166,7 +166,7 @@ public class LaunchApp
     }
     
     
-    public void createCheckAndSendEmailJob()
+    public static void createCheckAndSendEmailJob()
     {
     	JobDetail job = JobBuilder.newJob(CheckAndSendEmailJob.class)
     			.withIdentity("CheckAndSendEmailJob", "emailJobs").build();
