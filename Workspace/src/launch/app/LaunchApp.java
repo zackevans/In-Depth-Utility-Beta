@@ -21,6 +21,7 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
+import launch.jobs.CheckAndSendEmailJob;
 import menu.buffer.BufferPanel;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;

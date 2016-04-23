@@ -8,23 +8,23 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
 import menu.notes.NotesListData;
-import menu.notes.mailnotepanel.ErrorPanel;
 import sql.notes.NotesDataBase;
 
-public class SelectExportNote
+public class SelectExportNote 
 {
 	static JComboBox <String> comboBox = new JComboBox <String>();
 	public static ArrayList <String> sortedNames = new ArrayList <String>(); // names of data
 	final DefaultComboBoxModel <String> model = new DefaultComboBoxModel <String>();
 	private NotesListData notesListData = new NotesListData();
 	private NotesDataBase notesdb = new NotesDataBase();
-	private PreviewExportNote previewExportNote = new PreviewExportNote();
-	ErrorPanel errorPanel = new ErrorPanel();
+	//private PreviewNote previewExportNote = new PreviewNote();
+	ExportPreviewNote exportPreviewNote = new ExportPreviewNote();
+	private ExportErrorNotePanel exportErrorNotePanel = new ExportErrorNotePanel();
 	public static int lastID = -1;
 	
 	public SelectExportNote()
 	{
-		super();
+		//super();
 	}
 	
 	public void initialize()
@@ -44,12 +44,14 @@ public class SelectExportNote
             	if (noteNumber != 0)
             	{
             		lastID = notesdb.getID(noteNumber);
-            		previewExportNote.displayNote(lastID);
+            		exportPreviewNote.displayNote(lastID);
+            		exportErrorNotePanel.selectNoteError.setVisible(false);
             	}
                
                else if (noteNumber == 0) 
                {
-            	   previewExportNote.clearField();
+            	   exportErrorNotePanel.selectNoteError.setVisible(true);
+            	   exportPreviewNote.clearField();
             	   lastID = -1;
                }
             }
@@ -80,4 +82,5 @@ public class SelectExportNote
 	{
 		return comboBox.getItemAt(comboBox.getSelectedIndex());
 	}	
+
 }

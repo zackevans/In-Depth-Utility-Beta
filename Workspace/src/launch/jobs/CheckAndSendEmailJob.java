@@ -1,27 +1,23 @@
-package launch.app;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
+package launch.jobs;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import program.mail.SendMail;
+import program.util.NetworkUtil;
 import sql.saveandsend.SaveAndSendDataBase;
 
 public class CheckAndSendEmailJob implements Job
 {
 	private SaveAndSendDataBase saveAndSendDb = new SaveAndSendDataBase();
 	private SendMail sendEmail = new SendMail();
-	
+	private NetworkUtil networkUtil = new NetworkUtil();
 	
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException 
 	{
-		if (isNetworkAvailable())
+		if (networkUtil.isNetworkAvailable())
 		{
 			if(saveAndSendDb.countItems() > 0)
 			{
@@ -44,24 +40,5 @@ public class CheckAndSendEmailJob implements Job
 				}
 			}	
 		}
-	}
-	
-	private static boolean isNetworkAvailable() 
-	{                                                                                                                                                                                                 
-	    try 
-	    {                                                                                                                                                                                                                                 
-	        final URL url = new URL("http://www.google.com");                                                                                                                                                                                 
-	        final URLConnection conn = url.openConnection();                                                                                                                                                                                  
-	        conn.connect();                                                                                                                                                                                                                   
-	        return true;                                                                                                                                                                                                                      
-	    } 
-	    catch (MalformedURLException e) 
-	    {                                                                                                                                                                                                   
-	        throw new RuntimeException(e);                                                                                                                                                                                                    
-	    } 
-	    catch (IOException e) 
-	    {                                                                                                                                                                                                             
-	        return false;                                                                                                                                                                                                                     
-	    }                                                                                                                                                                                                                                     
-	}
+	}                                                                                                                                                                                                        
 }

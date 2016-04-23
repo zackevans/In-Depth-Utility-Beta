@@ -21,11 +21,8 @@ public class ErrorImage
 	
 	public void createImage()
 	{
-		URL iconURL = ErrorImage.class.getResource("/Button_Images/Notes/NoteMail/NoNetwork.png");
+		URL iconURL = ErrorImage.class.getResource("/Button_Images/Notes/NoteErrors/NoNetwork.png");
 		ImageIcon img = new ImageIcon(iconURL);
 		label.setIcon(img);
 	}
-	
-	
-	
 }

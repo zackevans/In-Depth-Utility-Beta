@@ -2,10 +2,6 @@ package menu.notes.mailnotepanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 
 import javax.swing.JButton;
 
@@ -13,6 +9,7 @@ import menu.buffer.BufferPanel;
 import menu.notes.Notes;
 import menu.notes.notemailerrordialog.MailNoteErrorDialog;
 import program.mail.SendMail;
+import program.util.NetworkUtil;
 import sql.notes.NotesDataBase;
 import sql.saveandsend.SaveAndSendDataBase;
 import sql.saveandsend.SaveAndSendSettingsDataBase;
@@ -31,6 +28,7 @@ public class SendButton extends JButton
 	private SaveAndSendDataBase saveAndSendDataBase;
 	private SaveAndSendSettingsDataBase saveAndSendSettingsDataBase;
 	private MailNoteErrorDialog mailNoteErrorDialog;
+	private NetworkUtil networkUtil;
 
 	public SendButton (BufferPanel bufferPanel)
 	{
@@ -58,6 +56,7 @@ public class SendButton extends JButton
 		saveAndSendDataBase = new SaveAndSendDataBase();
 		saveAndSendSettingsDataBase = new SaveAndSendSettingsDataBase();
 		mailNoteErrorDialog = new MailNoteErrorDialog(bufferPanel);
+		networkUtil = new NetworkUtil();
 	}
 	
 	public void createBtn()
@@ -76,7 +75,7 @@ public class SendButton extends JButton
 						
 				if(to.textField.getText().length() != 0 && from.textField.getText().length() !=0 && selectNote.comboBox.getSelectedIndex() != 0)
 				{
-					if (isNetworkAvailable())
+					if (networkUtil.isNetworkAvailable())
 					{
 						int id = selectNote.getLastID();
 						
@@ -151,24 +150,7 @@ public class SendButton extends JButton
 	}
 	
 	
-	private static boolean isNetworkAvailable() 
-	{                                                                                                                                                                                                 
-	    try 
-	    {                                                                                                                                                                                                                                 
-	        final URL url = new URL("http://www.google.com");                                                                                                                                                                                 
-	        final URLConnection conn = url.openConnection();                                                                                                                                                                                  
-	        conn.connect();                                                                                                                                                                                                                   
-	        return true;                                                                                                                                                                                                                      
-	    } 
-	    catch (MalformedURLException e) 
-	    {                                                                                                                                                                                                   
-	        throw new RuntimeException(e);                                                                                                                                                                                                    
-	    } 
-	    catch (IOException e) 
-	    {                                                                                                                                                                                                             
-	        return false;                                                                                                                                                                                                                     
-	    }                                                                                                                                                                                                                                     
-	}
+	
 }
 
 class PushEmail implements Runnable 
