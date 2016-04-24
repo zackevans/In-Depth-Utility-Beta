@@ -8,15 +8,13 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
-import sql.system.settings.SystemDatabase;
 
 public class TopBar extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
-	private SystemDatabase systemDB = new SystemDatabase();
 	private NotificationsButton notificationsBtn;
-	private TimeAndDate TimeandDate;
+	private TimeAndDate timeAndDate;
 	BufferPanel bufferPanel;
 	
 	public TopBar (BufferPanel bufferPanel)
@@ -27,13 +25,13 @@ public class TopBar extends JPanel
 		setBackground(Color.LIGHT_GRAY);
 	}
 	
+	@Override
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		
 		g.drawLine(0, 20, 700,20);
-		g.drawLine(655, 1, 655, 20);
-		TimeandDate.showTime(g);
+		g.drawLine(655, -12, 655, 20);
 	}
 	
 	public void initialize()
@@ -46,7 +44,10 @@ public class TopBar extends JPanel
 	{
 		
 		notificationsBtn = new NotificationsButton(bufferPanel);
-		TimeandDate = new TimeAndDate();
+		timeAndDate = new TimeAndDate();
+		
+		timeAndDate.timeLabel.setBounds(595, 0, 60, 20);
+		timeAndDate.showTime();
 		
 		notificationsBtn.initialize();
 		notificationsBtn.setBounds(655, 0, 50, 21);
@@ -58,5 +59,6 @@ public class TopBar extends JPanel
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20));
 		
 		add(notificationsBtn);
+		add(timeAndDate.timeLabel);
 	}
 }

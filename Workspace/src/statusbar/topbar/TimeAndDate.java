@@ -1,17 +1,20 @@
 package statusbar.topbar;
 
-import java.awt.Graphics;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JLabel;
 
-import menu.buffer.BufferPanel;
-
-public class TimeAndDate extends JLabel
+public class TimeAndDate
 {	
-	public void showTime(Graphics g)
+	public static JLabel timeLabel = new JLabel();
+	
+	
+	
+	
+	
+	public void showTime()
 	{
 		DateFormat hours = new SimpleDateFormat("hh");
 		DateFormat min = new SimpleDateFormat("mm a");
@@ -33,7 +36,6 @@ public class TimeAndDate extends JLabel
 			timeAndDate = (hours.format(date)) + ":" +  min.format(date);
 		}
 		
-		g.drawString(timeAndDate, 590, 15);
+		timeLabel.setText(timeAndDate);
 	}
-
 }

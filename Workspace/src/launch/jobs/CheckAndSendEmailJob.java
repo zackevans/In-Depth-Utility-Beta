@@ -10,13 +10,13 @@ import sql.saveandsend.SaveAndSendDataBase;
 
 public class CheckAndSendEmailJob implements Job
 {
-	private SaveAndSendDataBase saveAndSendDb = new SaveAndSendDataBase();
-	private SendMail sendEmail = new SendMail();
-	private NetworkUtil networkUtil = new NetworkUtil();
-	
 	@Override
 	public void execute(JobExecutionContext arg0) throws JobExecutionException 
 	{
+		SaveAndSendDataBase saveAndSendDb = new SaveAndSendDataBase();
+		SendMail sendEmail = new SendMail();
+		NetworkUtil networkUtil = new NetworkUtil();
+		
 		if (networkUtil.isNetworkAvailable())
 		{
 			if(saveAndSendDb.countItems() > 0)
