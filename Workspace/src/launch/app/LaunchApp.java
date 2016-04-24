@@ -22,6 +22,7 @@ import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
 import launch.jobs.CheckAndSendEmailJob;
+import launch.jobs.UpdateTimeJob;
 import menu.buffer.BufferPanel;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;
@@ -127,6 +128,7 @@ public class LaunchApp
         frame.setVisible(true);
         
         createCheckAndSendEmailJob();
+        createUpdateTimeJob();
     }
     
     /**
@@ -166,6 +168,14 @@ public class LaunchApp
     }
     
     
+    /**
+     * @author ZackEvans
+     * Function: createCheckAndSendEmailJob()
+     * 
+     * Function runs every 30 min to check if emails can be sent.
+     * 
+     */
+    
     public static void createCheckAndSendEmailJob()
     {
     	JobDetail job = JobBuilder.newJob(CheckAndSendEmailJob.class)
@@ -193,6 +203,40 @@ public class LaunchApp
 		}
     }
     
+    /**
+     * @author ZackEvans
+     * Function: createUpdateTimeJob()
+     * 
+     * every min run a job that updates the time
+     */
+    
+    public static void createUpdateTimeJob()
+    {
+    	JobDetail job = JobBuilder.newJob(UpdateTimeJob.class)
+    			.withIdentity("UpdateTimeJob", "updateJobs").build();
+    	
+    	Trigger trigger = TriggerBuilder
+    			.newTrigger()
+    			.withIdentity("UpdateTimeJob", "updateJobs")
+    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 * 1/1 * ? *")) 
+    			.build();
+    
+    	Scheduler scheduler;
+    	
+		try 
+		{
+			scheduler = new StdSchedulerFactory().getScheduler();
+			scheduler.start();
+	    	scheduler.scheduleJob(job, trigger);
+		} 
+		
+		catch (SchedulerException e) 
+		{
+			System.err.println("createUpdateTimeJob() - Unable to Create Email Job");
+			e.printStackTrace();
+		}
+    }
+     
     /**
      * Function: frameXPosition
      * @return frame x coordinate
