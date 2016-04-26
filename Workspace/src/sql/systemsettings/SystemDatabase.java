@@ -46,7 +46,6 @@ public class SystemDatabase
 	public static void createPassword(String password)
 	{
 		Connection c = null;
-		Encryption encryption = new Encryption();
 	    
 	    try 
 	    {  
@@ -58,7 +57,7 @@ public class SystemDatabase
 	      			   "VALUES (?,?);";
 	      			   	    
 	      PreparedStatement preparedStatement = c.prepareStatement(sql);
-	      preparedStatement.setBytes(1,encryption.encryptString(password));
+	      preparedStatement.setBytes(1,Encryption.encryptString(password));
 	      preparedStatement.setBoolean(2,true);
 
 	      preparedStatement.executeUpdate();
@@ -78,6 +77,7 @@ public class SystemDatabase
 	public void updatePassword(String password)
 	{
 		Connection dbConnection = null;
+		
 		try 
 	    {
 			Class.forName("org.sqlite.JDBC");
@@ -109,7 +109,6 @@ public class SystemDatabase
 	{
 		Connection c = null;
 	    Statement stmt = null;
-	    Encryption encryption = new Encryption();
 	    String checker = "";
 	    byte[] bytesFromdb = {};
 	    String returnPass = "";
@@ -128,7 +127,7 @@ public class SystemDatabase
 	  
 	      if (!checker.equals(""))
 	      {
-	    	  returnPass = encryption.decryptString(bytesFromdb);
+	    	  returnPass = Encryption.decryptString(bytesFromdb);
 	      }
 	      
 	      else

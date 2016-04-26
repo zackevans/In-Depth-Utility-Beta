@@ -54,7 +54,6 @@ public class NotesDataBase
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         Calendar date = Calendar.getInstance();
-        Encryption encryption = new Encryption();
         
         try
         {
@@ -313,7 +312,6 @@ public class NotesDataBase
     {
         Connection c = null;
         Statement stmt = null;
-        Encryption encryption = new Encryption();
         byte[] bytesFromdb = {};
         String returnVal = "-1";
         
@@ -384,7 +382,6 @@ public class NotesDataBase
     
     public String getNotesBody(int id)
 	{
-    	Encryption encryption = new Encryption();
 		Connection c = null;
 	    Statement stmt = null;
 	    String returnVal = "-1";
@@ -409,7 +406,7 @@ public class NotesDataBase
 	      
 	      	if (!checkString.equals("")) 
 	      	{
-	      		returnVal = encryption.decryptString(bytesFromdb);
+	      		returnVal = Encryption.decryptString(bytesFromdb);
 	      	}
 	      	
 	      	else
@@ -429,7 +426,6 @@ public class NotesDataBase
     
     public void updateNotesBody (int id, String body)
     {
-    	Encryption encryption = new Encryption();
     	Connection dbConnection = null;
     	
 		try 
@@ -441,7 +437,7 @@ public class NotesDataBase
 			String updateTableSQL = "UPDATE USER_NOTES SET BODY = ? WHERE ID = ?";
 			
 			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-			preparedStatement.setBytes(1, encryption.encryptString(body));
+			preparedStatement.setBytes(1, Encryption.encryptString(body));
 			//preparedStatement.setString(1, body);
 			preparedStatement.setInt(2, id);
 			
@@ -454,8 +450,8 @@ public class NotesDataBase
 		
 	    catch ( Exception e ) 
 	    {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
+	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    	System.exit(0);
 	    }
     }
 }
