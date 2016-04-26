@@ -16,7 +16,7 @@ import menu.buffer.BufferPanel;
 import menu.settings.security.enterpassword.EnterPassword;
 import menu.settings.security.passconfirm.PasswordConfirm;
 import menu.settings.security.removepass.RemovePassword;
-import sql.system.settings.SystemDatabase;
+import sql.systemsettings.SystemDatabase;
 
 /**
  * @author ZackEvans

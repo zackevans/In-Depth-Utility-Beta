@@ -29,7 +29,7 @@ import sql.DataBase;
 import sql.notes.NotesDataBase;
 import sql.saveandsend.SaveAndSendDataBase;
 import sql.saveandsend.SaveAndSendSettingsDataBase;
-import sql.system.settings.SystemDatabase;
+import sql.systemsettings.SystemDatabase;
 import statusbar.topbar.TopBar;
 
 /**

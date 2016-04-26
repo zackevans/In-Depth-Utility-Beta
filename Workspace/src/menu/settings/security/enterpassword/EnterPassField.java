@@ -8,7 +8,7 @@ import javax.swing.JPasswordField;
 
 import menu.buffer.BufferPanel;
 import menu.settings.security.passconfirm.PasswordConfirm;
-import sql.system.settings.SystemDatabase;
+import sql.systemsettings.SystemDatabase;
 
 
 /**
