@@ -46,7 +46,6 @@ public class DisplayNotes extends JScrollPane
 		textArea.setText(notesdb.getNotesBody(ID));
 	}
 	
-	
 	public void documentChange()
 	{
 		textArea.getDocument().addDocumentListener(new DocumentListener()
@@ -73,13 +72,13 @@ public class DisplayNotes extends JScrollPane
 
 	public void updateChange()
 	{
-			int id = notesList.getLastID();
+		int id = notesList.getLastID();
 			
-			if (id != -1)
-			{
-				String currentText = textArea.getText();
-				notesdb.updateNotesBody(id, currentText);
-			}		
+		if (id != -1)
+		{
+			String currentText = textArea.getText();
+			notesdb.updateNotesBody(id, currentText);
+		}		
 	}
 	
 	public void clearDisplay()

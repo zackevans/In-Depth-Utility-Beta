@@ -10,7 +10,7 @@ import javax.swing.JPasswordField;
 
 import menu.buffer.BufferPanel;
 import panel.screensaver.ScreenSaver;
-import sql.system.settings.SystemDatabase;
+import sql.systemsettings.SystemDatabase;
 
 public class EnterPassField extends JPasswordField 
 {

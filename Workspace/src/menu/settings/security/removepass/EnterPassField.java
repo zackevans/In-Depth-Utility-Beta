@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPasswordField;
 
 import menu.buffer.BufferPanel;
-import sql.system.settings.SystemDatabase;
+import sql.systemsettings.SystemDatabase;
 
 public class EnterPassField extends JPasswordField
 {

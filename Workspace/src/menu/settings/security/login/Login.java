@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
-import sql.system.settings.SystemDatabase;
+import sql.systemsettings.SystemDatabase;
 
 
 public class Login extends JPanel 

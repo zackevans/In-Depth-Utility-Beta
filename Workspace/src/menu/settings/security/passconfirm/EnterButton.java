@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
-import sql.system.settings.SystemDatabase;
+import sql.systemsettings.SystemDatabase;
 
 public class EnterButton extends JButton 
 {

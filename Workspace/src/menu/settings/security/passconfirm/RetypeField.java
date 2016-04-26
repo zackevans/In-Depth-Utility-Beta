@@ -9,7 +9,7 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JPasswordField;
 
 import menu.buffer.BufferPanel;
-import sql.system.settings.SystemDatabase;
+import sql.systemsettings.SystemDatabase;
 
 public class RetypeField extends JPasswordField
 {
