@@ -7,9 +7,10 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Encryption 
 {
+	private final static String key = "8DV47AME86F1CLD6"; // 128 bit key 16Char
+	
 	public static byte[] encryptString(String text)
 	{
-        String key = "8DV47AME86F1CLD6"; // 128 bit key 16Char
         byte[] nes = "".getBytes();
         
     	try
@@ -29,8 +30,6 @@ public class Encryption
 	
 	public static String decryptString(byte[] s)
 	{
-		String key = "8DV47AME86F1CLD6"; // 128 bit key 16Char
-		
 		try 
 		{
 			Key aesKey = new SecretKeySpec(key.getBytes(), "AES");
