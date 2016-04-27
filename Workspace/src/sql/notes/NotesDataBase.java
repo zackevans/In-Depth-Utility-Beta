@@ -306,7 +306,6 @@ public class NotesDataBase
 //        
 //        return returnVal;
 //    }
-    
      
     public String getNoteNameFromPosition(int listPosition)
     {
@@ -328,12 +327,10 @@ public class NotesDataBase
             while (rs.next()) 
             {
                 bytesFromdb = rs.getBytes("NAME");
-                System.out.println("Bytes From db: "+bytesFromdb);
             }
             
             returnVal = Encryption.decryptString(bytesFromdb);
-            System.out.println("Bytes decrypted: " + returnVal);
-           
+            
             rs.close();
             stmt.close();
             c.close();
@@ -344,7 +341,6 @@ public class NotesDataBase
             System.exit(0);
         }
         
-        System.out.println("DONE");
         return returnVal;
     }
     
