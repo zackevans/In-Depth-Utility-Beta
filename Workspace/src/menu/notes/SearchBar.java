@@ -33,17 +33,17 @@ public class SearchBar
     
     public void addListeners()
     {  	
+    	DisplayNotes displayNotes = new DisplayNotes(notes);
+    	
     	textField.getDocument().addDocumentListener(new DocumentListener() 
-    	{
-    		@Override
-			public void changedUpdate(DocumentEvent arg0) {}
-    		
+    	{   		
     		@Override
 			public void insertUpdate(DocumentEvent arg0) 
     		{
     			notesList.loadSearchData(textField.getText());
     			notesData.loadOldListPositions(textField.getText());
     			notesList.setLastID(-1);
+    			displayNotes.clearDisplay();
     		}
     		
     		@Override
@@ -52,7 +52,11 @@ public class SearchBar
     			notesList.loadSearchData(textField.getText());
     			notesData.loadOldListPositions(textField.getText());
     			notesList.setLastID(-1);
+    			displayNotes.clearDisplay();
     		}
+    		
+    		@Override
+			public void changedUpdate(DocumentEvent arg0) {}
     	});
     	
     	textField.addFocusListener(new FocusListener() 
