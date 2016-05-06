@@ -49,7 +49,10 @@ public class NotesListData
 		{
 			String noteName = notesdb.getNoteNameFromPosition(i);
 			
-			if (noteName.contains(searchText)) // checks to see if the searchbar text is in the note
+			String lowerSearchText = searchText.toLowerCase();
+			String lowerNoteName = noteName.toLowerCase();
+			
+			if (lowerNoteName.contains(lowerSearchText)) // checks to see if the searchbar text is in the note
 			{
 				sortedNames.add(noteName);			
 			}
@@ -77,7 +80,10 @@ public class NotesListData
 		{	
 			String noteName = notesdb.getNoteNameFromPosition(i);
 			
-			if(noteName.contains(searchText)) 
+			String lowerSearchText = searchText.toLowerCase();
+			String lowerNoteName = noteName.toLowerCase();
+			
+			if(lowerNoteName.contains(lowerSearchText)) 
 			{
 				oldListPositions.add(listPosition);		
 			}
