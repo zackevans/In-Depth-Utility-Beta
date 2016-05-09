@@ -37,7 +37,6 @@ public class MainMenu extends JPanel
 	private static JLabel companyNameLbl; // Create bottom info Label 
 	private JButton notesBtn; // Create notes button
 	private JButton remindersBtn; // Create reminders button
-	private JButton mailBtn; // Create main button
 	private JButton calendarBtn; // created button object
 	private JButton settingsBtn; // Create setting button
 	private JButton aboutBtn; // Create about button
@@ -92,10 +91,9 @@ public class MainMenu extends JPanel
 	{
 		// Initialize buttons and set names
 		mainTittleLbl = new JLabel("In Depth Utility");
-		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2014©");
+		companyNameLbl = new JLabel("Created By Appended Karma Ltd. 2016©");
 		notesBtn = new JButton("Notes");
 		remindersBtn = new JButton ("Reminders");
-		mailBtn = new JButton ("Mail");
 		calendarBtn = new JButton("Calendar");
 		settingsBtn = new JButton ("Settings Menu");
 		aboutBtn = new JButton ("About IDU");
@@ -105,8 +103,7 @@ public class MainMenu extends JPanel
 		createMainTittleLable();
 		createBottomLabel();
 		createPersonalButton();
-		createSchoolButton();
-		createMailButton();
+		createReminderButton();
 		createCalendarButton();
 		createSettingsButton();
 		createAboutMenu ();
@@ -133,7 +130,6 @@ public class MainMenu extends JPanel
 		add(companyNameLbl);
 		add(notesBtn);
         add(remindersBtn);
-		add(mailBtn);
 		add(calendarBtn);
 		add(settingsBtn);
 		add(aboutBtn);
@@ -149,7 +145,6 @@ public class MainMenu extends JPanel
 	
 	public void addListeners()
 	{
-		
 		/**
 		 * @author ZackEvans
 		 * Action Listener Acts On: notes button 
@@ -190,15 +185,6 @@ public class MainMenu extends JPanel
 			}
 		});
 		
-		mailBtn.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				System.out.println("mailBtn");
-			}
-		});
-		
 		calendarBtn.addActionListener(new ActionListener()
 		{
 			@Override
@@ -226,8 +212,7 @@ public class MainMenu extends JPanel
 			{
 				System.out.println("AboutBtn");
 			}
-		});
-		
+		});	
 	}
 	
 	/**
@@ -279,37 +264,37 @@ public class MainMenu extends JPanel
 		notesBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font of button
 	}
 	
-	public void createSchoolButton()
+	public void createReminderButton()
 	{
 		int x = (Window_Height)/2+rightRow; // Calculate the horizantal point
 		remindersBtn.setBounds(x,btnLn1,btnWidth,btnHeight); // Set potition and size of button
 		remindersBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font of button
 	}
 	
-	public void createMailButton()
-	{
-		int x = (Window_Height)/2+leftRow; // Calculate the horizantal point
-	    mailBtn.setBounds(x,btnLn2,btnWidth,btnHeight); // Set potition and size of button
-	    mailBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font of button
-	}
+//	public void createMailButton()
+//	{
+//		int x = (Window_Height)/2+leftRow; // Calculate the horizantal point
+//	    mailBtn.setBounds(x,btnLn2,btnWidth,btnHeight); // Set potition and size of button
+//	    mailBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font of button
+//	}
 	
 	public void createCalendarButton()  
 	{
-		int x = (Window_Height)/2+rightRow; // Calculate the horizantal point
+		int x = (Window_Height)/2+leftRow; // Calculate the horizantal point
 		calendarBtn.setBounds(x,btnLn2,btnWidth,btnHeight); // Set potition and size of button
 		calendarBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font of button
 	}
 	
 	public void createSettingsButton()
 	{
-		int x = (Window_Height)/2+leftRow; // Calculate the horizantal point
-	    settingsBtn.setBounds(x,btnLn3,btnWidth,btnHeight); // Set potition and size of button
+		int x = (Window_Height)/2+rightRow; // Calculate the horizantal point
+	    settingsBtn.setBounds(x,btnLn2,btnWidth,btnHeight); // Set potition and size of button
 	    settingsBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font of button
 	}
 	
 	public void createAboutMenu ()
 	{
-		int x = (Window_Height)/2+rightRow; // Calculate the horizantal point
+		int x = (Window_Height)/2+btnPadding; // Calculate the horizantal point
 	    aboutBtn.setBounds(x,btnLn3,btnWidth,btnHeight); // Set potition and size of button
 	    aboutBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,16)); // Calculate the horizantal point
 	}
