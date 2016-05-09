@@ -271,13 +271,6 @@ public class MainMenu extends JPanel
 		remindersBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font of button
 	}
 	
-//	public void createMailButton()
-//	{
-//		int x = (Window_Height)/2+leftRow; // Calculate the horizantal point
-//	    mailBtn.setBounds(x,btnLn2,btnWidth,btnHeight); // Set potition and size of button
-//	    mailBtn.setFont(new Font("Helvetica Neue",Font.PLAIN,14)); // set font of button
-//	}
-	
 	public void createCalendarButton()  
 	{
 		int x = (Window_Height)/2+leftRow; // Calculate the horizantal point
