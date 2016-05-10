@@ -10,8 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import program.security.Encryption;
-
 public class NotesDataBase
 {
     final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db";
@@ -66,7 +64,7 @@ public class NotesDataBase
             "VALUES (?,?,?,?,?);";
             
             PreparedStatement preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setBytes(1,Encryption.encryptString(noteName));
+            preparedStatement.setString(1,noteName);
             preparedStatement.setString(2,"");
             preparedStatement.setString(3,dateFormat.format(date.getTime()));
             preparedStatement.setString(4,timeFormat.format(date.getTime()));
@@ -267,53 +265,45 @@ public class NotesDataBase
     }
     
     
-//    public String getNoteName(int ID)
-//    {
-//    	Connection c = null;
-//        Statement stmt = null;
-//        Encryption encryption = new Encryption();
-//        byte[] bytesFromdb = {};
-//        String returnVal = "-1";
-//        
-//        try
-//        {
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection(dbLocation);
-//            c.setAutoCommit(false);
-//            
-//            stmt = c.createStatement();
-//            
-//            ResultSet rs = stmt.executeQuery( "SELECT NAME FROM USER_NOTES WHERE ID = "+ ID +";" );
-//            
-//            while (rs.next()) 
-//            {
-//                bytesFromdb = rs.getBytes("NAME");
-//                System.out.println("Bytes From db1: "+bytesFromdb);
-//            }
-//            
-//            
-//            returnVal = encryption.decryptString(bytesFromdb);
-//            
-//            rs.close();
-//            stmt.close();
-//            c.close();
-//        } 
-//        catch ( Exception e ) 
-//        {
-//            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//            System.exit(0);
-//        }
-//        
-//        return returnVal;
-//    }
+    public String getNoteName(int ID)
+    {
+    	Connection c = null;
+        Statement stmt = null;
+        String rVal = "-1";
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation);
+            c.setAutoCommit(false);
+            
+            stmt = c.createStatement();
+            
+            ResultSet rs = stmt.executeQuery( "SELECT NAME FROM USER_NOTES WHERE ID = "+ ID +";" );
+            
+            while (rs.next()) 
+            {
+                rVal = rs.getString("NAME");
+            }
+            
+            rs.close();
+            stmt.close();
+            c.close();
+        } 
+        catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        
+        return rVal;
+    }
+    
      
     public String getNoteNameFromPosition(int listPosition)
     {
         Connection c = null;
         Statement stmt = null;
-        byte[] bytesFromdb = {};
-        String returnVal = "-1";
-        
+        String rVal = "-1";
         try
         {
             Class.forName("org.sqlite.JDBC");
@@ -326,10 +316,8 @@ public class NotesDataBase
             
             while (rs.next()) 
             {
-                bytesFromdb = rs.getBytes("NAME");
+                rVal = rs.getString("NAME");
             }
-            
-            returnVal = Encryption.decryptString(bytesFromdb);
             
             rs.close();
             stmt.close();
@@ -341,7 +329,7 @@ public class NotesDataBase
             System.exit(0);
         }
         
-        return returnVal;
+        return rVal;
     }
     
     public int getID(int listPosition)
@@ -380,44 +368,32 @@ public class NotesDataBase
 	{
 		Connection c = null;
 	    Statement stmt = null;
-	    String returnVal = "-1";
-	    byte[] bytesFromdb = {};
-	    String checkString = "";
-	    
-	    try
+	    String rVal = "-1";
+	    try 
 	    {
-	    	Class.forName("org.sqlite.JDBC");
-	    	c = DriverManager.getConnection(dbLocation);
-	    	c.setAutoCommit(false);
-	    	
-	    	stmt = c.createStatement();
-	    	ResultSet rs = stmt.executeQuery("SELECT BODY FROM USER_NOTES WHERE ID ="+ id +";");
-	    	
-	    	checkString = rs.getString("BODY");
-	      	bytesFromdb = rs.getBytes("BODY");
-	      	
-	      	rs.close();
-	      	stmt.close();
-	      	c.close();
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
+	     
+
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery("SELECT BODY FROM USER_NOTES WHERE ID ="+ id +";");
+	      while (rs.next()) 
+	      {
+	    	  rVal = rs.getString("BODY");
+	      }
 	      
-	      	if (!checkString.equals("")) 
-	      	{
-	      		returnVal = Encryption.decryptString(bytesFromdb);
-	      	}
-	      	
-	      	else
-	      	{
-	      		returnVal = "";
-	      	}
+	      rs.close();
+	      stmt.close();
+	      c.close();
 	    } 
-	    
 	    catch ( Exception e ) 
 	    {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      System.exit(0);
 	    }
 	    
-	    return returnVal;
+	    return rVal;
 	}
     
     public void updateNotesBody (int id, String body)
@@ -433,8 +409,7 @@ public class NotesDataBase
 			String updateTableSQL = "UPDATE USER_NOTES SET BODY = ? WHERE ID = ?";
 			
 			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-			preparedStatement.setBytes(1, Encryption.encryptString(body));
-			//preparedStatement.setString(1, body);
+			preparedStatement.setString(1, body);
 			preparedStatement.setInt(2, id);
 			
 			dbConnection.commit();
@@ -446,8 +421,8 @@ public class NotesDataBase
 		
 	    catch ( Exception e ) 
 	    {
-	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    	System.exit(0);
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
 	    }
     }
 }

@@ -1,10 +1,8 @@
 package menu.settings.security.login;
 
 import java.awt.Graphics;
-import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JPasswordField;
 
@@ -26,6 +24,7 @@ public class EnterPassField extends JPasswordField
         setFocusable(true);
     }
 	
+	@Override
 	protected void paintComponent(Graphics g) 
     {
          g.setColor(getBackground());
@@ -33,7 +32,8 @@ public class EnterPassField extends JPasswordField
          super.paintComponent(g);
     }
 
-    protected void paintBorder(Graphics g) 
+    @Override
+	protected void paintBorder(Graphics g) 
     {
          g.setColor(getForeground());
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 6, 6);
@@ -43,10 +43,13 @@ public class EnterPassField extends JPasswordField
 	{
 		addKeyListener(new KeyAdapter() 
 		{
+			@Override
 			public void keyReleased(KeyEvent e) {}
-		    public void keyTyped(KeyEvent e) {}
+		    @Override
+			public void keyTyped(KeyEvent e) {}
 
-		    public void keyPressed(KeyEvent e) 
+		    @Override
+			public void keyPressed(KeyEvent e) 
 		    {
 		    	if (e.getKeyCode() == KeyEvent.VK_ENTER)
 		    	{

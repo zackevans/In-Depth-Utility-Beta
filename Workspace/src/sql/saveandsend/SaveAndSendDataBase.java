@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import program.security.Encryption;
-
 public class SaveAndSendDataBase 
 {
 	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db";
@@ -45,7 +43,7 @@ public class SaveAndSendDataBase
 	public void createSavedEmail(String[] to, String subject, String body)
 	{
 		Connection c = null;
-	
+		
         try
         {
             Class.forName("org.sqlite.JDBC");
@@ -59,9 +57,9 @@ public class SaveAndSendDataBase
             String sendTO = to[0];
             
             PreparedStatement preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setBytes(1,Encryption.encryptString(sendTO));
-            preparedStatement.setBytes(2, Encryption.encryptString(subject));
-            preparedStatement.setBytes(3,Encryption.encryptString(body));
+            preparedStatement.setString(1,sendTO);
+            preparedStatement.setString(2, subject);
+            preparedStatement.setString(3,body);
             
             preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -143,9 +141,7 @@ public class SaveAndSendDataBase
 	{
 		Connection c = null;
         Statement stmt = null;
-        String checker = "";
-	    byte[] bytesFromdb = {};
-	    String returnAddress = "";
+        String rVal = "-1";
         
         try
         {
@@ -157,20 +153,14 @@ public class SaveAndSendDataBase
             PreparedStatement preparedStatement = c.prepareStatement(sql);
             preparedStatement.setInt(1,id);
             
-            stmt = c.createStatement();
-            ResultSet rs = preparedStatement.executeQuery();
+           stmt = c.createStatement();
+           ResultSet rs = preparedStatement.executeQuery();
             
-            checker = rs.getString("TOADDRESS");
-            bytesFromdb = rs.getBytes("TOADDRESS");
+            rVal = rs.getString("TOADDRESS");
             
-            if(!checker.equals(""))
-            {
-            	returnAddress = Encryption.decryptString(bytesFromdb);
-            }
-           
             rs.close();
             stmt.close();
-           	c.close();
+            c.close();
         }
         
         catch ( Exception e )
@@ -179,16 +169,14 @@ public class SaveAndSendDataBase
             System.exit(0);
         }
         
-        return returnAddress;
+        return rVal;
 	}
 	
 	public String getSubject(int id)
 	{
 		Connection c = null;
         Statement stmt = null;
-        String checker = "";
-	    byte[] bytesFromdb = {};
-	    String returnSubject = "";
+        String rVal = "-1";
         
         try
         {
@@ -203,13 +191,7 @@ public class SaveAndSendDataBase
             stmt = c.createStatement();
             ResultSet rs = preparedStatement.executeQuery();
             
-            checker = rs.getString("SUBJECT");
-            bytesFromdb = rs.getBytes("SUBJECT");
-            
-            if (!checker.equals(""))
-            {
-            	returnSubject = Encryption.decryptString(bytesFromdb);
-            }
+            rVal = rs.getString("SUBJECT");
             
             rs.close();
             stmt.close();
@@ -222,16 +204,14 @@ public class SaveAndSendDataBase
             System.exit(0);
         }
         
-        return returnSubject;
+        return rVal;
 	}
 	
 	public String getBody(int id)
 	{
 		Connection c = null;
         Statement stmt = null;
-        String checker = "";
-	    byte[] bytesFromdb = {};
-	    String returnBody = "";
+        String rVal = "-1";
         
         try
         {
@@ -246,13 +226,7 @@ public class SaveAndSendDataBase
             stmt = c.createStatement();
             ResultSet rs = preparedStatement.executeQuery();
             
-            checker = rs.getString("BODY");
-            bytesFromdb = rs.getBytes("BODY");
-            
-            if(!checker.equals(""))
-            {
-            	returnBody = Encryption.decryptString(bytesFromdb);
-            }
+            rVal = rs.getString("BODY");
             
             rs.close();
             stmt.close();
@@ -265,7 +239,7 @@ public class SaveAndSendDataBase
             System.exit(0);
         }
         
-        return returnBody;
+        return rVal;
 	}
 	
 	public void deleteSavedEmail(int idNum)
@@ -298,4 +272,6 @@ public class SaveAndSendDataBase
         
         System.out.println("Saved Note Deleted Successfully");
     }
+    
+	
 }

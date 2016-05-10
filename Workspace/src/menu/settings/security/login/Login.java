@@ -3,8 +3,6 @@ package menu.settings.security.login;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,7 +10,6 @@ import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
 import sql.systemsettings.SystemDatabase;
-
 
 public class Login extends JPanel 
 {
@@ -121,14 +118,14 @@ public class Login extends JPanel
 	
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30));
-	    int x = (int) (Window_Height) / 2;
+	    int x = (Window_Height) / 2;
 	    mainTittleLbl.setBounds(0, 15, Window_Width,40);
 	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
 	public static void  createBottomLabel() {
 		companyNameLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12));
-	    int y = (int) (Window_Width)/2+90;
+	    int y = (Window_Width)/2+90;
 	    companyNameLbl.setBounds(480, y,225,40);
 	}
 	
@@ -139,7 +136,7 @@ public class Login extends JPanel
 	}
 	
 	public static void createIncorrectLabel(){
-		int x = (int) (Window_Height) / 2+30;
+		int x = (Window_Height) / 2+30;
 		incorrectLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,14));
 		incorrectLbl.setBounds(x,140,225,40);
 		incorrectLbl.setForeground(Color.red);
