@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import program.security.Encryption;
-
 public class SystemDatabase 
 {
 	final static String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; 
@@ -57,7 +55,7 @@ public class SystemDatabase
 	      			   "VALUES (?,?);";
 	      			   	    
 	      PreparedStatement preparedStatement = c.prepareStatement(sql);
-	      preparedStatement.setBytes(1,Encryption.encryptString(password));
+	      preparedStatement.setString(1,password);
 	      preparedStatement.setBoolean(2,true);
 
 	      preparedStatement.executeUpdate();
@@ -77,7 +75,6 @@ public class SystemDatabase
 	public void updatePassword(String password)
 	{
 		Connection dbConnection = null;
-		
 		try 
 	    {
 			Class.forName("org.sqlite.JDBC");
@@ -109,9 +106,7 @@ public class SystemDatabase
 	{
 		Connection c = null;
 	    Statement stmt = null;
-	    String checker = "";
-	    byte[] bytesFromdb = {};
-	    String returnPass = "";
+	    String name = "";
 	    
 	    try 
 	    {
@@ -121,32 +116,19 @@ public class SystemDatabase
 
 	      stmt = c.createStatement();
 	      ResultSet rs = stmt.executeQuery( "SELECT PASSWORD FROM SYSTEM_SETTINGS WHERE ID = 1" );
-	      
-	      checker = rs.getString("PASSWORD");
-	      bytesFromdb = rs.getBytes("PASSWORD");
-	  
-	      if (!checker.equals(""))
+	      while ( rs.next() ) 
 	      {
-	    	  returnPass = Encryption.decryptString(bytesFromdb);
+	         name = rs.getString("PASSWORD");
 	      }
-	      
-	      else
-	      {
-	    	  returnPass = "";
-	      }
-	      
 	      rs.close();
 	      stmt.close();
 	      c.close();
-	    } 
-	    
-	    catch ( Exception e ) 
-	    {
-	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    	System.exit(0);
+	    } catch ( Exception e ) {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
 	    }
 	    
-	    return returnPass;
+	    return name;
 	}
 	
 	
@@ -196,27 +178,25 @@ public class SystemDatabase
 	    
 	    try 
 	    {
-	    	Class.forName("org.sqlite.JDBC");
-	    	c = DriverManager.getConnection(dbLocation);
-	    	c.setAutoCommit(false);
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation);
+	      c.setAutoCommit(false);
 	  
-	    	stmt = c.createStatement();
-	    	ResultSet rs = stmt.executeQuery("SELECT PASS_EXIST FROM SYSTEM_SETTINGS WHERE ID = 1");
-	     
-	    	while (rs.next()) 
-	    	{
-	    		rVal = rs.getBoolean("PASS_EXIST");
-	    	}
+	      stmt = c.createStatement();
+	      ResultSet rs = stmt.executeQuery("SELECT PASS_EXIST FROM SYSTEM_SETTINGS WHERE ID = 1");
+	      while (rs.next()) 
+	      {
+	    	  rVal = rs.getBoolean("PASS_EXIST");
+	      }
 	      
-	    	rs.close();
-	    	stmt.close();
-	    	c.close();
+	      rs.close();
+	      stmt.close();
+	      c.close();
 	    } 
-	    
 	    catch ( Exception e ) 
 	    {
-	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    	System.exit(0);
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
 	    }
 	    
 	    return rVal;
@@ -225,7 +205,6 @@ public class SystemDatabase
 	public void updatePassExist(boolean tf)
 	{
 		Connection dbConnection = null;
-		
 		try 
 	    {
 			Class.forName("org.sqlite.JDBC");
@@ -252,4 +231,6 @@ public class SystemDatabase
 	      System.exit(0);
 	    }
 	}
+	
+
 }

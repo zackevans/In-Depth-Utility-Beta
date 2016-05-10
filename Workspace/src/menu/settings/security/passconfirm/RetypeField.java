@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JPasswordField;
 
@@ -24,6 +23,7 @@ public class RetypeField extends JPasswordField
         this.bufferPanel = bufferPanel;
     }
 	
+	@Override
 	protected void paintComponent(Graphics g) 
     {
          g.setColor(getBackground());
@@ -31,7 +31,8 @@ public class RetypeField extends JPasswordField
          super.paintComponent(g);
     }
 
-    protected void paintBorder(Graphics g) 
+    @Override
+	protected void paintBorder(Graphics g) 
     {
          g.setColor(getForeground());
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 6, 6);
@@ -41,10 +42,13 @@ public class RetypeField extends JPasswordField
    {
 	   addKeyListener(new KeyAdapter() 
 		{
+			@Override
 			public void keyReleased(KeyEvent e) {}
-		    public void keyTyped(KeyEvent e) {}
+		    @Override
+			public void keyTyped(KeyEvent e) {}
 
-		    public void keyPressed(KeyEvent e) 
+		    @Override
+			public void keyPressed(KeyEvent e) 
 		    {
 		    	if (e.getKeyCode() == KeyEvent.VK_ENTER)
 		    	{

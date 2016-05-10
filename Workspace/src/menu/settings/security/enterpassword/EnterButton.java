@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import menu.buffer.BufferPanel;
 import sql.systemsettings.SystemDatabase;
 
-
 /**
  * @author ZackEvans
  * Class: EnterButton

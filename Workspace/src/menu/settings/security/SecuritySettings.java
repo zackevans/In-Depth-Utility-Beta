@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -76,6 +75,7 @@ public class SecuritySettings extends JPanel
 	 * Check to see what buttons should be shown
 	 */
 	
+	@Override
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g); // paint components on panel
@@ -217,14 +217,14 @@ public class SecuritySettings extends JPanel
 	
 	public static void  createMainTittleLable() {
 		mainTittleLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,30)); // set size and location of label
-	    int x = (int) (Window_Height) / 2; // calculate x cordanate
+	    int x = (Window_Height) / 2; // calculate x cordanate
 	    mainTittleLbl.setBounds(0, 20, Window_Width,40); // set size and location of object
 	    mainTittleLbl.setHorizontalAlignment(SwingConstants.CENTER); // set text in the center of the object
 	}
 	
 	public static void  createBottomLabel() {
 		companyNameLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12)); // set font and size
-	    int y = (int) (Window_Width)/2+90; // find y cordanate 
+	    int y = (Window_Width)/2+90; // find y cordanate 
 	    companyNameLbl.setBounds(480, y,225,40); // set size and location of label
 	}
 	
