@@ -12,17 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
-import org.quartz.CronScheduleBuilder;
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
-import org.quartz.impl.StdSchedulerFactory;
-
-import launch.jobs.CheckAndSendEmailJob;
-import launch.jobs.UpdateTimeJob;
 import menu.buffer.BufferPanel;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;
@@ -33,8 +22,8 @@ import sql.systemsettings.SystemDatabase;
 import statusbar.topbar.TopBar;
 
 /**
- * @author ZackEvans
  * Class: Launch App
+ * @author ZackEvans
  *  
  * class that contains the main method.
  * main jframe and GUI is set up.
@@ -49,19 +38,21 @@ public class LaunchApp
 	public static JFrame frame = new JFrame(); // Created JFrame VAR. MUST be static for popups to position correctly
 	private static Image wallpaperImage = null;
     private static JLayeredPane layerPane = new JLayeredPane(); // Created JLayerPane to layer statusbar/wallpaper/bufferpanel.
-    private static Wallpaper wallpaper;  // Created a Wallpaper Class Object.
     static BufferPanel bufferPanel = new BufferPanel(); // Created a BufferPanel Class Object.
-    public static TopBar topBar; // Created a TopBar Class Object.
     
     /**
-     * Main initial method
+     * Function: main(String[] args) 
+     * @author ZackEvans
      * 
+     * Main initial method
      * Creates thread to run GUI components
      * Calls Main Database methods 
-     * 
      */
+    
     public static void main(String[] args) 
     {	
+    	dataBaseCalls(); // Method call to Initialize the Database.
+    	
     	SwingUtilities.invokeLater(new Runnable() // Created Runnable thread to run GUI.
 		{
 			@Override
@@ -70,12 +61,11 @@ public class LaunchApp
 				createAndShowGUI(); // Method Call to create program.
 			}
 		});
-    	
-    	dataBaseCalls(); // Method call to Initialize the Database.
     }
     
     /**
-     * Create and show GUI method 
+     * Function: Create and show GUI()
+     * @author ZackEvans
      * 
      * sets size restraints
      * TODO Create a Wrapper so the main panel will be able to auto resize (See IDU Beta 1 Resize) 
@@ -83,6 +73,10 @@ public class LaunchApp
     
     private static void createAndShowGUI()
     {
+    	// create variables to be initialized and used later
+    	Wallpaper wallpaper;
+    	TopBar topBar;
+    	
     	//sets size restraints
     	frame.setSize(Window_Width, Window_Height); 
     	frame.setMinimumSize(new Dimension(Window_Width,Window_Height));
@@ -127,11 +121,14 @@ public class LaunchApp
         frame.pack();
         frame.setVisible(true);
         
-        createCheckAndSendEmailJob();
-        createUpdateTimeJob();
+        //createCheckAndSendEmailJob();
+        //createUpdateTimeJob();
     }
     
     /**
+     * Function: dataBaseCalls()
+     * @author ZackEvans
+     * 
      * Method that creates dbLocation and the Database
      * 
      * Declare database objects
@@ -144,7 +141,7 @@ public class LaunchApp
     
     private static void dataBaseCalls() 
     {
-    	// Create objects
+    	// Create  db objects
     	final DataBase dataBase = new DataBase();
     	final SystemDatabase systemdb = new SystemDatabase();
     	final NotesDataBase notesdb = new NotesDataBase();
@@ -169,39 +166,38 @@ public class LaunchApp
     
     
     /**
-     * @author ZackEvans
      * Function: createCheckAndSendEmailJob()
+     * @author ZackEvans
      * 
      * Function runs every 30 min to check if emails can be sent.
-     * 
      */
     
-    public static void createCheckAndSendEmailJob()
-    {
-    	JobDetail job = JobBuilder.newJob(CheckAndSendEmailJob.class)
-    			.withIdentity("CheckAndSendEmailJob", "emailJobs").build();
-    	
-    	Trigger trigger = TriggerBuilder
-    			.newTrigger()
-    			.withIdentity("CheckAndSendEmail", "emailTriggers")
-    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/30 * 1/1 * ? *")) 
-    			.build();
-    
-    	Scheduler scheduler;
-    	
-		try 
-		{
-			scheduler = new StdSchedulerFactory().getScheduler();
-			scheduler.start();
-	    	scheduler.scheduleJob(job, trigger);
-		} 
-		
-		catch (SchedulerException e) 
-		{
-			System.out.println("createCheckAndSendEmailJob() - Unable to Create Email Job");
-			e.printStackTrace();
-		}
-    }
+//    public static void createCheckAndSendEmailJob()
+//    {
+//    	JobDetail job = JobBuilder.newJob(CheckAndSendEmailJob.class)
+//    			.withIdentity("CheckAndSendEmailJob", "emailJobs").build();
+//    	
+//    	Trigger trigger = TriggerBuilder
+//    			.newTrigger()
+//    			.withIdentity("CheckAndSendEmail", "emailTriggers")
+//    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/30 * 1/1 * ? *")) 
+//    			.build();
+//    
+//    	Scheduler scheduler;
+//    	
+//		try 
+//		{
+//			scheduler = new StdSchedulerFactory().getScheduler();
+//			scheduler.start();
+//	    	scheduler.scheduleJob(job, trigger);
+//		} 
+//		
+//		catch (SchedulerException e) 
+//		{
+//			System.out.println("createCheckAndSendEmailJob() - Unable to Create Email Job");
+//			e.printStackTrace();
+//		}
+//    }
     
     /**
      * @author ZackEvans
@@ -210,36 +206,39 @@ public class LaunchApp
      * every min run a job that updates the time
      */
     
-    public static void createUpdateTimeJob()
-    {
-    	JobDetail job = JobBuilder.newJob(UpdateTimeJob.class)
-    			.withIdentity("UpdateTimeJob", "updateJobs").build();
-    	
-    	Trigger trigger = TriggerBuilder
-    			.newTrigger()
-    			.withIdentity("UpdateTimeJob", "updateJobs")
-    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 * 1/1 * ? *")) 
-    			.build();
-    
-    	Scheduler scheduler;
-    	
-		try 
-		{
-			scheduler = new StdSchedulerFactory().getScheduler();
-			scheduler.start();
-	    	scheduler.scheduleJob(job, trigger);
-		} 
-		
-		catch (SchedulerException e) 
-		{
-			System.err.println("createUpdateTimeJob() - Unable to Create Email Job");
-			e.printStackTrace();
-		}
-    }
+//    public static void createUpdateTimeJob()
+//    {
+//    	JobDetail job = JobBuilder.newJob(UpdateTimeJob.class)
+//    			.withIdentity("UpdateTimeJob", "updateJobs").build();
+//    	
+//    	Trigger trigger = TriggerBuilder
+//    			.newTrigger()
+//    			.withIdentity("UpdateTimeJob", "updateJobs")
+//    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 * 1/1 * ? *")) 
+//    			.build();
+//    
+//    	Scheduler scheduler;
+//    	
+//		try 
+//		{
+//			scheduler = new StdSchedulerFactory().getScheduler();
+//			scheduler.start();
+//	    	scheduler.scheduleJob(job, trigger);
+//		} 
+//		
+//		catch (SchedulerException e) 
+//		{
+//			System.err.println("createUpdateTimeJob() - Unable to Create Email Job");
+//			e.printStackTrace();
+//		}
+//    }
      
     /**
-     * Function: frameXPosition
+     * Function: frameXPosition()
+     * @author ZackEvans
      * @return frame x coordinate
+     * 
+     * Function returns the X cordinate of the MainJFrame.
      */
     
     public int frameXPosition()
@@ -248,8 +247,11 @@ public class LaunchApp
     }
     
     /**
-     * Function: frameYPosition
+     * Function: frameYPosition()
+     * @author ZackEvans
      * @return frame y coordinate
+     * 
+     * Function returns the Y cordinate of the MainJFrame.
      */
     
     public int frameYPosition()
@@ -257,22 +259,37 @@ public class LaunchApp
     	return frame.getY(); // get Y cord from frame
     }
     
+    /**
+     * Function: getFrame()
+     * @author ZackEvans
+     * @return frame
+     * 
+     * Function returns the main frame JFrame object
+     */
+    
     public JFrame getFrame()
     {
-    	return frame;
+    	return frame; // return main frame object.
     }
+    
+    /**
+     * Function: createWallpaperImage(URL url)
+     * @author ZackEvans
+     * @param url
+     * 
+     * Function creates wallpaper image from a URL
+     */
     
     public static void createWallpaperImage(URL url)
     {
     	try 
     	{
-    		wallpaperImage = ImageIO.read(url);
+    		wallpaperImage = ImageIO.read(url); // try to set the Image (wallpaperImage) to the URL(url)
  		} 
     	catch (IOException e) 
     	{
-    		// TODO Auto-generated catch block
+    		// if process fails then print failures
  			e.printStackTrace();
- 			System.err.println("WallPaper Failed to Load");
  		} 
     }
 }
