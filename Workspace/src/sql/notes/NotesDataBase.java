@@ -10,22 +10,37 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * Class: NotesDataBase
+ * @author ZackEvans
+ * 
+ * Class contains all methods related to the notes tabel in the database 
+ */
+
 public class NotesDataBase
 {
-    final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db";
+    final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; // file path to db
+    
+    /**
+     * Function: createNotesTable()
+     * @author ZackEvans
+     * 
+     * create the notes tabel in the database if it doesent already
+     */
     
     public void createNotesTable()
     {
-        Connection c = null;
-        Statement stmt = null;
+        Connection c = null; // create var for the connection to the database
+        Statement stmt = null; // create a var for statement
+        
         try
         {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            System.out.println("Opened database successfully");
+            c = DriverManager.getConnection(dbLocation); // connect to database
             
-            stmt = c.createStatement();
-            String sql = "CREATE TABLE if not exists USER_NOTES" +
+            stmt = c.createStatement(); //create statement for db 
+            
+            String sql = "CREATE TABLE if not exists USER_NOTES" + // create table sql code
             "(ID INTEGER PRIMARY KEY   AUTOINCREMENT," +
             " NAME           varchar       NOT NULL, " +
             " BODY           varchar               , " +
@@ -33,56 +48,61 @@ public class NotesDataBase
             " TIME           varchar       NOT NULL, " +
             " LIST_POSITION  integer                )";
             
-            stmt.executeUpdate(sql);
-            stmt.close();
-            c.close();
+            stmt.executeUpdate(sql); // push statement to db
+            stmt.close(); // close current statment
+            c.close(); // close connection with database
         }
-        catch ( Exception e )
+        catch (Exception e) // if connection and creating db fails
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        
-        System.out.println("Notes Table created successfully");
     }
+    
+    /**
+     * Function: createNotesTable()
+     * @author ZackEvans
+     * @param noteName
+     * 
+     * Function creates a new personal note in the database that is blank.
+     * Function uses prepared statments so inserted string doesent bug with '"() characters.
+     * Function sets note at the top of the list
+     */
     
     public void createPersonalNote(String noteName)
     {
-        Connection c = null;
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-        Calendar date = Calendar.getInstance();
+        Connection c = null; // create var for the connection to the database
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // create date format for months, days and years
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss"); // creates a date forment for Hours, min, seconds
+        Calendar date = Calendar.getInstance(); // create a calender var to be later used to calculate date
         
         try
         {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
+            c = DriverManager.getConnection(dbLocation); // create connection to db
+            c.setAutoCommit(false); // turn off autocommit
             
-            String sql = "INSERT INTO USER_NOTES (NAME,BODY,DATE,TIME,LIST_POSITION) " +
-            "VALUES (?,?,?,?,?);";
+            String sql = "INSERT INTO USER_NOTES (NAME,BODY,DATE,TIME,LIST_POSITION) " + // create sql code string
+                         "VALUES (?,?,?,?,?);";
             
-            PreparedStatement preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setString(1,noteName);
-            preparedStatement.setString(2,"");
-            preparedStatement.setString(3,dateFormat.format(date.getTime()));
-            preparedStatement.setString(4,timeFormat.format(date.getTime()));
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create a prepared statement object 
+            preparedStatement.setString(1,noteName); // set note name
+            preparedStatement.setString(2,""); // set body of note blank
+            preparedStatement.setString(3,dateFormat.format(date.getTime())); // set months, days and years
+            preparedStatement.setString(4,timeFormat.format(date.getTime())); // set Hours, min, seconds
             preparedStatement.setInt(5,1); // set new note to first postion in the list (puts item on top)
             
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            c.commit();
-            c.close();
+            preparedStatement.executeUpdate(); // push request to the db
+            preparedStatement.close(); // close open prepared statement
+            c.commit(); // close commit
+            c.close(); // close connection with the db
         }
         
-        catch ( Exception e )
+        catch ( Exception e ) // if adding new note to db fails
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
             System.exit(0);
         }
-        
-        System.out.println("Note Created Successfully");
     }
     
     public void deleteNote(int idNum)
