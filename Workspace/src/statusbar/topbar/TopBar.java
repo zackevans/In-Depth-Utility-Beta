@@ -1,13 +1,19 @@
 package statusbar.topbar;
 
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
+
+/**
+ * Class: TopBar
+ * @author ZackEvans
+ *
+ * This class is the statusbar that runs along the top of the program
+ */
 
 public class TopBar extends JPanel
 {
@@ -17,22 +23,44 @@ public class TopBar extends JPanel
 	private TimeAndDate timeAndDate;
 	BufferPanel bufferPanel;
 	
+	/**
+	 * Constructor: TopBar (BufferPanel bufferPanel)
+	 * @author ZackEvans
+	 * @param bufferPanel
+	 * 
+	 * Constructor call hierarchy, inherits the bufferPanel object and sets the topbar clear
+	 */
+	
 	public TopBar (BufferPanel bufferPanel)
 	{
-		super();
-		this.bufferPanel = bufferPanel;
+		super(); // call hierarchy 
+		this.bufferPanel = bufferPanel; // inherit bufferPanel
 		setOpaque(false); // set true to show gray
-		setBackground(Color.LIGHT_GRAY);
+		//setBackground(Color.LIGHT_GRAY);
 	}
+	
+	/**
+	 * Function: paintComponent(Graphics g)*
+	 * @author ZackEvans
+	 * 
+	 * Function paints lines to create the top bar
+	 */
 	
 	@Override
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
 		
-		g.drawLine(0, 20, 700,20);
-		g.drawLine(655, -12, 655, 20);
+		g.drawLine(0, 20, 700,20); // draw line across window
+		g.drawLine(655, -12, 655, 20); // draw separator between status bar and notifications button
 	}
+	
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * Function calls functions to create the topbar
+	 */
 	
 	public void initialize()
 	{
@@ -40,24 +68,33 @@ public class TopBar extends JPanel
 		layoutComponents();
 	}
 	
+	/**
+	 * Function: createComponents()
+	 * @author ZackEvans
+	 * 
+	 * Function creates and sets location of items to be added to the status bar
+	 */
+	
 	public void createComponents()
-	{
+	{	
+		notificationsBtn = new NotificationsButton(bufferPanel); // create notofications object
+		timeAndDate = new TimeAndDate(); // create time and date object
 		
-		notificationsBtn = new NotificationsButton(bufferPanel);
-		timeAndDate = new TimeAndDate();
-		
-		timeAndDate.timeLabel.setBounds(595, 0, 60, 20);
+		// set location and size of the time label
+		timeAndDate.timeLabel.setBounds(595, 0, 60, 20); 
 		timeAndDate.showTime();
 		
+		// create and set the size/location of the notifications button
 		notificationsBtn.initialize();
 		notificationsBtn.setBounds(655, 0, 50, 21);
 	}
 	
 	public void layoutComponents()
 	{
-		setLayout(null);
-		setPreferredSize(new Dimension(Window_Width,Window_Height-20));
+		setLayout(null); // dont set a layout manager
+		setPreferredSize(new Dimension(Window_Width,Window_Height-20)); // set size of the panel
 		
+		// add items to the top bar
 		add(notificationsBtn);
 		add(timeAndDate.timeLabel);
 	}

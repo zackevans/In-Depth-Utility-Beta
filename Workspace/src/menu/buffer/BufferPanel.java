@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.swing.JPanel;
 
 import menu.main.MainMenu;
-import sql.systemsettings.SystemDatabase;
+import sql.systemsettings.SystemSettingsDatabase;
 
 /**
  * Class: BufferPanel
@@ -92,11 +92,11 @@ public class BufferPanel extends JPanel
 	public void setDefaults()
 	{
 		// Creates SystemDataBase to access startup functions
-		SystemDatabase systemDB = new SystemDatabase();
+		SystemSettingsDatabase systemDB = new SystemSettingsDatabase();
 		
 		if (systemDB.getPassExist() == true) // Check database is a password exists
 		{
-			showPanel("LOGIN_PANEL"); // show the login panel
+			//showPanel("LOGIN_PANEL"); // show the login panel
 		}
 		
 		else
@@ -109,6 +109,7 @@ public class BufferPanel extends JPanel
 	 * Function: showPanel
 	 * @author ZackEvans
 	 * @param panelName
+	 * @see new panel
 	 * 
 	 * Hide all panels in the hashmap using for loop
 	 * Create holding panel and set to new panel (Passed pram)

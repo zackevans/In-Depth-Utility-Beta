@@ -52,7 +52,6 @@ public class DataBase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    	System.exit(0);
 	    }
 	}
 	
@@ -78,7 +77,6 @@ public class DataBase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    	System.exit(0);
 	    }
 		
 		System.out.println("database connected: " + connection);
