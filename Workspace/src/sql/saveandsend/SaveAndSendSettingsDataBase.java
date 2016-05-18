@@ -6,55 +6,71 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+
+/**
+ * Class: SaveAndSendSettingsDataBase
+ * @author ZackEvans
+ *
+ * Class contains all functions that act on the SaveAndSendSettingsDataBase 
+ */
+
 public class SaveAndSendSettingsDataBase 
 {
+	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; // database location
 	
-	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db";
+	/**
+	 * Function: createSaveAndSendSettingsTable()
+	 * @author ZackEvans
+	 * 
+	 * Creates the SaveAndSendSettingsTable if it doesent already
+	 */
 	
 	public void createSaveAndSendSettingsTable()
 	{
 		Connection c = null;
         Statement stmt = null;
+        
         try
         {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            System.out.println("Opened database successfully");
+            c = DriverManager.getConnection(dbLocation); // create connection
             
             stmt = c.createStatement();
             
-            String sql = "CREATE TABLE if not exists SAVE_AND_SEND_SETTINGS" +
+            String sql = "CREATE TABLE if not exists SAVE_AND_SEND_SETTINGS" + // sql code to create new table in db
                     "(ID INTEGER PRIMARY KEY   AUTOINCREMENT," +
                     " NEVERSHOW      boolean       NOT NULL )";
        
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate(sql); // execute statement
+            
+            // close connections
             stmt.close();
             c.close();
         }
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
         }
         
         System.out.println("Save And Send Settings Table created successfully");
         
-        if(checkIfRowExists() == false)
+        if(checkIfRowExists() == false) // if the setting row doesent exist create it
         {
         	try
             {
                 Class.forName("org.sqlite.JDBC");
-                c = DriverManager.getConnection(dbLocation);
+                c = DriverManager.getConnection(dbLocation); // create connection
                 c.setAutoCommit(false);
-                System.out.println("Opened database successfully");
                 
-                String sql = "INSERT INTO SAVE_AND_SEND_SETTINGS (NEVERSHOW) " +
+                String sql = "INSERT INTO SAVE_AND_SEND_SETTINGS (NEVERSHOW) " + // sql code to create new settings row
                 "VALUES (?);";
                 
-                PreparedStatement preparedStatement = c.prepareStatement(sql);
+                PreparedStatement preparedStatement = c.prepareStatement(sql); // create a prepared statement for the sql code
                 preparedStatement.setBoolean(1,false);
                 
-                preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate(); // push statement to db
+                
+                // close connections
                 preparedStatement.close();
                 c.commit();
                 c.close();
@@ -62,103 +78,126 @@ public class SaveAndSendSettingsDataBase
             
             catch ( Exception e )
             {
-                System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-                System.exit(0);
+                System.err.println( e.getClass().getName() + ": " + e.getMessage());
             }
-            
-            System.out.println("Row Created Successfully");
         }
 	}
 	
+	/**
+	 * Function: checkIfRowExists()
+	 * @author ZackEvans
+	 * @return if a single row exists in the 
+	 * 
+	 * Function return a boolean value depending on if a initial row exists
+	 */
+	
 	public boolean checkIfRowExists()
 	{
-		Connection c = null;
-	    Statement stmt = null;
-	    boolean rVal = false;
+		Connection c = null; // create connection
+	    Statement stmt = null; // create statement var
+	    boolean rVal = false; // create return value
 	    
 	    try 
 	    {
-	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection(dbLocation);
-	      c.setAutoCommit(false);
+	    	Class.forName("org.sqlite.JDBC");
+	    	c = DriverManager.getConnection(dbLocation); // get connection from db
+	    	c.setAutoCommit(false);
 	  
-	      stmt = c.createStatement();
-	      ResultSet rs = stmt.executeQuery("SELECT * FROM SAVE_AND_SEND_SETTINGS WHERE ID = 1");
-	      while (rs.next()) 
-	      {
-	    	  int i = rs.getInt("ID");
+	    	stmt = c.createStatement();
+	    	ResultSet rs = stmt.executeQuery("SELECT * FROM SAVE_AND_SEND_SETTINGS WHERE ID = 1"); // select all data in first row of db
+	    	
+	    	while (rs.next()) // run through all col in db
+	    	{
+	    		int i = rs.getInt("ID"); // get the ID in the first row of table
 	   
-	    	  if (i == 1)
-	    	  {
-	    		  rVal = true;
-	    	  }
-	      }
+	    		if (i == 1) // if there is a item
+	    		{
+	    			rVal = true; // return true
+	    		}
+	    	}
 	      
-	      rs.close();
-	      stmt.close();
-	      c.close();
+	    	// close connections
+	    	rs.close();
+	    	stmt.close();
+	    	c.close();
 	    } 
 	    
 	    catch ( Exception e ) 
 	    {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
+	    	System.err.println( e.getClass().getName() + ": " + e.getMessage());
 	    }
 	    
 	    return rVal;
 	}
 	
+	/**
+	 * Function: updateNeverShow(boolean tf)
+	 * @author ZackEvans
+	 * @param tf
+	 * 
+	 * Updates the Nevershow Item in col 1
+	 */
+	
 	public void updateNeverShow(boolean tf)
 	{
-		Connection dbConnection = null;
+		Connection dbConnection = null; // create var to hold connection from db
+		
 		try 
 	    {
 			Class.forName("org.sqlite.JDBC");
-		    dbConnection = DriverManager.getConnection(dbLocation);
+		    dbConnection = DriverManager.getConnection(dbLocation); // create connection
 		    dbConnection.setAutoCommit(false);
 		    
-			String updateTableSQL = "UPDATE SAVE_AND_SEND_SETTINGS SET NEVERSHOW = ? WHERE ID = ?";
-			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			String updateTableSQL = "UPDATE SAVE_AND_SEND_SETTINGS SET NEVERSHOW = ? WHERE ID = ?"; // sql code to update the NEVERSHOW col in the first Row
 			
-			preparedStatement.setBoolean(1, tf);
-			preparedStatement.setInt(2, 1);
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL); // create prepared statement 
+			preparedStatement.setBoolean(1, tf); // set first ? = to tf
+			preparedStatement.setInt(2, 1); // set second ? = to 1
 			
-			dbConnection.commit();
-			preparedStatement.executeUpdate();
+			preparedStatement.executeUpdate(); // execute query
+			dbConnection.setAutoCommit(true); // commit
+			
+			// close connections
 			preparedStatement.close();
-			dbConnection.setAutoCommit(true);
 			dbConnection.close();
 	    } 
 	    catch ( Exception e ) 
 	    {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage());
 	    }
-		
-		System.out.println("Updated nevershow value successfully");
 	}
+	
+	/**
+	 * Function: getNeverShow()
+	 * @author ZackEvans
+	 * 
+	 * Get NEVERSHOW setting from the database.
+	 */
 	
 	public boolean getNeverShow()
 	{
-		Connection c = null;
-        Statement stmt = null;
-        boolean rVal = false;
+		
+		Connection c = null; // create connection
+        Statement stmt = null; // statement
+        boolean rVal = false; // return value
         
         try
         {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
+            c = DriverManager.getConnection(dbLocation); // connect to db
             c.setAutoCommit(false);
             
-            String sql = "SELECT NEVERSHOW FROM SAVE_AND_SEND_SETTINGS WHERE ID = ?;";
-            PreparedStatement preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setInt(1,1);
+            String sql = "SELECT NEVERSHOW FROM SAVE_AND_SEND_SETTINGS WHERE ID = ?;"; // sql code that get the NEVERHOW value from the first row
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement
+            preparedStatement.setInt(1,1); // set first ? to 1
             
            stmt = c.createStatement();
-           ResultSet rs = preparedStatement.executeQuery();
+           ResultSet rs = preparedStatement.executeQuery(); // execute query
             
-            rVal = rs.getBoolean("NEVERSHOW");
+            rVal = rs.getBoolean("NEVERSHOW"); // set return value to value in NEVERSHOW col and 1st row
             
+            // close all connections
             rs.close();
             stmt.close();
             c.close();
@@ -167,9 +206,8 @@ public class SaveAndSendSettingsDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
         }
         
-        return rVal;
+        return rVal; // return it
 	}
 }
