@@ -1,5 +1,4 @@
-package statusbar.topbar;
-
+package statusbar;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,6 +6,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
+import statusbar.addons.NotificationsButton;
+import statusbar.addons.TimeAndDate;
 
 /**
  * Class: TopBar
@@ -15,7 +16,7 @@ import menu.buffer.BufferPanel;
  * This class is the statusbar that runs along the top of the program
  */
 
-public class TopBar extends JPanel
+public class StatusBar extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
@@ -31,7 +32,7 @@ public class TopBar extends JPanel
 	 * Constructor call hierarchy, inherits the bufferPanel object and sets the topbar clear
 	 */
 	
-	public TopBar (BufferPanel bufferPanel)
+	public StatusBar (BufferPanel bufferPanel)
 	{
 		super(); // call hierarchy 
 		this.bufferPanel = bufferPanel; // inherit bufferPanel

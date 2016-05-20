@@ -19,7 +19,7 @@ import sql.notes.NotesDataBase;
 import sql.saveandsend.SaveAndSendDataBase;
 import sql.saveandsend.SaveAndSendSettingsDataBase;
 import sql.systemsettings.SystemSettingsDatabase;
-import statusbar.topbar.TopBar;
+import statusbar.StatusBar;
 
 /**
  * Class: Launch App
@@ -75,7 +75,7 @@ public class LaunchApp
     {
     	// create variables to be initialized and used later
     	Wallpaper wallpaper;
-    	TopBar topBar;
+    	StatusBar statusBar;
     	
     	//sets size restraints
     	frame.setSize(Window_Width, Window_Height); 
@@ -103,16 +103,16 @@ public class LaunchApp
         // Initialize top bar object.
         // Set location and size of top bar object.
         // Call Method to create top bar.
-        topBar = new TopBar(bufferPanel); 
-        topBar.setBounds(0, 0, 700, 21);
-        topBar.initialize();
+        statusBar = new StatusBar(bufferPanel); 
+        statusBar.setBounds(0, 0, 700, 21);
+        statusBar.initialize();
         
         // Add objects to layer panel.
-        	// wallpaper on bottom and not opaque.
-        	// bufferpanel and top bar are all opaque. 
+        // wallpaper on bottom and not opaque.
+        // bufferpanel and top bar are all opaque. 
         layerPane.add(wallpaper, new Integer(0), 0);
         layerPane.add(bufferPanel, new Integer(1), 0);
-        layerPane.add(topBar, new Integer(2), 0);
+        layerPane.add(statusBar, new Integer(2), 0);
         
         // Add the layerPane to the Content pane of the frame
         // Pack Frame to compress the panel
