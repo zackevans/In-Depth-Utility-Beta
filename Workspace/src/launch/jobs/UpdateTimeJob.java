@@ -4,7 +4,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import statusbar.topbar.TimeAndDate;
+import statusbar.addons.TimeAndDate;
 
 public class UpdateTimeJob implements Job
 {
