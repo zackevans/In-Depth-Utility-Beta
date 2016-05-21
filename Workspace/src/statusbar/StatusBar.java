@@ -82,8 +82,10 @@ public class StatusBar extends JPanel
 		timeAndDate = new TimeAndDate(); // create time and date object
 		
 		// set location and size of the time label
-		timeAndDate.timeLabel.setBounds(595, 0, 60, 20); 
+		timeAndDate.createLabel();
+		timeAndDate.timeLabel.setBounds(580, 0, 70, 20); 
 		timeAndDate.showTime();
+		//timeAndDate.timeLabel.setBorder(BorderFactory.createLineBorder(Color.red));
 		
 		// create and set the size/location of the notifications button
 		notificationsBtn.initialize();
