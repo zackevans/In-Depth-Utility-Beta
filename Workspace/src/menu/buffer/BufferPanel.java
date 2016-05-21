@@ -12,7 +12,6 @@ import sql.systemsettings.SystemSettingsDatabase;
  * Class: BufferPanel
  * @author ZackEvans
  * 
- *
  * Bufferpanel class used to show and change main content panels
  */
 

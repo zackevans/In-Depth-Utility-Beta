@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
+import jobs.handler.JobHandler;
 import menu.buffer.BufferPanel;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;
@@ -73,6 +74,8 @@ public class LaunchApp
     
     private static void createAndShowGUI()
     {
+    	JobHandler jobHandler = new JobHandler();
+    	
     	// create variables to be initialized and used later
     	Wallpaper wallpaper;
     	StatusBar statusBar;
@@ -121,8 +124,7 @@ public class LaunchApp
         frame.pack();
         frame.setVisible(true);
         
-        //createCheckAndSendEmailJob();
-        //createUpdateTimeJob();
+       jobHandler.createJobs();
     }
     
     /**
@@ -167,75 +169,6 @@ public class LaunchApp
 		
 		 //System.out.println("Password: " + systemSettingsdb.getPassExist());
     }
-    
-    
-    /**
-     * Function: createCheckAndSendEmailJob()
-     * @author ZackEvans
-     * 
-     * Function runs every 30 min to check if emails can be sent.
-     */
-    
-//    public static void createCheckAndSendEmailJob()
-//    {
-//    	JobDetail job = JobBuilder.newJob(CheckAndSendEmailJob.class)
-//    			.withIdentity("CheckAndSendEmailJob", "emailJobs").build();
-//    	
-//    	Trigger trigger = TriggerBuilder
-//    			.newTrigger()
-//    			.withIdentity("CheckAndSendEmail", "emailTriggers")
-//    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/30 * 1/1 * ? *")) 
-//    			.build();
-//    
-//    	Scheduler scheduler;
-//    	
-//		try 
-//		{
-//			scheduler = new StdSchedulerFactory().getScheduler();
-//			scheduler.start();
-//	    	scheduler.scheduleJob(job, trigger);
-//		} 
-//		
-//		catch (SchedulerException e) 
-//		{
-//			System.out.println("createCheckAndSendEmailJob() - Unable to Create Email Job");
-//			e.printStackTrace();
-//		}
-//    }
-    
-    /**
-     * @author ZackEvans
-     * Function: createUpdateTimeJob()
-     * 
-     * every min run a job that updates the time
-     */
-    
-//    public static void createUpdateTimeJob()
-//    {
-//    	JobDetail job = JobBuilder.newJob(UpdateTimeJob.class)
-//    			.withIdentity("UpdateTimeJob", "updateJobs").build();
-//    	
-//    	Trigger trigger = TriggerBuilder
-//    			.newTrigger()
-//    			.withIdentity("UpdateTimeJob", "updateJobs")
-//    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 * 1/1 * ? *")) 
-//    			.build();
-//    
-//    	Scheduler scheduler;
-//    	
-//		try 
-//		{
-//			scheduler = new StdSchedulerFactory().getScheduler();
-//			scheduler.start();
-//	    	scheduler.scheduleJob(job, trigger);
-//		} 
-//		
-//		catch (SchedulerException e) 
-//		{
-//			System.err.println("createUpdateTimeJob() - Unable to Create Email Job");
-//			e.printStackTrace();
-//		}
-//    }
      
     /**
      * Function: frameXPosition()

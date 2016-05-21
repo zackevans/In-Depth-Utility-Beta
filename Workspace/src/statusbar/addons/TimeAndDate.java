@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  * Class: TimeAndDate
@@ -16,6 +17,12 @@ import javax.swing.JLabel;
 public class TimeAndDate
 {	
 	public static JLabel timeLabel = new JLabel(); // JLabel that is set to the current time
+	
+	
+	public void createLabel()
+	{
+		timeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+	}
 	
 	/**
 	 * Function: showTime()

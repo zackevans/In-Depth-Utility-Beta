@@ -1,4 +1,4 @@
-package launch.jobs;
+package jobs.jobs;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -15,5 +15,5 @@ public class UpdateTimeJob implements Job
 		
 		timeAndDate.showTime();
 		timeAndDate.timeLabel.repaint();
-	}            
+	}   
 }
