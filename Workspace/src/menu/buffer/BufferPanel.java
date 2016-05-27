@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.swing.JPanel;
 
 import menu.main.MainMenu;
+import menu.notes.Notes;
 import sql.systemsettings.SystemSettingsDatabase;
 
 /**
@@ -21,6 +22,7 @@ public class BufferPanel extends JPanel
 	private Map <String, JPanel> mapPanels = new HashMap <String, JPanel>();
 	// Create VAR for all main panels 
 	private MainMenu mainMenu;
+	private Notes notes;
 	
 	/**
 	 * Function: initialize
@@ -52,6 +54,10 @@ public class BufferPanel extends JPanel
 		// Main Menu 
 		mainMenu = new MainMenu(this);
 		mapPanels.put("MAIN_MENU", mainMenu);
+		
+		// Notes
+		notes = new Notes(this);
+		mapPanels.put("NOTES", notes);
 	}
 	
 	/**
@@ -65,6 +71,9 @@ public class BufferPanel extends JPanel
 	{
 		// Main Menu 
 		add(mainMenu);
+		
+		// Notes
+		add(notes);
 	}
 	
 	/**
@@ -78,6 +87,9 @@ public class BufferPanel extends JPanel
 	{
 		// Main Menu
 		mainMenu.initialize();
+		
+		// Notes
+		notes.initialize();
 	}
 	
 	/**
@@ -123,6 +135,6 @@ public class BufferPanel extends JPanel
 		}
 		
 		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
-		panelToShow.setVisible(true); // set new panel visiable 
+		panelToShow.setVisible(true); // set new panel visible 
 	}
 }
