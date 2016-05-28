@@ -1,5 +1,7 @@
 package menu.notes.addnotedialog;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -22,6 +24,7 @@ public class AddNoteDialog
 	private EnterButton enterButton;
 	private CancelButton cancelButton;
 	private static JLabel enterLabel; 
+	public static JLabel warningLabel;
 	private static boolean clicked = false;
 	
 	/**
@@ -74,6 +77,7 @@ public class AddNoteDialog
 		customFrame.setSize(Window_Width, Window_Height); // set the size of the window
 		customFrame.setResizable(false); // make the window not be able to resize
 		customFrame.setLocation(x, y); // set frame in center of main frame 
+		customFrame.getContentPane().setBackground(new Color(192,200,204)); // set color of frame
 		
 		createComponents(); // call function to create components to be added to panel
 		initializeComponents();
@@ -118,12 +122,14 @@ public class AddNoteDialog
 		enterButton = new EnterButton();
 		cancelButton = new CancelButton();
 		enterLabel = new JLabel("Note Name: ");
+		warningLabel = new DialogWarningLabel();
 		
 		// set the location and size of the object
 		noteNameField.noteNameTextField.setBounds(75, 30, 243, 24);
 		enterButton.setBounds(223, 80, 100, 25);
 		cancelButton.setBounds(123,80,100,25);
 		enterLabel.setBounds(77,3,225,40);
+		warningLabel.setBounds(318,30,30,22);
 	}
 	
 	/**
@@ -157,6 +163,7 @@ public class AddNoteDialog
 		customFrame.getContentPane().add(enterButton);
 		customFrame.getContentPane().add(cancelButton);
 		customFrame.getContentPane().add(enterLabel);
+		customFrame.getContentPane().add(warningLabel);
 	}
 	
 	/**
@@ -170,6 +177,7 @@ public class AddNoteDialog
 	{
 		noteNameField.noteNameTextField.setText(""); // clear the name textfield
 		noteNameField.noteNameTextField.requestFocus(); // set focous on the window
+		warningLabel.setVisible(false);
 	}
 	
 	/**
@@ -203,13 +211,14 @@ public class AddNoteDialog
 		
 		if (!(noteName.length() <= 0 || noteName.contains("Note MUST Contain a Name"))) // if there is not a error with the entered note name
 		{
-			notesDataBase.addNewNoteToList(noteName);
-			customFrame.setVisible(false);
+			notesDataBase.addNewNoteToList(noteName); // create new note in database
+			customFrame.setVisible(false); // hide window
 		}
 		else // if the text is valid
 		{
 			// show warning message in textfield
 			showDialogWarningMessage();
+			warningLabel.setVisible(true); // hide window
 		}
 	}
 }
