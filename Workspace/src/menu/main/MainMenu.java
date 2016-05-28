@@ -72,7 +72,7 @@ public class MainMenu extends JPanel
 	{
 		createComponents();
 		layoutComponents();
-		//addListeners();
+		addListeners();
 	}
 	
 	/**
@@ -133,6 +133,7 @@ public class MainMenu extends JPanel
 	/**
 	 * Function: addListeners
 	 * @author ZackEvans
+	 * @see when buttons are clicked bufferPanel shows differnt tools
 	 * 
 	 * add a action listener to each button on panel
 	 */
@@ -155,18 +156,7 @@ public class MainMenu extends JPanel
 			{
 				System.out.println("notesBtn");
 				
-				// if notes is clicked on the first time then it loads data to set 
-				if(noteBtnClicked == false) 
-				{
-					//notes.loadData(); // load notes names from db and put in increasing order
-					bufferPanel.showPanel("NOTES"); // show the notes panel
-					noteBtnClicked = true; // set var to show panel has been clicked
-				}
-				
-				else 
-				{
-					bufferPanel.showPanel("NOTES"); // show notes panel
-				}
+				bufferPanel.showPanel("NOTES");
 			}
 		});
 		

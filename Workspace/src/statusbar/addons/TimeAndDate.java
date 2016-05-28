@@ -18,10 +18,15 @@ public class TimeAndDate
 {	
 	public static JLabel timeLabel = new JLabel(); // JLabel that is set to the current time
 	
+	/**
+	 * Function: createLabel()
+	 * 
+	 * Function sets up label settings
+	 */
 	
 	public void createLabel()
 	{
-		timeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		timeLabel.setHorizontalAlignment(SwingConstants.RIGHT); // set text to format to the right
 	}
 	
 	/**
