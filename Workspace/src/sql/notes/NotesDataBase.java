@@ -27,7 +27,7 @@ public class NotesDataBase
      * Function: createNotesTable()
      * @author ZackEvans
      * 
-     * create the notes tabel in the database if it doesent already
+     * create the notes table in the database if it doesen't already
      */
     
     public void createNotesTable()
@@ -60,12 +60,19 @@ public class NotesDataBase
         }
     }
     
+    /**
+     * Function: addNewNoteToList(String noteName)
+     * @author ZackEvans
+     * @param noteName
+     * 
+     * Function adds a new note to the top of the list and the database
+     */
+    
     public void addNewNoteToList(String noteName)
     {
-    	pushWholeListDownOne();
-    	createNote(noteName);
+    	pushWholeListDownOne(); // push down note to insert one at the top of the list
+    	createNote(noteName); // put a note in the first position
     }
-    
     
     /**
      * Function: pushWholeListDownOne()

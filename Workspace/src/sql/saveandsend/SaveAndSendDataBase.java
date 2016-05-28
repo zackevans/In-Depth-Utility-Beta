@@ -142,45 +142,6 @@ public class SaveAndSendDataBase
 	}
 	
 	/**
-	 * Function: countItems()
-	 * @author ZackEvans
-	 * @return number of items in db
-	 * 
-	 * This function counts the number of items in the db
-	 */
-	
-	public int countItems() 
-    {
-		// select connections
-        Connection c = null;
-        Statement stmt = null;
-        int returnValue = -1; // create value to be returned
-        
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation); // create connection
-            c.setAutoCommit(false);
-            
-            stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS total FROM SAVE_AND_SEND_EMAIL"); // tell db to count items in tabel
-            
-            returnValue = rs.getInt("total"); // set return value to value total
-            
-            // close connections
-            rs.close();
-            stmt.close();
-            c.close();
-        }
-        catch ( Exception e )
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-        }
-        
-        return returnValue; // return value
-    }
-	
-	/**
 	 * Function: getToAddress(int id) 
 	 * @author ZackEvans
 	 * @param id
