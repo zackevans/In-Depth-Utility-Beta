@@ -21,6 +21,7 @@ public class Notes extends JPanel
 	private static NotesList notesList;
 	private ReturnButton returnButton;
 	private AddNoteButton addNoteButton;
+	private SearchBar searchbar;
 	BufferPanel bufferPanel;
 	
 	/**
@@ -66,14 +67,17 @@ public class Notes extends JPanel
 	public void createComponents()
 	{
 		// creates objects for GUI elements needed
-		notesList = new NotesList(this);
+		notesList = new NotesList();
 		returnButton = new ReturnButton(bufferPanel);
 		addNoteButton = new AddNoteButton();
+		searchbar = new SearchBar();
 		
 		// sets location for GUI components 
 		NotesList.scrollPane.setBounds(0,50,250,445);
 		returnButton.setBounds(250,20,30,30);
 		addNoteButton.setBounds(280,20,30,30);
+		SearchBar.textField.setBounds(5, 25, 240, 22);
+		searchbar.searchLabel.setBounds(8, 25, 240, 22);
 	}
 	
 	/**
@@ -89,6 +93,7 @@ public class Notes extends JPanel
 		notesList.initialize();
 		returnButton.initialize();
 		addNoteButton.initialize();
+		searchbar.initialize();
 	}
 	
 	/**
@@ -98,16 +103,18 @@ public class Notes extends JPanel
 	 * set panel layout not nothing
 	 * set size of panel
 	 * add components to panel
-	 * 
 	 */
 	
 	public void layoutComponents()
 	{
-		setLayout(null);
-		setPreferredSize(new Dimension(Window_Width,Window_Height-20));
+		setLayout(null); // get rid of layout manager
+		setPreferredSize(new Dimension(Window_Width,Window_Height-20)); // set size of panel
 		
+		// add stuff to panel
+		add(searchbar.searchLabel);
 		add(notesList.scrollPane);
 		add(returnButton);
 		add(addNoteButton);
+		add(SearchBar.textField);
 	}
 }
