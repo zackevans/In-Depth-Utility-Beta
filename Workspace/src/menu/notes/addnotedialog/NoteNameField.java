@@ -3,9 +3,11 @@ package menu.notes.addnotedialog;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.Action;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.DefaultEditorKit;
 
 import program.textfield.TextFieldShell;
 
@@ -24,7 +26,6 @@ public class NoteNameField
 	 * Constructor: NoteNameField()
 	 * @author ZackEvans
 	 * 
-	 * 
 	 */
 	
 	public NoteNameField()
@@ -41,7 +42,13 @@ public class NoteNameField
 	
 	public void initialize()
 	{
+		setUpTextField();
 		addListeners();
+	}
+	
+	public void setUpTextField()
+	{
+		// get rid of the beep when the backspace is pressed
 	}
 	
 	/**
