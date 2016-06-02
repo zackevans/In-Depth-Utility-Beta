@@ -164,10 +164,6 @@ public class LaunchApp
 		//create the save and send email services tables
 		snsdb.createSaveAndSendTable();
 		saveAndSendSettingsdb.createSaveAndSendSettingsTable();
-		
-		systemSettingsdb.updatePassExist(false);
-		
-		 //System.out.println("Password: " + systemSettingsdb.getPassExist());
     }
      
     /**
