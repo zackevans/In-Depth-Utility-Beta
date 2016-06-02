@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+
+import sql.notes.NotesDataBase;
 
 /**
  * Class: NotesList 
@@ -19,8 +22,8 @@ import javax.swing.JScrollPane;
 public class NotesList 
 {
 	public static JScrollPane scrollPane = new JScrollPane();
-	public static JList list = new JList();
-	private Notes notes;
+	public static JList list = new JList ();
+	public ArrayList<Integer> notesCorrespondingID = new ArrayList<Integer>(); // index is the position of the note in the displayed list, value is the id of the note in the database
 	
 	/**
 	 * Constructor: NotesList (Notes notes) 
@@ -28,13 +31,11 @@ public class NotesList
 	 * @param notes
 	 * 
 	 * Call super Run panel hierarchy 
-	 * Inherit notes object
 	 */
 	
-	public NotesList (Notes notes)
+	public NotesList ()
 	{
 		super();
-		this.notes = notes;
 		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
@@ -47,7 +48,6 @@ public class NotesList
 	
 	public void initialize()
 	{
-		
 		createComponents();
 		loadDefultData();
 		layoutComponents();
@@ -81,6 +81,37 @@ public class NotesList
 	}
 	
 	/**
+	 * Function: loadData()
+	 * @author ZackEvans
+	 * 
+	 * Function loads data from lowest to highest LIST_POSITION
+	 */
+	
+	public void loadData() // loads standard data from db 
+	{
+		NotesDataBase notesDataBase = new NotesDataBase();
+		
+		list.setListData(notesDataBase.getListNamesData().toArray());
+		notesCorrespondingID = notesDataBase.getSortedListID(""); // update corresponding IDs. set param to "" because no notes are being searched for
+	}
+	
+	/**
+	 * Function: loadSearchData(String searchText)
+	 * @author ZackEvans
+	 * @param searchText
+	 * 
+	 * This function loads sorted list names from the database into the Jlist that displays all the notes
+	 */
+	
+	public void loadSearchData(String searchText)
+	{
+		NotesDataBase notesDataBase = new NotesDataBase(); // create obejct to access the notes database
+		
+		list.setListData(notesDataBase.getSortedListNamesData(searchText).toArray()); // set the data in the list 
+		notesCorrespondingID = notesDataBase.getSortedListID(searchText); // update corresponding IDs
+	}
+	
+	/**
 	 * Function: addListeners()
 	 * 
 	 * Function adds a mouselistener to the list
@@ -95,7 +126,6 @@ public class NotesList
 			{
 				System.out.println("List clicked");
 			}
-			
 			
 			@Override
 			public void mouseReleased(MouseEvent e) {}
@@ -117,7 +147,6 @@ public class NotesList
 	
 	public void loadDefultData()
 	{
-		//list.setListData(listData); // load straight from db
+		loadData();
 	}
-	
 }
