@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
+import menu.notes.NotesList;
 import sql.notes.NotesDataBase;
 
 /**
@@ -205,6 +206,7 @@ public class AddNoteDialog
 	
 	public static void createNote()
 	{
+		NotesList notesList = new NotesList();
 		NotesDataBase notesDataBase = new NotesDataBase(); // create object to access method to create a new note
 		
 		String noteName = noteNameField.noteNameTextField.getText(); // get name user entered 
@@ -212,8 +214,10 @@ public class AddNoteDialog
 		if (!(noteName.length() <= 0 || noteName.contains("Note MUST Contain a Name"))) // if there is not a error with the entered note name
 		{
 			notesDataBase.addNewNoteToList(noteName); // create new note in database
+			notesList.loadData();
 			customFrame.setVisible(false); // hide window
 		}
+		
 		else // if the text is valid
 		{
 			// show warning message in textfield
