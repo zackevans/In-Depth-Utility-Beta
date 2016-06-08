@@ -51,6 +51,7 @@ public class SaveAndSendDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
         
         System.out.println("Save And Send  Table created successfully");
@@ -97,6 +98,7 @@ public class SaveAndSendDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
 	}
 	
@@ -136,6 +138,7 @@ public class SaveAndSendDataBase
         catch ( Exception e ) 
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
         
         return rVal; // return it
@@ -181,6 +184,7 @@ public class SaveAndSendDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
         
         return rVal; // return it
@@ -228,6 +232,7 @@ public class SaveAndSendDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
         
         return rVal; // return it
@@ -275,6 +280,7 @@ public class SaveAndSendDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
         
         return rVal; // return it
@@ -314,6 +320,7 @@ public class SaveAndSendDataBase
         catch (Exception e)
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
         }
     }
 }

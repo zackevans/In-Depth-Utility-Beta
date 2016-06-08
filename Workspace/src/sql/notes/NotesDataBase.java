@@ -57,6 +57,7 @@ public class NotesDataBase
         catch (Exception e) // if connection and creating db fails
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
     }
     
@@ -116,6 +117,7 @@ public class NotesDataBase
         catch ( Exception e ) // if adding new note to db fails
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
     }
     
@@ -179,6 +181,7 @@ public class NotesDataBase
         catch ( Exception e ) 
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
         
         return rVal; // return ID
@@ -223,6 +226,7 @@ public class NotesDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
         
         return rVal;
@@ -261,7 +265,8 @@ public class NotesDataBase
        }
        catch ( Exception e )
        {
-           System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+           System.err.println( e.getClass().getName() + ": " + e.getMessage());
+           System.exit(0);
        }
    }
     
@@ -308,6 +313,7 @@ public class NotesDataBase
     	catch ( Exception e ) 
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
     	
     	return returnList;
@@ -358,6 +364,7 @@ public class NotesDataBase
     	catch ( Exception e ) 
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
     	
     	return returnList;
@@ -408,8 +415,97 @@ public class NotesDataBase
     	catch ( Exception e ) 
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
     	
     	return returnList;
+    }
+    
+    /**
+     * Function: pushItemsAboveClickedDown (int numberClicked)
+     * @author ZackEvans
+     * @param numberClicked
+     * 
+     * This function moves all notes above the one selected down (+1) in the database
+     */
+    
+    public void pushItemsAboveClickedDown (int numberClicked) // number count from 1
+    {
+    	for (int i = numberClicked-1; i >= 1; i --) // loop that counts down from number clicked -1 and stops at 1
+    	{
+    		updateListPosition(getID(i), i+1); // update items one position down
+    	}	
+    }
+    
+    /**
+     * Function: pushItemsBelowClickedUp(int numberClicked)
+     * @author ZackEvans
+     * @param numberClicked
+     * 
+     * When a note is removed from the database this function pushes all the notes under the removed one up one position.
+     */
+    
+    public void pushItemsBelowClickedUp(int idOfNoteClicked)
+    {
+    	DatabaseUtil databaseUtil = new DatabaseUtil(); // create object to acess class method to count items in db.
+    	int listPosition = getListPosition(idOfNoteClicked); // get the list position of the note based on the id passed.
+    	
+    	// run through all items under the notes selected
+    	for (int i = listPosition+1; i <= databaseUtil.countItems("USER_NOTES"); i++)
+    	{
+    		updateListPosition(getID(i), i-1); // move item 1 position up
+    	}
+    }
+    
+    /**
+     * Function: pushWholeListUpOne()
+     * @author ZackEvans
+     * 
+     * push all list positions up 1 value
+     */
+    
+    public void pushWholeListUpOne()
+    {
+    	DatabaseUtil databaseUtil = new DatabaseUtil();
+    	
+        for (int i = 1; i <= databaseUtil.countItems("USER_NOTES"); i++) // run through all items in the database
+        {
+        	updateListPosition(getID(i), i-1); // update list position up 1. (its "-" because subtracting 1 makes it closer to the top of the list)
+        }
+    }
+    
+    /**
+     * Function: deleteNote(int id)
+     * @author ZackEvans
+     * @param idNum
+     * 
+     * delete note from db 
+     */
+    
+    public void deleteNote(int id)
+    {
+        Connection c = null; // create connection to the db
+        
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create connection to db
+            c.setAutoCommit(false); // turn off autocommit
+            
+            String sql = "DELETE from USER_NOTES where ID = ?;"; // sql code string
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement
+            preparedStatement.setInt(1,id); // set ? to id
+            
+            preparedStatement.executeUpdate(); // push to db
+            preparedStatement.close(); // close ps
+            c.commit(); // close commit
+            c.close(); // close connection to the db
+        } 
+
+        catch (Exception e)
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+        }
     }
 }

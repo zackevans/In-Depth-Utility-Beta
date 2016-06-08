@@ -50,6 +50,7 @@ public class SaveAndSendSettingsDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
         
         System.out.println("Save And Send Settings Table created successfully");
@@ -79,6 +80,7 @@ public class SaveAndSendSettingsDataBase
             catch ( Exception e )
             {
                 System.err.println( e.getClass().getName() + ": " + e.getMessage());
+                System.exit(0);
             }
         }
 	}
@@ -125,6 +127,7 @@ public class SaveAndSendSettingsDataBase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage());
+	    	System.exit(0);
 	    }
 	    
 	    return rVal;
@@ -164,6 +167,7 @@ public class SaveAndSendSettingsDataBase
 	    catch ( Exception e ) 
 	    {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage());
+	      System.exit(0);
 	    }
 	}
 	
@@ -206,6 +210,7 @@ public class SaveAndSendSettingsDataBase
         catch ( Exception e )
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
         }
         
         return rVal; // return it
