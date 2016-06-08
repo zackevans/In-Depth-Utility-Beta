@@ -22,6 +22,7 @@ public class Notes extends JPanel
 	private ReturnButton returnButton;
 	private AddNoteButton addNoteButton;
 	private SearchBar searchbar;
+	private DeleteButton deleteButton;
 	BufferPanel bufferPanel;
 	
 	/**
@@ -46,7 +47,6 @@ public class Notes extends JPanel
 	 * Function: initialize
 	 * 
 	 * call functions that set up the basic panel
-	 * 
 	 */
 	
 	public void initialize()
@@ -71,6 +71,7 @@ public class Notes extends JPanel
 		returnButton = new ReturnButton(bufferPanel);
 		addNoteButton = new AddNoteButton();
 		searchbar = new SearchBar();
+		deleteButton = new DeleteButton();
 		
 		// sets location for GUI components 
 		NotesList.scrollPane.setBounds(0,50,250,445);
@@ -78,6 +79,7 @@ public class Notes extends JPanel
 		addNoteButton.setBounds(280,20,30,30);
 		SearchBar.textField.setBounds(5, 25, 240, 22);
 		searchbar.searchLabel.setBounds(8, 25, 240, 22);
+		deleteButton.setBounds(310,20,30,30);
 	}
 	
 	/**
@@ -85,7 +87,6 @@ public class Notes extends JPanel
 	 * Function: initializeComponents
 	 * 
 	 * call initialize methods
-	 * 
 	 */
 	
 	public void initializeComponents()
@@ -94,6 +95,7 @@ public class Notes extends JPanel
 		returnButton.initialize();
 		addNoteButton.initialize();
 		searchbar.initialize();
+		deleteButton.initialize();
 	}
 	
 	/**
@@ -111,10 +113,12 @@ public class Notes extends JPanel
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20)); // set size of panel
 		
 		// add stuff to panel
+		
 		add(searchbar.searchLabel);
 		add(notesList.scrollPane);
 		add(returnButton);
-		add(addNoteButton);
 		add(SearchBar.textField);
+		add(addNoteButton);
+		add(deleteButton);
 	}
 }
