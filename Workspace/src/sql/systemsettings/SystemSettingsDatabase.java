@@ -50,6 +50,7 @@ public class SystemSettingsDatabase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    	System.exit(0);
 	    }
 	    
 	    System.out.println("System Settings Table created successfully");
@@ -96,6 +97,7 @@ public class SystemSettingsDatabase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println(e.getClass().getName() + ": " + e.getMessage());
+	    	System.exit(0);
 	    }
 	}
 	
@@ -134,6 +136,7 @@ public class SystemSettingsDatabase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println(e.getClass().getName() + ": " + e.getMessage());
+	    	System.exit(0);
 	    }
 	}
 	
@@ -170,6 +173,7 @@ public class SystemSettingsDatabase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    	System.exit(0);
 	    }
 	    
 	    return password; // return the password
@@ -216,6 +220,7 @@ public class SystemSettingsDatabase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    	System.exit(0);
 	    }
 	    
 	    return rVal; // return it
@@ -253,6 +258,7 @@ public class SystemSettingsDatabase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage());
+	    	System.exit(0);
 	    }
 	    
 	    return rVal; // return the return value
@@ -293,6 +299,7 @@ public class SystemSettingsDatabase
 	    catch ( Exception e ) 
 	    {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    	System.exit(0);
 	    }
 	}
 }
