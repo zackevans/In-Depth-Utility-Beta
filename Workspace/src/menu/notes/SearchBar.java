@@ -111,8 +111,10 @@ public class SearchBar
 	public void updateNotesList()
 	{
 		NotesList notesList = new NotesList();
+		DisplayNotes displayNotes = new DisplayNotes();
 		
 		notesList.loadSearchData(textField.getText()); // load load search data into the list
+		displayNotes.clearDisplay(); // reset display
 	}
 	
 	/**

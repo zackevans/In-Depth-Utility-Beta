@@ -508,4 +508,91 @@ public class NotesDataBase
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
         }
     }
+    
+    
+    /**
+     * Function: getNotesBody(int id)
+     * @author ZackEvans
+     * @param id
+     * @return body of the note
+     * 
+     * This function takes a id and then return the Body for that ID;
+     */
+    
+    public String getNotesBody(int id)
+	{
+		Connection c = null; // create connection
+	    Statement stmt = null; // statement
+	    String body= "-1"; // body
+	    
+	    try 
+	    {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation); // create connection to db
+	      c.setAutoCommit(false); // turn off auto commit
+	    
+	      stmt = c.createStatement(); // create the statement
+	      
+	      String sql = "SELECT BODY FROM USER_NOTES WHERE ID = ?"; // sql code to select the body from the db
+	      
+	      PreparedStatement preparedStatement = c.prepareStatement(sql); // create a prepared statement from the database
+	      preparedStatement.setInt(1, id); // set first ? = to id
+	      
+	      ResultSet rs = preparedStatement.executeQuery(); // execute sql query
+	      
+	      body = rs.getString("BODY"); // get the body name from the database and set it to body
+	      
+	      // close all connections
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0); // kill
+	    }
+	    
+	    return body; // return the body
+	}
+    
+    /**
+     * Function: updateNotesBody (int id, String body)
+     * @author ZackEvans
+     * @param id
+     * @param body
+     * 
+     * This function updates the note body in the database
+     */
+    
+    public void updateNotesBody (int id, String body)
+    {
+    	Connection dbConnection = null;
+    	
+		try 
+        {
+			Class.forName("org.sqlite.JDBC");
+		    dbConnection = DriverManager.getConnection(dbLocation); // create connection to database
+		    dbConnection.setAutoCommit(false); // turn off auto commit
+		    
+			String updateTableSQL = "UPDATE USER_NOTES SET BODY = ? WHERE ID = ?"; // sql code to update the body of the note based of the id of the note
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL); // create prepared statement
+			preparedStatement.setString(1, body); // set first ? to body 
+			preparedStatement.setInt(2, id); // set second ? to id
+			
+			dbConnection.setAutoCommit(true); // turn on commit
+			preparedStatement.executeUpdate(); // execute sql
+			
+			// close connections
+			preparedStatement.close();
+			dbConnection.close();
+	    } 
+		
+	    catch ( Exception e ) 
+	    {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+    }
 }
