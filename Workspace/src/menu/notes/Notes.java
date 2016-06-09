@@ -23,6 +23,8 @@ public class Notes extends JPanel
 	private AddNoteButton addNoteButton;
 	private SearchBar searchbar;
 	private DeleteButton deleteButton;
+	private DisplayNotes displayNotes;
+	private ClearButton clearButton;
 	BufferPanel bufferPanel;
 	
 	/**
@@ -72,14 +74,18 @@ public class Notes extends JPanel
 		addNoteButton = new AddNoteButton();
 		searchbar = new SearchBar();
 		deleteButton = new DeleteButton();
+		displayNotes = new DisplayNotes();
+		clearButton = new ClearButton();
 		
 		// sets location for GUI components 
-		NotesList.scrollPane.setBounds(0,50,250,445);
-		returnButton.setBounds(250,20,30,30);
-		addNoteButton.setBounds(280,20,30,30);
-		SearchBar.textField.setBounds(5, 25, 240, 22);
-		searchbar.searchLabel.setBounds(8, 25, 240, 22);
-		deleteButton.setBounds(310,20,30,30);
+		NotesList.scrollPane.setBounds(0,50,250,423);
+		returnButton.setBounds(250,18,30,30);
+		addNoteButton.setBounds(280,18,30,30);
+		SearchBar.textField.setBounds(5, 23, 240, 22);
+		searchbar.searchLabel.setBounds(8, 23, 240, 22);
+		deleteButton.setBounds(310,18,30,30);
+		displayNotes.setBounds(250,50,450,423);
+		clearButton.setBounds(224,23,20,20);
 	}
 	
 	/**
@@ -96,6 +102,8 @@ public class Notes extends JPanel
 		addNoteButton.initialize();
 		searchbar.initialize();
 		deleteButton.initialize();
+		displayNotes.initialize();
+		clearButton.initialize();
 	}
 	
 	/**
@@ -112,13 +120,14 @@ public class Notes extends JPanel
 		setLayout(null); // get rid of layout manager
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20)); // set size of panel
 		
-		// add stuff to panel
-		
+		// add items to panel
+		add(clearButton); // add clear button first so it stays on top of the search bar. (Im to lazy to make a layeredpane rn)
 		add(searchbar.searchLabel);
 		add(notesList.scrollPane);
 		add(returnButton);
 		add(SearchBar.textField);
 		add(addNoteButton);
 		add(deleteButton);
+		add(displayNotes);
 	}
 }
