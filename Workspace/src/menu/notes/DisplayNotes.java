@@ -19,7 +19,7 @@ import sql.notes.NotesDataBase;
 
 public class DisplayNotes extends JScrollPane
 {
-	private static JTextArea textArea = new JTextArea(); // create text area
+	public static JTextArea textArea = new JTextArea(); // create text area
 	
 	/**
 	 * Constructor: DisplayNotes()
@@ -61,6 +61,7 @@ public class DisplayNotes extends JScrollPane
 		// wrap full words around the end of the text area
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
+		textArea.setEditable(false);
 		
 		setBorder(BorderFactory.createMatteBorder(1,0, 1, 0, Color.BLACK)); // set border around the text area on 2 sides of it
 		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // make the scroll pane note scroll right to left
@@ -73,12 +74,14 @@ public class DisplayNotes extends JScrollPane
 	 * @author ZackEvans
 	 * @param ID
 	 * 
+	 * This function allows the note to be edited.
 	 * This function displays a note body in the text area.
 	 */
 	
 	public void displayNote(int ID)
 	{
 		NotesDataBase notesdb = new NotesDataBase();
+		textArea.setEditable(true); // when text is to be show make text area be able to edit the note
 		textArea.setText(notesdb.getNotesBody(ID)); // set note body in the text area.
 	}
 	
@@ -143,11 +146,13 @@ public class DisplayNotes extends JScrollPane
 	 * Function: clearDisplay()
 	 * @author ZackEvans
 	 * 
-	 * This function clears all the text out of the text area
+	 * This function restricts the text area if there is not a note selected
+	 * This function clears all the text out of the text area.
 	 */
 	
 	public void clearDisplay()
 	{
+		textArea.setEditable(false); // when there is no text restrict text area
 		textArea.setText(""); // clear the text area
 	}
 }
