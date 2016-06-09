@@ -20,7 +20,18 @@ import sql.notes.NotesDataBase;
 
 
 public class DeleteButton extends JButton
-{
+{	
+	/**
+	 * Constructor: DeleteButton()
+	 * @author ZackEvans
+	 * 
+	 * Constructor calls hierarchy of button
+	 */
+	
+	public DeleteButton()
+	{
+		super(); // call hierarchy
+	}
 	
 	/**
 	 * Function: initialize()
@@ -99,12 +110,14 @@ public class DeleteButton extends JButton
 				else // if there is text in the searchbar
 				{	
 					NotesList notesList = new NotesList();
+					DisplayNotes displayNotes = new DisplayNotes();
 					int listIndex = NotesList.list.getSelectedIndex(); // get the list index of the selected note.
 					
 	        		if(listIndex != -1) // check if a note is selected
 	        		{		
 	        			// call method to remove the note in the search list and the database.
 		        		notesList.removeSearchListItem(listIndex);
+		        		displayNotes.clearDisplay();
 	        		}
 	        		
 	        		else
