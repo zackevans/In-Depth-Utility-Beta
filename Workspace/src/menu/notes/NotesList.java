@@ -37,7 +37,7 @@ public class NotesList
 	public NotesList ()
 	{
 		super();
-		scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		scrollPane.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 1, Color.BLACK));
 	}
 	
 	/**
@@ -109,7 +109,6 @@ public class NotesList
 		
 		list.setListData(notesDataBase.getSortedListNamesData(searchText).toArray()); // set the data in the list
 		notesCorrespondingID = notesDataBase.getSortedListID(searchText); // update corresponding IDs
-		System.out.println(notesCorrespondingID);
 	}
 	
 	/**
@@ -147,8 +146,9 @@ public class NotesList
 	
 	/**
 	 * Function: addListeners()
+	 * @author ZackEvans
 	 * 
-	 * Function adds a mouselistener to the list
+	 * Function adds a mouse listener to the note list
 	 */
 	
 	public void addListeners()
@@ -165,24 +165,26 @@ public class NotesList
 					if (searchBar.doesTextExist() == false) // if no text is here
 					{
 						NotesDataBase notesDatabase = new NotesDataBase();
-						int listIndex = list.getSelectedIndex();
+						DisplayNotes dispNotes = new DisplayNotes();
+						int listIndex = list.getSelectedIndex(); // get the current selcected index
 		        		int listPosition = listIndex+1; 
-	        			
 		        		int id = notesDatabase.getID(listPosition); // get the selected notes id
 		        		
 		        		notesDatabase.pushItemsAboveClickedDown(listPosition); // push items above clicked down
-		        		notesDatabase.updateListPosition(id, 1);
+		        		notesDatabase.updateListPosition(id, 1); // update the note clicked to the top of the list
 		        		
-		        		loadData();
+		        		loadData(); // load data into the list
 		        		list.setSelectedIndex(0); // set it to the first item
-		        		//TODO dispNotes.displayNote(id);
+		        		
+		        		dispNotes.displayNote(id); // display the selected note
 					}
 					
 					else // if there is text in the search bar textfield 
 					{
+						DisplayNotes dispNotes = new DisplayNotes();
+						int id = notesCorrespondingID.get(list.getSelectedIndex()); // get id based on the list index
 						
-						
-						
+						dispNotes.displayNote(id); // display the note that was selected
 					}
 				}
 			}
@@ -207,6 +209,6 @@ public class NotesList
 	
 	public void loadDefultData()
 	{
-		loadData();
+		loadData(); // load sorted data from first to last position
 	}
 }
