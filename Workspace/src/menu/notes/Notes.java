@@ -77,7 +77,7 @@ public class Notes extends JPanel
 		deleteButton = new DeleteButton();
 		displayNotes = new DisplayNotes();
 		clearButton = new ClearButton();
-		shareButton = new ShareButton();
+		shareButton = new ShareButton(bufferPanel);
 		
 		// sets location for GUI components 
 		NotesList.scrollPane.setBounds(0,50,250,423);
