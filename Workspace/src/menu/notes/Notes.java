@@ -25,6 +25,7 @@ public class Notes extends JPanel
 	private DeleteButton deleteButton;
 	private DisplayNotes displayNotes;
 	private ClearButton clearButton;
+	private ShareButton shareButton;
 	BufferPanel bufferPanel;
 	
 	/**
@@ -76,6 +77,7 @@ public class Notes extends JPanel
 		deleteButton = new DeleteButton();
 		displayNotes = new DisplayNotes();
 		clearButton = new ClearButton();
+		shareButton = new ShareButton(bufferPanel);
 		
 		// sets location for GUI components 
 		NotesList.scrollPane.setBounds(0,50,250,423);
@@ -86,6 +88,7 @@ public class Notes extends JPanel
 		deleteButton.setBounds(310,18,30,30);
 		displayNotes.setBounds(250,50,450,423);
 		clearButton.setBounds(224,23,20,20);
+		shareButton.setBounds(660,18,30,30);
 	}
 	
 	/**
@@ -104,6 +107,7 @@ public class Notes extends JPanel
 		deleteButton.initialize();
 		displayNotes.initialize();
 		clearButton.initialize();
+		shareButton.initialize();
 	}
 	
 	/**
@@ -129,5 +133,6 @@ public class Notes extends JPanel
 		add(addNoteButton);
 		add(deleteButton);
 		add(displayNotes);
+		add(shareButton);
 	}
 }

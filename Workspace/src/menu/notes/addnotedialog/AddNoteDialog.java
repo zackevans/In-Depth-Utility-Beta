@@ -218,7 +218,11 @@ public class AddNoteDialog
 			notesDataBase.addNewNoteToList(noteName); // create new note in database
 			notesList.loadData(); // load data from db
 			notesList.list.setSelectedIndex(0); // select the first index in the list
-			displayNotes.clearDisplay(); // clear the display
+			
+			displayNotes.textArea.setText("");
+			displayNotes.textArea.requestFocusInWindow();
+			displayNotes.textArea.setEditable(true);
+			
 			customFrame.setVisible(false); // hide window
 		}
 		

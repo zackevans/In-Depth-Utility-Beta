@@ -46,7 +46,6 @@ public class DisplayNotes extends JScrollPane
 		documentChange();
 	}
 	
-	
 	/**
 	 * Function: createComponents()
 	 * @author ZackEvans

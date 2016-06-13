@@ -22,11 +22,6 @@ public class SearchBar
 	public static JTextField textField = new TextFieldShell(); // create textfield to use as searchbar
 	public JLabel searchLabel = new JLabel("Search"); // create label to go over textfield
 	
-	public SearchBar()
-	{
-		
-	}
-	
 	/**
 	 * Function: initialize()
 	 * @author ZackEvans
@@ -39,7 +34,6 @@ public class SearchBar
 		createSearchbar();
     	addListeners();
     }
-	
 	
 	/**
 	 * Function: createSearchbar()

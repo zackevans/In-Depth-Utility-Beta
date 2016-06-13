@@ -27,7 +27,7 @@ public class NotesList
 	public static ArrayList<Integer> notesCorrespondingID = new ArrayList<Integer>(); // INDEX is the position of the note in the displayed list, VALUE is the id of the note in the database
 	
 	/**
-	 * Constructor: NotesList (Notes notes) 
+	 * Constructor: NotesList () 
 	 * @author ZackEvans
 	 * @param notes
 	 * 
@@ -148,7 +148,7 @@ public class NotesList
 	 * Function: addListeners()
 	 * @author ZackEvans
 	 * 
-	 * Function adds a mouse listener to the note list
+	 * Function adds a mouse listener to the note list.
 	 */
 	
 	public void addListeners()
@@ -177,6 +177,7 @@ public class NotesList
 		        		list.setSelectedIndex(0); // set it to the first item
 		        		
 		        		dispNotes.displayNote(id); // display the selected note
+		        		dispNotes.textArea.requestFocusInWindow(); // go to where user ended typing
 					}
 					
 					else // if there is text in the search bar textfield 
@@ -185,6 +186,7 @@ public class NotesList
 						int id = notesCorrespondingID.get(list.getSelectedIndex()); // get id based on the list index
 						
 						dispNotes.displayNote(id); // display the note that was selected
+						dispNotes.textArea.requestFocusInWindow(); // set focus display notes
 					}
 				}
 			}
