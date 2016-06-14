@@ -130,7 +130,7 @@ public class ShareList
 	        		
 	        		if(indexClicked == 0) 
 	        		{
-	        			
+	        			bufferPanel.showPanel("MAIL_NOTES");
 	        		}
 	        		
 	        		if(indexClicked == 1)
