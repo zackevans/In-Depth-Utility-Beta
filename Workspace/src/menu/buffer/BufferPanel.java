@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import menu.main.MainMenu;
 import menu.notes.Notes;
+import menu.notes.mailnote.MailNote;
 import sql.systemsettings.SystemSettingsDatabase;
 
 /**
@@ -23,6 +24,7 @@ public class BufferPanel extends JPanel
 	// Create VAR for all main panels 
 	private MainMenu mainMenu;
 	private Notes notes;
+	private MailNote mailNote;
 	
 	/**
 	 * Function: initialize
@@ -34,9 +36,9 @@ public class BufferPanel extends JPanel
 	public void initialize()
 	{
 		createComponents();
+		initializePanels();
 		addComponents();
 		setDefaults();
-		initializePanels();
 		setOpaque(false);
 	}
 	
@@ -58,22 +60,9 @@ public class BufferPanel extends JPanel
 		// Notes
 		notes = new Notes(this);
 		mapPanels.put("NOTES", notes);
-	}
-	
-	/**
-	 * Function: addComponents
-	 * @author ZackEvans
-	 * 
-	 * add all main panel components to panel (Separated in categories)
-	 */
-	
-	public void addComponents()
-	{
-		// Main Menu 
-		add(mainMenu);
 		
-		// Notes
-		add(notes);
+		mailNote = new MailNote(this);
+		mapPanels.put("MAIL_NOTES", mailNote);
 	}
 	
 	/**
@@ -90,6 +79,24 @@ public class BufferPanel extends JPanel
 		
 		// Notes
 		notes.initialize();
+		mailNote.initialize();
+	}
+	
+	/**
+	 * Function: addComponents
+	 * @author ZackEvans
+	 * 
+	 * add all main panel components to panel (Separated in categories)
+	 */
+	
+	public void addComponents()
+	{
+		// Main Menu 
+		add(mainMenu);
+		
+		// Notes
+		add(notes);
+		add(mailNote);
 	}
 	
 	/**
@@ -124,7 +131,7 @@ public class BufferPanel extends JPanel
 	 * 
 	 * Hide all panels in the hashmap using for loop
 	 * Create holding panel and set to new panel (Passed pram)
-	 * Set new panel visiable
+	 * Set new panel visible
 	 */
 	
 	public void showPanel(String panelName)
