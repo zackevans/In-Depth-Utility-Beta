@@ -226,7 +226,7 @@ public class MainMenu extends JPanel
 	{
 		companyNameLbl.setFont(new Font("Helvetica Neue",Font.PLAIN,12)); // set font and set text size = 12
 	    int y = (Window_Width)/2+90; // set the vertical position
-	    companyNameLbl.setBounds(480, y,225,40); // set postion and width and height of label
+	    companyNameLbl.setBounds(470, y,225,40); // set postion and width and height of label
 	}
 	
 	/**
