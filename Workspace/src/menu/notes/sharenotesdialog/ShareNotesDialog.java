@@ -18,9 +18,6 @@ public class ShareNotesDialog
 {
 	public static JFrame customFrame = new JFrame();  // Created JFrame 
 	private static boolean clicked = false; // create var to see if the window has been shown before
-	// sets window off the the right of the panel
-	public static final int Window_Width = 150; // Standard Dialog size
-	public static final int Window_Height = 167; // Standard Dialog size
 	BufferPanel bufferPanel; // create a bufferPanel object
 	
 	/**
@@ -68,8 +65,11 @@ public class ShareNotesDialog
 	public void createAndShowGUI()
 	{
 		LaunchApp launchApp = new LaunchApp();
-		int x = launchApp.frameXPosition()+ 700 ; //  centers window for x
-		int y = launchApp.frameYPosition()+ 42 ; // centers window for y
+		final int Window_Width = 150; 
+		final int Window_Height = 167; 
+		// sets window off the the right of the panel
+		int x = launchApp.frameXPosition()+ 700; 		
+		int y = launchApp.frameYPosition()+ 42; 
 		
 		createComponents(); // create components first before launching the app
 		
