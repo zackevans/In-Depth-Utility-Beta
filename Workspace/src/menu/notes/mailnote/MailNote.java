@@ -16,6 +16,7 @@ public class MailNote extends JPanel
 	private RecipientButton recipientButton;
 	private AddRecipientButton addRecipientButton;
 	private RecipientViewer recipientViewer;
+	private ErrorPanel errorPanel;
 	private BufferPanel bufferPanel;
 	
 	
@@ -35,11 +36,15 @@ public class MailNote extends JPanel
 	
 	public void createComponents()
 	{
+		final int Window_Width = 700;
+		final int Window_Height = 500;
+		
 		toField = new ToField();
 		fromField = new FromField();
 		addRecipientButton = new AddRecipientButton();
 		recipientButton = new RecipientButton();
 		recipientViewer = new RecipientViewer();
+		errorPanel = new ErrorPanel();
 		
 		ToField.textField.setBounds(30, 15, 670, 35);
 		toField.toLabel.setBounds(0, 15, 30, 35);
@@ -47,9 +52,10 @@ public class MailNote extends JPanel
 		FromField.textField.setBounds(45, 50, 670, 35);
 		fromField.fromLabel.setBounds(0, 50,45, 35);
 		
-		addRecipientButton.setBounds(625, 18, 30, 30);
-		recipientButton.button.setBounds(650, 18, 30, 30);
-		recipientViewer.recipientViewerPanel.setBounds(0,50,700,35);
+		addRecipientButton.setBounds(605, 18, 30, 30);
+		recipientButton.button.setBounds(631, 18, 30, 30);
+		recipientViewer.recipientViewerPanel.setBounds(0,50,Window_Width,35);
+		errorPanel.setBounds(0, 0, Window_Width,Window_Height);
 	}
 	
 	public void initializeComponents()
@@ -59,6 +65,7 @@ public class MailNote extends JPanel
 		addRecipientButton.initialize();
 		recipientButton.initialize();
 		recipientViewer.initialize();
+		errorPanel.initialize();
 	}
 
 	public void addComponents()
@@ -73,7 +80,9 @@ public class MailNote extends JPanel
 		
 		JLayeredPane layerPane = new JLayeredPane();
 		layerPane.add(contentPanel, new Integer(0),0);
-		layerPane.add(RecipientViewer.recipientViewerPanel,new Integer(1),0);
+		layerPane.add(errorPanel, new Integer(1),0);
+		layerPane.add(RecipientViewer.recipientViewerPanel,new Integer(2),0);
+		
 		layerPane.setBounds(0, 0,Window_Width,Window_Height);
 		
 		add(layerPane);

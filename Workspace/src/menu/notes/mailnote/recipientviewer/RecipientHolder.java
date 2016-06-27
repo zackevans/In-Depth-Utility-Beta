@@ -74,5 +74,10 @@ public class RecipientHolder extends JScrollPane
 		
 		RecipientViewer.getEmailIndex(email);
 		RecipientViewer.listOfEmails.remove(RecipientViewer.getEmailIndex(email));
+		
+		if(RecipientViewer.listOfEmails.size() == 0)
+		{
+			RecipientViewer.noRecipientsWarrning.setVisible(true);
+		}
 	}
 }

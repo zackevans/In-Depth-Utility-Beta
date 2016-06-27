@@ -1,14 +1,18 @@
 package menu.notes.mailnote.recipientviewer;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class RecipientViewer 
 {
 	public static JPanel recipientViewerPanel  = new JPanel();
+	public static JLabel noRecipientsWarrning = new JLabel("No Recipients Exist");
 	public static ArrayList<String> listOfEmails = new ArrayList<String>();
 	
 	public RecipientViewer ()
@@ -37,9 +41,13 @@ public class RecipientViewer
 		recipientHolder.initialize();
 		recipientHolder.setBounds(0,1,700,34); // set at 1 so border is not overlapped
 		
-		recipientViewerPanel.setLayout(null);
-		recipientViewerPanel.add(recipientHolder);
+		noRecipientsWarrning.setFont(new Font("Helvetica Neue",Font.PLAIN,17));
+		noRecipientsWarrning.setBounds(0,0,700,34);
+		noRecipientsWarrning.setHorizontalAlignment(SwingConstants.CENTER);
 		
+		recipientViewerPanel.setLayout(null);
+		recipientViewerPanel.add(noRecipientsWarrning);
+		recipientViewerPanel.add(recipientHolder);
 	}	
 	
 	public static int getEmailIndex(String email)

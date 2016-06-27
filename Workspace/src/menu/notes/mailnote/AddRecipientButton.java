@@ -27,7 +27,6 @@ public class AddRecipientButton extends JButton
 		
 		setBorder(null);
 		setFocusable(false);
-		//setFocusPainted(false);
 	}
 	
 	public void addListeners()
@@ -37,28 +36,36 @@ public class AddRecipientButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				if (EmailUtil.validateEmailAddress(ToField.textField.getText())) // if there is a valid email in the textfield 
-				{		
-					if(! (RecipientViewer.listOfEmails.contains(ToField.textField.getText()))) // if the email has not already been added
-					{
-						RecipientViewer.listOfEmails.add(ToField.textField.getText());
-						RecipientButton.updateButtonNumber();
-						RecipientHolder.createNewPanel();
-						ToField.textField.setText("");
-					}
-					
-					else // if the email still exists
-					{
-						ToField.textField.setText(""); // clear the text
-					}
-				}
-				
-				else
-				{
-					System.out.println("vfake");
-					//display the warrning
-				}
-			}
+				addEmail();
+			}	
 		});
+	}
+	
+	public void addEmail()
+	{
+		if (EmailUtil.validateEmailAddress(ToField.textField.getText())) // if there is a valid email in the textfield 
+		{		
+			if(! (RecipientViewer.listOfEmails.contains(ToField.textField.getText()))) // if the email has not already been added
+			{
+				RecipientViewer.listOfEmails.add(ToField.textField.getText());
+				RecipientButton.updateButtonNumber();
+				RecipientViewer.noRecipientsWarrning.setVisible(false);
+				ErrorPanel.toFieldError.setVisible(false);
+				RecipientHolder.createNewPanel();
+				ToField.textField.setText("");
+				
+			}
+			
+			else // if the email still exists
+			{
+				ToField.textField.setText(""); // clear the text
+				ErrorPanel.toFieldError.setVisible(false);
+			}
+		}
+		
+		else
+		{
+			ErrorPanel.toFieldError.setVisible(true);
+		}
 	}
 }

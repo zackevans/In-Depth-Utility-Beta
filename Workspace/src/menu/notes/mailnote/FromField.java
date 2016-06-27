@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class FromField 
 {
@@ -33,6 +35,25 @@ public class FromField
 	
 	public void addListeners()
 	{
-		
+		textField.getDocument().addDocumentListener(new DocumentListener() 
+		{
+			@Override
+			public void removeUpdate(DocumentEvent e) 
+			{
+				if(FromField.textField.getText().length() == 0)
+				{
+					ErrorPanel.fromFieldError.setVisible(true);
+				}
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) 
+			{
+				ErrorPanel.fromFieldError.setVisible(false);
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {}
+		});
 	}
 }

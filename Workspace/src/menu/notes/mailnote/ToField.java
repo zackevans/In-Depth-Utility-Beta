@@ -1,9 +1,13 @@
 package menu.notes.mailnote;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import program.util.EmailUtil;
 
 
 /**
@@ -53,6 +57,37 @@ public class ToField
 	
 	public void addListeners()
 	{
-		
+		textField.addKeyListener(new KeyListener() 
+		{
+			@Override
+			public void keyPressed(KeyEvent e) 
+			{	
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+	            {
+	                AddRecipientButton addRecipientButton = new AddRecipientButton();
+	                addRecipientButton.addEmail();
+	            }
+				
+				else
+				{
+					ErrorPanel errorPanel = new ErrorPanel();
+					
+					if(EmailUtil.validateEmailAddress(textField.getText()))
+					{
+						errorPanel.toFieldError.setVisible(false);
+					}
+					
+					else
+					{
+						errorPanel.toFieldError.setVisible(true);
+					}
+				}
+			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+		});
 	}
 }
