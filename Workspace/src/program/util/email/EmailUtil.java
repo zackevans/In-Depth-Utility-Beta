@@ -1,4 +1,4 @@
-package program.util;
+package program.util.email;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -38,5 +38,5 @@ public class EmailUtil
 		}
 		 
 		return result;
-	}
+	}	
 }
