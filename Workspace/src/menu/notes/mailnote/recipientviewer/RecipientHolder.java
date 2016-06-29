@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import menu.notes.mailnote.RecipientButton;
 import menu.notes.mailnote.ToField;
 
 public class RecipientHolder extends JScrollPane
@@ -79,5 +80,15 @@ public class RecipientHolder extends JScrollPane
 		{
 			RecipientViewer.noRecipientsWarrning.setVisible(true);
 		}
+	}
+	
+	public static void clearPanels()
+	{
+		panelHolder.removeAll();
+		panelHolder.repaint();
+		panelHolder.revalidate();
+		RecipientViewer.listOfEmails.clear();
+		RecipientButton.updateButtonNumber();
+		RecipientViewer.noRecipientsWarrning.setVisible(true);
 	}
 }
