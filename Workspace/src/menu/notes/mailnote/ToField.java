@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import program.util.EmailUtil;
+import program.util.email.EmailUtil;
 
 
 /**

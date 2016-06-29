@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 
 import menu.buffer.BufferPanel;
+import menu.notes.mailnote.MailNote;
 
 /**
  * Class: ShareList 
@@ -99,6 +100,7 @@ public class ShareList
 	/**
 	 * Function: addListeners()
 	 * @author ZackEvans
+	 * @see MailNotePanel
 	 * 
 	 * Function adds a focus listener and a mouse listener to the panel
 	 */
@@ -130,7 +132,9 @@ public class ShareList
 	        		
 	        		if(indexClicked == 0) 
 	        		{
-	        			bufferPanel.showPanel("MAIL_NOTES");
+	        			bufferPanel.showPanel("MAIL_NOTES"); // show mail note panel
+	        			MailNote.clearPanel(); // reset all components on the panel
+	        			MailNote.autoFill();
 	        		}
 	        		
 	        		if(indexClicked == 1)

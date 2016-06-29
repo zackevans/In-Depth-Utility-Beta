@@ -9,7 +9,7 @@ import javax.swing.JButton;
 
 import menu.notes.mailnote.recipientviewer.RecipientHolder;
 import menu.notes.mailnote.recipientviewer.RecipientViewer;
-import program.util.EmailUtil;
+import program.util.email.EmailUtil;
 
 public class AddRecipientButton extends JButton
 {

@@ -13,7 +13,7 @@ public class ErrorPanel extends JPanel
 	public static final int Window_Height = 500;
 	static JLabel toFieldError = new JLabel();
 	static JLabel fromFieldError = new JLabel();
-	static JLabel seclectNoteErrror = new JLabel();
+	static JLabel seclectNoteError = new JLabel();
 	
 	public ErrorPanel()
 	{
@@ -34,15 +34,15 @@ public class ErrorPanel extends JPanel
 		
 		toFieldError.setIcon(errorIcon);
 		fromFieldError.setIcon(errorIcon);
-		seclectNoteErrror.setIcon(errorIcon);
+		seclectNoteError.setIcon(errorIcon);
 		
 		toFieldError.setToolTipText("Enter a Valid Email");
 		fromFieldError.setToolTipText("Enter a name");
-		seclectNoteErrror.setToolTipText("Select a note");
+		seclectNoteError.setToolTipText("Select a note");
 		
 		toFieldError.setBounds(660,18,30,30);
 		fromFieldError.setBounds(660,52,30,30);
-		seclectNoteErrror.setBounds(660,79,30,30);
+		seclectNoteError.setBounds(660,79,30,30);
 		
 		hideAllErrors();
 	}
@@ -54,13 +54,13 @@ public class ErrorPanel extends JPanel
 		
 		add(toFieldError);
 		add(fromFieldError);
-		add(seclectNoteErrror);
+		add(seclectNoteError);
 	}
 	
-	public void hideAllErrors()
+	public static void hideAllErrors()
 	{
 		toFieldError.setVisible(false);
 		fromFieldError.setVisible(false);
-		seclectNoteErrror.setVisible(false);
+		seclectNoteError.setVisible(false);
 	}
 }
