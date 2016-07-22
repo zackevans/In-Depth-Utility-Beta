@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import menu.main.MainMenu;
 import menu.notes.Notes;
+import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
 import sql.systemsettings.SystemSettingsDatabase;
 
@@ -25,6 +26,7 @@ public class BufferPanel extends JPanel
 	private MainMenu mainMenu;
 	private Notes notes;
 	private MailNote mailNote;
+	private ExportNote exportNote;
 	
 	/**
 	 * Function: initialize
@@ -63,6 +65,9 @@ public class BufferPanel extends JPanel
 		
 		mailNote = new MailNote(this);
 		mapPanels.put("MAIL_NOTES", mailNote);
+		
+		exportNote = new ExportNote(this);
+		mapPanels.put("EXPORT_NOTE", exportNote);
 	}
 	
 	/**
@@ -80,6 +85,7 @@ public class BufferPanel extends JPanel
 		// Notes
 		notes.initialize();
 		mailNote.initialize();
+		exportNote.initialize();
 	}
 	
 	/**
@@ -97,6 +103,7 @@ public class BufferPanel extends JPanel
 		// Notes
 		add(notes);
 		add(mailNote);
+		add(exportNote);
 	}
 	
 	/**
