@@ -64,27 +64,18 @@ public class ShareNotesDialog
 	
 	public void createAndShowGUI()
 	{
-		LaunchApp launchApp = new LaunchApp();
-		final int Window_Width = 150; 
-		final int Window_Height = 167; 
-		// sets window off the the right of the panel
-		int x = launchApp.frameXPosition()+ 700; 		
-		int y = launchApp.frameYPosition()+ 42; 
-		
 		createComponents(); // create components first before launching the app
 		
 		customFrame.getRootPane().setBorder(BorderFactory.createLineBorder(Color.BLACK)); // create a black border around
 		customFrame.getRootPane().putClientProperty("Window.shadow", Boolean.FALSE ); // take the shadow off the window
-		
-		customFrame.setLocation(x, y); // set frame in top right of panel
-		customFrame.setSize(Window_Width, Window_Height); // set size of the window
+		customFrame.setSize(150, 167); // set size of the window
 		customFrame.setUndecorated(true); // removes status bar from frame
-		customFrame.setResizable(false); // make the window resizeable
+		customFrame.setResizable(false); // make the window not resizable
 		customFrame.setBackground(new Color(225,225,225,0x66)); // set color of window to clear white
 		
 		addComponents(); // add components to frame
 		
-		customFrame.setVisible(true); // show frame
+		showWindow();
 	}
 	
 	/**
@@ -97,12 +88,13 @@ public class ShareNotesDialog
 	public void showWindow()
 	{
 		LaunchApp launchApp = new LaunchApp();
-		
 		int x = launchApp.frameXPosition()+700 ; //  centers window for x
 		int y = launchApp.frameYPosition()+ 42 ; // centers window for y
+		
 		customFrame.setLocation(x, y); // set frame in center of main frame 
 		
 		ShareList.list.clearSelection(); // clear the selection of the list
+		
 		customFrame.setVisible(true); // show the list
 	}
 	

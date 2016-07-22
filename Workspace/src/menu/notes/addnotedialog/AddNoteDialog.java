@@ -30,17 +30,6 @@ public class AddNoteDialog
 	private static boolean clicked = false;
 	
 	/**
-	 * Constructor: AddNoteDialog()
-	 * @author ZackEvans
-	 * 
-	 */
-	
-	public AddNoteDialog()
-	{
-		
-	}
-	
-	/**
 	 * Function: launchDialog()
 	 * @author ZackEvans
 	 * 
@@ -65,29 +54,20 @@ public class AddNoteDialog
 	 * Function : 
 	 * @author ZackEvans
 	 * 
-	 * This function creates the dialog window and launches it.
+	 * This function creates the dialog window and displays it.
 	 */
 	
 	public void createAndShowGUI()
-	{
-		LaunchApp launchApp = new LaunchApp(); // create a launch app variable to access the main frame
-		
-		// Calculate the center of the main  frame
-		int x = launchApp.frameXPosition() + 154; // 154 centers window for x
-		int y = launchApp.frameYPosition() + 167; // 167 centers window for y
-		
+	{	
 		customFrame.setSize(Window_Width, Window_Height); // set the size of the window
 		customFrame.setResizable(false); // make the window not be able to resize
-		customFrame.setLocation(x, y); // set frame in center of main frame 
 		customFrame.getContentPane().setBackground(new Color(192,200,204)); // set color of frame
 		
 		createComponents(); // call function to create components to be added to panel
 		initializeComponents();
 		addComponents(); // add components to the panel
 		
-		clearWindow(); // reset the windows GUI
-	
-		customFrame.setVisible(true); // show the frame
+		showGUI();
 	}
 	
 	/**
@@ -100,10 +80,11 @@ public class AddNoteDialog
 	public void showGUI()
 	{
 		LaunchApp launchApp = new LaunchApp(); // create a var to be able to access the main frame
-		
 		// calculate the center of the main JFrame
 		int x = launchApp.frameXPosition() + 154; // 154 centers window for x
 		int y = launchApp.frameYPosition() + 167; // 167 centers window for y
+		
+		customFrame.setLocation(x, y); // set frame location
 		
 		clearWindow(); // reset all components in panel
 		
@@ -209,7 +190,6 @@ public class AddNoteDialog
 	{
 		NotesList notesList = new NotesList();
 		NotesDataBase notesDataBase = new NotesDataBase(); // create object to access method to create a new note
-		DisplayNotes displayNotes = new DisplayNotes();
 		
 		String noteName = noteNameField.noteNameTextField.getText(); // get name user entered 
 		
@@ -217,11 +197,11 @@ public class AddNoteDialog
 		{
 			notesDataBase.addNewNoteToList(noteName); // create new note in database
 			notesList.loadData(); // load data from db
-			notesList.list.setSelectedIndex(0); // select the first index in the list
+			NotesList.list.setSelectedIndex(0); // select the first index in the list
 			
-			displayNotes.textArea.setText("");
-			displayNotes.textArea.requestFocusInWindow();
-			displayNotes.textArea.setEditable(true);
+			DisplayNotes.textArea.setText("");
+			DisplayNotes.textArea.requestFocusInWindow();
+			DisplayNotes.textArea.setEditable(true);
 			
 			customFrame.setVisible(false); // hide window
 		}
