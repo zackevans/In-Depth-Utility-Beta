@@ -30,15 +30,13 @@ public class ChooseDirectoryButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				LaunchApp launchApp = new LaunchApp();
-				
 				// create JFile chooser
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Select File Location");
 				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 				fileChooser.setCurrentDirectory(new java.io.File("/Desktop"));
 				
-				int status = fileChooser.showOpenDialog(launchApp.frame);
+				int status = fileChooser.showOpenDialog(LaunchApp.frame);
 			
 				if (status == JFileChooser.APPROVE_OPTION) 
 				{
