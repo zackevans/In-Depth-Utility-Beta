@@ -7,19 +7,34 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import menu.buffer.BufferPanel;
+
+/**
+ * Class: ClearButton
+ * @author ZackEvans
+ * 
+ * This class is a button that when clicked will clear the text field of searched text
+ */
 
 public class ClearButton extends JButton
 {
-	BufferPanel bufferPanel;
-	private SearchBar searchBar;
+	/**
+	 * Constructor: ClearButton()
+	 * @author ZackEvans
+	 * 
+	 * Constructor calls hierarchy
+	 */
 	
-	public ClearButton (BufferPanel bufferPanel,SearchBar searchBar)
+	public ClearButton()
 	{
-		super();
-		this.bufferPanel = bufferPanel;
-		this.searchBar = searchBar;
+		super(); // call hierarchy
 	}
+	
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * This function calls methods to set up the button and add listeners to it
+	 */
 	
 	public void initialize()
 	{
@@ -27,30 +42,43 @@ public class ClearButton extends JButton
 		addListeners();
 	}
 	
+	/**
+	 * Function: createBtn()
+	 * @author ZackEvans
+	 * 
+	 * This function set icons for the button
+	 */
+	
 	public void createBtn()
 	{
-		URL clearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/NotesPanel/Clear.png");
-		URL pressedClearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/NotesPanel/ClearPressed.png");
+		URL clearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/NotesPanel/Clear.png"); // create a URL for the button image
+		URL pressedClearBtnUrl = ClearButton.class.getResource("/Button_Images/Notes/NotesPanel/ClearPressed.png"); // create a URL for the image when the button is pressed
 		
-		setOpaque(false);
+		// make the button clear except for the image on the button
+		setOpaque(false); 
 		setContentAreaFilled(false);
 		setBorderPainted(false);
 		
-		setIcon(new ImageIcon(clearBtnUrl));
-		setPressedIcon(new ImageIcon(pressedClearBtnUrl));
+		setIcon(new ImageIcon(clearBtnUrl)); // set icon for the button
+		setPressedIcon(new ImageIcon(pressedClearBtnUrl)); // set the icon for when the button is pressed
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * @author ZackEvans
+	 * 
+	 * This function adds a action listener to the button that when clicked clears the search bar text.
+	 */
 	
 	public void addListeners()
 	{
 		addActionListener(new ActionListener() 
 		{
 			@Override
-			public void actionPerformed(ActionEvent arg0) 
+			public void actionPerformed(ActionEvent e) 
 			{
-				System.out.println("Clear Button");
-				
-				searchBar.textField.setText("");
-				searchBar.textField.requestFocusInWindow();
+				SearchBar.textField.setText("");
+				SearchBar.textField.requestFocusInWindow();
 			}
 		});
 	}

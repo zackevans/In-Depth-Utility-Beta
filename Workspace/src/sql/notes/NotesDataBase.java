@@ -10,73 +10,216 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import program.security.Encryption;
+import sql.util.DatabaseUtil;
+
+/**
+ * Class: NotesDataBase
+ * @author ZackEvans
+ * 
+ * Class contains all methods related to the notes tabel in the database 
+ */
 
 public class NotesDataBase
 {
-    final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db";
+    final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; // file path to db
+    
+    /**
+     * Function: createNotesTable()
+     * @author ZackEvans
+     * 
+     * create the notes table in the database if it doesen't already
+     */
     
     public void createNotesTable()
     {
-        Connection c = null;
-        Statement stmt = null;
+        Connection c = null; // create var for the connection to the database
+        Statement stmt = null; // create a var for statement
+        
         try
         {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            System.out.println("Opened database successfully");
+            c = DriverManager.getConnection(dbLocation); // connect to database
             
-            stmt = c.createStatement();
-            String sql = "CREATE TABLE if not exists USER_NOTES" +
+            stmt = c.createStatement(); //create statement for db 
+            
+            String sql = "CREATE TABLE if not exists USER_NOTES" + // create table sql code
             "(ID INTEGER PRIMARY KEY   AUTOINCREMENT," +
             " NAME           varchar       NOT NULL, " +
             " BODY           varchar               , " +
             " DATE           varchar       NOT NULL, " +
             " TIME           varchar       NOT NULL, " +
-            " LIST_POSITION  integer                )";
+            " LIST_POSITION  integer       NOT NULL )";
             
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate(sql); // push statement to db
+            stmt.close(); // close current statement
+            c.close(); // close connection with database
+        }
+        catch (Exception e) // if connection and creating db fails
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+    
+    /**
+     * Function: addNewNoteToList(String noteName)
+     * @author ZackEvans
+     * @param noteName
+     * 
+     * Function adds a new note to the top of the list and the database
+     */
+    
+    public void addNewNoteToList(String noteName)
+    {
+    	pushWholeListDownOne(); // push down note to insert one at the top of the list
+    	createNote(noteName); // put a note in the first position
+    }
+    
+    /**
+     * Function: createNotesTable()
+     * @author ZackEvans
+     * @param noteName
+     * 
+     * Function creates a new personal note in the database that is blank.
+     * Function uses prepared statments so inserted string doesent bug with '"() characters.
+     * Function sets note at the top of the list
+     */
+    
+    public void createNote(String noteName)
+    {
+        Connection c = null; // create var for the connection to the database
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // create date format for months, days and years
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss"); // creates a date forment for Hours, min, seconds
+        Calendar date = Calendar.getInstance(); // create a calender var to be later used to calculate date
+        
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create connection to db
+            c.setAutoCommit(false); // turn off autocommit
+            
+            String sql = "INSERT INTO USER_NOTES (NAME,BODY,DATE,TIME,LIST_POSITION) " + // create sql code string
+                         "VALUES (?,?,?,?,?);";
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create a prepared statement object 
+            preparedStatement.setString(1,noteName); // set note name
+            preparedStatement.setString(2,""); // set body of note blank
+            preparedStatement.setString(3,dateFormat.format(date.getTime())); // set months, days and years
+            preparedStatement.setString(4,timeFormat.format(date.getTime())); // set Hours, min, seconds
+            preparedStatement.setInt(5,1); // set new note to first postion in the list (puts item on top)
+            
+            preparedStatement.executeUpdate(); // push request to the db
+            preparedStatement.close(); // close open prepared statement
+            c.commit(); // close commit
+            c.close(); // close connection with the db
+        }
+        
+        catch ( Exception e ) // if adding new note to db fails
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    }
+    
+    /**
+     * Function: pushWholeListDownOne()
+     * @author ZackEvans
+     * 
+     * Push all list positions down 1 value
+     */
+    
+    public void pushWholeListDownOne()
+    {
+    	for (int i = 1; i <= DatabaseUtil.countItems("USER_NOTES"); i++) // run a loop for as many items in the database
+    	{
+    		updateListPosition(getID(i), i+1); // update list position +1
+    	}	
+    }
+    
+    /**
+     * Function: getID(int listPosition)
+     * @author ZackEvans
+     * @param listPosition
+     * @return ID
+     * 
+     * return the ID of a note based on the list position
+     */
+    
+    public int getID(int listPosition)
+    {
+        // create connections
+    	Connection c = null;
+        Statement stmt = null;
+        // create value to be returned
+        int rVal = -1;
+        
+        try 
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create connection
+            c.setAutoCommit(false);
+            
+            stmt = c.createStatement();
+            
+            String sql = "SELECT ID FROM USER_NOTES WHERE LIST_POSITION = ?"; // SQL code to get ID
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement 
+            preparedStatement.setInt(1, listPosition); // set first ? = to list position
+            
+            ResultSet rs = preparedStatement.executeQuery(); // run query
+            
+            rVal = rs.getInt("ID"); // get val from Col ID
+      
+            // close everything
+            rs.close();
+            stmt.close();
+            c.close();
+        } 
+        
+        catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        
+        return rVal; // return ID
+    }
+    
+    /**
+     * Function: getListPosition(int rowNum)
+     * @author ZackEvans
+     * @param id # of note in the db table
+     * @return number of items in the database
+     * 
+     * return the list position by inputting ID
+     */
+
+    public int getListPosition(int id)
+    {
+        Connection c = null; // create connection to db
+        Statement stmt = null;
+        int rVal = -1; // create var to be returned.
+        
+        try 
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create db connection
+            c.setAutoCommit(false); // turn off autocommit
+
+            String sql = "SELECT LIST_POSITION FROM USER_NOTES WHERE ID = ?;"; // sql query to find the list postion of a note from the id
+            PreparedStatement preparedStatement = c.prepareStatement(sql);	// create prepared statemnt to give to db
+            preparedStatement.setInt(1,id); // set ? to id passed to funciton
+
+            stmt = c.createStatement(); // create the statement
+            ResultSet rs = preparedStatement.executeQuery(); // create request from the db
+            
+            rVal = rs.getInt("LIST_POSITION"); // value is set equal to value from db
+            
+            // close all open connections
+            rs.close();
             stmt.close();
             c.close();
         }
-        catch ( Exception e )
-        {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
-        
-        System.out.println("Notes Table created successfully");
-    }
-    
-    public void createPersonalNote(String noteName)
-    {
-        Connection c = null;
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
-        Calendar date = Calendar.getInstance();
-        
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
-            
-            String sql = "INSERT INTO USER_NOTES (NAME,BODY,DATE,TIME,LIST_POSITION) " +
-            "VALUES (?,?,?,?,?);";
-            
-            PreparedStatement preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setBytes(1,Encryption.encryptString(noteName));
-            preparedStatement.setString(2,"");
-            preparedStatement.setString(3,dateFormat.format(date.getTime()));
-            preparedStatement.setString(4,timeFormat.format(date.getTime()));
-            preparedStatement.setInt(5,1); // set new note to first postion in the list (puts item on top)
-            
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            c.commit();
-            c.close();
-        }
         
         catch ( Exception e )
         {
@@ -84,370 +227,368 @@ public class NotesDataBase
             System.exit(0);
         }
         
-        System.out.println("Note Created Successfully");
+        return rVal;
     }
     
-    public void deleteNote(int idNum)
+    /**
+     * Function: updateListPosition(int id, int listPosition)
+     * @author ZackEvans
+     * @param id
+     * @param listPosition
+     * 
+     * Updates the list position in the database based on the id of the note in the tabel
+     */
+    
+   public void updateListPosition(int id, int listPosition)
+   {
+       Connection dbConnection = null; // create var to hold connection to the database
+       
+       try
+       {
+           Class.forName("org.sqlite.JDBC");
+           dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+           dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+           
+           String updateTableSQL = "UPDATE USER_NOTES SET LIST_POSITION = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+           
+           PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL); // create sql prepared statement
+           preparedStatement.setInt(1, listPosition); // set first ? to list position
+           preparedStatement.setInt(2, id); // set second ? to id
+           
+           preparedStatement.executeUpdate(); // execute update to db
+           
+           dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+           preparedStatement.close();
+           dbConnection.close();
+       }
+       catch ( Exception e )
+       {
+           System.err.println( e.getClass().getName() + ": " + e.getMessage());
+           System.exit(0);
+       }
+   }
+    
+    /**
+     * Function: getListNamesData()
+     * @author ZackEvans
+     * @return note names sorted by list position
+     * 
+     * This function returns an arraylist that contains note names sorted from least to greatest LIST_POSITION.
+     */
+    
+    public ArrayList<String> getListNamesData()
     {
-        Connection c = null;
+		ArrayList<String> returnList = new ArrayList<String>();
+		Connection c = null; // create connection for db
+        Statement stmt = null; 
+		
+    	try
+    	{
+    		Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create the connection to the db
+            c.setAutoCommit(false); // turn off autocommit
+            
+            stmt = c.createStatement(); // create statemnt
+            
+            String sql = "SELECT NAME FROM USER_NOTES ORDER BY LIST_POSITION ASC;"; // sql code to get notes names sorted by least to greatest (ListPostion)
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement from sql code
+            
+            ResultSet rs = preparedStatement.executeQuery(); // create result set of data
+            
+            while(rs.next()) // run through all results
+            {
+            	returnList.add(rs.getString("NAME")); // add the names to an arraylist (returnList)
+            }
+            
+            // close all connections
+            rs.close();
+            stmt.close();
+            c.close();
+            
+    	}
+        
+    	catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    	
+    	return returnList;
+    }
+    
+    /**
+     * Function: getSortedListNamesData(String searchText)
+     * @author ZackEvans
+     * @param searchText
+     * @return an arraylist with note names sorted from the database
+     * 
+     * This function returns a arraylist of note names that contain the (searchText)
+     */
+    
+    public ArrayList<String> getSortedListNamesData(String searchText)
+    {
+    	ArrayList<String> returnList = new ArrayList<String>(); // create array to be returned
+    	String sqlSearchText = "%" + searchText + "%"; // add % to each side to comply with sql syntax
+		Connection c = null; // create connection for db
+        Statement stmt = null; 
+        
+    	try
+    	{
+    		Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create the connection to the db
+            c.setAutoCommit(false); // turn off autocommit
+            
+            stmt = c.createStatement(); // create statemnt
+            
+            String sql = "SELECT NAME FROM USER_NOTES WHERE NAME LIKE ?;"; // get note names from database that contain the searched text
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement from sql code
+            preparedStatement.setString(1, sqlSearchText);
+            
+            ResultSet rs = preparedStatement.executeQuery(); // create result set of data
+            
+            while(rs.next()) // run through all results
+            {
+            	returnList.add(rs.getString("NAME")); // add the names to an arraylist (returnList)
+            }
+            
+            // close all connections
+            rs.close();
+            stmt.close();
+            c.close();
+    	}
+        
+    	catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    	
+    	return returnList;
+    }
+    
+    /**
+     * Function: getSortedListID(String searchText)
+     * @author ZackEvans
+     * @param searchText
+     * @return arraylist with IDs of notes that contain the (searchText)
+     * 
+     * This function returns an arraylist of IDs from notes that contain the (searchText)
+     */
+    
+    public ArrayList<Integer> getSortedListID(String searchText)
+    {
+    	ArrayList<Integer> returnList = new ArrayList<Integer>(); // create array to be returned
+    	String sqlSearchText = "%" + searchText + "%"; // add % to each side to comply with sql syntax
+		Connection c = null; // create connection for db
+        Statement stmt = null; 
+        
+    	try
+    	{
+    		Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create the connection to the db
+            c.setAutoCommit(false); // turn off autocommit
+            
+            stmt = c.createStatement(); // create statemnt
+            
+            String sql = "SELECT ID FROM USER_NOTES WHERE NAME LIKE ?;"; // get the IDs of the notes names that contain the searched text
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement from sql code
+            preparedStatement.setString(1, sqlSearchText);
+            
+            ResultSet rs = preparedStatement.executeQuery(); // create result set of data
+            
+            while(rs.next()) // run through all results provided from the result set 
+            {
+            	returnList.add(rs.getInt("ID")); // add the IDs to an arraylist (returnList)
+            }
+            
+            // close all connections
+            rs.close();
+            stmt.close();
+            c.close();
+    	}
+        
+    	catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+    	
+    	return returnList;
+    }
+    
+    /**
+     * Function: pushItemsAboveClickedDown (int numberClicked)
+     * @author ZackEvans
+     * @param numberClicked
+     * 
+     * This function moves all notes above the one selected down (+1) in the database
+     */
+    
+    public void pushItemsAboveClickedDown (int numberClicked) // number count from 1
+    {
+    	for (int i = numberClicked-1; i >= 1; i --) // loop that counts down from number clicked -1 and stops at 1
+    	{
+    		updateListPosition(getID(i), i+1); // update items one position down
+    	}	
+    }
+    
+    /**
+     * Function: pushItemsBelowClickedUp(int numberClicked)
+     * @author ZackEvans
+     * @param numberClicked
+     * 
+     * When a note is removed from the database this function pushes all the notes under the removed one up one position.
+     */
+    
+    public void pushItemsBelowClickedUp(int idOfNoteClicked)
+    {
+    	DatabaseUtil databaseUtil = new DatabaseUtil(); // create object to acess class method to count items in db.
+    	int listPosition = getListPosition(idOfNoteClicked); // get the list position of the note based on the id passed.
+    	
+    	// run through all items under the notes selected
+    	for (int i = listPosition+1; i <= databaseUtil.countItems("USER_NOTES"); i++)
+    	{
+    		updateListPosition(getID(i), i-1); // move item 1 position up
+    	}
+    }
+    
+    /**
+     * Function: pushWholeListUpOne()
+     * @author ZackEvans
+     * 
+     * push all list positions up 1 value
+     */
+    
+    public void pushWholeListUpOne()
+    {
+        for (int i = 1; i <= DatabaseUtil.countItems("USER_NOTES"); i++) // run through all items in the database
+        {
+        	updateListPosition(getID(i), i-1); // update list position up 1. (its "-" because subtracting 1 makes it closer to the top of the list)
+        }
+    }
+    
+    /**
+     * Function: deleteNote(int id)
+     * @author ZackEvans
+     * @param idNum
+     * 
+     * delete note from db 
+     */
+    
+    public void deleteNote(int id)
+    {
+        Connection c = null; // create connection to the db
         
         try
         {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            c.setAutoCommit(false);
-            System.out.println("Opened database successfully");
+            c = DriverManager.getConnection(dbLocation); // create connection to db
+            c.setAutoCommit(false); // turn off autocommit
             
-            String sql = "DELETE from USER_NOTES where ID = ?;";
+            String sql = "DELETE from USER_NOTES where ID = ?;"; // sql code string
             
-            PreparedStatement preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setInt(1,idNum);
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement
+            preparedStatement.setInt(1,id); // set ? to id
             
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            c.commit();
-            c.close();
+            preparedStatement.executeUpdate(); // push to db
+            preparedStatement.close(); // close ps
+            c.commit(); // close commit
+            c.close(); // close connection to the db
         } 
 
         catch (Exception e)
         {
             System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
-        
-        System.out.println("Note Deleted Successfully");
-    }
-    
-    public void pushWholeListDownOne()
-    {
-        ArrayList<Integer> IDList = new ArrayList<Integer>(); // stores the ID number in the database
-        
-        IDList.clear(); // clear row number list
-        
-        for (int i = 1; i <= countItems(); i++) // sets the row number array
-        {
-            IDList.add(getID(i)); // add the id from the database to the row list
-        }
-        
-        for (int i = 0; i < countItems(); i++) 
-        {
-            int IDNumber = IDList.get(i);
-            int listPosition = getListPosition(IDNumber); // get list position from [i] row
-            int updatedPosition = listPosition +1; // add 1 to the list position
-            updateListPosition(IDNumber, updatedPosition); // set new value to the [i] row
-        }
-    }
-    
-    public void pushWholeListUpOne()
-    {
-    	ArrayList<Integer> IDList = new ArrayList<Integer>(); // stores the ID number in the database
-        
-        IDList.clear(); // clear row number list
-        
-        for (int i = 1; i <= countItems(); i++) // sets the row number array
-        {
-            IDList.add(getID(i)); // add the id from the database to the row list
-        }
-        
-        for (int i = 0; i < countItems(); i++) 
-        {
-            int IDNumber = IDList.get(i);
-            int listPosition = getListPosition(IDNumber); // get list position from [i] row
-            int updatedPosition = listPosition - 1; // add 1 to the list position
-            updateListPosition(IDNumber, updatedPosition); // set new value to the [i] row
-        }
-    }
-    
-    public void pushItemsAboveClickedDown (int numberClicked)
-    {
-    	for (int i = numberClicked-1; i >= 1; i --) // loop that counts down from number clicked -1
-    	{
-    		int updatedPosition = i + 1;
-    		updateListPosition(getID(i), updatedPosition);
-    	}	
-    }
-    
-    public int countItems() // counts how may rows there are
-    {
-        Connection c = null;
-        Statement stmt = null;
-        int returnValue = -1;
-        
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            c.setAutoCommit(false);
-            
-            stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS total FROM USER_NOTES");
-            
-            returnValue = rs.getInt("total"); // set return value to value total
-            
-            rs.close();
-            stmt.close();
-            c.close();
-        }
-        catch ( Exception e )
-        {
-            System.err.println(e.getClass().getName() + ": " + e.getMessage());
-            System.exit(0);
-        }
-        
-        return returnValue;
-    }
-    
-    public int getListPosition(int rowNum)
-    {
-        Connection c = null;
-        Statement stmt = null;
-        int rVal = -1;
-        
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            c.setAutoCommit(false);
-            
-
-            String sql = "SELECT LIST_POSITION FROM USER_NOTES WHERE ID = ?;";
-            PreparedStatement preparedStatement = c.prepareStatement(sql);
-            preparedStatement.setInt(1,rowNum);
-
-
-           stmt = c.createStatement();
-           ResultSet rs = preparedStatement.executeQuery();
-            
-            while (rs.next())
-            {
-                rVal = rs.getInt("LIST_POSITION");
-            }
-            
-            rs.close();
-            stmt.close();
-            c.close();
-        }
-        
-        catch ( Exception e )
-        {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
-        
-        return rVal;
-    }
-    
-    public void updateListPosition(int id, int listPosition)
-    {
-        Connection dbConnection = null;
-        
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            dbConnection = DriverManager.getConnection(dbLocation);
-            dbConnection.setAutoCommit(false);
-            
-            String updateTableSQL = "UPDATE USER_NOTES SET LIST_POSITION = ? WHERE ID = ?";
-            
-            PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-            preparedStatement.setInt(1, listPosition);
-            preparedStatement.setInt(2, id);
-            
-            dbConnection.commit();
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            dbConnection.setAutoCommit(true);
-            dbConnection.close();
-        }
-        catch ( Exception e )
-        {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
         }
     }
     
     
-//    public String getNoteName(int ID)
-//    {
-//    	Connection c = null;
-//        Statement stmt = null;
-//        Encryption encryption = new Encryption();
-//        byte[] bytesFromdb = {};
-//        String returnVal = "-1";
-//        
-//        try
-//        {
-//            Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection(dbLocation);
-//            c.setAutoCommit(false);
-//            
-//            stmt = c.createStatement();
-//            
-//            ResultSet rs = stmt.executeQuery( "SELECT NAME FROM USER_NOTES WHERE ID = "+ ID +";" );
-//            
-//            while (rs.next()) 
-//            {
-//                bytesFromdb = rs.getBytes("NAME");
-//                System.out.println("Bytes From db1: "+bytesFromdb);
-//            }
-//            
-//            
-//            returnVal = encryption.decryptString(bytesFromdb);
-//            
-//            rs.close();
-//            stmt.close();
-//            c.close();
-//        } 
-//        catch ( Exception e ) 
-//        {
-//            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//            System.exit(0);
-//        }
-//        
-//        return returnVal;
-//    }
-     
-    public String getNoteNameFromPosition(int listPosition)
-    {
-        Connection c = null;
-        Statement stmt = null;
-        byte[] bytesFromdb = {};
-        String returnVal = "-1";
-        
-        try
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            c.setAutoCommit(false);
-            
-            stmt = c.createStatement();
-            
-            ResultSet rs = stmt.executeQuery( "SELECT NAME FROM USER_NOTES WHERE LIST_POSITION = "+ listPosition +";" );
-            
-            while (rs.next()) 
-            {
-                bytesFromdb = rs.getBytes("NAME");
-            }
-            
-            returnVal = Encryption.decryptString(bytesFromdb);
-            
-            rs.close();
-            stmt.close();
-            c.close();
-        } 
-        catch ( Exception e ) 
-        {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
-        
-        return returnVal;
-    }
-    
-    public int getID(int listPosition)
-    {
-        Connection c = null;
-        Statement stmt = null;
-        int rVal = -1;
-        try 
-        {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection(dbLocation);
-            c.setAutoCommit(false);
-            
-            
-            stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT ID FROM USER_NOTES WHERE LIST_POSITION = "+ listPosition +";" );
-            while (rs.next()) 
-            {
-                rVal = rs.getInt("ID");
-            }
-            
-            rs.close();
-            stmt.close();
-            c.close();
-        } 
-        catch ( Exception e ) 
-        {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-            System.exit(0);
-        }
-        
-        return rVal;
-    }
+    /**
+     * Function: getNotesBody(int id)
+     * @author ZackEvans
+     * @param id
+     * @return body of the note
+     * 
+     * This function takes a id and then return the Body for that ID;
+     */
     
     public String getNotesBody(int id)
 	{
-		Connection c = null;
-	    Statement stmt = null;
-	    String returnVal = "-1";
-	    byte[] bytesFromdb = {};
-	    String checkString = "";
+		Connection c = null; // create connection
+	    Statement stmt = null; // statement
+	    String body= "-1"; // body
 	    
-	    try
+	    try 
 	    {
-	    	Class.forName("org.sqlite.JDBC");
-	    	c = DriverManager.getConnection(dbLocation);
-	    	c.setAutoCommit(false);
-	    	
-	    	stmt = c.createStatement();
-	    	ResultSet rs = stmt.executeQuery("SELECT BODY FROM USER_NOTES WHERE ID ="+ id +";");
-	    	
-	    	checkString = rs.getString("BODY");
-	      	bytesFromdb = rs.getBytes("BODY");
-	      	
-	      	rs.close();
-	      	stmt.close();
-	      	c.close();
-	      
-	      	if (!checkString.equals("")) 
-	      	{
-	      		returnVal = Encryption.decryptString(bytesFromdb);
-	      	}
-	      	
-	      	else
-	      	{
-	      		returnVal = "";
-	      	}
-	    } 
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection(dbLocation); // create connection to db
+	      c.setAutoCommit(false); // turn off auto commit
 	    
+	      stmt = c.createStatement(); // create the statement
+	      
+	      String sql = "SELECT BODY FROM USER_NOTES WHERE ID = ?"; // sql code to select the body from the db
+	      
+	      PreparedStatement preparedStatement = c.prepareStatement(sql); // create a prepared statement from the database
+	      preparedStatement.setInt(1, id); // set first ? = to id
+	      
+	      ResultSet rs = preparedStatement.executeQuery(); // execute sql query
+	      
+	      body = rs.getString("BODY"); // get the body name from the database and set it to body
+	      
+	      // close all connections
+	      rs.close();
+	      stmt.close();
+	      c.close();
+	    } 
 	    catch ( Exception e ) 
 	    {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
+	      System.exit(0); // kill
 	    }
 	    
-	    return returnVal;
+	    return body; // return the body
 	}
+    
+    /**
+     * Function: updateNotesBody (int id, String body)
+     * @author ZackEvans
+     * @param id
+     * @param body
+     * 
+     * This function updates the note body in the database
+     */
     
     public void updateNotesBody (int id, String body)
     {
     	Connection dbConnection = null;
     	
 		try 
-	    {
+        {
 			Class.forName("org.sqlite.JDBC");
-		    dbConnection = DriverManager.getConnection(dbLocation);
-		    dbConnection.setAutoCommit(false);
+		    dbConnection = DriverManager.getConnection(dbLocation); // create connection to database
+		    dbConnection.setAutoCommit(false); // turn off auto commit
 		    
-			String updateTableSQL = "UPDATE USER_NOTES SET BODY = ? WHERE ID = ?";
+			String updateTableSQL = "UPDATE USER_NOTES SET BODY = ? WHERE ID = ?"; // sql code to update the body of the note based of the id of the note
 			
-			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
-			preparedStatement.setBytes(1, Encryption.encryptString(body));
-			//preparedStatement.setString(1, body);
-			preparedStatement.setInt(2, id);
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL); // create prepared statement
+			preparedStatement.setString(1, body); // set first ? to body 
+			preparedStatement.setInt(2, id); // set second ? to id
 			
-			dbConnection.commit();
-			preparedStatement.executeUpdate();
+			dbConnection.setAutoCommit(true); // turn on commit
+			preparedStatement.executeUpdate(); // execute sql
+			
+			// close connections
 			preparedStatement.close();
-			dbConnection.setAutoCommit(true);
 			dbConnection.close();
 	    } 
 		
 	    catch ( Exception e ) 
 	    {
-	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    	System.exit(0);
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
 	    }
     }
 }

@@ -7,21 +7,35 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import launch.app.LaunchApp;
-import menu.notes.addnotedialog.NoteDialog;
+import menu.notes.addnotedialog.AddNoteDialog;
+
+/**
+ * Class: AddNoteButton
+ * @author ZackEvans
+ *
+ * This class is a button. When the button is clicked it will launch a pop up window
+ */
 
 public class AddNoteButton extends JButton
 {
-	private Notes notes;
-	private LaunchApp launchApp = new LaunchApp();
-	private NotesList notesList = new NotesList(notes);
-	private NoteDialog noteDialog = new NoteDialog(notes,notesList);
+	/**
+	 * Constructor: AddNoteButton ()
+	 * @author ZackEvans
+	 * 
+	 * This constructor calls button hierarchy
+	 */
 	
-	public AddNoteButton (Notes notes)
+	public AddNoteButton ()
 	{
-		super();
-		this.notes = notes;
+		super(); // call hierarchy
 	}
+	
+	/**
+	 * Function: initialize ()
+	 * @author ZackEvans
+	 * 
+	 * Function calls methods to setup button and and a listener to it.
+	 */
 	
 	public void initialize ()
 	{
@@ -29,22 +43,38 @@ public class AddNoteButton extends JButton
 		addListeners();
 	}
 	
+	/**
+	 * Function: createButton()
+	 * @author ZackEvans
+	 * 
+	 * Function adds an image to the button
+	 */
+	
 	public void createButton()
 	{
-		URL url = AddNoteButton.class.getResource("/Button_Images/Notes/NotesPanel/Add.png");
-		ImageIcon icon = new ImageIcon(url);
-		setIcon(icon);
+		URL url = AddNoteButton.class.getResource("/Button_Images/Notes/NotesPanel/Add.png"); // add resource to the project
+		ImageIcon icon = new ImageIcon(url); // create a image icon from the URL
+		setIcon(icon); // set image on the button
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * @author ZackEvans
+	 * 
+	 * Function adds a listener to the button
+	 */
 	
 	public void addListeners()
 	{
-		addActionListener(new ActionListener() 
+		addActionListener(new ActionListener() // add listener to the button
 		{
 			@Override
-			public void actionPerformed(ActionEvent arg0) 
+			public void actionPerformed(ActionEvent arg0) // preform this action when the button is clicked
 			{
+				AddNoteDialog addNoteDialog = new AddNoteDialog(); // create object to launch the dialog window
+				
 				System.out.println("Add Button");
-				noteDialog.createAndShowGUI();
+				addNoteDialog.launchDialog(); // call method to launch window
 			}
 		});
 	}

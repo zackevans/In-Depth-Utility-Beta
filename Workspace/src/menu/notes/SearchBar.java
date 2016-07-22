@@ -8,91 +8,126 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import program.searchbar.SearchBarShell;
+import program.textfield.TextFieldShell;
 
-public class SearchBar
+/**
+ * Class: SearchBar 
+ * @author ZackEvans
+ *
+ * This class is a text field that searches through notes
+ */
+
+public class SearchBar 
 {
-	Notes notes;
-	public static JTextField textField = new SearchBarShell();
-	JLabel searchLabel = new JLabel("Search");
-	NotesList notesList = new NotesList(notes);
-	NotesListData notesData = new NotesListData();
+	public static JTextField textField = new TextFieldShell(); // create textfield to use as searchbar
+	public JLabel searchLabel = new JLabel("Search"); // create label to go over textfield
 	
-    public SearchBar (Notes notes) 
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * Calls methods to create searchbar components
+	 */
+	
+	public void initialize()
     {
-       super();
-       this.notes = notes;
-    }
-    
-    public void initialize()
-    {
+		createSearchbar();
     	addListeners();
-    	searchLabel.setOpaque(false);
-    	//searchLabel.setVisible(true);
     }
-    
-    public void addListeners()
-    {  	
-    	DisplayNotes displayNotes = new DisplayNotes(notes);
-    	
-    	textField.getDocument().addDocumentListener(new DocumentListener() 
-    	{   		
-    		@Override
-			public void insertUpdate(DocumentEvent arg0) 
-    		{
-    			notesList.loadSearchData(textField.getText());
-    			notesData.loadOldListPositions(textField.getText());
-    			notesList.setLastID(-1);
-    			displayNotes.clearDisplay();
-    		}
-    		
-    		@Override
-			public void removeUpdate(DocumentEvent arg0) 
-    		{
-    			notesList.loadSearchData(textField.getText());
-    			notesData.loadOldListPositions(textField.getText());
-    			notesList.setLastID(-1);
-    			displayNotes.clearDisplay();
-    		}
-    		
-    		@Override
-			public void changedUpdate(DocumentEvent arg0) {}
-    	});
-    	
-    	textField.addFocusListener(new FocusListener() 
-    	{
-            @Override
-            public void focusGained(FocusEvent e) 
-            {
-           	 	searchLabel.setVisible(false);
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) 
-            {
-           	 	if (doesTextExist() == false)
-           	 	{
-           	 		searchLabel.setVisible(true);
-           	 	}
-            }
-        });
-    }
-    
-    public boolean doesTextExist()
+	
+	/**
+	 * Function: createSearchbar()
+	 * @author ZackEvans
+	 * 
+	 * customize label
+	 */
+	
+	public void createSearchbar()
+	{
+		searchLabel.setOpaque(false);
+	}
+	
+	/**
+	 * Function: addListeners()
+	 * @author ZackEvans
+	 * 
+	 * Function adds focous and action listener to the textfield
+	 */
+	
+	public void addListeners()
+	{
+		// add a document listener to the textField
+		textField.getDocument().addDocumentListener(new DocumentListener() 
+		{	
+			@Override
+			public void insertUpdate(DocumentEvent e)
+			{
+				updateNotesList(); // update the data in the notes list when the text in the searchbar changes
+			}
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) 
+			{
+				updateNotesList(); // update the data in the notes list when the text in the searchbar changes
+			}
+		
+			@Override
+			public void changedUpdate(DocumentEvent e) {}
+		});
+		
+		// Add a focus listener to the textfield
+		textField.addFocusListener(new FocusListener() 
+		{	
+			@Override
+			public void focusLost(FocusEvent e) // when componet is clicked off of 
+			{
+				if (doesTextExist() == false)  // if there is no text in the field
+				{
+					searchLabel.setVisible(true); // show the search label
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) // when the textfield is clicked on
+			{
+				searchLabel.setVisible(false);	// hide the search label
+			}
+		});
+	}
+	
+	/**
+	 * Function: updateNotesList()
+	 * @author ZackEvans
+	 * 
+	 * This function updates the Jlist that displays the note names. 
+	 */
+	
+	public void updateNotesList()
+	{
+		NotesList notesList = new NotesList();
+		DisplayNotes displayNotes = new DisplayNotes();
+		
+		notesList.loadSearchData(textField.getText()); // load load search data into the list
+		displayNotes.clearDisplay(); // reset display
+	}
+	
+	/**
+	 * Function:doesTextExist()
+	 * @author ZackEvans
+	 * @return if there is text in the text field
+	 * 
+	 * This function return true or false based on if there is text in the textfield
+	 */
+	
+	public boolean doesTextExist()
     {
-    	String text = textField.getText();
+    	String text = textField.getText(); // get text from textfield
     	
-    	if (text.length() > 0)
+    	if (text.length() > 0) // check to see if text exists
     	{
-    		return true;
+    		return true; // if it does return true
     	}
     	
-    	else return false;
-    }
-    
-    public void clearTextField()
-    {
-    	textField.setText("");
+    	else return false; // if there is not text return false
     }
 }
-    

@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 
 public class FileUtil 
 {
-	public boolean doesFileExist(String filePath)
+	public static boolean doesFileExist(String filePath)
 	{
 		File f = new File(filePath);
 		
@@ -23,7 +23,7 @@ public class FileUtil
 		}
 	}
 	
-	public void createNewFile(String fileLocation,String fileText)
+	public static void createNewFile(String fileLocation,String fileText)
 	{
 		File exportFile = new File(fileLocation);
 		
@@ -44,7 +44,7 @@ public class FileUtil
 	}
 	
 	
-	public void overWriteFile(String fileLocation, String fileText)
+	public static void overWriteFile(String fileLocation, String fileText)
 	{
 		File exportFile = new File(fileLocation);
 		
@@ -65,7 +65,7 @@ public class FileUtil
 		}
 	}
 	
-	public void clearFile(String fileLocation)
+	public static void clearFile(String fileLocation)
 	{
 		PrintWriter writer = null;
 		try 

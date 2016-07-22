@@ -8,54 +8,78 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
-import menu.notes.sharenotesdialog.ShareList;
-import menu.notes.sharenotesdialog.ShareNoteDialog;
+import menu.notes.sharenotesdialog.ShareNotesDialog;
+
+/**
+ * Function: ShareButton
+ * @author ZackEvans
+ *
+ * This class is a button when clicked displays a list with sharing options
+ */
 
 public class ShareButton extends JButton
 {
-	private BufferPanel bufferPanel;
-	private Notes notes;
-	private ShareNoteDialog shareDialog; 
-	private ShareList shareList;
+	BufferPanel bufferPanel;
 	
-	public ShareButton (BufferPanel bufferPanel,Notes notes)
+	/**
+	 * Constructor:  ShareButton ()
+	 * @author ZackEvans
+	 * 
+	 * Call super Run button hierarchy
+	 * Inherit bufferpanel object
+	 */
+	
+	public ShareButton (BufferPanel bufferPanel)
 	{
-		super();
-		this.bufferPanel = bufferPanel;
-		this.notes = notes;
+		super(); // call hierarchy
+		this.bufferPanel = bufferPanel; // Inherit buffer panel object
 	}
+	
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * This function calls methods to create the button
+	 */
 	
 	public void initialize()
 	{
-		createComponents();
 		createBtn();
 		addListeners();
 	}
 	
-	public void createComponents()
-	{
-		shareDialog = new ShareNoteDialog(bufferPanel,notes);
-		shareList = new ShareList(bufferPanel, notes, shareDialog);
-	}
+	/**
+	 * Function: createBtn();
+	 * @author ZackEvans
+	 * 
+	 * This function adds an image to the button
+	 */
 	
 	public void createBtn()
 	{
-		URL url = ShareButton.class.getResource("/Button_Images/Notes/NotesPanel/Share.png"); // get button image
-		ImageIcon icon = new ImageIcon(url); // create image
-		setIcon(icon); // set the image
+		URL url = ShareButton.class.getResource("/Button_Images/Notes/NotesPanel/Share.png"); // create a URL for the image
+		ImageIcon icon = new ImageIcon(url); // create image icon
+		setIcon(icon); // set image icon as button image
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * @author ZackEvans
+	 * 
+	 * This function adds an action listener to the button.
+	 * When the button is clicked it shows a window with sharing options
+	 */
 	
 	public void addListeners()
 	{
-		addActionListener(new ActionListener() 
+		addActionListener(new ActionListener() // add action listener to the button
 		{
 			@Override
-			public void actionPerformed(ActionEvent arg0) 
+			public void actionPerformed(ActionEvent arg0) // when button is clicked
 			{
-				System.out.println("shareBtn");
+				ShareNotesDialog shareDialog = new ShareNotesDialog(bufferPanel);
 				
 				shareDialog.launchDialog(); // show window next to frame
-					
 			}
 		});
 	}
