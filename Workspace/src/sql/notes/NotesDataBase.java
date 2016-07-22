@@ -51,7 +51,7 @@ public class NotesDataBase
             " LIST_POSITION  integer       NOT NULL )";
             
             stmt.executeUpdate(sql); // push statement to db
-            stmt.close(); // close current statment
+            stmt.close(); // close current statement
             c.close(); // close connection with database
         }
         catch (Exception e) // if connection and creating db fails
@@ -130,9 +130,7 @@ public class NotesDataBase
     
     public void pushWholeListDownOne()
     {
-    	DatabaseUtil databaseUtil = new DatabaseUtil(); // create object to acess count items method
-    	
-    	for (int i = 1; i <= databaseUtil.countItems("USER_NOTES"); i++) // run a loop for as many items in the database
+    	for (int i = 1; i <= DatabaseUtil.countItems("USER_NOTES"); i++) // run a loop for as many items in the database
     	{
     		updateListPosition(getID(i), i+1); // update list position +1
     	}	
@@ -466,9 +464,7 @@ public class NotesDataBase
     
     public void pushWholeListUpOne()
     {
-    	DatabaseUtil databaseUtil = new DatabaseUtil();
-    	
-        for (int i = 1; i <= databaseUtil.countItems("USER_NOTES"); i++) // run through all items in the database
+        for (int i = 1; i <= DatabaseUtil.countItems("USER_NOTES"); i++) // run through all items in the database
         {
         	updateListPosition(getID(i), i-1); // update list position up 1. (its "-" because subtracting 1 makes it closer to the top of the list)
         }

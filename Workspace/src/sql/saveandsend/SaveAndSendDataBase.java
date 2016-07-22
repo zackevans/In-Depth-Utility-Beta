@@ -64,10 +64,28 @@ public class SaveAndSendDataBase
 	 * @param subject
 	 * @param body
 	 * 
-	 * Function creates a new saved email item in the database
+	 * This function saves mutable emails in the db
 	 */
 	
 	public void createSavedEmail(String[] to, String subject, String body)
+	{
+		for (int i = 0; i < to.length; i++) // read all emails into the db
+		{
+			createSavedEmail(to[i], subject, body);
+		}	
+	}
+	
+	/**
+	 * Function: createSavedEmail(String[] to, String subject, String body)
+	 * @author ZackEvans
+	 * @param to
+	 * @param subject
+	 * @param body
+	 * 
+	 * Function creates a new saved email item in the database
+	 */
+	
+	public void createSavedEmail(String to, String subject, String body)
 	{
 		Connection c = null; // create var to hold connection
 		
@@ -80,10 +98,8 @@ public class SaveAndSendDataBase
             String sql = "INSERT INTO SAVE_AND_SEND_EMAIL (TOADDRESS,SUBJECT,BODY) " + // sql code that creates a new item in db
             "VALUES (?,?,?);";
             
-            String sendTO = to[0]; // get first item in the to array and set it to send TO
-            
             PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement
-            preparedStatement.setString(1,sendTO); // set first ? to sendTO
+            preparedStatement.setString(1,to); // set first ? to sendTO
             preparedStatement.setString(2, subject); // set second ? to the subject
             preparedStatement.setString(3,body); // set the third ? to the body
             
