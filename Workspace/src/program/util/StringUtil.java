@@ -5,19 +5,19 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 
 /**
- * Class: TextfieldUtil
+ * Class: StringUtil 
  * @author ZackEvans
  *
  * This class holds useful methods that contain tools for using textFields
  */
 
-public class TextfieldUtil 
+public class StringUtil 
 {
 	/**
 	 * Function: getStringWidth(String text, Font font)
 	 * @param text
 	 * @param font
-	 * @return the width of the string
+	 * @return the width of the string in pix
 	 * 
 	 * This function returns the width the text would take up on the screen
 	 */
