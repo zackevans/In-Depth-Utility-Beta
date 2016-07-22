@@ -6,6 +6,13 @@ import org.quartz.JobExecutionException;
 
 import statusbar.addons.TimeAndDate;
 
+/**
+ * Class: UpdateTimeJob
+ * @author ZackEvans
+ *
+ * This class is a job that updates the time in the statusbar
+ */
+
 public class UpdateTimeJob implements Job
 {
 	@Override
@@ -13,7 +20,7 @@ public class UpdateTimeJob implements Job
 	{
 		TimeAndDate timeAndDate = new  TimeAndDate();
 		
-		timeAndDate.showTime();
-		timeAndDate.timeLabel.repaint();
+		timeAndDate.showTime(); // updates the time in the status bar
+		TimeAndDate.timeLabel.repaint(); // repaint the label in the status bar
 	}   
 }

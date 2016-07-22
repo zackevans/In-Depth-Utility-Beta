@@ -9,6 +9,7 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
+import jobs.jobs.CheckAndSendEmailJob;
 import jobs.jobs.UpdateTimeJob;
 
 public class JobHandler 
@@ -22,6 +23,7 @@ public class JobHandler
 	public void createJobs()
 	{
 		createUpdateTimeJob();
+		createCheckAndSendEmailJob();
 	}
 	
 	/**
@@ -66,30 +68,30 @@ public class JobHandler
      * Function runs every 30 min to check if emails can be sent.
      */
     
-//    public static void createCheckAndSendEmailJob()
-//    {
-//    	JobDetail job = JobBuilder.newJob(CheckAndSendEmailJob.class)
-//    			.withIdentity("CheckAndSendEmailJob", "emailJobs").build();
-//    	
-//    	Trigger trigger = TriggerBuilder
-//    			.newTrigger()
-//    			.withIdentity("CheckAndSendEmail", "emailTriggers")
-//    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/30 * 1/1 * ? *")) 
-//    			.build();
-//    
-//    	Scheduler scheduler;
-//    	
-//		try 
-//		{
-//			scheduler = new StdSchedulerFactory().getScheduler();
-//			scheduler.start();
-//	    	scheduler.scheduleJob(job, trigger);
-//		} 
-//		
-//		catch (SchedulerException e) 
-//		{
-//			System.out.println("createCheckAndSendEmailJob() - Unable to Create Email Job");
-//			e.printStackTrace();
-//		}
-//    }
+    public static void createCheckAndSendEmailJob()
+    {
+    	JobDetail job = JobBuilder.newJob(CheckAndSendEmailJob.class) // create the job todo
+    			.withIdentity("CheckAndSendEmailJob", "emailJobs").build();
+    	
+    	Trigger trigger = TriggerBuilder // create a trigger for when it should happen
+    			.newTrigger()
+    			.withIdentity("CheckAndSendEmail", "emailTriggers")
+    			.withSchedule(CronScheduleBuilder.cronSchedule("0 0/30 * 1/1 * ? *"))
+    			.build();
+    
+    	Scheduler scheduler; // schedule the process
+    	
+		try 
+		{
+			scheduler = new StdSchedulerFactory().getScheduler();
+			scheduler.start();
+	    	scheduler.scheduleJob(job, trigger);
+		} 
+		
+		catch (SchedulerException e) 
+		{
+			System.out.println("createCheckAndSendEmailJob() - Unable to Create Email Job");
+			e.printStackTrace();
+		}
+    }
 }
