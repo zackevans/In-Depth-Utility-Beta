@@ -40,7 +40,6 @@ public class MainMenu extends JPanel
 	private JButton calendarBtn; // created button object
 	private JButton settingsBtn; // Create setting button
 	private JButton aboutBtn; // Create about button
-	private boolean noteBtnClicked = false;
 	//Notes notes;
 	
 	/**

@@ -25,7 +25,7 @@ public class Notes extends JPanel
 	private DeleteButton deleteButton;
 	private DisplayNotes displayNotes;
 	private ClearButton clearButton;
-	private ShareButton shareButton;
+	public  static ShareButton shareButton;
 	BufferPanel bufferPanel;
 	
 	/**
@@ -127,7 +127,7 @@ public class Notes extends JPanel
 		// add items to panel
 		add(clearButton); // add clear button first so it stays on top of the search bar. (Im to lazy to make a layeredpane rn)
 		add(searchbar.searchLabel);
-		add(notesList.scrollPane);
+		add(NotesList.scrollPane);
 		add(returnButton);
 		add(SearchBar.textField);
 		add(addNoteButton);

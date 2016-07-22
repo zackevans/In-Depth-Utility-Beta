@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 
 import menu.buffer.BufferPanel;
+import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
 
 /**
@@ -130,16 +131,18 @@ public class ShareList
 	        	{	
 	        		int indexClicked = list.getSelectedIndex(); // get the index that was clicked
 	        		
-	        		if(indexClicked == 0) 
+	        		if(indexClicked == 0) // if the mail index is clicked
 	        		{
 	        			bufferPanel.showPanel("MAIL_NOTES"); // show mail note panel
 	        			MailNote.clearPanel(); // reset all components on the panel
 	        			MailNote.autoFill();
 	        		}
 	        		
-	        		if(indexClicked == 1)
+	        		if(indexClicked == 1) // if the export index is clicked
 	        		{
-	        			
+	        			bufferPanel.showPanel("EXPORT_NOTE"); // show the export note panel
+	        			ExportNote.clearPanel();
+	        			ExportNote.autoFill();
 	        		}
 	        		
 	        		ShareNotesDialog.customFrame.setVisible(false);	// hide the window

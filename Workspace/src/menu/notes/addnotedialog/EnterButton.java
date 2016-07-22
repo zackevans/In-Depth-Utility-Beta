@@ -57,7 +57,7 @@ public class EnterButton extends JButton
 			{
 				System.out.println("EnterButton");
 				
-				AddNoteDialog.createNote();
+				AddNoteDialog.createNote(); // create a new note
 			}
 		});
 	}

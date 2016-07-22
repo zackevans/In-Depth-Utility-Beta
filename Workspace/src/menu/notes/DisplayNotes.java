@@ -122,7 +122,6 @@ public class DisplayNotes extends JScrollPane
 	
 	public void updateChange()
 	{
-		NotesList notesList = new NotesList();
 		SearchBar searchBar = new SearchBar();
 		NotesDataBase notesDatabase = new NotesDataBase();
 		int index = NotesList.list.getSelectedIndex(); // get current selected index
@@ -136,7 +135,7 @@ public class DisplayNotes extends JScrollPane
 			
 			else // if there is text in the search bar
 			{
-				notesDatabase.updateNotesBody(notesList.notesCorrespondingID.get(index), textArea.getText()); // update the body with the current text
+				notesDatabase.updateNotesBody(NotesList.notesCorrespondingID.get(index), textArea.getText()); // update the body with the current text
 			}
 		}
 	}

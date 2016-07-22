@@ -153,7 +153,6 @@ public class LaunchApp
     	// create db location and create the database
     	dataBase.createDBLocation();
 		dataBase.createDatabase();
-		dataBase.checkConnection();
 		
 		// create the systems table in the database
 		systemSettingsdb.createSystemSettingsTable();

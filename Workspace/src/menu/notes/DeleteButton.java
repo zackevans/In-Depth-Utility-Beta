@@ -18,7 +18,6 @@ import sql.notes.NotesDataBase;
  * This class is a button that when clicked, deletes a note
  */
 
-
 public class DeleteButton extends JButton
 {	
 	/**

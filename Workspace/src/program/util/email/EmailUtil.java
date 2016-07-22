@@ -34,7 +34,7 @@ public class EmailUtil
 		 
 		catch (AddressException ex) 
 		{
-			result = false; // if email fails then set valid to false
+			result = false; // if email fails then set result to false
 		}
 		 
 		return result;

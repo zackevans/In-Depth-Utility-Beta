@@ -15,7 +15,7 @@ import java.sql.Statement;
 
 public class DatabaseUtil 
 {
-	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; // file path to db
+	final static String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; // file path to db
 	
 	/**
      * Function: countItems()
@@ -26,7 +26,7 @@ public class DatabaseUtil
      * return the number of items currently in the table
      */
 	
-	public int countItems(String table) // counts how may rows there are
+	public static int countItems(String table) // counts how may rows there are
     {
         Connection c = null; // create object to store connection
         Statement stmt = null; // create a statement to hold db request

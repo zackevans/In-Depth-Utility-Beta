@@ -83,7 +83,7 @@ public class StatusBar extends JPanel
 		
 		// set location and size of the time label
 		timeAndDate.createLabel();
-		timeAndDate.timeLabel.setBounds(580, 0, 70, 20); 
+		TimeAndDate.timeLabel.setBounds(580, 0, 70, 20); 
 		timeAndDate.showTime();
 		//timeAndDate.timeLabel.setBorder(BorderFactory.createLineBorder(Color.red));
 		
@@ -99,6 +99,6 @@ public class StatusBar extends JPanel
 		
 		// add items to the top bar
 		add(notificationsBtn);
-		add(timeAndDate.timeLabel);
+		add(TimeAndDate.timeLabel);
 	}
 }

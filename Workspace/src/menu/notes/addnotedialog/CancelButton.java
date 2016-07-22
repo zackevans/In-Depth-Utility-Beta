@@ -26,6 +26,13 @@ public class CancelButton extends JButton
 		super();
 	}
 	
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * This function calls methods to create the button
+	 */
+	
 	public void initialize()
 	{
 		createButton();
