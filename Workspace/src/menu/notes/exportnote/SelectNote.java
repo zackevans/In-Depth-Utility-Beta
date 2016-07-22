@@ -1,4 +1,4 @@
-package menu.notes.mailnote;
+package menu.notes.exportnote;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +14,7 @@ import sql.notes.NotesDataBase;
  * Class: SelectNote
  * @author ZackEvans
  *
- * This class holds a combobox that is used to select the note the user wants to email
+ * This class holds a combobox that is used to select the note the user wants to export
  */
 
 public class SelectNote 
@@ -87,18 +87,18 @@ public class SelectNote
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				PreviewNote previewNote = new PreviewNote();
+				ExportPreviewNote exportPreviewNote = new ExportPreviewNote();
 				
-				previewNote.displayNote(comboBox.getSelectedIndex()); // show note body in preview window
+				exportPreviewNote.displayNote(SelectNote.comboBox.getSelectedIndex());
 				
-				if (comboBox.getSelectedIndex() == 0) // if the first index is selected (The one that sats SELECT NOTE)
+				if (SelectNote.comboBox.getSelectedIndex() !=0)
 				{
-					ErrorPanel.seclectNoteError.setVisible(true); // show the error
+					ExportErrorNotePanel.selectNoteError.setVisible(false);
 				}
 				
-				else // if the first index is note selected
+				else
 				{
-					ErrorPanel.seclectNoteError.setVisible(false); // hide the errorpanel
+					ExportErrorNotePanel.selectNoteError.setVisible(true);
 				}
 			}
 		});

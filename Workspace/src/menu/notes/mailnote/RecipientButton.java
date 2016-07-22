@@ -9,14 +9,23 @@ import javax.swing.JButton;
 
 import menu.notes.mailnote.recipientviewer.RecipientViewer;
 
+/**
+ * Class: RecipientButton
+ * @author ZackEvans
+ *
+ * This class is a button that when clicked shows the recipient viewer.
+ */
+
 public class RecipientButton 
 {
-	public static JButton button = new JButton();	
+	public static JButton button = new JButton();	// create the button
 	
-	public RecipientButton ()
-	{
-		
-	}
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * This function calls methods to create button
+	 */
 	
 	public void initialize()
 	{
@@ -24,36 +33,61 @@ public class RecipientButton
 		addListeners();
 	}
 	
+	/**
+	 * Function: createButton()
+	 * @author ZackEvans
+	 * 
+	 * This function sets an image on the button.
+	 * Creates the border.
+	 * set the Default text on the button.
+	 * Sets the text position on the button.
+	 */
+	
 	public void createButton()
 	{
-		URL recipentDecal = RecipientButton.class.getResource("/Button_Images/Notes/MailNote/RecipientButton.png");
-		ImageIcon decalImage = new ImageIcon(recipentDecal);
-		button.setIcon(decalImage);
+		URL recipentDecal = RecipientButton.class.getResource("/Button_Images/Notes/MailNote/RecipientButton.png"); // Create URL on the image
+		ImageIcon decalImage = new ImageIcon(recipentDecal); // create a Image icon from the URL
+		button.setIcon(decalImage); // set button iamge
 		
-		button.setText("0");
-		button.setBorder(null);
-		button.setFocusable(false);
-		button.setFocusPainted(false);
-		button.setVerticalTextPosition(JButton.CENTER);
+		button.setText("0"); // set the default text to 0
+		button.setBorder(null); // get rid of the border
+		button.setFocusable(false); // make the button not have focus
+		button.setFocusPainted(false); // remove annoying blue border when clicked
+		// set the button text in the center
+		button.setVerticalTextPosition(JButton.CENTER); 
 		button.setHorizontalTextPosition(JButton.CENTER);
 	}
 	
+	/**
+	 * Function: addListeners()
+	 * @author ZackEvans
+	 * 
+	 * This function adds a action listener to the button
+	 */
+	
 	public void addListeners()
 	{
-		button.addActionListener(new ActionListener() 
+		button.addActionListener(new ActionListener() // add action listener
 		{
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e) // override default method
 			{
-				RecipientViewer.recipientViewerPanel.setVisible(true);
+				RecipientViewer.recipientViewerPanel.setVisible(true); // show the recipient viewer.
 			}
 		});
 	}
 	
+	/**
+	 * Function: updateButtonNumber()
+	 * @author ZackEvans
+	 * 
+	 * This function sets the button text the the number of emails in the que.
+	 */
+	
 	public static void updateButtonNumber()
 	{
-		button.setText((new Integer(RecipientViewer.listOfEmails.size()).toString()));
-		button.setBorder(null);
+		button.setText((new Integer(RecipientViewer.listOfEmails.size()).toString())); // count items and text text
+		button.setBorder(null); // remove border bc it comes back every time :(
 	}
 }
 	
