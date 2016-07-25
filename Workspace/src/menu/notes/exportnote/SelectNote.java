@@ -85,20 +85,20 @@ public class SelectNote
 		comboBox.addActionListener(new ActionListener()  // add action listener to combobox 
 		{
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)  // override what happens when the button is pressed.
 			{
 				ExportPreviewNote exportPreviewNote = new ExportPreviewNote();
 				
-				exportPreviewNote.displayNote(SelectNote.comboBox.getSelectedIndex());
+				exportPreviewNote.displayNote(SelectNote.comboBox.getSelectedIndex()); // show the note body in the preview window.
 				
-				if (SelectNote.comboBox.getSelectedIndex() !=0)
+				if (SelectNote.comboBox.getSelectedIndex() !=0) // if the combo box is not empty.
 				{
-					ExportErrorNotePanel.selectNoteError.setVisible(false);
+					ExportErrorNotePanel.selectNoteError.setVisible(false); // hide the warning
 				}
 				
 				else
 				{
-					ExportErrorNotePanel.selectNoteError.setVisible(true);
+					ExportErrorNotePanel.selectNoteError.setVisible(true); // show the warning.
 				}
 			}
 		});

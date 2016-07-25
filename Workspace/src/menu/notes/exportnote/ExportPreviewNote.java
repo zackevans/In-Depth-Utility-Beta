@@ -9,30 +9,69 @@ import javax.swing.border.TitledBorder;
 
 import sql.notes.NotesDataBase;
 
+/**
+ * Class: ExportPreviewNote
+ * @author ZackEvans
+ *
+ * This class is a scroll pane that holds a text area that shows a preview of the notes body to the user.
+ */
+
 public class ExportPreviewNote extends JScrollPane
 {
-	public static JTextArea textArea = new JTextArea();
+	public static JTextArea textArea = new JTextArea(); // create text area to sit in scroll pane
+	
+	/**
+	 * Constructor: ExportPreviewNote()
+	 * @author ZackEvans
+	 * 
+	 * This function calls the scroll pane hierarchy.
+	 */
 	
 	public ExportPreviewNote()
 	{
-		super();
+		super(); 
 	}
+	
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * This function calls a method to setup the scrollpane
+	 */
 	
 	public void initialize()
 	{
 		createComponents();
 	}
 	
+	/**
+	 * Function: createComponents()
+	 * @author ZackEvans
+	 * 
+	 * This function creates the scrollpane
+	 */
+	
 	public void createComponents()
 	{
-		TitledBorder titleBorder = new TitledBorder("Preview");
-		textArea.setBorder(titleBorder);
-		setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
-		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		TitledBorder titleBorder = new TitledBorder("Preview"); // create a title border
+		textArea.setBorder(titleBorder); // set the textareas border.
+		setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK)); // creates a black border all around the scroll panel
+		setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Don't let the panel scroll right to left
+		// make the text return for each word.
 		textArea.setLineWrap(true);
-		textArea.setEditable(false);
-		setViewportView(textArea);
+		textArea.setWrapStyleWord(true);
+		textArea.setEditable(false); // make the user not be able to edit the text in the panel
+		
+		setViewportView(textArea); // set the panel in the scrollpanel
 	}
+	
+	/**
+	 * Function: displayNote(int index)
+	 * @author ZackEvans
+	 * @param index
+	 * 
+	 * This function displays a note in the textarea.
+	 */
 	
 	public void displayNote(int index)
 	{
