@@ -7,36 +7,58 @@ import javax.swing.event.DocumentListener;
 
 import program.textfield.TextFieldShell;
 
+/**
+ * Class: FileNameField 
+ * @author ZackEvans
+ *
+ * This class contains a text field where the user inputs the name of the text file it will export.
+ */
+
 public class FileNameField 
 {
-	public static JTextField fileNameTextField = new TextFieldShell();
+	// create the textfield and label
+	public static JTextField fileNameTextField = new TextFieldShell(); 
 	public JLabel fileNameLabel = new JLabel("File Name:");
+	
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * This function calls a methods to create the button
+	 */
 	
 	public void initialize()
 	{
-		addListeners();
+		addListeners(); 
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * @author ZackEvans
+	 * 
+	 * This function adds a document listener to the textfield.
+	 */
 	
 	public void addListeners()
 	{
-		fileNameTextField.getDocument().addDocumentListener(new DocumentListener() 
+		fileNameTextField.getDocument().addDocumentListener(new DocumentListener()  // add document listener to the text field.
 		{
 			@Override
-			public void removeUpdate(DocumentEvent e) 
+			public void removeUpdate(DocumentEvent e) // override what happens when a char is removed from the text field
 			{
 				ExportErrorNotePanel.checkFileWarning(); // check to see if file exists
 				
-				if (fileNameTextField.getText().length() == 0)
+				if (fileNameTextField.getText().length() == 0) // if the text field is empty.
 				{
-					ExportErrorNotePanel.fileNameError.setVisible(true);
+					ExportErrorNotePanel.fileNameError.setVisible(true); // show the warning.
 				}
 			}
 			
 			@Override
-			public void insertUpdate(DocumentEvent e) 
+			public void insertUpdate(DocumentEvent e) // override what happens when a char is added to the text field.
 			{
-				ExportErrorNotePanel.checkFileWarning();
-				ExportErrorNotePanel.fileNameError.setVisible(false);
+				ExportErrorNotePanel.checkFileWarning(); // check if the file already exists
+				ExportErrorNotePanel.fileNameError.setVisible(false);  // hide error
 			}
 			
 			@Override

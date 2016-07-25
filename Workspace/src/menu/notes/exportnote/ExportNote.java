@@ -30,11 +30,26 @@ public class ExportNote extends JPanel
 	ExportCancelButton cancelButton;
 	ExportButton exportButton;
 	
+	/**
+	 * Constructor:  ExportNote(BufferPanel bufferPanel)
+	 * @author ZackEvans
+	 * @param bufferPanel
+	 * 
+	 * This method calls the panel hierarchy and inherits the bufferPanel object.
+	 */
+	
 	public ExportNote(BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;
 	}
+	
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * This function calls methods setup the panel and its components.
+	 */
 	
 	public void initialize()
 	{
@@ -43,8 +58,16 @@ public class ExportNote extends JPanel
 		initializeComponents();
 	}
 	
+	/**
+	 * Function: createComponents()
+	 * @author ZackEvans
+	 * 
+	 * This function creates panel components and sets the size an location of them.
+	 */
+	
 	public void createComponents()
 	{
+		// create the components
 		selectNote = new SelectNote();
 		errorNotePanel = new ExportErrorNotePanel();
 		previewNote = new ExportPreviewNote();
@@ -54,6 +77,7 @@ public class ExportNote extends JPanel
 		cancelButton = new ExportCancelButton(bufferPanel);
 		exportButton = new ExportButton(bufferPanel);
 		
+		// set the size and location of the components
 		SelectNote.comboBox.setBounds(150,30,400,20);
 		previewNote.setBounds(0, 65, 700, 250);
 		
@@ -69,28 +93,44 @@ public class ExportNote extends JPanel
 		exportButton.setBounds(585, 440, 100, 25);
 	}
 	
+	/**
+	 * Function: addComponents()
+	 * @author ZackEvans
+	 * 
+	 * This function sets up the panel and adds the components to it.
+	 */
+	
 	public void addComponents()
 	{
 		final int Window_Width = 700;
 		final int Window_Height = 500;
 		
-		setLayout(null);
-		setPreferredSize(new Dimension(Window_Width,Window_Height));
-		setOpaque(false);
+		setLayout(null); // remove layout manager from the panel 
+		setPreferredSize(new Dimension(Window_Width,Window_Height)); // set the size of the panel
+		setOpaque(false); // make the panel clear
 		
-		createContentPanel();
+		createContentPanel(); // create the panel to hold all of the main panel components.
 		
-		JLayeredPane layerPane = new JLayeredPane();
+		JLayeredPane layerPane = new JLayeredPane(); // errorPanel sits on TOP of the content panel
 		
+		// add components to the panel
 		layerPane.add(contentPanel, new Integer(0),0); 
 		layerPane.add(errorNotePanel, new Integer(1),0);
 		
+		// set the location of the panel and layers
 		contentPanel.setBounds(0, 0, Window_Width,Window_Height);
 		layerPane.setBounds(0, 0,Window_Width,Window_Height);
 		errorNotePanel.setBounds(0, 0, Window_Width,Window_Height);
 		
-		add(layerPane);
+		add(layerPane); // add the layerPanel to the panel
 	}
+	
+	/**
+	 * Function: initializeComponents()
+	 * @author ZackEvans
+	 * 
+	 * This function calls the methods to create the components.
+	 */
 	
 	public void initializeComponents()
 	{
@@ -98,20 +138,27 @@ public class ExportNote extends JPanel
 		previewNote.initialize();
 		fileNameField.initialize();
 		fileDirectoryField.initialize();
-		chooseDirectoryButton.initialize();
 		cancelButton.initialize();
 		exportButton.initialize();
 	}
+	
+	/**
+	 * Function: createContentPanel()
+	 * @author ZackEvans
+	 * 
+	 * This function creates the content panel and adds the components to it.
+	 */
 	
 	public void createContentPanel()
 	{
 		final int Window_Width = 700;
 		final int Window_Height = 500;
 		
-		contentPanel.setOpaque(false);
-		contentPanel.setLayout(null);
-		contentPanel.setPreferredSize(new Dimension(Window_Width,Window_Height-50));
+		contentPanel.setOpaque(false); // make the panel clear
+		contentPanel.setLayout(null); // remove the layout manager
+		contentPanel.setPreferredSize(new Dimension(Window_Width,Window_Height-50)); // set the size of panel
 		
+		// add components to the content panel
 		contentPanel.add(SelectNote.comboBox);
 		contentPanel.add(previewNote);
 		
@@ -128,6 +175,13 @@ public class ExportNote extends JPanel
 		
 	}
 	
+	/**
+	 * Function: clearPanel()
+	 * @author ZackEvans
+	 * 
+	 * This function clears all of the components on the panel
+	 */
+	
 	public static void clearPanel()
 	{
 		SelectNote.comboBox.setSelectedIndex(0);
@@ -137,14 +191,21 @@ public class ExportNote extends JPanel
 		ExportErrorNotePanel.hideAllErrors();
 	}
 	
+	/**
+	 * Function: autoFill()
+	 * @author ZackEvans
+	 * 
+	 * This function fills the selected note with the note selected on the note panel
+	 */
+	
 	public static void autoFill()
 	{
 		SelectNote selectNote = new SelectNote();
 		selectNote.updateData();
 		
-		if(NotesList.list.getSelectedIndex() != -1)
+		if(NotesList.list.getSelectedIndex() != -1) // if there is a note selecetd
 		{
-			SelectNote.comboBox.setSelectedIndex(NotesList.list.getSelectedIndex() +1);
+			SelectNote.comboBox.setSelectedIndex(NotesList.list.getSelectedIndex() +1); // set the index in the index panel
 		}
 	}
 	

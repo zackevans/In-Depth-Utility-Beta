@@ -9,43 +9,86 @@ import javax.swing.JFileChooser;
 
 import launch.app.LaunchApp;
 
+/**
+ * Class: ChooseDirectoryButton
+ * @author ZackEvans
+ *
+ * This class is a button that prompts the user with a file chooser so they can choose where the note will be exported to.
+ */
+
 public class ChooseDirectoryButton extends JButton
 {
+	
+	/**
+	 * Constructor: ChooseDirectoryButton ()
+	 * @author ZackEvans
+	 * 
+	 * This constructor calls button hierarchy and calls a method to setup the button.
+	 */
+	
+	public ChooseDirectoryButton ()
+	{
+		super();
+		initialize();
+	}
+	
+	/**
+	 * Function: initialize()
+	 * @author ZackEvans
+	 * 
+	 * This function calls a method to create and setup the button
+	 */
+	
 	public void initialize()
 	{
-		createComponents();
+		createButton();
 		addListeners();
 	}
 	
-	public void createComponents()
+	/**
+	 * Function: createButton()
+	 * @author ZackEvans
+	 * 
+	 * This function sets the text and removes the selected border from the button.
+	 */
+	
+	public void createButton()
 	{
 		setText("Choose ...");
 		setFocusPainted(false);
 	}
 	
+	/**
+	 * Function: addListeners()
+	 * @author ZackEvans
+	 * 
+	 * This method adds an action listener to the button.
+	 * When the action is performed a JFileChooser is shown.
+	 */
+	
 	public void addListeners()
 	{
-		addActionListener(new ActionListener() 
+		addActionListener(new ActionListener()  // add action listener to button
 		{
 			@Override
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e) // override what happens when the button is clicked
 			{
 				// create JFile chooser
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setDialogTitle("Select File Location");
-				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				fileChooser.setCurrentDirectory(new java.io.File("/Desktop"));
+				fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY); // only make the file chooser show directory paths
+				fileChooser.setCurrentDirectory(new java.io.File("/Desktop")); // set the defult directory
 				
-				int status = fileChooser.showOpenDialog(LaunchApp.frame);
+				int status = fileChooser.showOpenDialog(LaunchApp.frame); // create a variable for the status of the dialog
 			
-				if (status == JFileChooser.APPROVE_OPTION) 
+				if (status == JFileChooser.APPROVE_OPTION) // if the filechoosers approve button is pressed
 				{
-					File selectedFile = fileChooser.getSelectedFile();
-					String directory = selectedFile.getParent() + "/" + selectedFile.getName();
+					File selectedFile = fileChooser.getSelectedFile(); // create a file
+					String directory = selectedFile.getParent() + "/" + selectedFile.getName(); // create a directroy path for the file
 					
-					FileDirectoryField.fileDirectoryTextField.setText(directory);
+					FileDirectoryField.fileDirectoryTextField.setText(directory); // show the text in the textfield.
 					
-					ExportErrorNotePanel.checkFileWarning();
+					ExportErrorNotePanel.checkFileWarning(); // check to see if the file already exists.
 				} 
 			}
 		});
