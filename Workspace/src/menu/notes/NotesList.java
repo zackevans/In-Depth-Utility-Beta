@@ -177,7 +177,7 @@ public class NotesList
 		        		list.setSelectedIndex(0); // set it to the first item
 		        		
 		        		dispNotes.displayNote(id); // display the selected note
-		        		dispNotes.textArea.requestFocusInWindow(); // go to where user ended typing
+		        		DisplayNotes.textArea.requestFocusInWindow(); // go to where user ended typing
 					}
 					
 					else // if there is text in the search bar textfield 
@@ -186,7 +186,7 @@ public class NotesList
 						int id = notesCorrespondingID.get(list.getSelectedIndex()); // get id based on the list index
 						
 						dispNotes.displayNote(id); // display the note that was selected
-						dispNotes.textArea.requestFocusInWindow(); // set focus display notes
+						DisplayNotes.textArea.requestFocusInWindow(); // set focus display notes
 					}
 				}
 			}
