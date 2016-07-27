@@ -68,6 +68,14 @@ public class SearchBar
 			@Override
 			public void removeUpdate(DocumentEvent e) 
 			{
+				NotesList notesList = new NotesList();
+				
+//				if(textField.getText().length() ==0)
+//				{
+//					System.out.println("Empty");
+//					notesList.loadData();
+//				}
+				
 				updateNotesList(); // update the data in the notes list when the text in the searchbar changes
 			}
 		
