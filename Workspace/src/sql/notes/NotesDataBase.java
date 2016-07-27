@@ -393,7 +393,8 @@ public class NotesDataBase
             {
             	String noteName = Encryption.decryptString(rs.getBytes("NAME")); // decrypt the note name from the database
             	
-            	if(noteName.contains(searchText)) // check to see if the note name matches the search text
+            	
+            	if(noteName.toLowerCase().contains(searchText.toLowerCase())) // check to see if the note name matches the search text
             	{
             		returnList.add(noteName); // add the note name to the array being returned
             	}
@@ -446,7 +447,7 @@ public class NotesDataBase
             {
             	String noteName = Encryption.decryptString(rs.getBytes("NAME")); // decrypt the note name from the database
             	
-            	if(noteName.contains(searchText)) // check to see if the note name matches the search text
+            	if(noteName.toLowerCase().contains(searchText.toLowerCase())) // check to see if the note name matches the search text
             	{
             		returnList.add(rs.getInt("ID")); // add the note id to the return array list
             	}
