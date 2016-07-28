@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import program.util.security.Encryption;
 import sql.util.DatabaseUtil;
 
 /**
@@ -89,8 +90,8 @@ public class NotesDataBase
     {
         Connection c = null; // create var for the connection to the database
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy"); // create date format for months, days and years
-        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss"); // creates a date forment for Hours, min, seconds
-        Calendar date = Calendar.getInstance(); // create a calender var to be later used to calculate date
+        DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss"); // creates a date format for Hours, min, seconds
+        Calendar date = Calendar.getInstance(); // create a calendar var to be later used to calculate date
         
         try
         {
@@ -102,11 +103,11 @@ public class NotesDataBase
                          "VALUES (?,?,?,?,?);";
             
             PreparedStatement preparedStatement = c.prepareStatement(sql); // create a prepared statement object 
-            preparedStatement.setString(1,noteName); // set note name
-            preparedStatement.setString(2,""); // set body of note blank
+            preparedStatement.setBytes(1,Encryption.encryptString(noteName)); // set note name
+            preparedStatement.setBytes(2,Encryption.encryptString("")); // set body of note blank
             preparedStatement.setString(3,dateFormat.format(date.getTime())); // set months, days and years
             preparedStatement.setString(4,timeFormat.format(date.getTime())); // set Hours, min, seconds
-            preparedStatement.setInt(5,1); // set new note to first postion in the list (puts item on top)
+            preparedStatement.setInt(5,1); // set new note to first position in the list (puts item on top)
             
             preparedStatement.executeUpdate(); // push request to the db
             preparedStatement.close(); // close open prepared statement
@@ -263,7 +264,7 @@ public class NotesDataBase
        }
        catch ( Exception e )
        {
-           System.err.println( e.getClass().getName() + ": " + e.getMessage());
+           System.err.println(e.getClass().getName() + ": " + e.getMessage());
            System.exit(0);
        }
    }
@@ -298,14 +299,13 @@ public class NotesDataBase
             
             while(rs.next()) // run through all results
             {
-            	returnList.add(rs.getString("NAME")); // add the names to an arraylist (returnList)
+            	returnList.add(Encryption.decryptString(rs.getBytes("NAME"))); // add the names to an arraylist (returnList)
             }
             
             // close all connections
             rs.close();
             stmt.close();
             c.close();
-            
     	}
         
     	catch ( Exception e ) 
@@ -329,7 +329,6 @@ public class NotesDataBase
     public ArrayList<String> getSortedListNamesData(String searchText)
     {
     	ArrayList<String> returnList = new ArrayList<String>(); // create array to be returned
-    	String sqlSearchText = "%" + searchText + "%"; // add % to each side to comply with sql syntax
 		Connection c = null; // create connection for db
         Statement stmt = null; 
         
@@ -339,18 +338,22 @@ public class NotesDataBase
             c = DriverManager.getConnection(dbLocation); // create the connection to the db
             c.setAutoCommit(false); // turn off autocommit
             
-            stmt = c.createStatement(); // create statemnt
+            stmt = c.createStatement(); // create statement
             
-            String sql = "SELECT NAME FROM USER_NOTES WHERE NAME LIKE ?;"; // get note names from database that contain the searched text
+            String sql = "SELECT NAME FROM USER_NOTES;"; // get all note names in the NAME column
             
             PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement from sql code
-            preparedStatement.setString(1, sqlSearchText);
             
             ResultSet rs = preparedStatement.executeQuery(); // create result set of data
             
             while(rs.next()) // run through all results
             {
-            	returnList.add(rs.getString("NAME")); // add the names to an arraylist (returnList)
+            	String noteName = Encryption.decryptString(rs.getBytes("NAME")); // decrypt the note name from the database
+            	
+            	if(noteName.toLowerCase().contains(searchText.toLowerCase())) // check to see if the note name matches the search text
+            	{
+            		returnList.add(noteName); // add the note name to the array being returned
+            	}
             }
             
             // close all connections
@@ -380,7 +383,6 @@ public class NotesDataBase
     public ArrayList<Integer> getSortedListID(String searchText)
     {
     	ArrayList<Integer> returnList = new ArrayList<Integer>(); // create array to be returned
-    	String sqlSearchText = "%" + searchText + "%"; // add % to each side to comply with sql syntax
 		Connection c = null; // create connection for db
         Statement stmt = null; 
         
@@ -389,19 +391,22 @@ public class NotesDataBase
     		Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection(dbLocation); // create the connection to the db
             c.setAutoCommit(false); // turn off autocommit
-            
             stmt = c.createStatement(); // create statemnt
             
-            String sql = "SELECT ID FROM USER_NOTES WHERE NAME LIKE ?;"; // get the IDs of the notes names that contain the searched text
+            String sql = "SELECT NAME,ID FROM USER_NOTES;"; // get the IDs of the notes names that contain the searched text
             
             PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement from sql code
-            preparedStatement.setString(1, sqlSearchText);
             
             ResultSet rs = preparedStatement.executeQuery(); // create result set of data
             
             while(rs.next()) // run through all results provided from the result set 
             {
-            	returnList.add(rs.getInt("ID")); // add the IDs to an arraylist (returnList)
+            	String noteName = Encryption.decryptString(rs.getBytes("NAME")); // decrypt the note name from the database
+            	
+            	if(noteName.toLowerCase().contains(searchText.toLowerCase())) // check to see if the note name matches the search text
+            	{
+            		returnList.add(rs.getInt("ID")); // add the note id to the return array list
+            	}
             }
             
             // close all connections
@@ -536,7 +541,7 @@ public class NotesDataBase
 	      
 	      ResultSet rs = preparedStatement.executeQuery(); // execute sql query
 	      
-	      body = rs.getString("BODY"); // get the body name from the database and set it to body
+	      body = Encryption.decryptString(rs.getBytes("BODY")); // get the body name from the database and set it to body
 	      
 	      // close all connections
 	      rs.close();
@@ -574,7 +579,7 @@ public class NotesDataBase
 			String updateTableSQL = "UPDATE USER_NOTES SET BODY = ? WHERE ID = ?"; // sql code to update the body of the note based of the id of the note
 			
 			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL); // create prepared statement
-			preparedStatement.setString(1, body); // set first ? to body 
+			preparedStatement.setBytes(1, Encryption.encryptString(body)); // set first ? to body 
 			preparedStatement.setInt(2, id); // set second ? to id
 			
 			dbConnection.setAutoCommit(true); // turn on commit
