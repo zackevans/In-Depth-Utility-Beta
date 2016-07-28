@@ -326,49 +326,6 @@ public class NotesDataBase
      * This function returns a arraylist of note names that contain the (searchText)
      */
     
-//    public ArrayList<String> getSortedListNamesData(String searchText)
-//    {
-//    	ArrayList<String> returnList = new ArrayList<String>(); // create array to be returned
-//    	String sqlSearchText = "%" + searchText + "%"; // add % to each side to comply with sql syntax
-//		Connection c = null; // create connection for db
-//        Statement stmt = null; 
-//        
-//    	try
-//    	{
-//    		Class.forName("org.sqlite.JDBC");
-//            c = DriverManager.getConnection(dbLocation); // create the connection to the db
-//            c.setAutoCommit(false); // turn off autocommit
-//            
-//            stmt = c.createStatement(); // create statement
-//            
-//            String sql = "SELECT NAME FROM USER_NOTES WHERE NAME LIKE ?;"; // get note names from database that contain the searched text
-//            
-//            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement from sql code
-//            preparedStatement.setString(1, sqlSearchText);
-//            
-//            ResultSet rs = preparedStatement.executeQuery(); // create result set of data
-//            
-//            while(rs.next()) // run through all results
-//            {
-//            	returnList.add(rs.getString("NAME")); // add the names to an arraylist (returnList)
-//            }
-//            
-//            // close all connections
-//            rs.close();
-//            stmt.close();
-//            c.close();
-//    	}
-//        
-//    	catch ( Exception e ) 
-//        {
-//            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//            System.exit(0);
-//        }
-//    	
-//    	return returnList;
-//    }
-    
-    
     public ArrayList<String> getSortedListNamesData(String searchText)
     {
     	ArrayList<String> returnList = new ArrayList<String>(); // create array to be returned
@@ -392,7 +349,6 @@ public class NotesDataBase
             while(rs.next()) // run through all results
             {
             	String noteName = Encryption.decryptString(rs.getBytes("NAME")); // decrypt the note name from the database
-            	
             	
             	if(noteName.toLowerCase().contains(searchText.toLowerCase())) // check to see if the note name matches the search text
             	{
