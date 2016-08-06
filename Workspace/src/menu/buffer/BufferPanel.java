@@ -10,7 +10,6 @@ import menu.notes.Notes;
 import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
 import menu.settings.SettingsMenu;
-import sql.systemsettings.SystemSettingsDatabase;
 
 /**
  * Class: BufferPanel
@@ -29,6 +28,18 @@ public class BufferPanel extends JPanel
 	private MailNote mailNote;
 	private ExportNote exportNote;
 	private SettingsMenu settingsMenu;
+	
+	/**
+	 * Constructor: BufferPanel()
+	 * @author ZackEvans
+	 * 
+	 * this constructor calls panel hierarchy.
+	 */
+	
+	public BufferPanel()
+	{
+		super();
+	}
 	
 	/**
 	 * Function: initialize
@@ -129,17 +140,17 @@ public class BufferPanel extends JPanel
 	public void setDefaults()
 	{
 		// Creates SystemDataBase to access startup functions
-		SystemSettingsDatabase systemDB = new SystemSettingsDatabase();
 		
-		if (systemDB.getPassExist() == true) // Check database is a password exists
-		{
+		
+//		if (systemDB.getPassExist() == true) // Check database is a password exists
+//		{
 			//showPanel("LOGIN_PANEL"); // show the login panel
-		}
+//		}
 		
-		else
-		{
+//		else
+//		{
 			showPanel("MAIN_MENU"); // show the main menu as the first panel shown 
-		}
+		//}
 	}
 	
 	/** 

@@ -185,6 +185,7 @@ public class MainMenu extends JPanel
 			{
 				System.out.println("SettignsBtn"); // print out settings button
 				bufferPanel.showPanel("SETTINGS_MENU"); // call show panel method and show the settings menu panel
+				
 			}
 		});
 		
