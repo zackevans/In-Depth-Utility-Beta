@@ -37,7 +37,6 @@ public class StatusBar extends JPanel
 		super(); // call hierarchy 
 		this.bufferPanel = bufferPanel; // inherit bufferPanel
 		setOpaque(false); // set true to show gray
-		//setBackground(Color.LIGHT_GRAY);
 	}
 	
 	/**
