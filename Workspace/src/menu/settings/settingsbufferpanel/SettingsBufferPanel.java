@@ -73,11 +73,16 @@ public class SettingsBufferPanel extends JPanel
 		panelToShow.setVisible(true); // set new panel visible 
 	}
 	
+	public void clearPanel()
+	{
+		for (JPanel panel : mapPanels.values()) // Run through all panels in hashmap
+		{
+			panel.setVisible(false); // hide all panels in bufferpanel
+		}
+	}
 	
 	public static void resetAllPanels()
 	{
 		PasswordAndSecuritySettingsPanel.resetPanel();
 	}
-	
-	
 }

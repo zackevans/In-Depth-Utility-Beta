@@ -97,6 +97,11 @@ public class SettingsList
 				{
 					settingsBufferPanel.showPanel("PASSWORD_AND_SECURITY_SETTINGS");
 				}
+				
+				else
+				{
+					settingsBufferPanel.clearPanel();
+				}
 			}
 			
 			@Override
