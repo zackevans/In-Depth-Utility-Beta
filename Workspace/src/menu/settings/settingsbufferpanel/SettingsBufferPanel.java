@@ -36,7 +36,7 @@ public class SettingsBufferPanel extends JPanel
 	
 	public void createComponents()
 	{
-		passwordAndSecuritySettingsPanel = new PasswordAndSecuritySettingsPanel(this);
+		passwordAndSecuritySettingsPanel = new PasswordAndSecuritySettingsPanel();
 		
 		mapPanels.put("PASSWORD_AND_SECURITY_SETTINGS", passwordAndSecuritySettingsPanel);
 	}

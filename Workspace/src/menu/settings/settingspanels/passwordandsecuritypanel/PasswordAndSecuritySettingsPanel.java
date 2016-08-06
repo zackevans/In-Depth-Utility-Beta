@@ -4,19 +4,15 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordsettingspanel.PasswordSettingsPanel;
 
 public class PasswordAndSecuritySettingsPanel extends JPanel
 {
-	private SettingsBufferPanel settingsBufferPanel;
 	private JPanel passwordSettingsPanel;
-	
-	
-	public PasswordAndSecuritySettingsPanel(SettingsBufferPanel settingsBufferPanel)
+		
+	public PasswordAndSecuritySettingsPanel()
 	{
 		super();
-		this.settingsBufferPanel = settingsBufferPanel;
 	}
 	
 	public void initialize()
