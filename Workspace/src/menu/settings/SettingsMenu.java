@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
+import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 
 public class SettingsMenu extends JPanel
 {
@@ -12,6 +13,7 @@ public class SettingsMenu extends JPanel
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
 	SettingsList settingsList;
+	SettingsBufferPanel settingsBufferPanel;
 	
 	public SettingsMenu(BufferPanel bufferPanel)
 	{
@@ -27,9 +29,11 @@ public class SettingsMenu extends JPanel
 	
 	public void createComponents()
 	{
-		settingsList = new SettingsList();
+		settingsBufferPanel = new SettingsBufferPanel();
+		settingsList = new SettingsList(settingsBufferPanel);
 		
 		SettingsList.scrollPane.setBounds(0, 15, 225, 500);
+		settingsBufferPanel.setBounds(225,15, 575,500);
 	}
 	
 	public void layoutComponents()
@@ -39,9 +43,6 @@ public class SettingsMenu extends JPanel
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20)); // set size of panel
 		
 		add(SettingsList.scrollPane);
-		
+		add(settingsBufferPanel);
 	}
-	
-	
-
 }

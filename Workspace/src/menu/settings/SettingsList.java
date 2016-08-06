@@ -3,6 +3,8 @@ package menu.settings;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,17 +16,20 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
+import menu.settings.settingsbufferpanel.SettingsBufferPanel;
+
 public class SettingsList 
 {
+	private SettingsBufferPanel settingsBufferPanel;
 	public static JScrollPane scrollPane = new JScrollPane();
 	public static JList settingsList = new JList();
 	private Map<String, ImageIcon> imageMap = new HashMap<String, ImageIcon>(); // create a hashmap with the name and image
 	
-	public SettingsList ()
+	public SettingsList (SettingsBufferPanel settingsBufferPanel)
 	{
-		initialize();
+		initialize();	
+		this.settingsBufferPanel = settingsBufferPanel;
 	}
-	
 	
 	/**
 	 * Function: initialize()
@@ -54,6 +59,7 @@ public class SettingsList
 		scrollPane.getViewport().setBackground(new Color(225,225,225,0x99));
 		scrollPane.setBackground(new Color(225,225,225,0x99));
 		scrollPane.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 1, Color.BLACK));
+		scrollPane.setFocusable(false);
 	}
 	
 	public void createIcons ()
@@ -79,7 +85,29 @@ public class SettingsList
 	
 	public void addListeners()
 	{
-		
+		settingsList.addMouseListener(new MouseListener() 
+		{
+			
+			@Override
+			public void mousePressed(MouseEvent e) 
+			{
+				int listIndex = settingsList.getSelectedIndex();
+				
+				if (listIndex == 1)
+				{
+					settingsBufferPanel.showPanel("PASSWORD_AND_SECURITY_SETTINGS");
+				}
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+		});
 	}
 	
 	/**
