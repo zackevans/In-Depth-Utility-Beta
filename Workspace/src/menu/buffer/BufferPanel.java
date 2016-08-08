@@ -10,6 +10,7 @@ import menu.notes.Notes;
 import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
 import menu.settings.SettingsMenu;
+import statusbar.addons.BufferPanelBackButton;
 
 /**
  * Class: BufferPanel
@@ -28,6 +29,8 @@ public class BufferPanel extends JPanel
 	private MailNote mailNote;
 	private ExportNote exportNote;
 	private SettingsMenu settingsMenu;
+	private static String currentPanel = "MAIN_MENU";
+	public static String lastPanel = "MAIN_MENU";
 	
 	/**
 	 * Constructor: BufferPanel()
@@ -165,7 +168,12 @@ public class BufferPanel extends JPanel
 	 */
 	
 	public void showPanel(String panelName)
-	{
+	{		
+		lastPanel = currentPanel;
+		currentPanel = panelName;	
+		
+		checkBackButton(panelName);
+		
 		for (JPanel panel : mapPanels.values()) // Run through all panels in hashmap
 		{
 			panel.setVisible(false); // hide all panels in bufferpanel
@@ -173,5 +181,18 @@ public class BufferPanel extends JPanel
 		
 		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
 		panelToShow.setVisible(true); // set new panel visible 
+	}
+	
+	public void checkBackButton(String panelName)
+	{
+		if(panelName == "MAIN_MENU")
+		{
+			BufferPanelBackButton.backButton.setVisible(false);
+		}
+			
+		else
+		{
+			BufferPanelBackButton.backButton.setVisible(true);
+		}
 	}
 }
