@@ -43,7 +43,6 @@ public class ShareList
 	
 	public ShareList (BufferPanel bufferPanel)
 	{
-		super(); // call panel hierarchy.
 		this.bufferPanel = bufferPanel; // inherit the bufferPanel object
 	}
 	

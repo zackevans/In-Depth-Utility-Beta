@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
+import statusbar.addons.BufferPanelBackButton;
 import statusbar.addons.NotificationsButton;
 import statusbar.addons.TimeAndDate;
 
@@ -22,6 +23,7 @@ public class StatusBar extends JPanel
 	public static final int Window_Height = 500;
 	private NotificationsButton notificationsBtn;
 	private TimeAndDate timeAndDate;
+	public static  BufferPanelBackButton backButton;
 	BufferPanel bufferPanel;
 	
 	/**
@@ -37,7 +39,6 @@ public class StatusBar extends JPanel
 		super(); // call hierarchy 
 		this.bufferPanel = bufferPanel; // inherit bufferPanel
 		setOpaque(false); // set true to show gray
-		//setBackground(Color.LIGHT_GRAY);
 	}
 	
 	/**
@@ -80,16 +81,18 @@ public class StatusBar extends JPanel
 	{	
 		notificationsBtn = new NotificationsButton(bufferPanel); // create notofications object
 		timeAndDate = new TimeAndDate(); // create time and date object
+		backButton = new BufferPanelBackButton(bufferPanel);
 		
 		// set location and size of the time label
 		timeAndDate.createLabel();
 		TimeAndDate.timeLabel.setBounds(580, 0, 70, 20); 
 		timeAndDate.showTime();
-		//timeAndDate.timeLabel.setBorder(BorderFactory.createLineBorder(Color.red));
 		
 		// create and set the size/location of the notifications button
 		notificationsBtn.initialize();
 		notificationsBtn.setBounds(655, 0, 50, 21);
+		
+		BufferPanelBackButton.backButton.setBounds(10, -1, 55,20);
 	}
 	
 	public void layoutComponents()
@@ -100,5 +103,6 @@ public class StatusBar extends JPanel
 		// add items to the top bar
 		add(notificationsBtn);
 		add(TimeAndDate.timeLabel);
+		add(BufferPanelBackButton.backButton);
 	}
 }

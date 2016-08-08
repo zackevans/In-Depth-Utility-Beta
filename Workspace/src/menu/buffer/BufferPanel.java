@@ -9,7 +9,8 @@ import menu.main.MainMenu;
 import menu.notes.Notes;
 import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
-import sql.systemsettings.SystemSettingsDatabase;
+import menu.settings.SettingsMenu;
+import statusbar.addons.BufferPanelBackButton;
 
 /**
  * Class: BufferPanel
@@ -27,6 +28,21 @@ public class BufferPanel extends JPanel
 	private Notes notes;
 	private MailNote mailNote;
 	private ExportNote exportNote;
+	private SettingsMenu settingsMenu;
+	private static String currentPanel = "MAIN_MENU";
+	public static String lastPanel = "MAIN_MENU";
+	
+	/**
+	 * Constructor: BufferPanel()
+	 * @author ZackEvans
+	 * 
+	 * this constructor calls panel hierarchy.
+	 */
+	
+	public BufferPanel()
+	{
+		super();
+	}
 	
 	/**
 	 * Function: initialize
@@ -68,6 +84,10 @@ public class BufferPanel extends JPanel
 		
 		exportNote = new ExportNote(this);
 		mapPanels.put("EXPORT_NOTE", exportNote);
+		
+		//Settings
+		settingsMenu = new SettingsMenu(this);
+		mapPanels.put("SETTINGS_MENU", settingsMenu);
 	}
 	
 	/**
@@ -86,6 +106,9 @@ public class BufferPanel extends JPanel
 		notes.initialize();
 		mailNote.initialize();
 		exportNote.initialize();
+		
+		//Settings
+		settingsMenu.initialize();
 	}
 	
 	/**
@@ -104,6 +127,9 @@ public class BufferPanel extends JPanel
 		add(notes);
 		add(mailNote);
 		add(exportNote);
+		
+		// Settings
+		add(settingsMenu);
 	}
 	
 	/**
@@ -117,17 +143,17 @@ public class BufferPanel extends JPanel
 	public void setDefaults()
 	{
 		// Creates SystemDataBase to access startup functions
-		SystemSettingsDatabase systemDB = new SystemSettingsDatabase();
 		
-		if (systemDB.getPassExist() == true) // Check database is a password exists
-		{
+		
+//		if (systemDB.getPassExist() == true) // Check database is a password exists
+//		{
 			//showPanel("LOGIN_PANEL"); // show the login panel
-		}
+//		}
 		
-		else
-		{
+//		else
+//		{
 			showPanel("MAIN_MENU"); // show the main menu as the first panel shown 
-		}
+		//}
 	}
 	
 	/** 
@@ -142,7 +168,12 @@ public class BufferPanel extends JPanel
 	 */
 	
 	public void showPanel(String panelName)
-	{
+	{		
+		lastPanel = currentPanel;
+		currentPanel = panelName;	
+		
+		checkBackButton(panelName);
+		
 		for (JPanel panel : mapPanels.values()) // Run through all panels in hashmap
 		{
 			panel.setVisible(false); // hide all panels in bufferpanel
@@ -150,5 +181,24 @@ public class BufferPanel extends JPanel
 		
 		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
 		panelToShow.setVisible(true); // set new panel visible 
+	}
+	
+	public void checkBackButton(String panelName)
+	{
+		if(panelName == "MAIN_MENU")
+		{
+			BufferPanelBackButton.backButton.setVisible(false);
+		}
+		
+		else if(panelName == "NOTES")
+		{
+			BufferPanelBackButton.backButton.setVisible(true);
+			lastPanel = "MAIN_MENU";
+		}
+			
+		else
+		{
+			BufferPanelBackButton.backButton.setVisible(true);
+		}
 	}
 }

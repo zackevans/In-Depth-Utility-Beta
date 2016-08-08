@@ -105,8 +105,8 @@ public class NotesDataBase
             PreparedStatement preparedStatement = c.prepareStatement(sql); // create a prepared statement object 
             preparedStatement.setBytes(1,Encryption.encryptString(noteName)); // set note name
             preparedStatement.setBytes(2,Encryption.encryptString("")); // set body of note blank
-            preparedStatement.setString(3,dateFormat.format(date.getTime())); // set months, days and years
-            preparedStatement.setString(4,timeFormat.format(date.getTime())); // set Hours, min, seconds
+            preparedStatement.setBytes(3,Encryption.encryptString(dateFormat.format(date.getTime()))); // set months, days and years
+            preparedStatement.setBytes(4,Encryption.encryptString(timeFormat.format(date.getTime()))); // set Hours, min, seconds
             preparedStatement.setInt(5,1); // set new note to first position in the list (puts item on top)
             
             preparedStatement.executeUpdate(); // push request to the db
