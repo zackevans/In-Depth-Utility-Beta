@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
+import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 
 /**
  * Class: MainMenu
@@ -183,7 +184,7 @@ public class MainMenu extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				System.out.println("SettignsBtn"); // print out settings button
+				SettingsBufferPanel.resetAllPanels();
 				bufferPanel.showPanel("SETTINGS_MENU"); // call show panel method and show the settings menu panel
 				
 			}
