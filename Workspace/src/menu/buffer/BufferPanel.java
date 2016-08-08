@@ -183,6 +183,15 @@ public class BufferPanel extends JPanel
 		panelToShow.setVisible(true); // set new panel visible 
 	}
 	
+	/**
+	 * Function: checkBackButton(String panelName)
+	 * @author ZackEvans
+	 * @param panelname
+	 * 
+	 * This function shows the back button when needed.
+	 * This function also corrects the last panel setting in the bufferpanel in order to always return back to the correct panel.
+	 */
+	
 	public void checkBackButton(String panelName)
 	{
 		if(panelName == "MAIN_MENU")
