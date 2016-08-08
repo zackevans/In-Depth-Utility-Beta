@@ -19,7 +19,6 @@ public class Notes extends JPanel
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
 	private static NotesList notesList;
-	private ReturnButton returnButton;
 	private AddNoteButton addNoteButton;
 	private SearchBar searchbar;
 	private DeleteButton deleteButton;
@@ -71,7 +70,6 @@ public class Notes extends JPanel
 	{
 		// creates objects for GUI elements needed
 		notesList = new NotesList();
-		returnButton = new ReturnButton(bufferPanel);
 		addNoteButton = new AddNoteButton();
 		searchbar = new SearchBar();
 		deleteButton = new DeleteButton();
@@ -81,11 +79,10 @@ public class Notes extends JPanel
 		
 		// sets location for GUI components 
 		NotesList.scrollPane.setBounds(0,50,250,423);
-		returnButton.setBounds(250,18,30,30);
-		addNoteButton.setBounds(280,18,30,30);
+		addNoteButton.setBounds(250,18,30,30);
 		SearchBar.textField.setBounds(5, 23, 240, 22);
 		searchbar.searchLabel.setBounds(8, 23, 240, 22);
-		deleteButton.setBounds(310,18,30,30);
+		deleteButton.setBounds(280,18,30,30);
 		displayNotes.setBounds(250,50,450,423);
 		clearButton.setBounds(224,23,20,20);
 		shareButton.setBounds(660,18,30,30);
@@ -101,7 +98,6 @@ public class Notes extends JPanel
 	public void initializeComponents()
 	{
 		notesList.initialize();
-		returnButton.initialize();
 		addNoteButton.initialize();
 		searchbar.initialize();
 		deleteButton.initialize();
@@ -128,7 +124,6 @@ public class Notes extends JPanel
 		add(clearButton); // add clear button first so it stays on top of the search bar. (Im to lazy to make a layeredpane rn)
 		add(searchbar.searchLabel);
 		add(NotesList.scrollPane);
-		add(returnButton);
 		add(SearchBar.textField);
 		add(addNoteButton);
 		add(deleteButton);
