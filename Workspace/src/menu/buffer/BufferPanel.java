@@ -189,6 +189,12 @@ public class BufferPanel extends JPanel
 		{
 			BufferPanelBackButton.backButton.setVisible(false);
 		}
+		
+		else if(panelName == "NOTES")
+		{
+			BufferPanelBackButton.backButton.setVisible(true);
+			lastPanel = "MAIN_MENU";
+		}
 			
 		else
 		{
