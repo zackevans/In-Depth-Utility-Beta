@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import statusbar.addons.LockButton;
 
 public class SaveButton extends JButton
 {
@@ -56,6 +57,7 @@ public class SaveButton extends JButton
 					{
 						passwordAndSecurityDatabase.updatePassword(PasswordFields.newPasswordField.getText());
 						PasswordSettingsPanel.showMenu();
+						LockButton.lockButton.setVisible(true);
 					}
 					
 					else // if the text fields dont equal each other
@@ -65,7 +67,7 @@ public class SaveButton extends JButton
 					
 				}
 				
-				else // if the password doesent match thte one in the databse
+				else // if the password doesent match the one in the databse
 				{
 					PasswordErrorPanel.checkAllResetPasswordPanelErrors();
 				}
@@ -77,6 +79,7 @@ public class SaveButton extends JButton
 				{
 					passwordAndSecurityDatabase.updatePassword("");
 					PasswordSettingsPanel.showMenu();
+					LockButton.lockButton.setVisible(false);
 				}
 				
 				else
@@ -94,6 +97,7 @@ public class SaveButton extends JButton
 				{
 					passwordAndSecurityDatabase.updatePassword(PasswordFields.passwordField.getText());
 					PasswordSettingsPanel.showMenu();
+					LockButton.lockButton.setVisible(true);
 				}
 				
 				else
