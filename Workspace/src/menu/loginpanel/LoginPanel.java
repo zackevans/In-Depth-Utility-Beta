@@ -13,6 +13,7 @@ public class LoginPanel extends JPanel
 	private LoginLabels loginLabels;
 	private LoginField loginField;
 	private JButton loginButton;
+	private LoginErrors loginErrors;
 	
 	public LoginPanel(BufferPanel bufferPanel)
 	{
@@ -37,11 +38,14 @@ public class LoginPanel extends JPanel
 		loginLabels = new LoginLabels();
 		loginField = new LoginField(bufferPanel);
 		loginButton = new LoginButton(bufferPanel);
+		loginErrors = new LoginErrors();
 		
 		loginLabels.panelLabel.setBounds(0, 25, 700,50);
 		LoginField.loginField.setBounds(230,200, 240,24);
 		loginField.loginLabel.setBounds(155,200, 75,25);
 		loginButton.setBounds(475, 196,30,30);
+		loginErrors.loginError.setBounds(510, 200, 22,22);
+		
 	}
 	
 	public void layoutComponents()
@@ -53,5 +57,6 @@ public class LoginPanel extends JPanel
 		add(LoginField.loginField);
 		add(loginButton);
 		add(loginField.loginLabel);
+		add(loginErrors.loginError);
 	}
 }

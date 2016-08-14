@@ -60,17 +60,16 @@ public class LoginButton extends JButton
 		if(LoginField.loginField.getText().equals(passwordAndSecurityDatabase.getPassword()))
 		{
 			LoginField.loginField.setText("");
+			LoginErrors.loginError.setVisible(false);
 			
 			bufferPanel.showRawPanel(BufferPanel.currentPanel);
 			LockButton.lockButton.setVisible(true);
-			
-			
 			bufferPanel.checkBackButton(BufferPanel.currentPanel);
 		}
 		
 		else
 		{
-			// TODO show error
+			LoginErrors.loginError.setVisible(true);
 		}
 	}
 }
