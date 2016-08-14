@@ -29,7 +29,7 @@ public class BufferPanelBackButton
 	public void createButton()
 	{
 		URL backArrowURL = BufferPanelBackButton.class.getResource("/Button_Images/TopBar/BackButton.png"); // Create URL on the image
-		URL backArrowPressedURL = BufferPanelBackButton.class.getResource("/Button_Images/TopBar/BackButtonPressed.png"); // Create URL on the image
+		URL backArrowPressedURL = BufferPanelBackButton.class.getResource("/Button_Images/TopBar/BackbuttonPressed.png"); // Create URL on the image
 		ImageIcon backArrowIcon = new ImageIcon(backArrowURL); // create a Image icon from the URL
 		ImageIcon backArrowPressedIcon = new ImageIcon(backArrowPressedURL);
 		backButton.setIcon(backArrowIcon); // set button iamge
@@ -37,9 +37,6 @@ public class BufferPanelBackButton
 		
 		backButton.setVisible(false);
 		
-		//setHorizontalAlignment(JButton.LEFT);
-		//setHorizontalTextPosition(JButton.CENTER);
-		//..setVerticalTextPosition(JButton.LEFT);
 		backButton.setBorder(null); // get rid of the border
 		backButton.setFocusable(false); // make the button not have focus
 		backButton.setFocusPainted(false); // remove annoying blue border when clicked
