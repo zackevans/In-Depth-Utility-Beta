@@ -1,0 +1,76 @@
+package menu.loginpanel;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
+import menu.buffer.BufferPanel;
+import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import statusbar.addons.LockButton;
+
+public class LoginButton extends JButton
+{
+	BufferPanel bufferPanel;
+	
+	public LoginButton(BufferPanel bufferPanel)
+	{
+		super();
+		this.bufferPanel = bufferPanel;
+		initialize();
+	}
+	
+	
+	public void initialize()
+	{
+		createButton();
+		addListeners();
+	}
+	
+	public void createButton()
+	{
+		URL url = LoginButton.class.getResource("/Button_Images/Login/loginButton.png"); // create a URL for the image
+		ImageIcon icon = new ImageIcon(url); // create image icon
+		setIcon(icon); // set image icon as button image
+		
+		setOpaque(false);
+		setBorder(null);
+		setFocusPainted(false);	
+	}
+	
+	public void addListeners()
+	{
+		addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				loginAction();
+			}
+		});
+	}
+	
+	
+	public void loginAction()
+	{
+		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		
+		if(LoginField.loginField.getText().equals(passwordAndSecurityDatabase.getPassword()))
+		{
+			LoginField.loginField.setText("");
+			
+			bufferPanel.showRawPanel(BufferPanel.currentPanel);
+			LockButton.lockButton.setVisible(true);
+			
+			
+			bufferPanel.checkBackButton(BufferPanel.currentPanel);
+		}
+		
+		else
+		{
+			// TODO show error
+		}
+	}
+}
