@@ -5,11 +5,13 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import menu.loginpanel.LoginPanel;
 import menu.main.MainMenu;
 import menu.notes.Notes;
 import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
 import menu.settings.SettingsMenu;
+import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
 import statusbar.addons.BufferPanelBackButton;
 
 /**
@@ -29,7 +31,8 @@ public class BufferPanel extends JPanel
 	private MailNote mailNote;
 	private ExportNote exportNote;
 	private SettingsMenu settingsMenu;
-	private static String currentPanel = "MAIN_MENU";
+	private LoginPanel loginPanel;
+	public static String currentPanel = "MAIN_MENU";
 	public static String lastPanel = "MAIN_MENU";
 	
 	/**
@@ -88,6 +91,10 @@ public class BufferPanel extends JPanel
 		//Settings
 		settingsMenu = new SettingsMenu(this);
 		mapPanels.put("SETTINGS_MENU", settingsMenu);
+		
+		// login panel
+		loginPanel = new LoginPanel(this);
+		mapPanels.put("LOGIN_PANEL", loginPanel);
 	}
 	
 	/**
@@ -109,6 +116,8 @@ public class BufferPanel extends JPanel
 		
 		//Settings
 		settingsMenu.initialize();
+		
+		loginPanel.initialize();
 	}
 	
 	/**
@@ -130,6 +139,9 @@ public class BufferPanel extends JPanel
 		
 		// Settings
 		add(settingsMenu);
+		
+		// login panel
+		add(loginPanel);
 	}
 	
 	/**
@@ -142,18 +154,17 @@ public class BufferPanel extends JPanel
 	
 	public void setDefaults()
 	{
-		// Creates SystemDataBase to access startup functions
+		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
 		
+		if(passwordAndSecurityDatabase.doesPasswordExist())
+		{
+			showRawPanel("LOGIN_PANEL");
+		}
 		
-//		if (systemDB.getPassExist() == true) // Check database is a password exists
-//		{
-			//showPanel("LOGIN_PANEL"); // show the login panel
-//		}
-		
-//		else
-//		{
-			showPanel("MAIN_MENU"); // show the main menu as the first panel shown 
-		//}
+		else
+		{
+			showPanel("MAIN_MENU");
+		}
 	}
 	
 	/** 
@@ -170,10 +181,31 @@ public class BufferPanel extends JPanel
 	public void showPanel(String panelName)
 	{		
 		lastPanel = currentPanel;
-		currentPanel = panelName;	
+		currentPanel = panelName;
 		
 		checkBackButton(panelName);
 		
+		for (JPanel panel : mapPanels.values()) // Run through all panels in hashmap
+		{
+			panel.setVisible(false); // hide all panels in bufferpanel
+		}
+		
+		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
+		panelToShow.setVisible(true); // set new panel visible 
+	}
+	
+	
+	/**
+	 * Function: showRawPanel(String panelName)
+	 * @author ZackEvans
+	 * @param panelName
+	 * 
+	 * This function shows a panel on the bufferPanel no questions asked.
+	 * This method would be used by something like the login panel, something that you want to show but you don't want to register on the lastpanel var.
+	 */
+	
+	public void showRawPanel(String panelName)
+	{
 		for (JPanel panel : mapPanels.values()) // Run through all panels in hashmap
 		{
 			panel.setVisible(false); // hide all panels in bufferpanel
@@ -198,7 +230,7 @@ public class BufferPanel extends JPanel
 		{
 			BufferPanelBackButton.backButton.setVisible(false);
 		}
-		
+			
 		else if(panelName == "NOTES")
 		{
 			BufferPanelBackButton.backButton.setVisible(true);

@@ -12,13 +12,10 @@ import menu.buffer.BufferPanel;
 public class BufferPanelBackButton
 {
 	public static JButton backButton = new JButton();
-	
-	
 	BufferPanel bufferPanel;
 	
 	public BufferPanelBackButton(BufferPanel bufferPanel)
 	{
-		super();
 		this.bufferPanel = bufferPanel;
 		initialize();
 	}
