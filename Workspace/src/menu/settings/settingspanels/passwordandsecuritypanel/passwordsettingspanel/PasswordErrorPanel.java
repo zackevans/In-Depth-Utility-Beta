@@ -15,7 +15,7 @@ public class PasswordErrorPanel extends JPanel
 	
 	public static JLabel incorrectPasswordLabel= new JLabel();
 	public static JLabel resetPasswordsDoesentMatchErrorLabel = new JLabel();
-	
+
 	public static JLabel removePasswordLabel = new JLabel();
 	
 	/**
@@ -71,9 +71,9 @@ public class PasswordErrorPanel extends JPanel
 		resetPasswordsDoesentMatchErrorLabel.setIcon(errorIcon);
 		removePasswordLabel.setIcon(errorIcon);
 		
-		newPasswordDoesentMatchErrorLabel.setToolTipText("Passwords dont Match");
+		newPasswordDoesentMatchErrorLabel.setToolTipText("Passwords Don't Match");
 		incorrectPasswordLabel.setToolTipText("Incorrect Password");
-		resetPasswordsDoesentMatchErrorLabel.setToolTipText("Passwords dont Match");
+		resetPasswordsDoesentMatchErrorLabel.setToolTipText("Passwords Don't Match");
 		removePasswordLabel.setToolTipText("Incorrect Password");
 		
 		newPasswordDoesentMatchErrorLabel.setBounds(375,82, 30,22);
