@@ -4,12 +4,14 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.PasswordBooleanPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordsettingspanel.PasswordSettingsPanel;
 
 public class PasswordAndSecuritySettingsPanel extends JPanel
 {
 	private JPanel passwordSettingsPanel;
-		
+	private JPanel passwordBooleanPanel;
+	
 	public PasswordAndSecuritySettingsPanel()
 	{
 		super();
@@ -33,13 +35,16 @@ public class PasswordAndSecuritySettingsPanel extends JPanel
 	public void createComponenets()
 	{
 		passwordSettingsPanel = new PasswordSettingsPanel();
+		passwordBooleanPanel = new PasswordBooleanPanel();
 		
 		passwordSettingsPanel.setBounds(10, 10, 455, 200);
+		passwordBooleanPanel.setBounds(10, 215, 455, 225);
 	}
 	
 	public void layoutComponents()
 	{
 		add(passwordSettingsPanel);
+		add(passwordBooleanPanel);
 	}
 	
 	public static void resetPanel()
