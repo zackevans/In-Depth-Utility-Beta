@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import statusbar.addons.LockButton;
 
 public class LoginButton extends JButton
@@ -55,9 +55,9 @@ public class LoginButton extends JButton
 	
 	public void loginAction()
 	{
-		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
-		if(LoginField.loginField.getText().equals(passwordAndSecurityDatabase.getPassword()))
+		if(LoginField.loginField.getText().equals(passwordSettingsDatabase.getPassword()))
 		{
 			LoginField.loginField.setText("");
 			LoginErrors.loginError.setVisible(false);

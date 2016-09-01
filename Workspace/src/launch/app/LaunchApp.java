@@ -19,7 +19,8 @@ import sql.DataBase;
 import sql.notes.NotesDataBase;
 import sql.saveandsend.SaveAndSendDataBase;
 import sql.saveandsend.SaveAndSendSettingsDataBase;
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 import statusbar.StatusBar;
 
 /**
@@ -148,14 +149,18 @@ public class LaunchApp
     	final NotesDataBase notesdb = new NotesDataBase();
     	final SaveAndSendDataBase snsdb = new SaveAndSendDataBase();
     	final SaveAndSendSettingsDataBase saveAndSendSettingsdb = new SaveAndSendSettingsDataBase();
-    	final PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+    	final PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
+    	final SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
     	
     	// create db location and create the database
     	dataBase.createDBLocation();
 		dataBase.createDatabase();
 		
 		// create settings tables
-		passwordAndSecurityDatabase.createPasswordAndSecurityTable();
+		passwordSettingsDatabase.createPasswordTable();
+		
+		// create security settings database
+		securitySettingsDatabase.createSecuritySettingsTable();
 		
 		// create the notes table in the database
 		notesdb.createNotesTable();

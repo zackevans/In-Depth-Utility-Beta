@@ -11,7 +11,7 @@ import menu.notes.Notes;
 import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
 import menu.settings.SettingsMenu;
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import statusbar.addons.BufferPanelBackButton;
 
 /**
@@ -154,9 +154,9 @@ public class BufferPanel extends JPanel
 	
 	public void setDefaults()
 	{
-		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
-		if(passwordAndSecurityDatabase.doesPasswordExist())
+		if(passwordSettingsDatabase.doesPasswordExist())
 		{
 			showRawPanel("LOGIN_PANEL");
 		}

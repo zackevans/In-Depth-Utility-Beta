@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import statusbar.addons.LockButton;
 
 public class SaveButton extends JButton
@@ -44,18 +44,18 @@ public class SaveButton extends JButton
 	
 	public void saveButtonAction()
 	{
-		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
-		if(passwordAndSecurityDatabase.doesPasswordExist()) // if the password exists
+		if(passwordSettingsDatabase.doesPasswordExist()) // if the password exists
 		{
 			if(PasswordFields.currentPasswordField.isVisible()) // check if the change password panel is showing
 			{
-				if(PasswordFields.currentPasswordField.getText().equals(passwordAndSecurityDatabase.getPassword())) // if the password matches the one in the databse
+				if(PasswordFields.currentPasswordField.getText().equals(passwordSettingsDatabase.getPassword())) // if the password matches the one in the databse
 				{
 					
 					if( PasswordFields.newPasswordField.getText().length() > 0 && PasswordFields.newPasswordField.getText().equals(PasswordFields.confirmPasswordField.getText())) // if the two password fields match eachother and they are not empty
 					{
-						passwordAndSecurityDatabase.updatePassword(PasswordFields.newPasswordField.getText());
+						passwordSettingsDatabase.updatePassword(PasswordFields.newPasswordField.getText());
 						PasswordSettingsPanel.showMenu();
 						LockButton.lockButton.setVisible(true);
 					}
@@ -75,9 +75,9 @@ public class SaveButton extends JButton
 			
 			else // the remove panel is showing
 			{
-				if(PasswordFields.removePasswordField.getText().equals(passwordAndSecurityDatabase.getPassword()))
+				if(PasswordFields.removePasswordField.getText().equals(passwordSettingsDatabase.getPassword()))
 				{
-					passwordAndSecurityDatabase.updatePassword("");
+					passwordSettingsDatabase.updatePassword("");
 					PasswordSettingsPanel.showMenu();
 					LockButton.lockButton.setVisible(false);
 				}
@@ -95,7 +95,7 @@ public class SaveButton extends JButton
 			{
 				if(PasswordFields.passwordField.getText().equals(PasswordFields.retypeField.getText())) // if the passwords equal eachother
 				{
-					passwordAndSecurityDatabase.updatePassword(PasswordFields.passwordField.getText());
+					passwordSettingsDatabase.updatePassword(PasswordFields.passwordField.getText());
 					PasswordSettingsPanel.showMenu();
 					LockButton.lockButton.setVisible(true);
 				}

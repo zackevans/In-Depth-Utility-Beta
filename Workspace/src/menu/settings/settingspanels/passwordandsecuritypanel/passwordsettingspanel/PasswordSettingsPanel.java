@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
 import program.util.StringUtil;
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 
 public class PasswordSettingsPanel extends JPanel
 {
@@ -183,11 +183,11 @@ public class PasswordSettingsPanel extends JPanel
 	
 	public static void showMenu()
 	{
-		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
 		clearPanel();
 		
-		if(passwordAndSecurityDatabase.doesPasswordExist()) // if password exists
+		if(passwordSettingsDatabase.doesPasswordExist()) // if password exists
 		{
 			showUpdatePasswordMenu();
 		}
