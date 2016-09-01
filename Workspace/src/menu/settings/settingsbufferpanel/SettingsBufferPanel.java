@@ -84,5 +84,6 @@ public class SettingsBufferPanel extends JPanel
 	public static void resetAllPanels()
 	{
 		PasswordAndSecuritySettingsPanel.resetPanel();
+		
 	}
 }

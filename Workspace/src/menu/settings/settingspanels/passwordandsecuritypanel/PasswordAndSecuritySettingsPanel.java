@@ -50,5 +50,6 @@ public class PasswordAndSecuritySettingsPanel extends JPanel
 	public static void resetPanel()
 	{
 		PasswordSettingsPanel.showMenu();
+		
 	}
 }
