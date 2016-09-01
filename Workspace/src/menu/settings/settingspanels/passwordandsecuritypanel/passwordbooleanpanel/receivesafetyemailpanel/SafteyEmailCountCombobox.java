@@ -33,14 +33,13 @@ public class SafteyEmailCountCombobox
 	
 	public void setData()
 	{
-		DefaultComboBoxModel <String> timeModel = new DefaultComboBoxModel <String> ();
-		timeModel.addElement("5 Attempts");
-		timeModel.addElement("10 Attempts");
-		timeModel.addElement("15 Attempts");
-		timeModel.addElement("20 Attempts");
-		timeModel.addElement("50 Attempts");
+		DefaultComboBoxModel <String> safteyEmailModel = new DefaultComboBoxModel <String> ();
+		safteyEmailModel.addElement("5");
+		safteyEmailModel.addElement("10");
+		safteyEmailModel.addElement("15");
+		safteyEmailModel.addElement("20");
+		safteyEmailModel.addElement("25");
 		
-		safteyEmailCombobox.setModel(timeModel);
+		safteyEmailCombobox.setModel(safteyEmailModel);
 	}
-
 }

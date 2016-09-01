@@ -34,11 +34,11 @@ public class AttemptsCombobox
 	public void setData()
 	{
 		DefaultComboBoxModel <String> attemptModel = new DefaultComboBoxModel <String> ();
-		attemptModel.addElement("5 Attempts");
-		attemptModel.addElement("10 Attempts");
-		attemptModel.addElement("15 Attempts");
-		attemptModel.addElement("20 Attempts");
-		attemptModel.addElement("25 Attempts");
+		attemptModel.addElement("5");
+		attemptModel.addElement("10");
+		attemptModel.addElement("15");
+		attemptModel.addElement("20");
+		attemptModel.addElement("25");
 		
 		attemptsCombobox.setModel(attemptModel);
 	}
