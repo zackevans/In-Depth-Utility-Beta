@@ -48,4 +48,10 @@ public class PasswordBooleanPanel extends JPanel
 		add(showNotificationsButtonPanel);
 		add(eraseAppDataPanel);
 	}
+	
+	public static void resetPanel()
+	{
+		
+	}
+	
 }

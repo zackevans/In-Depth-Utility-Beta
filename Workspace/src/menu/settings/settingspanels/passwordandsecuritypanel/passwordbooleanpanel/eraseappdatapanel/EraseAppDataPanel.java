@@ -3,11 +3,13 @@ package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpan
 import java.awt.FlowLayout;
 
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class EraseAppDataPanel extends JPanel
 {
 	public static JCheckBox lockAfterTimeoutCheckbox = new JCheckBox("Erase App Data After");
+	JLabel secondHalfofMessage = new JLabel(" Failed Attempts");
 	AttemptsCombobox attemptsCombobox = new AttemptsCombobox();
 	
 	public EraseAppDataPanel()
@@ -39,5 +41,6 @@ public class EraseAppDataPanel extends JPanel
 	{
 		add(lockAfterTimeoutCheckbox);
 		add(AttemptsCombobox.attemptsCombobox);
+		add(secondHalfofMessage);
 	}
 }

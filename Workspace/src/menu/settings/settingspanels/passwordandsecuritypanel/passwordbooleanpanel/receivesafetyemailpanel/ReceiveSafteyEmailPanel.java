@@ -3,11 +3,13 @@ package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpan
 import java.awt.FlowLayout;
 
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ReceiveSafteyEmailPanel extends JPanel
 {
 	public static JCheckBox receiveSafteyEmailCheckbox = new JCheckBox("Receive Email After");
+	JLabel secondHalfofMessage = new JLabel(" Failed Attempts");
 	SafteyEmailCountCombobox safteyEmailCountCombobox = new SafteyEmailCountCombobox();
 	
 	public ReceiveSafteyEmailPanel()
@@ -39,5 +41,6 @@ public class ReceiveSafteyEmailPanel extends JPanel
 	{
 		add(receiveSafteyEmailCheckbox);
 		add(SafteyEmailCountCombobox.safteyEmailCombobox);
+		add(secondHalfofMessage);
 	}
 }
