@@ -6,6 +6,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
+
 public class ReceiveSafteyEmailPanel extends JPanel
 {
 	public static JCheckBox receiveSafteyEmailCheckbox = new JCheckBox("Receive Email After");
@@ -43,4 +45,11 @@ public class ReceiveSafteyEmailPanel extends JPanel
 		add(SafteyEmailCountCombobox.safteyEmailCombobox);
 		add(secondHalfofMessage);
 	}
+	
+	public static void updateCheckbox()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		receiveSafteyEmailCheckbox.setSelected(securitySettingsDatabase.getReceiveEmailAttemptsValue());
+	}
+	
 }

@@ -6,9 +6,11 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
+
 public class LogPasswordAttemptsPanel extends JPanel
 {
-	public static JCheckBox logPasswordCheckbox = new JCheckBox("Log Failed Password Attempts");
+	public static JCheckBox logPasswordCheckbox = new LogPasswordCheckbox();
 	JButton viewFailedPasswordAttemptsButton = new ViewFailedPasswordButton();
 	
 	public LogPasswordAttemptsPanel()
@@ -40,5 +42,12 @@ public class LogPasswordAttemptsPanel extends JPanel
 	{
 		add(logPasswordCheckbox);
 		add(viewFailedPasswordAttemptsButton);
+	}
+	
+	public static void updateCheckbox()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		logPasswordCheckbox.setSelected(securitySettingsDatabase.getLogFailedAttemptsValue());
+		
 	}
 }

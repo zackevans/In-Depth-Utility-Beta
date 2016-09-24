@@ -51,7 +51,11 @@ public class PasswordBooleanPanel extends JPanel
 	
 	public static void resetPanel()
 	{
-		
+		LockAfterTimeoutSettingspanel.updateCheckbox();
+		EraseAppDataPanel.updateCheckbox();
+		LogPasswordAttemptsPanel.updateCheckbox();
+		ReceiveSafteyEmailPanel.updateCheckbox();
+		ShowNotificationsButtonPanel.updateCheckBox();
 	}
 	
 }

@@ -6,6 +6,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.TimeCombobox;
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
 public class ShowNotificationsButtonPanel extends JPanel
 {
@@ -41,6 +42,12 @@ public class ShowNotificationsButtonPanel extends JPanel
 	public void addComponents()
 	{
 		add(showNotificationsButtonCheckbox);
+	}
+	
+	public static void updateCheckBox()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		showNotificationsButtonCheckbox.setSelected(securitySettingsDatabase.getShowNotificationsValue());
 	}
 
 }
