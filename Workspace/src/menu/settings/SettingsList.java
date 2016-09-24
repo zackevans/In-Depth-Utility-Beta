@@ -17,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import menu.settings.settingsbufferpanel.SettingsBufferPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.PasswordAndSecuritySettingsPanel;
 
 public class SettingsList 
 {
@@ -96,6 +97,7 @@ public class SettingsList
 				if (listIndex == 1)
 				{
 					settingsBufferPanel.showPanel("PASSWORD_AND_SECURITY_SETTINGS");
+					PasswordAndSecuritySettingsPanel.resetPanel();
 				}
 				
 				else
