@@ -1,4 +1,4 @@
-package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts;
+package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.shownotificationsbuttonpanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,9 +7,9 @@ import javax.swing.JCheckBox;
 
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
-public class LogPasswordCheckbox extends JCheckBox
+public class ShowNotificationsButtonCheckbox extends JCheckBox
 {
-	public LogPasswordCheckbox()
+	public ShowNotificationsButtonCheckbox ()
 	{
 		super();
 		initialize();
@@ -23,7 +23,7 @@ public class LogPasswordCheckbox extends JCheckBox
 	
 	public void createCheckbox()
 	{
-		setText("Log Failed Password Attempts");
+		setText("Show Notificatins Tab When Locked");
 	}
 	
 	public void addListeners()
@@ -34,8 +34,11 @@ public class LogPasswordCheckbox extends JCheckBox
 			public void actionPerformed(ActionEvent e) 
 			{
 				SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
-				securitySettingsDatabase.updateLogFailedAttemptsValue(LogPasswordAttemptsPanel.logPasswordCheckbox.isSelected());
+				securitySettingsDatabase.updateShowNotificaitonsValue(ShowNotificationsButtonPanel.showNotificationsButtonCheckbox.isSelected());
 			}
 		});
 	}
+	
+	
+
 }
