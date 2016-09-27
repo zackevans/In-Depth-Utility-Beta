@@ -12,7 +12,7 @@ import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
 public class EraseAppDataPanel extends JPanel
 {
-	public static JCheckBox lockAfterTimeoutCheckbox = new JCheckBox("Erase App Data After");
+	public static JCheckBox lockAfterTimeoutCheckbox = new EraseAppDataCheckbox();
 	JLabel secondHalfofMessage = new JLabel(" Failed Attempts");
 	AttemptsCombobox attemptsCombobox = new AttemptsCombobox();
 	

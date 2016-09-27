@@ -10,7 +10,7 @@ import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
 public class ReceiveSafteyEmailPanel extends JPanel
 {
-	public static JCheckBox receiveSafteyEmailCheckbox = new JCheckBox("Receive Email After");
+	public static JCheckBox receiveSafteyEmailCheckbox = new ReceiveSafteyEmailCheckBox();
 	JLabel secondHalfofMessage = new JLabel(" Failed Attempts");
 	SafteyEmailCountCombobox safteyEmailCountCombobox = new SafteyEmailCountCombobox();
 	

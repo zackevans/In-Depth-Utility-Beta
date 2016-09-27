@@ -10,7 +10,7 @@ import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
 public class ShowNotificationsButtonPanel extends JPanel
 {
-	public static JCheckBox showNotificationsButtonCheckbox = new JCheckBox("Show Notificatins Tab When Locked");
+	public static JCheckBox showNotificationsButtonCheckbox = new ShowNotificationsButtonCheckbox();
 	TimeCombobox timeCombobox = new TimeCombobox();
 	
 	public ShowNotificationsButtonPanel()
