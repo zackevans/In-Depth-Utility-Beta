@@ -25,11 +25,14 @@ public class SecuritySettingsDatabase
 	    	stmt = c.createStatement();
 	    	String sql = "CREATE TABLE if not exists SECURITY_SETTINGS" + // sql code to create the system settings table in db
                   "(ID INTEGER PRIMARY KEY   AUTOINCREMENT, " +
-                  "REQUIRE_PASSWORD          Boolean      , " +
-                  "LOG_FAILED_ATTEMPTS       Boolean      , " +
-                  "RECEIVE_EMAIL_ATTEMPTS    Boolean      , " +
-                  "SHOW_NOTIFICATIONS        Boolean      , " +
-                  "ERASE_APP_DATA            Boolean      )";
+                  "REQUIRE_PASSWORD          		Boolean      , " +
+                  "REQUIRE_PASSWORD_TIME    		Integer      , " +
+                  "LOG_FAILED_ATTEMPTS       		Boolean      , " +
+                  "RECEIVE_EMAIL_ATTEMPTS    		Boolean      , " +
+                  "RECEIVE_EMAIL_ATTEMPTS_COUNT     Integer      , " +
+                  "SHOW_NOTIFICATIONS        		Boolean      , " +
+                  "ERASE_APP_DATA            		Boolean      , " + 
+                  "ERASE_APP_DATA_COUNT             Integer       )";
 	    	
 	    	stmt.executeUpdate(sql); // execute sql code
 	    	// close connections
@@ -61,15 +64,19 @@ public class SecuritySettingsDatabase
 	    	c = DriverManager.getConnection(dbLocation); // connect to db
 	    	c.setAutoCommit(false);
 	  
-	    	String sql = "INSERT INTO SECURITY_SETTINGS (REQUIRE_PASSWORD,LOG_FAILED_ATTEMPTS,RECEIVE_EMAIL_ATTEMPTS,SHOW_NOTIFICATIONS,ERASE_APP_DATA)" + // sql code to create a new row in db
-	    				 "VALUES (?,?,?,?,?);"; 
+	    	String sql = "INSERT INTO SECURITY_SETTINGS (REQUIRE_PASSWORD,REQUIRE_PASSWORD_TIME,LOG_FAILED_ATTEMPTS,RECEIVE_EMAIL_ATTEMPTS,"
+	    			   + "RECEIVE_EMAIL_ATTEMPTS_COUNT,SHOW_NOTIFICATIONS,ERASE_APP_DATA,ERASE_APP_DATA_COUNT)" +  // sql code to create a new row in db
+	    				 "VALUES (?,?,?,?,?,?,?,?);"; 
 	      			   	    
 	    	PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement for database
-	    	preparedStatement.setBoolean(1, false);
-	    	preparedStatement.setBoolean(2, false);
-	    	preparedStatement.setBoolean(3, false);
-	    	preparedStatement.setBoolean(4, false);
-	    	preparedStatement.setBoolean(5, false);
+	    	preparedStatement.setBoolean(1,false);
+	    	preparedStatement.setInt(2,5);
+	    	preparedStatement.setBoolean(3,false);
+	    	preparedStatement.setBoolean(4,false);
+	    	preparedStatement.setInt(5,5);
+	    	preparedStatement.setBoolean(6,false);
+	    	preparedStatement.setBoolean(7,false);
+	    	preparedStatement.setInt(8,5);
 
 	    	preparedStatement.executeUpdate(); // execute statement
 	    	
@@ -130,30 +137,32 @@ public class SecuritySettingsDatabase
 	public void updateRequirePasswordValue(Boolean updatedValue)
 	{
 		Connection dbConnection = null; // create var to hold connection to the database
-	       
-		try
-       {
-           Class.forName("org.sqlite.JDBC");
-           dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
-           dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
-           
-           String updateTableSQL = "UPDATE SECURITY_SETTINGS SET REQUIRE_PASSWORD = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
-           
-           PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL); // create sql prepared statement
-           preparedStatement.setBoolean(1, updatedValue); // set first ? to list position
-           preparedStatement.setInt(2, 1); // set second ? to id
-           
-           preparedStatement.executeUpdate(); // execute update to db
-           
-           dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
-           preparedStatement.close();
-           dbConnection.close();
-       }
-       catch ( Exception e )
-       {
-           System.err.println(e.getClass().getName() + ": " + e.getMessage());
-           System.exit(0);
-       }
+		
+		try 
+		{
+			
+			Class.forName("org.sqlite.JDBC");
+			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+			
+			String updateTableSQL = "UPDATE SECURITY_SETTINGS SET REQUIRE_PASSWORD = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+	           
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL); // create sql prepared statement
+			preparedStatement.setBoolean(1, updatedValue); // set first ? to list position
+			preparedStatement.setInt(2, 1); // set second ? to id
+	           
+			preparedStatement.executeUpdate(); // execute update to db
+	           
+			dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+			preparedStatement.close();
+			dbConnection.close();
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
 	}
 	
 	
@@ -197,13 +206,45 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	
+	public void updateLogFailedAttemptsValue(Boolean updatedValue)
+	{
+		Connection dbConnection = null; // create var to hold connection to the database
+		
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+			
+			String updateTableSQL = "UPDATE SECURITY_SETTINGS SET LOG_FAILED_ATTEMPTS = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			preparedStatement.setBoolean(1, updatedValue); // set first ? to list position
+			preparedStatement.setInt(2,1);
+			
+			preparedStatement.executeUpdate(); // execute update to db
+			
+			dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+			
+			preparedStatement.close(); // close connections
+			dbConnection.close();
+			
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+	}
+	
+	
 	public boolean getReceiveEmailAttemptsValue()
 	{
-		// create connections
-    	Connection c = null;
-        Statement stmt = null;
-        // create value to be returned
-        boolean rVal = false;
+    	Connection c = null; // create connections
+        Statement stmt = null; 
+        boolean rVal = false; // create value to be returned
         
         try 
         {
@@ -235,6 +276,37 @@ public class SecuritySettingsDatabase
         }
         
         return rVal; // return ID
+	}
+	
+	public void updateReceiveEmailAttemptsValue(Boolean updatedValue)
+	{
+		Connection dbConnection = null; // create var to hold connection to the database
+		
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+			
+			String updateTableSQL = "UPDATE SECURITY_SETTINGS SET RECEIVE_EMAIL_ATTEMPTS = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			preparedStatement.setBoolean(1, updatedValue); // set first ? to list position
+			preparedStatement.setInt(2,1);
+			
+			preparedStatement.executeUpdate(); // execute update to db
+			
+			dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+			
+			preparedStatement.close(); // close connections
+			dbConnection.close();
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
 	}
 	
 	public boolean getShowNotificationsValue()
@@ -277,6 +349,37 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	public void updateShowNotificaitonsValue(boolean updatedValue)
+	{
+		Connection dbConnection = null; // create var to hold connection to the database
+		
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+			
+			String updateTableSQL = "UPDATE SECURITY_SETTINGS SET SHOW_NOTIFICATIONS = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			preparedStatement.setBoolean(1, updatedValue); // set first ? to list position
+			preparedStatement.setInt(2,1);
+			
+			preparedStatement.executeUpdate(); // execute update to db
+			
+			dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+			
+			preparedStatement.close(); // close connections
+			dbConnection.close();
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+	}
+	
 	public boolean getEraseAppDataValue()
 	{
 		// create connections
@@ -315,6 +418,37 @@ public class SecuritySettingsDatabase
         }
         
         return rVal; // return ID
+	}
+	
+	public void updateEraseAppDataValue(boolean updatedValue)
+	{
+		Connection dbConnection = null; // create var to hold connection to the database
+		
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+			
+			String updateTableSQL = "UPDATE SECURITY_SETTINGS SET ERASE_APP_DATA = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			preparedStatement.setBoolean(1, updatedValue); // set first ? to list position
+			preparedStatement.setInt(2,1);
+			
+			preparedStatement.executeUpdate(); // execute update to db
+			
+			dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+			
+			preparedStatement.close(); // close connections
+			dbConnection.close();
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
 	}
 	
 	
