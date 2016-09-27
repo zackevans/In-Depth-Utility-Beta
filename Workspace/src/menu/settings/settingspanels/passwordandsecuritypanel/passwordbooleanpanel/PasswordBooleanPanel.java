@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.EraseAppDataPanel;
-import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.LockAfterTimeoutSettingspanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.LockAfterTimeoutSettingsPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.LogPasswordAttemptsPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.ReceiveSafteyEmailPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.shownotificationsbuttonpanel.ShowNotificationsButtonPanel;
@@ -36,7 +36,7 @@ public class PasswordBooleanPanel extends JPanel
 	
 	public void interstingPanel()
 	{
-		JPanel lockAfterTimeoutPanel = new LockAfterTimeoutSettingspanel();
+		JPanel lockAfterTimeoutPanel = new LockAfterTimeoutSettingsPanel();
 		JPanel logPasswordAttemptsPanel = new LogPasswordAttemptsPanel();
 		JPanel reciveSafteyEmailPanel = new ReceiveSafteyEmailPanel();
 		JPanel showNotificationsButtonPanel = new ShowNotificationsButtonPanel();
@@ -51,7 +51,7 @@ public class PasswordBooleanPanel extends JPanel
 	
 	public static void resetPanel()
 	{
-		LockAfterTimeoutSettingspanel.updateCheckbox();
+		LockAfterTimeoutSettingsPanel.updateCheckbox();
 		EraseAppDataPanel.updateCheckbox();
 		LogPasswordAttemptsPanel.updateCheckbox();
 		ReceiveSafteyEmailPanel.updateCheckbox();

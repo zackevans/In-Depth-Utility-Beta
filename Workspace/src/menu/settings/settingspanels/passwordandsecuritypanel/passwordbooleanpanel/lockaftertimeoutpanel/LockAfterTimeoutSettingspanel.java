@@ -7,12 +7,12 @@ import javax.swing.JPanel;
 
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
-public class LockAfterTimeoutSettingspanel extends JPanel
+public class LockAfterTimeoutSettingsPanel extends JPanel
 {
 	public static JCheckBox lockAfterTimeoutCheckbox = new LockCheckbox();
 	TimeCombobox timeCombobox = new TimeCombobox();
 	
-	public LockAfterTimeoutSettingspanel()
+	public LockAfterTimeoutSettingsPanel()
 	{
 		super();
 		initialize();
@@ -49,7 +49,5 @@ public class LockAfterTimeoutSettingspanel extends JPanel
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
 		lockAfterTimeoutCheckbox.setSelected(securitySettingsDatabase.getRequirePasswordValue());
 	}
+	
 }
-	
-	
-
