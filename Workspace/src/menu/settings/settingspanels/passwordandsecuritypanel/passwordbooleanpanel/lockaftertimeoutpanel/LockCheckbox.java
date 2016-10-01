@@ -34,7 +34,7 @@ public class LockCheckbox extends JCheckBox
 			public void actionPerformed(ActionEvent e) 
 			{
 				SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
-				securitySettingsDatabase.updateRequirePasswordValue(LockAfterTimeoutSettingsPanel.lockAfterTimeoutCheckbox.isSelected());	
+				securitySettingsDatabase.updateRequirePasswordValue(RequirePasswordSettingsPanel.requirePasswordCheckbox.isSelected());	
 			}
 		});
 	}
