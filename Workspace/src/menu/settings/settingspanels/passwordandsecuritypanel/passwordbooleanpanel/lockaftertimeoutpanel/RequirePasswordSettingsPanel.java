@@ -7,12 +7,11 @@ import javax.swing.JPanel;
 
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
-public class LockAfterTimeoutSettingsPanel extends JPanel
+public class RequirePasswordSettingsPanel extends JPanel
 {
-	public static JCheckBox lockAfterTimeoutCheckbox = new LockCheckbox();
-	TimeCombobox timeCombobox = new TimeCombobox();
+	public static JCheckBox requirePasswordCheckbox = new LockCheckbox();
 	
-	public LockAfterTimeoutSettingsPanel()
+	public RequirePasswordSettingsPanel()
 	{
 		super();
 		initialize();
@@ -33,21 +32,21 @@ public class LockAfterTimeoutSettingsPanel extends JPanel
 	
 	public void createCheckbox()
 	{
-		lockAfterTimeoutCheckbox.setFocusPainted(false); // removed blue outline when clicked
-		lockAfterTimeoutCheckbox.setBorderPainted(false); // remove the border.
+		requirePasswordCheckbox.setFocusPainted(false); // removed blue outline when clicked
+		requirePasswordCheckbox.setBorderPainted(false); // remove the border.
 	}
 	
 	
 	public void addComponents()
 	{
-		add(lockAfterTimeoutCheckbox);
+		add(requirePasswordCheckbox);
 		add(TimeCombobox.timeCombobox);
 	}
 	
 	public static void updateCheckbox()
 	{
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
-		lockAfterTimeoutCheckbox.setSelected(securitySettingsDatabase.getRequirePasswordValue());
+		requirePasswordCheckbox.setSelected(securitySettingsDatabase.getRequirePasswordValue());
 	}
 	
 }
