@@ -70,13 +70,13 @@ public class SecuritySettingsDatabase
 	      			   	    
 	    	PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement for database
 	    	preparedStatement.setBoolean(1,false);
-	    	preparedStatement.setInt(2,5);
+	    	preparedStatement.setInt(2,0);
 	    	preparedStatement.setBoolean(3,false);
 	    	preparedStatement.setBoolean(4,false);
-	    	preparedStatement.setInt(5,5);
+	    	preparedStatement.setInt(5,0);
 	    	preparedStatement.setBoolean(6,false);
 	    	preparedStatement.setBoolean(7,false);
-	    	preparedStatement.setInt(8,5);
+	    	preparedStatement.setInt(8,0);
 
 	    	preparedStatement.executeUpdate(); // execute statement
 	    	
@@ -92,7 +92,6 @@ public class SecuritySettingsDatabase
 	    	System.exit(0);
 	    }
 	}
-	
 
 	public boolean getRequirePasswordValue()
 	{
@@ -102,7 +101,7 @@ public class SecuritySettingsDatabase
         // create value to be returned
         boolean rVal = false;
         
-        try 
+        try
         {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection(dbLocation); // create connection
@@ -140,7 +139,6 @@ public class SecuritySettingsDatabase
 		
 		try 
 		{
-			
 			Class.forName("org.sqlite.JDBC");
 			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
 			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
@@ -165,6 +163,76 @@ public class SecuritySettingsDatabase
 		}
 	}
 	
+	public int getRequirePasswordTimeValue()
+	{
+		// create connections
+    	Connection c = null;
+        Statement stmt = null;
+        // create value to be returned
+        int rVal  = 0;
+        
+        try
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create connection
+            c.setAutoCommit(false);
+            
+            stmt = c.createStatement();
+            
+            String sql = "SELECT REQUIRE_PASSWORD_TIME FROM SECURITY_SETTINGS WHERE ID = ?"; // SQL code to get ID
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement 
+            preparedStatement.setInt(1, 1); // set first ? = to list position
+            
+            ResultSet rs = preparedStatement.executeQuery(); // run query
+            
+            rVal = rs.getInt("REQUIRE_PASSWORD_TIME"); // get val from Col ID
+      
+            // close everything
+            rs.close();
+            stmt.close();
+            c.close();
+        } 
+        
+        catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        
+        return rVal; // return ID
+		
+	}
+	
+	public void updateRequirePasswordTimeValue(int updatedValue)
+	{
+		Connection dbConnection = null; // create var to hold connection to the database
+		
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+			
+			String updateTableSQL = "UPDATE SECURITY_SETTINGS SET REQUIRE_PASSWORD_TIME = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+	           
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL); // create sql prepared statement
+			preparedStatement.setInt(1, updatedValue); // set first ? to list position
+			preparedStatement.setInt(2, 1); // set second ? to id
+	           
+			preparedStatement.executeUpdate(); // execute update to db
+	           
+			dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+			preparedStatement.close();
+			dbConnection.close();
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+	}
 	
 	public boolean getLogFailedAttemptsValue()
 	{
@@ -450,6 +518,4 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
-	
-	
 }

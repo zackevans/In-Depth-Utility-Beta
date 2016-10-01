@@ -1,7 +1,12 @@
 package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
 public class TimeCombobox 
 {
@@ -16,12 +21,10 @@ public class TimeCombobox
 	{
 		createCombobox();
 		setData();
+		addListeners();
 	}
 	
 	/**
-	 * Function: createCombobox()
-	 * @author ZackEvans
-	 * 
 	 * This method make the comobox not focus and removes the border.
 	 */
 	
@@ -42,5 +45,24 @@ public class TimeCombobox
 		timeModel.addElement("5 hours");
 		
 		timeCombobox.setModel(timeModel);
+	}
+	
+	public static void updateCombobox()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		timeCombobox.setSelectedIndex(securitySettingsDatabase.getRequirePasswordTimeValue());
+	}
+	
+	public void addListeners()
+	{
+		timeCombobox.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+				securitySettingsDatabase.updateRequirePasswordTimeValue(timeCombobox.getSelectedIndex());
+			}
+		});
 	}
 }
