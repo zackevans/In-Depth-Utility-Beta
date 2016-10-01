@@ -8,7 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.EraseAppDataPanel;
-import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.LockAfterTimeoutSettingsPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.RequirePasswordSettingsPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.TimeCombobox;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.LogPasswordAttemptsPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.ReceiveSafteyEmailPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.shownotificationsbuttonpanel.ShowNotificationsButtonPanel;
@@ -36,13 +37,13 @@ public class PasswordBooleanPanel extends JPanel
 	
 	public void interstingPanel()
 	{
-		JPanel lockAfterTimeoutPanel = new LockAfterTimeoutSettingsPanel();
+		JPanel requirePasswordTimeoutPanel = new RequirePasswordSettingsPanel();
 		JPanel logPasswordAttemptsPanel = new LogPasswordAttemptsPanel();
 		JPanel reciveSafteyEmailPanel = new ReceiveSafteyEmailPanel();
 		JPanel showNotificationsButtonPanel = new ShowNotificationsButtonPanel();
 		JPanel eraseAppDataPanel = new EraseAppDataPanel();
 		
-		add(lockAfterTimeoutPanel);
+		add(requirePasswordTimeoutPanel);
 		add(logPasswordAttemptsPanel);
 		add(reciveSafteyEmailPanel);
 		add(showNotificationsButtonPanel);
@@ -51,11 +52,12 @@ public class PasswordBooleanPanel extends JPanel
 	
 	public static void resetPanel()
 	{
-		LockAfterTimeoutSettingsPanel.updateCheckbox();
+		RequirePasswordSettingsPanel.updateCheckbox(); 
 		EraseAppDataPanel.updateCheckbox();
 		LogPasswordAttemptsPanel.updateCheckbox();
 		ReceiveSafteyEmailPanel.updateCheckbox();
 		ShowNotificationsButtonPanel.updateCheckBox();
+		TimeCombobox.updateCombobox();
 	}
 	
 }
