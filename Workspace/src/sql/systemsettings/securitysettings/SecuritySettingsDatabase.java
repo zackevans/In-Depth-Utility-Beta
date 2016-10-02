@@ -377,6 +377,75 @@ public class SecuritySettingsDatabase
 		}
 	}
 	
+	public int getReceiveEmailAttemptsCount()
+	{
+		Connection c = null; // create connections
+        Statement stmt = null; 
+        int rVal = 0; // create value to be returned
+        
+        try 
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create connection
+            c.setAutoCommit(false);
+            
+            stmt = c.createStatement();
+            
+            String sql = "SELECT RECEIVE_EMAIL_ATTEMPTS_COUNT FROM SECURITY_SETTINGS WHERE ID = ?"; // SQL code to get ID
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement 
+            preparedStatement.setInt(1, 1); // set first ? = to list position
+            
+            ResultSet rs = preparedStatement.executeQuery(); // run query
+            
+            rVal = rs.getInt("RECEIVE_EMAIL_ATTEMPTS_COUNT"); 
+      
+            // close everything
+            rs.close();
+            stmt.close();
+            c.close();
+        } 
+        
+        catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        
+        return rVal; // return ID
+	}
+	
+	public void updateReceiveEmailAttemptsCount(int updatedValue)
+	{
+		Connection dbConnection = null; // create var to hold connection to the database
+		
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+			
+			String updateTableSQL = "UPDATE SECURITY_SETTINGS SET RECEIVE_EMAIL_ATTEMPTS_COUNT = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			preparedStatement.setInt(1, updatedValue); // set first ? to list position
+			preparedStatement.setInt(2,1);
+			
+			preparedStatement.executeUpdate(); // execute update to db
+			
+			dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+			
+			preparedStatement.close(); // close connections
+			dbConnection.close();
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+	}
+	
 	public boolean getShowNotificationsValue()
 	{
 		// create connections
@@ -518,4 +587,76 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
+	
+	public int getEraseAppDataCount()
+	{
+		// create connections
+    	Connection c = null;
+        Statement stmt = null;
+        // create value to be returned
+        int rVal = 0;
+        
+        try 
+        {
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection(dbLocation); // create connection
+            c.setAutoCommit(false);
+            
+            stmt = c.createStatement();
+            
+            String sql = "SELECT ERASE_APP_DATA_COUNT FROM SECURITY_SETTINGS WHERE ID = ?"; // SQL code to get ID
+            
+            PreparedStatement preparedStatement = c.prepareStatement(sql); // create prepared statement 
+            preparedStatement.setInt(1, 1); // set first ? = to list position
+            
+            ResultSet rs = preparedStatement.executeQuery(); // run query
+            
+            rVal = rs.getInt("ERASE_APP_DATA_COUNT"); // get val from Col ID
+      
+            // close everything
+            rs.close();
+            stmt.close();
+            c.close();
+        } 
+        
+        catch ( Exception e ) 
+        {
+            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            System.exit(0);
+        }
+        
+        return rVal; // return ID
+	}
+	
+	public void updateEraseAppDataCount(int updatedValue)
+	{
+		Connection dbConnection = null; // create var to hold connection to the database
+		
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			dbConnection = DriverManager.getConnection(dbLocation); // create connection to the database
+			dbConnection.setAutoCommit(false); // turn off auto commit so I can run my query
+			
+			String updateTableSQL = "UPDATE SECURITY_SETTINGS SET ERASE_APP_DATA_COUNT = ? WHERE ID = ?"; // sql code string that updates the the list postion based on a ID
+			
+			PreparedStatement preparedStatement = dbConnection.prepareStatement(updateTableSQL);
+			preparedStatement.setInt(1, updatedValue); // set first ? to list position
+			preparedStatement.setInt(2,1);
+			
+			preparedStatement.executeUpdate(); // execute update to db
+			
+			dbConnection.setAutoCommit(true); // turn on auto commit to allow commit to db
+			
+			preparedStatement.close(); // close connections
+			dbConnection.close();
+		} 
+		
+		catch (Exception e) 
+		{
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+	}
+	
 }
