@@ -1,7 +1,12 @@
 package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
 public class SafteyEmailCountCombobox 
 {
@@ -16,6 +21,7 @@ public class SafteyEmailCountCombobox
 	{
 		createCombobox();
 		setData();
+		addListeners();
 	}
 	
 	/**
@@ -41,5 +47,24 @@ public class SafteyEmailCountCombobox
 		safteyEmailModel.addElement("25");
 		
 		safteyEmailCombobox.setModel(safteyEmailModel);
+	}
+	
+	public static void updateCombobox()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		safteyEmailCombobox.setSelectedIndex(securitySettingsDatabase.getReceiveEmailAttemptsCount());
+	}
+	
+	public void addListeners()
+	{
+		safteyEmailCombobox.addActionListener(new ActionListener() 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+				securitySettingsDatabase.updateReceiveEmailAttemptsCount(safteyEmailCombobox.getSelectedIndex());
+			}
+		});
 	}
 }

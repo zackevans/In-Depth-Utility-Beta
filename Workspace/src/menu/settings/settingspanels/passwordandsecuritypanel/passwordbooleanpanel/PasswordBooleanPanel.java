@@ -7,11 +7,13 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.AttemptsCombobox;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.EraseAppDataPanel;
-import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.RequirePasswordSettingsPanel;
-import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.TimeCombobox;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.LogPasswordAttemptsPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.ReceiveSafteyEmailPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.SafteyEmailCountCombobox;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.requirepasswordsettings.RequirePasswordSettingsPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.requirepasswordsettings.TimeCombobox;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.shownotificationsbuttonpanel.ShowNotificationsButtonPanel;
 
 public class PasswordBooleanPanel extends JPanel
@@ -58,6 +60,8 @@ public class PasswordBooleanPanel extends JPanel
 		ReceiveSafteyEmailPanel.updateCheckbox();
 		ShowNotificationsButtonPanel.updateCheckBox();
 		TimeCombobox.updateCombobox();
+		SafteyEmailCountCombobox.updateCombobox();
+		AttemptsCombobox.updateCombobox();
 	}
 	
 }

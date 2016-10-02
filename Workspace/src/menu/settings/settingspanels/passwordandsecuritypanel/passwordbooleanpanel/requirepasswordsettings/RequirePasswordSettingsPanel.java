@@ -1,4 +1,4 @@
-package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel;
+package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.requirepasswordsettings;
 
 import java.awt.FlowLayout;
 

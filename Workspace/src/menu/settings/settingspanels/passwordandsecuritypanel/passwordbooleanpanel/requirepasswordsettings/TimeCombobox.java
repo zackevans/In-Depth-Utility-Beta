@@ -1,4 +1,4 @@
-package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel;
+package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.requirepasswordsettings;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
