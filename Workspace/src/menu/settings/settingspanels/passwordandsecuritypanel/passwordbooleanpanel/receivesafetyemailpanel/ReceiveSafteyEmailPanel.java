@@ -51,5 +51,4 @@ public class ReceiveSafteyEmailPanel extends JPanel
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
 		receiveSafteyEmailCheckbox.setSelected(securitySettingsDatabase.getReceiveEmailAttemptsValue());
 	}
-	
 }

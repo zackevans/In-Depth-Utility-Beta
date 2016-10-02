@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
-import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.lockaftertimeoutpanel.TimeCombobox;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.requirepasswordsettings.TimeCombobox;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
 public class ShowNotificationsButtonPanel extends JPanel
