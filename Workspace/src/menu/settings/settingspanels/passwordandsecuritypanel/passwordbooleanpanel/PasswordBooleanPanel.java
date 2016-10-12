@@ -63,5 +63,4 @@ public class PasswordBooleanPanel extends JPanel
 		SafteyEmailCountCombobox.updateCombobox();
 		AttemptsCombobox.updateCombobox();
 	}
-	
 }
