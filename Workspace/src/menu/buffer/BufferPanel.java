@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import menu.loginpanel.LoginField;
 import menu.loginpanel.LoginPanel;
 import menu.main.MainMenu;
 import menu.notes.Notes;
@@ -13,6 +14,7 @@ import menu.notes.mailnote.MailNote;
 import menu.settings.SettingsMenu;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import statusbar.addons.BufferPanelBackButton;
+import statusbar.addons.LockButton;
 
 /**
  * Class: BufferPanel
@@ -192,8 +194,8 @@ public class BufferPanel extends JPanel
 		
 		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
 		panelToShow.setVisible(true); // set new panel visible 
+		showPanelPresets(panelName);
 	}
-	
 	
 	/**
 	 * Function: showRawPanel(String panelName)
@@ -213,6 +215,7 @@ public class BufferPanel extends JPanel
 		
 		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
 		panelToShow.setVisible(true); // set new panel visible 
+		showPanelPresets(panelName);
 	}
 	
 	/**
@@ -240,6 +243,17 @@ public class BufferPanel extends JPanel
 		else
 		{
 			BufferPanelBackButton.backButton.setVisible(true);
+		}
+	}
+	
+	
+	public void showPanelPresets(String panelName)
+	{
+		if(panelName == "LOGIN_PANEL")
+		{
+			BufferPanelBackButton.backButton.setVisible(false);
+			LockButton.lockButton.setVisible(false);
+			LoginField.loginField.requestFocusInWindow();
 		}
 	}
 }
