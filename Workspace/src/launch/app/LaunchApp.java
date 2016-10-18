@@ -75,8 +75,6 @@ public class LaunchApp
     
     private static void createAndShowGUI()
     {
-    	JobHandler jobHandler = new JobHandler();
-    	
     	// create variables to be initialized and used later
     	Wallpaper wallpaper;
     	StatusBar statusBar;
@@ -125,6 +123,7 @@ public class LaunchApp
         frame.pack();
         frame.setVisible(true);
         
+       JobHandler jobHandler = new JobHandler(bufferPanel);
        jobHandler.createJobs();
     }
     
