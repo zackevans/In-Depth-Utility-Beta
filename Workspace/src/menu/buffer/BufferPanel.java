@@ -246,13 +246,13 @@ public class BufferPanel extends JPanel
 		}
 	}
 	
-	
 	public void showPanelPresets(String panelName)
 	{
 		if(panelName == "LOGIN_PANEL")
 		{
 			BufferPanelBackButton.backButton.setVisible(false);
 			LockButton.lockButton.setVisible(false);
+			LoginField.loginField.setText("");
 			LoginField.loginField.requestFocusInWindow();
 		}
 	}

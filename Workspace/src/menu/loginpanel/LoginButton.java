@@ -7,8 +7,10 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import file.files.PasswordAttemptsFile;
 import menu.buffer.BufferPanel;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 import statusbar.addons.LockButton;
 
 public class LoginButton extends JButton
@@ -52,24 +54,29 @@ public class LoginButton extends JButton
 		});
 	}
 	
-	
 	public void loginAction()
 	{
 		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
 		if(LoginField.loginField.getText().equals(passwordSettingsDatabase.getPassword()))
 		{
-			LoginField.loginField.setText("");
-			LoginErrors.loginError.setVisible(false);
-			
 			bufferPanel.showRawPanel(BufferPanel.currentPanel);
 			LockButton.lockButton.setVisible(true);
-			bufferPanel.checkBackButton(BufferPanel.currentPanel);
+			bufferPanel.checkBackButton(BufferPanel.currentPanel); // check back button bc method .showRawPanel doesent include it :(
 		}
 		
 		else
 		{
+			SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+			
+			if(securitySettingsDatabase.getLogFailedAttemptsValue())
+			{
+				PasswordAttemptsFile.addAttempt(LoginField.loginField.getText());
+				System.out.println(PasswordAttemptsFile.getAttempts());
+			}
+			
 			LoginErrors.loginError.setVisible(true);
+			LoginField.loginField.selectAll();
 		}
 	}
 }

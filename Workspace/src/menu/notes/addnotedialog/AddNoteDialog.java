@@ -51,7 +51,7 @@ public class AddNoteDialog
 	}
 	
 	/**
-	 * Function : 
+	 * Function: createAndShowGUI() 
 	 * @author ZackEvans
 	 * 
 	 * This function creates the dialog window and displays it.
