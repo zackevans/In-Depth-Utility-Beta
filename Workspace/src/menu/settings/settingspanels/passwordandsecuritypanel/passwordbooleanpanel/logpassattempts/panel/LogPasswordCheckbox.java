@@ -1,4 +1,4 @@
-package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts;
+package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.panel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +35,7 @@ public class LogPasswordCheckbox extends JCheckBox
 			{
 				SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
 				securitySettingsDatabase.updateLogFailedAttemptsValue(LogPasswordAttemptsPanel.logPasswordCheckbox.isSelected());
+				LogPasswordAttemptsPanel.updatePanel();
 			}
 		});
 	}
