@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
 
@@ -16,6 +17,7 @@ public class PasswordAttemptsDialog
 	private AttemptsList attemptsList;
 	private ClearButton clearButton;
 	private OkButton okButton;
+	private JLabel titleLabel;
 	private static boolean clicked = false;
 	
 	/**
@@ -70,10 +72,12 @@ public class PasswordAttemptsDialog
 		attemptsList = new AttemptsList();
 		clearButton = new ClearButton();
 		okButton = new OkButton();
+		titleLabel = new TitleLabel();
 		
-		attemptsList.listScrollPane.setBounds(0, 0, customFrame.getWidth(), 300);
-		clearButton.setBounds(197,335,80,25);
-		okButton.setBounds(116, 335, 80,25);
+		titleLabel.setBounds(0, 0,customFrame.getWidth(), 50);
+		attemptsList.listScrollPane.setBounds(0, 50, customFrame.getWidth(), 300);
+		clearButton.setBounds(116,370,80,25);
+		okButton.setBounds(197,370,80,25);
 	}
 	
 	public void initializeComponents()
@@ -87,6 +91,7 @@ public class PasswordAttemptsDialog
 	{
 		customFrame.getContentPane().setLayout(null);
 		
+		customFrame.getContentPane().add(titleLabel);
 		customFrame.getContentPane().add(attemptsList.listScrollPane);
 		customFrame.getContentPane().add(clearButton);
 		customFrame.getContentPane().add(okButton);
