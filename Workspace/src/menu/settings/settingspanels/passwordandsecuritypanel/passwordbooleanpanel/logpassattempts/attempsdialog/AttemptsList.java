@@ -60,18 +60,12 @@ public class AttemptsList
 	    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
 	    {
 	    	setText(value.toString());
-	    	
-	        this.setHorizontalAlignment(SwingConstants.CENTER);
+	    	this.setHorizontalAlignment(SwingConstants.CENTER);
 	        
 	        if(index%2 == 0)
-	        {
 	        	setBackground(new Color(195, 223, 232));
-	        }
-	        
 	        else
-	        {
 	        	setBackground(Color.white);
-	        }
 	        
 	        return this;
 	    }
