@@ -30,4 +30,17 @@ public class PasswordAttemptsFile
 	{
 		FileUtil.clearFile(fileLocation);
 	}
+	
+	public static boolean isEmpty()
+	{
+		if(FileUtil.isFileEmpty(fileLocation))
+		{
+			return true;
+		}
+		
+		else
+		{
+			return false;
+		}
+	}
 }
