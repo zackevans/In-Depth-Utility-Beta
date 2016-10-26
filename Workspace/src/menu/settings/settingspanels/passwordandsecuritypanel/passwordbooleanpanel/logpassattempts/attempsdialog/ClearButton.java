@@ -35,6 +35,7 @@ public class ClearButton extends JButton
 			{
 				PasswordAttemptsFile.clearAttempts();
 				AttemptsList.updateList();
+				PasswordAttemptsDialog.emptyListIconPanel.setVisible(true);
 			}
 		});
 	}

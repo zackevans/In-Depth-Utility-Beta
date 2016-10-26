@@ -6,7 +6,10 @@ import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
+import file.files.PasswordAttemptsFile;
 import launch.app.LaunchApp;
 
 public class PasswordAttemptsDialog 
@@ -18,6 +21,7 @@ public class PasswordAttemptsDialog
 	private ClearButton clearButton;
 	private OkButton okButton;
 	private JLabel titleLabel;
+	public static EmptyListIconPanel emptyListIconPanel;
 	private static boolean clicked = false;
 	
 	/**
@@ -64,6 +68,16 @@ public class PasswordAttemptsDialog
 		
 		customFrame.setLocation(x, y); // set frame location
 		
+		if( PasswordAttemptsFile.isEmpty())
+		{
+			emptyListIconPanel.setVisible(true);
+		}
+		
+		else
+		{
+			emptyListIconPanel.setVisible(false);
+		}
+		
 		customFrame.setVisible(true); // show the window
 	}
 	
@@ -73,11 +87,13 @@ public class PasswordAttemptsDialog
 		clearButton = new ClearButton();
 		okButton = new OkButton();
 		titleLabel = new TitleLabel();
+		emptyListIconPanel = new EmptyListIconPanel();
 		
 		titleLabel.setBounds(0, 0,customFrame.getWidth(), 50);
 		attemptsList.listScrollPane.setBounds(0, 50, customFrame.getWidth(), 300);
 		clearButton.setBounds(116,370,80,25);
 		okButton.setBounds(197,370,80,25);
+		emptyListIconPanel.setBounds(0, 50, customFrame.getWidth(), 300);
 	}
 	
 	public void initializeComponents()
@@ -89,12 +105,19 @@ public class PasswordAttemptsDialog
 	
 	public void addComponents()
 	{
-		customFrame.getContentPane().setLayout(null);
+		JPanel contentPanel = new JPanel();
+		contentPanel.setLayout(null);
+		contentPanel.add(titleLabel);
+		contentPanel.add(attemptsList.listScrollPane);
+		contentPanel.add(clearButton);
+		contentPanel.add(okButton);
+		contentPanel.setBounds(0, 0, Window_Width,Window_Height);
 		
-		customFrame.getContentPane().add(titleLabel);
-		customFrame.getContentPane().add(attemptsList.listScrollPane);
-		customFrame.getContentPane().add(clearButton);
-		customFrame.getContentPane().add(okButton);
+		JLayeredPane layerPane = new JLayeredPane();
+		layerPane.add(contentPanel, new Integer(0), 0);
+        layerPane.add(emptyListIconPanel, new Integer(1), 0);	
+        
+        customFrame.getContentPane().add(layerPane);
 	}
 	
 	public void addListeners()
