@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import menu.loginpanel.LoginErrors;
 import menu.loginpanel.LoginField;
 import menu.loginpanel.LoginPanel;
 import menu.main.MainMenu;
@@ -246,14 +247,16 @@ public class BufferPanel extends JPanel
 		}
 	}
 	
-	
 	public void showPanelPresets(String panelName)
 	{
 		if(panelName == "LOGIN_PANEL")
 		{
 			BufferPanelBackButton.backButton.setVisible(false);
 			LockButton.lockButton.setVisible(false);
+			LoginErrors.loginError.setVisible(false);
+			LoginField.loginField.setText("");
 			LoginField.loginField.requestFocusInWindow();
+			
 		}
 	}
 }

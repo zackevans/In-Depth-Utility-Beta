@@ -9,7 +9,7 @@ import javax.swing.border.EtchedBorder;
 
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.AttemptsCombobox;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.EraseAppDataPanel;
-import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.LogPasswordAttemptsPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.panel.LogPasswordAttemptsPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.ReceiveSafteyEmailPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.SafteyEmailCountCombobox;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.requirepasswordsettings.RequirePasswordSettingsPanel;
@@ -56,7 +56,7 @@ public class PasswordBooleanPanel extends JPanel
 	{
 		RequirePasswordSettingsPanel.updateCheckbox(); 
 		EraseAppDataPanel.updateCheckbox();
-		LogPasswordAttemptsPanel.updateCheckbox();
+		LogPasswordAttemptsPanel.updatePanel();
 		ReceiveSafteyEmailPanel.updateCheckbox();
 		ShowNotificationsButtonPanel.updateCheckBox();
 		TimeCombobox.updateCombobox();

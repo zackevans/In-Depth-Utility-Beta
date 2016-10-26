@@ -1,10 +1,17 @@
 package program.util;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 public class FileUtil 
 {
@@ -21,6 +28,29 @@ public class FileUtil
 		{
 			return false;
 		}
+	}
+	
+	public static boolean isFileEmpty(String path)
+	{
+		boolean rVal = false;
+		
+		try 
+		{
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			
+			if (br.readLine() == null) 
+			{
+			   rVal = true;
+			}
+		} 
+		
+		catch (IOException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}     
+		
+		return rVal;
 	}
 	
 	public static void createNewFile(String fileLocation,String fileText)
@@ -79,5 +109,50 @@ public class FileUtil
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void writeSerializedArray(String fileLocation, ArrayList<String> list)
+	{
+		try 
+		{
+			FileOutputStream outputStream = new FileOutputStream(fileLocation);
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+			
+			objectOutputStream.writeObject(list);
+			
+			objectOutputStream.close();
+			outputStream.close();
+			
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static ArrayList<String> readSerializedArray(String fileLocation) 
+	{
+		ArrayList<String> returnArray = new ArrayList<String>();
+		
+		if(!FileUtil.isFileEmpty(fileLocation))
+		{
+			try 
+			{
+				FileInputStream fileInputStream = new FileInputStream(fileLocation);
+				ObjectInputStream obejctInputStream = new ObjectInputStream(fileInputStream);
+				
+				returnArray = (ArrayList<String>) obejctInputStream.readObject();
+				
+				fileInputStream.close();
+				obejctInputStream.close();
+				
+			} 
+			catch (IOException | ClassNotFoundException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		return returnArray;	
 	}
 }

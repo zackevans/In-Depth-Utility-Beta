@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
+import file.filemanager.FileManager;
 import jobs.handler.JobHandler;
 import menu.buffer.BufferPanel;
 import panel.wallpaper.Wallpaper;
@@ -54,7 +55,8 @@ public class LaunchApp
     public static void main(String[] args) 
     {	
     	dataBaseCalls(); // Method call to Initialize the Database.
-    	
+    	FileManager.createFiles();
+    	  	
     	SwingUtilities.invokeLater(new Runnable() // Created Runnable thread to run GUI.
 		{
 			@Override

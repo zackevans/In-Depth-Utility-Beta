@@ -1,8 +1,7 @@
-package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts;
+package menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.panel;
 
 import java.awt.FlowLayout;
 
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
@@ -11,7 +10,7 @@ import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 public class LogPasswordAttemptsPanel extends JPanel
 {
 	public static JCheckBox logPasswordCheckbox = new LogPasswordCheckbox();
-	JButton viewFailedPasswordAttemptsButton = new ViewFailedPasswordButton();
+	private static ViewFailedPasswordButton viewFailedPasswordAttemptsButton = new ViewFailedPasswordButton();
 	
 	public LogPasswordAttemptsPanel()
 	{
@@ -44,10 +43,11 @@ public class LogPasswordAttemptsPanel extends JPanel
 		add(viewFailedPasswordAttemptsButton);
 	}
 	
-	public static void updateCheckbox()
+	public static void updatePanel()
 	{
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
-		logPasswordCheckbox.setSelected(securitySettingsDatabase.getLogFailedAttemptsValue());
 		
+		logPasswordCheckbox.setSelected(securitySettingsDatabase.getLogFailedAttemptsValue());
+		viewFailedPasswordAttemptsButton.updateButton();
 	}
 }
