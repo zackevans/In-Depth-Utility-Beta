@@ -15,6 +15,9 @@ import javax.swing.SwingUtilities;
 import file.filemanager.FileManager;
 import jobs.handler.JobHandler;
 import menu.buffer.BufferPanel;
+import menu.notes.addnotedialog.AddNoteDialog;
+import menu.notes.sharenotesdialog.ShareNotesDialog;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.attempsdialog.PasswordAttemptsDialog;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;
 import sql.notes.NotesDataBase;
@@ -229,5 +232,12 @@ public class LaunchApp
     		// if process fails then print failures
  			e.printStackTrace();
  		} 
+    }
+    
+    public static void hideAllOtherWindows()
+    {
+    	ShareNotesDialog.customFrame.setVisible(false);
+		AddNoteDialog.customFrame.setVisible(false);
+		PasswordAttemptsDialog.customFrame.setVisible(false);
     }
 }
