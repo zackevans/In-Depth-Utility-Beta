@@ -1,6 +1,8 @@
 package menu.notes.addnotedialog;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -66,6 +68,7 @@ public class AddNoteDialog
 		createComponents(); // call function to create components to be added to panel
 		initializeComponents();
 		addComponents(); // add components to the panel
+		addListeners();
 		
 		showGUI();
 	}
@@ -147,6 +150,31 @@ public class AddNoteDialog
 		customFrame.getContentPane().add(cancelButton);
 		customFrame.getContentPane().add(enterLabel);
 		customFrame.getContentPane().add(warningLabel);
+	}
+	
+	public void addListeners()
+	{
+		customFrame.addWindowListener(new WindowListener() 
+		{
+			@Override
+			public void windowDeactivated(WindowEvent e) 
+			{
+				customFrame.setVisible(false);
+			}
+			
+			@Override
+			public void windowOpened(WindowEvent e) {}
+			@Override
+			public void windowIconified(WindowEvent e) {}
+			@Override
+			public void windowDeiconified(WindowEvent e) {}
+			@Override
+			public void windowClosing(WindowEvent e) {}
+			@Override
+			public void windowClosed(WindowEvent e) {}
+			@Override
+			public void windowActivated(WindowEvent e) {}
+		});
 	}
 	
 	/**
