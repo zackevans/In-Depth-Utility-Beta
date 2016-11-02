@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 public class NoSelectedNotePanel extends JPanel
 {	
 	JLabel imageLabel = new JLabel();
-	JLabel textLabel = new JLabel("No Note Selected");
+	JLabel textLabel = new JLabel("Select a Note");
 	
 	public NoSelectedNotePanel()
 	{
