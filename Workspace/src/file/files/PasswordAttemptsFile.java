@@ -3,6 +3,7 @@ package file.files;
 import java.util.ArrayList;
 
 import program.util.FileUtil;
+import program.util.security.Encryption;
 
 public class PasswordAttemptsFile 
 {
@@ -15,15 +16,25 @@ public class PasswordAttemptsFile
 	
 	public static void addAttempt(String attempt)
 	{
-		ArrayList<String> currentList = FileUtil.readSerializedArray(fileLocation);
+		ArrayList<String> currentList = getAttempts();
 		currentList.add(attempt);
 		
-		FileUtil.writeSerializedArray(fileLocation, currentList);
+		Encryption.writeEncryptedSerializedObject(currentList, fileLocation);
 	}
 	
 	public static ArrayList<String> getAttempts()
 	{
-		return FileUtil.readSerializedArray(fileLocation);
+		ArrayList<String> returnList = new ArrayList<String>();
+		
+		if(!FileUtil.isFileEmpty(fileLocation))
+		{
+			return returnList = (ArrayList<String>) Encryption.readDecryptedSerializedArray(fileLocation);
+		}
+		
+		else
+		{
+			return returnList;
+		}
 	}
 	
 	public static void clearAttempts()
