@@ -256,7 +256,6 @@ public class BufferPanel extends JPanel
 			LoginErrors.loginError.setVisible(false);
 			LoginField.loginField.setText("");
 			LoginField.loginField.requestFocusInWindow();
-			
 		}
 	}
 }

@@ -6,6 +6,7 @@ import org.quartz.JobExecutionException;
 import org.quartz.SchedulerContext;
 import org.quartz.SchedulerException;
 
+import launch.app.LaunchApp;
 import menu.buffer.BufferPanel;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
@@ -23,11 +24,11 @@ public class LockAppJob implements Job
 			{
 				schedulerContext = arg0.getScheduler().getContext();
 				BufferPanel bufferPanel = (BufferPanel) schedulerContext.get("BufferPanel");
+				LaunchApp.hideAllOtherWindows();
 				bufferPanel.showRawPanel("LOGIN_PANEL");
 			} 
 			catch (SchedulerException e) 
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

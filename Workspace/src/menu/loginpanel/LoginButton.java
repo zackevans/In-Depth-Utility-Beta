@@ -71,8 +71,10 @@ public class LoginButton extends JButton
 			
 			if(securitySettingsDatabase.getLogFailedAttemptsValue())
 			{
-				PasswordAttemptsFile.addAttempt(LoginField.loginField.getText());
-				System.out.println(PasswordAttemptsFile.getAttempts());
+				if(LoginField.loginField.getText().length() > 0)
+				{
+					PasswordAttemptsFile.addAttempt(LoginField.loginField.getText());
+				}
 			}
 			
 			LoginErrors.loginError.setVisible(true);

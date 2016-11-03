@@ -3,8 +3,6 @@ package menu.notes.sharenotesdialog;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
@@ -107,20 +105,6 @@ public class ShareList
 	
 	public void addListeners()
 	{
-		list.addFocusListener(new FocusListener()  // add focous listener to list
-    	{
-            @Override
-            public void focusLost(FocusEvent e) // when the frame no longer has focous
-            {
-            	list.clearSelection(); // clear the list of selections
-           	 	ShareNotesDialog.customFrame.setVisible(false); // hide dialog window	
-            }
-            
-            @Override
-            public void focusGained(FocusEvent e) {} // not needed currently
-        });	
-		
-		
 		list.addMouseListener(new MouseListener() // add mouse listener to the panel
 		{
 	        @Override
@@ -175,7 +159,7 @@ public class ShareList
 	    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) 
 	    {
 	        JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus); // create new label
-	        
+            
 	        label.setIcon(imageMap.get(value)); // add image to label
 	        label.setHorizontalTextPosition(JLabel.RIGHT); // add text to the right of the Label
 	        label.setFont(font); // set the label font
