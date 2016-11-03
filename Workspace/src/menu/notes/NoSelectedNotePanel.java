@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 public class NoSelectedNotePanel extends JPanel
 {	
 	JLabel imageLabel = new JLabel();
-	JLabel textLabel = new JLabel("No Note Selected");
+	JLabel textLabel = new JLabel("Select a Note");
 	
 	public NoSelectedNotePanel()
 	{
@@ -25,7 +25,7 @@ public class NoSelectedNotePanel extends JPanel
 	{
 		setLayout(null);
 		setBackground(Color.white);
-		setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0,Color.BLACK));
+		setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0,Color.BLACK));
 		
 		createImage();
 		addText();
