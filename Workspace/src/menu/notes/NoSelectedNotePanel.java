@@ -25,7 +25,7 @@ public class NoSelectedNotePanel extends JPanel
 	{
 		setLayout(null);
 		setBackground(Color.white);
-		setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0,Color.BLACK));
+		setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0,Color.BLACK));
 		
 		createImage();
 		addText();
