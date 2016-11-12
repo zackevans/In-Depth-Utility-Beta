@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
 import menu.notes.DisplayNotes;
+import menu.notes.Notes;
 import menu.notes.NotesList;
 import sql.notes.NotesDataBase;
 
@@ -231,6 +232,7 @@ public class AddNoteDialog
 			DisplayNotes.textArea.requestFocusInWindow();
 			DisplayNotes.textArea.setEditable(true);
 			
+			Notes.noSelectedNotePanel.setVisible(false);
 			customFrame.setVisible(false); // hide window
 		}
 		
