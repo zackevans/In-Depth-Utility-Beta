@@ -25,6 +25,7 @@ import sql.saveandsend.SaveAndSendDataBase;
 import sql.saveandsend.SaveAndSendSettingsDataBase;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
+import sql.userinfo.UserInfoDatabase;
 import statusbar.StatusBar;
 
 /**
@@ -155,6 +156,7 @@ public class LaunchApp
     	final SaveAndSendSettingsDataBase saveAndSendSettingsdb = new SaveAndSendSettingsDataBase();
     	final PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
     	final SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+    	final UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
     	
     	// create db location and create the database
     	dataBase.createDBLocation();
@@ -172,6 +174,8 @@ public class LaunchApp
 		//create the save and send email services tables
 		snsdb.createSaveAndSendTable();
 		saveAndSendSettingsdb.createSaveAndSendSettingsTable();
+		
+		userInfoDatabase.createUserInfoTable();
     }
      
     /**
