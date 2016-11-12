@@ -12,7 +12,7 @@ import menu.main.MainMenu;
 import menu.notes.Notes;
 import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
-import menu.settings.SettingsMenu;
+import menu.settings.SettingsPanel;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import statusbar.addons.BufferPanelBackButton;
 import statusbar.addons.LockButton;
@@ -33,7 +33,7 @@ public class BufferPanel extends JPanel
 	private Notes notes;
 	private MailNote mailNote;
 	private ExportNote exportNote;
-	private SettingsMenu settingsMenu;
+	private SettingsPanel settingsPanel;
 	private LoginPanel loginPanel;
 	public static String currentPanel = "MAIN_MENU";
 	public static String lastPanel = "MAIN_MENU";
@@ -92,8 +92,8 @@ public class BufferPanel extends JPanel
 		mapPanels.put("EXPORT_NOTE", exportNote);
 		
 		//Settings
-		settingsMenu = new SettingsMenu(this);
-		mapPanels.put("SETTINGS_MENU", settingsMenu);
+		settingsPanel = new SettingsPanel(this);
+		mapPanels.put("SETTINGS_MENU", settingsPanel);
 		
 		// login panel
 		loginPanel = new LoginPanel(this);
@@ -118,7 +118,7 @@ public class BufferPanel extends JPanel
 		exportNote.initialize();
 		
 		//Settings
-		settingsMenu.initialize();
+		settingsPanel.initialize();
 		
 		loginPanel.initialize();
 	}
@@ -141,7 +141,7 @@ public class BufferPanel extends JPanel
 		add(exportNote);
 		
 		// Settings
-		add(settingsMenu);
+		add(settingsPanel);
 		
 		// login panel
 		add(loginPanel);
