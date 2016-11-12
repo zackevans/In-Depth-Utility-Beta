@@ -46,8 +46,6 @@ public class SecuritySettingsDatabase
 	    	System.exit(0);
 	    }
 	    
-	    System.out.println();
-	    
 	    if(DatabaseUtil.countItems("SECURITY_SETTINGS") == 0) // check if the table is empty
 	    {
 	    	createInitialRow(); // create the defult row
