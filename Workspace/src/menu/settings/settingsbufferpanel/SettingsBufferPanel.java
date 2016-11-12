@@ -1,17 +1,18 @@
 package menu.settings.settingsbufferpanel;
 
-import java.awt.BorderLayout;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JPanel;
 
 import menu.settings.settingspanels.passwordandsecuritypanel.PasswordAndSecuritySettingsPanel;
+import menu.settings.settingspanels.userpanel.UserSettingsPanel;
 
 public class SettingsBufferPanel extends JPanel
 {
 	private Map <String, JPanel> mapPanels = new HashMap <String, JPanel>();
 	private PasswordAndSecuritySettingsPanel passwordAndSecuritySettingsPanel;
+	private UserSettingsPanel userSettingsPanel;
 	
 	public SettingsBufferPanel ()
 	{
@@ -21,7 +22,6 @@ public class SettingsBufferPanel extends JPanel
 	
 	public void initialize()
 	{
-		createPanel();
 		createComponents();
 		initializePanels();
 		addComponents();
@@ -29,26 +29,25 @@ public class SettingsBufferPanel extends JPanel
 		setOpaque(false);
 	}
 	
-	public void createPanel()
-	{
-		setLayout(new BorderLayout());
-	}
-	
 	public void createComponents()
 	{
 		passwordAndSecuritySettingsPanel = new PasswordAndSecuritySettingsPanel();
+		userSettingsPanel = new UserSettingsPanel();
 		
 		mapPanels.put("PASSWORD_AND_SECURITY_SETTINGS", passwordAndSecuritySettingsPanel);
+		mapPanels.put("USER_SETTINGS", userSettingsPanel);
 	}
 	
 	public void initializePanels()
 	{
 		passwordAndSecuritySettingsPanel.initialize();
+		userSettingsPanel.initialize();
 	}
 	
 	public void addComponents()
 	{
 		add(passwordAndSecuritySettingsPanel);
+		add(userSettingsPanel);
 	}
 	
 	/** 
@@ -64,10 +63,7 @@ public class SettingsBufferPanel extends JPanel
 	
 	public void showPanel(String panelName)
 	{
-		for (JPanel panel : mapPanels.values()) // Run through all panels in hashmap
-		{
-			panel.setVisible(false); // hide all panels in bufferpanel
-		}
+		clearPanel();
 		
 		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
 		panelToShow.setVisible(true); // set new panel visible 
@@ -84,6 +80,6 @@ public class SettingsBufferPanel extends JPanel
 	public static void resetAllPanels()
 	{
 		PasswordAndSecuritySettingsPanel.resetPanel();
-		
+		UserSettingsPanel.resetPanel();
 	}
 }
