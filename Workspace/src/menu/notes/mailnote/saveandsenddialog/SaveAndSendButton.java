@@ -89,7 +89,7 @@ public class SaveAndSendButton extends JButton
 				saveAndSendDatabase.createSavedEmail(SendButton.to, SendButton.fromField, SendButton.finalBody); // save the note email in the databse
 				
 				Notes.shareButton.requestFocusInWindow(); // request focus in the window so that it doesn't default to the search bar
-				bufferPanel.showPanel("NOTES"); // show note panel
+				bufferPanel.showPanel(bufferPanel.lastPanel); // show note panel
 				SaveAndSendDialog.saveAndSendDialogFrame.setVisible(false);	 // hide dialog
 			}
 		});	
