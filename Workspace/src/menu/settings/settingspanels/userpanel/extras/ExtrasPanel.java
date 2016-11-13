@@ -13,6 +13,7 @@ public class ExtrasPanel extends JPanel
 	private EmailPanel emailPanel;
 	private AddressPanel addressPanel;
 	private BirthdayFields birthdayFields;
+	private ExtrasPanelErrors extrasPanelErrors;
 	
 	public ExtrasPanel() 
 	{
@@ -40,10 +41,12 @@ public class ExtrasPanel extends JPanel
 		emailPanel = new EmailPanel();
 		addressPanel = new AddressPanel();
 		birthdayFields = new BirthdayFields();
+		extrasPanelErrors = new ExtrasPanelErrors();
 		
 		phoneNumberPanel.setBounds(30,30 , 400, 35);
 		
 		emailPanel.setBounds(30,80, 400,35);
+		ExtrasPanelErrors.emailErrorLabel.setBounds(340, 81, 30,30);
 		
 		addressPanel.setBounds(30,130,400,35);
 		
@@ -56,6 +59,7 @@ public class ExtrasPanel extends JPanel
 		setLayout(null);
 		
 		add(phoneNumberPanel);
+		add(ExtrasPanelErrors.emailErrorLabel);
 		add(emailPanel);
 		add(addressPanel);
 		add(birthdayFields);

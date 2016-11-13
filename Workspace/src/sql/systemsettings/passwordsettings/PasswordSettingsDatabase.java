@@ -26,7 +26,7 @@ public class PasswordSettingsDatabase
 	    	stmt = c.createStatement();
 	    	String sql = "CREATE TABLE if not exists PASSWORD_SETTINGS" + // sql code to create the system settings table in db
                   "(ID INTEGER PRIMARY KEY   AUTOINCREMENT, " +
-                  "PASSWORD           varchar              )";
+                  "PASSWORD         varchar                )";
 	      
 	    	stmt.executeUpdate(sql); // execute sql code
 	    	

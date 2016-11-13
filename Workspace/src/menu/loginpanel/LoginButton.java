@@ -11,11 +11,13 @@ import file.files.PasswordAttemptsFile;
 import menu.buffer.BufferPanel;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
+import sql.userinfo.UserInfoDatabase;
 import statusbar.addons.LockButton;
 
 public class LoginButton extends JButton
 {
 	BufferPanel bufferPanel;
+	static int attempts = 0;
 	
 	public LoginButton(BufferPanel bufferPanel)
 	{
@@ -68,17 +70,44 @@ public class LoginButton extends JButton
 		else
 		{
 			SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+			UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
 			
-			if(securitySettingsDatabase.getLogFailedAttemptsValue())
+			attempts = attempts++;
+			
+			if(securitySettingsDatabase.getReceiveEmailAttemptsValue()) // if the user wants to revive an email
 			{
-				if(LoginField.loginField.getText().length() > 0)
+				if(userInfoDatabase.getEmail().length() > 0)
 				{
-					PasswordAttemptsFile.addAttempt(LoginField.loginField.getText());
+					
 				}
+				
+				else
+				{
+					// TODO tell user there is no email entered.
+				}
+				
+				
+				
 			}
+			
+			addAttempt();
 			
 			LoginErrors.loginError.setVisible(true);
 			LoginField.loginField.selectAll();
+		}
+	}
+	
+	
+	public static void addAttempt()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		
+		if(securitySettingsDatabase.getLogFailedAttemptsValue()) // if the user set to record attempts
+		{
+			if(LoginField.loginField.getText().length() > 0) // if a attempt was actually made
+			{
+				PasswordAttemptsFile.addAttempt(LoginField.loginField.getText());
+			}
 		}
 	}
 }

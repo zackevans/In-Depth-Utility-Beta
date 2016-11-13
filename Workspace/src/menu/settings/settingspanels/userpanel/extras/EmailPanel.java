@@ -55,12 +55,16 @@ public class EmailPanel extends JPanel
 			public void removeUpdate(DocumentEvent e) 
 			{
 				userInfoDatabase.updateEmail(emailField.getText());
+				
+				ExtrasPanelErrors.updateLabel();
 			}
 			
 			@Override
 			public void insertUpdate(DocumentEvent e) 
 			{
 				userInfoDatabase.updateEmail(emailField.getText());
+				
+				ExtrasPanelErrors.updateLabel();
 			}
 			
 			@Override

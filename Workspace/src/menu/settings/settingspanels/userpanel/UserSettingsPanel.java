@@ -59,6 +59,4 @@ public class UserSettingsPanel extends JPanel
 		NameFieldsPanel.updatePanel();
 		ExtrasPanel.updatePanel();
 	}
-	
-	
 }

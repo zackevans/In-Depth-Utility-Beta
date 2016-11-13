@@ -63,6 +63,9 @@ public class SafteyEmailCountCombobox
 			public void actionPerformed(ActionEvent e) 
 			{
 				SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+				
+				
+				
 				securitySettingsDatabase.updateReceiveEmailAttemptsCount(safteyEmailCombobox.getSelectedIndex());
 			}
 		});
