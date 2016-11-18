@@ -1,6 +1,8 @@
 package menu.notes.sharenotesdialog;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -74,6 +76,7 @@ public class ShareNotesDialog
 		customFrame.setBackground(new Color(225,225,225,0x66)); // set color of window to clear white
 		
 		addComponents(); // add components to frame
+		addListener();
 		
 		showWindow();
 	}
@@ -121,5 +124,31 @@ public class ShareNotesDialog
 	public void addComponents()
 	{
 		customFrame.getContentPane().add(ShareList.list); // add share list to panel
+	}
+	
+	
+	public void addListener()
+	{
+		customFrame.addWindowListener(new WindowListener() 
+		{
+			@Override
+			public void windowDeactivated(WindowEvent e) 
+			{
+				customFrame.setVisible(false);
+			}
+			
+			@Override
+			public void windowOpened(WindowEvent e) {}
+			@Override
+			public void windowIconified(WindowEvent e) {}
+			@Override
+			public void windowDeiconified(WindowEvent e) {}
+			@Override
+			public void windowClosing(WindowEvent e) {}
+			@Override
+			public void windowClosed(WindowEvent e) {}
+			@Override
+			public void windowActivated(WindowEvent e) {}
+		});
 	}
 }

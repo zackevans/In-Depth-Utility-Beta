@@ -5,7 +5,7 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import program.util.NetworkUtil;
-import program.util.email.SendEmail;
+import program.util.email.EmailUtil;
 import sql.saveandsend.SaveAndSendDataBase;
 import sql.util.DatabaseUtil;
 
@@ -37,7 +37,7 @@ public class CheckAndSendEmailJob implements Job
 					String subject = saveAndSenddb.getSubject(i);
 					String body  = saveAndSenddb.getBody(i);
 				
-					SendEmail.sendNoteEMail(to, subject, body); // send the email
+					EmailUtil.sendNoteEMail(to, subject, body); // send the email
 					
 					saveAndSenddb.deleteSavedEmail(i); // delete saved email in db
 				}

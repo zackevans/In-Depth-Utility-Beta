@@ -5,14 +5,17 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
+import menu.loginpanel.LoginErrors;
+import menu.loginpanel.LoginField;
 import menu.loginpanel.LoginPanel;
 import menu.main.MainMenu;
 import menu.notes.Notes;
 import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
-import menu.settings.SettingsMenu;
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import menu.settings.SettingsPanel;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import statusbar.addons.BufferPanelBackButton;
+import statusbar.addons.LockButton;
 
 /**
  * Class: BufferPanel
@@ -30,7 +33,7 @@ public class BufferPanel extends JPanel
 	private Notes notes;
 	private MailNote mailNote;
 	private ExportNote exportNote;
-	private SettingsMenu settingsMenu;
+	private SettingsPanel settingsPanel;
 	private LoginPanel loginPanel;
 	public static String currentPanel = "MAIN_MENU";
 	public static String lastPanel = "MAIN_MENU";
@@ -89,8 +92,8 @@ public class BufferPanel extends JPanel
 		mapPanels.put("EXPORT_NOTE", exportNote);
 		
 		//Settings
-		settingsMenu = new SettingsMenu(this);
-		mapPanels.put("SETTINGS_MENU", settingsMenu);
+		settingsPanel = new SettingsPanel(this);
+		mapPanels.put("SETTINGS_MENU", settingsPanel);
 		
 		// login panel
 		loginPanel = new LoginPanel(this);
@@ -115,7 +118,7 @@ public class BufferPanel extends JPanel
 		exportNote.initialize();
 		
 		//Settings
-		settingsMenu.initialize();
+		settingsPanel.initialize();
 		
 		loginPanel.initialize();
 	}
@@ -138,7 +141,7 @@ public class BufferPanel extends JPanel
 		add(exportNote);
 		
 		// Settings
-		add(settingsMenu);
+		add(settingsPanel);
 		
 		// login panel
 		add(loginPanel);
@@ -154,9 +157,9 @@ public class BufferPanel extends JPanel
 	
 	public void setDefaults()
 	{
-		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
-		if(passwordAndSecurityDatabase.doesPasswordExist())
+		if(passwordSettingsDatabase.doesPasswordExist())
 		{
 			showRawPanel("LOGIN_PANEL");
 		}
@@ -192,8 +195,8 @@ public class BufferPanel extends JPanel
 		
 		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
 		panelToShow.setVisible(true); // set new panel visible 
+		showPanelPresets(panelName);
 	}
-	
 	
 	/**
 	 * Function: showRawPanel(String panelName)
@@ -213,6 +216,7 @@ public class BufferPanel extends JPanel
 		
 		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
 		panelToShow.setVisible(true); // set new panel visible 
+		showPanelPresets(panelName);
 	}
 	
 	/**
@@ -240,6 +244,18 @@ public class BufferPanel extends JPanel
 		else
 		{
 			BufferPanelBackButton.backButton.setVisible(true);
+		}
+	}
+	
+	public void showPanelPresets(String panelName)
+	{
+		if(panelName == "LOGIN_PANEL")
+		{
+			BufferPanelBackButton.backButton.setVisible(false);
+			LockButton.lockButton.setVisible(false);
+			LoginErrors.loginError.setVisible(false);
+			LoginField.loginField.setText("");
+			LoginField.loginField.requestFocusInWindow();
 		}
 	}
 }

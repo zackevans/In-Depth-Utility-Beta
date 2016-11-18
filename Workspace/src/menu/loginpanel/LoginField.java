@@ -35,20 +35,8 @@ public class LoginField
 	
 	public void addListeners()
 	{
-		loginField.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+		loginField.addKeyListener(new KeyListener() 
+		{
 			@Override
 			public void keyPressed(KeyEvent e) 
 			{
@@ -56,17 +44,13 @@ public class LoginField
 				{
 					LoginButton loginButton = new LoginButton(bufferPanel);
 					loginButton.loginAction();
-				}
-				
-				// TODO Auto-generated method stub
-				
+				}	
 			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {}
 		});
 	}
-	
-	
-	
-	
-	
-
 }

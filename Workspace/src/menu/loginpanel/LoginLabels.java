@@ -7,7 +7,7 @@ import javax.swing.SwingConstants;
 
 public class LoginLabels 
 {
-	public JLabel panelLabel  = new JLabel("Login",SwingConstants.CENTER);
+	public JLabel panelLabel  = new JLabel("In Depth Utility",SwingConstants.CENTER);
 	
 	public LoginLabels()
 	{

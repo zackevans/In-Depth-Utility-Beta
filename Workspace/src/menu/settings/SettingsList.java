@@ -25,6 +25,8 @@ public class SettingsList
 	public static JList settingsList = new JList();
 	private Map<String, ImageIcon> imageMap = new HashMap<String, ImageIcon>(); // create a hashmap with the name and image
 	
+	public static String[] listItems = {"User","General", "Password/Security", "Notifications", "Status Bar" , "Sharing"};
+	
 	public SettingsList (SettingsBufferPanel settingsBufferPanel)
 	{
 		initialize();	
@@ -47,8 +49,6 @@ public class SettingsList
 	
 	public void createList()
 	{
-		String[] listItems = {"General", "Password/Security", "Notifications", "Status Bar" , "Sharing"};
-		
 		settingsList.setListData(listItems); // put the list data in the list
 		settingsList.setBorder(null);
 		settingsList.setBackground(new Color(225,225,225,0x99)); // set color to clear white
@@ -64,18 +64,21 @@ public class SettingsList
 	
 	public void createIcons ()
 	{
+		URL userURL = SettingsList.class.getResource("/Button_Images/Settings/SettingsListImages/User.png");
 		URL generalURL = SettingsList.class.getResource("/Button_Images/Settings/SettingsListImages/GeneralSettings.png"); // create URL to store mail image
 		URL securityURL = SettingsList.class.getResource("/Button_Images/Settings/SettingsListImages/SecuritySettings.png"); // create URL to store mail image
 		URL notificationsURL = SettingsList.class.getResource("/Button_Images/Settings/SettingsListImages/NotificationsSettings.png"); // create URL to store mail image
 		URL statusBarURL = SettingsList.class.getResource("/Button_Images/Settings/SettingsListImages/StatusbarSettings.png"); // create URL to store mail image
 		URL sharingURL = SettingsList.class.getResource("/Button_Images/Settings/SettingsListImages/SharingSettings.png"); // create URL to store mail image
 		
+		ImageIcon userImg = new ImageIcon(userURL);
 		ImageIcon generalImg = new ImageIcon(generalURL);
 		ImageIcon securityImg = new ImageIcon(securityURL);
 		ImageIcon notificationsImg = new ImageIcon(notificationsURL);
 		ImageIcon statusBarImg = new ImageIcon(statusBarURL);
 		ImageIcon sharingImg = new ImageIcon(sharingURL);
 	
+		imageMap.put("User", userImg);
 		imageMap.put("General", generalImg);
 		imageMap.put("Password/Security", securityImg);
 		imageMap.put("Notifications", notificationsImg);
@@ -87,20 +90,22 @@ public class SettingsList
 	{
 		settingsList.addMouseListener(new MouseListener() 
 		{
-			
 			@Override
 			public void mousePressed(MouseEvent e) 
 			{
 				int listIndex = settingsList.getSelectedIndex();
 				
-				if (listIndex == 1)
+				switch(listIndex)
 				{
-					settingsBufferPanel.showPanel("PASSWORD_AND_SECURITY_SETTINGS");
-				}
-				
-				else
-				{
-					settingsBufferPanel.clearPanel();
+					case 0:
+						settingsBufferPanel.showPanel("USER_SETTINGS");
+				        break;
+					case 2:
+						settingsBufferPanel.showPanel("PASSWORD_AND_SECURITY_SETTINGS");
+						 break;
+				    default:
+				    	settingsBufferPanel.clearPanel();  
+				        break;
 				}
 			}
 			

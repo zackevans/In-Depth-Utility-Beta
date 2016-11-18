@@ -78,7 +78,7 @@ public class DiscardButton extends JButton
 			public void actionPerformed(ActionEvent e) 
 			{
 				SaveAndSendDialog.saveAndSendDialogFrame.setVisible(false); // hide the dialog
-				bufferPanel.showPanel("NOTES"); // show the NOTES panel
+				bufferPanel.showPanel(bufferPanel.lastPanel); // show the NOTES panel
 				Notes.shareButton.requestFocusInWindow(); // make share button have focus so it it doesen't focus on the search bar.
 			} 
 		});

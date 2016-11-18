@@ -8,12 +8,8 @@ import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
 import menu.notes.mailnote.recipientviewer.RecipientViewer;
-import menu.notes.mailnote.saveandsenddialog.SaveAndSendDialog;
-import program.util.NetworkUtil;
 import program.util.email.PushEmail;
 import sql.notes.NotesDataBase;
-import sql.saveandsend.SaveAndSendDataBase;
-import sql.saveandsend.SaveAndSendSettingsDataBase;
 
 /**
  * Class: SendButton
@@ -96,32 +92,7 @@ public class SendButton extends JButton
 					fromField = FromField.textField.getText(); // get text from the FromField
 					finalBody = body + "\n\n" + additionalComments + "\n\n" + "-" + fromField; // add all fields together to create email body
 					
-					if(NetworkUtil.isNetworkAvailable()) // if network is available
-					{
-						bufferPanel.showPanel("NOTES"); // show the notes panel
-						
-						Thread sendMail = new Thread(new PushEmail(to, subject, finalBody)); // create new thread to send email	in the background
-						sendMail.start(); // start the thread
-					}
-					
-					else // if there is no connection.
-					{
-						SaveAndSendSettingsDataBase saveAndSendSettingsDataBase = new SaveAndSendSettingsDataBase();
-						
-						if (saveAndSendSettingsDataBase.getNeverShow() == true) // if the user never wants to see the dialog again
-						{
-							SaveAndSendDataBase saveAndSendDataBase = new SaveAndSendDataBase();
-							saveAndSendDataBase.createSavedEmail(to, subject, body); // save emails in db
-							
-							bufferPanel.showPanel("NOTES"); // show the notes panel
-						}
-						
-						else // if the user has not checked never show again
-						{
-							SaveAndSendDialog saveAndSendDialog = new SaveAndSendDialog(bufferPanel);
-							saveAndSendDialog.launchDialog(); // show dialog
-						}
-					}
+					PushEmail.sendEmail(to, subject, finalBody,bufferPanel);
 				}
 				
 				else // if a field is empty

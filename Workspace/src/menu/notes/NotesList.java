@@ -162,6 +162,8 @@ public class NotesList
 				
 				if (list.getSelectedIndex() != -1) // checks if a list items was selected when the list was clicked
 				{
+					Notes.noSelectedNotePanel.setVisible(false);
+					
 					if (searchBar.doesTextExist() == false) // if no text is here
 					{
 						NotesDataBase notesDatabase = new NotesDataBase();

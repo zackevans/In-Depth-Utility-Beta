@@ -1,12 +1,15 @@
 package menu.notes.addnotedialog;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import launch.app.LaunchApp;
 import menu.notes.DisplayNotes;
+import menu.notes.Notes;
 import menu.notes.NotesList;
 import sql.notes.NotesDataBase;
 
@@ -51,7 +54,7 @@ public class AddNoteDialog
 	}
 	
 	/**
-	 * Function : 
+	 * Function: createAndShowGUI() 
 	 * @author ZackEvans
 	 * 
 	 * This function creates the dialog window and displays it.
@@ -66,6 +69,7 @@ public class AddNoteDialog
 		createComponents(); // call function to create components to be added to panel
 		initializeComponents();
 		addComponents(); // add components to the panel
+		addListeners();
 		
 		showGUI();
 	}
@@ -108,7 +112,7 @@ public class AddNoteDialog
 		warningLabel = new DialogWarningLabel();
 		
 		// set the location and size of the object
-		noteNameField.noteNameTextField.setBounds(75, 30, 243, 24);
+		noteNameField.noteNameTextField.setBounds(75, 32, 243, 24);
 		enterButton.setBounds(223, 80, 100, 25);
 		cancelButton.setBounds(123,80,100,25);
 		enterLabel.setBounds(77,3,225,40);
@@ -147,6 +151,31 @@ public class AddNoteDialog
 		customFrame.getContentPane().add(cancelButton);
 		customFrame.getContentPane().add(enterLabel);
 		customFrame.getContentPane().add(warningLabel);
+	}
+	
+	public void addListeners()
+	{
+		customFrame.addWindowListener(new WindowListener() 
+		{
+			@Override
+			public void windowDeactivated(WindowEvent e) 
+			{
+				customFrame.setVisible(false);
+			}
+			
+			@Override
+			public void windowOpened(WindowEvent e) {}
+			@Override
+			public void windowIconified(WindowEvent e) {}
+			@Override
+			public void windowDeiconified(WindowEvent e) {}
+			@Override
+			public void windowClosing(WindowEvent e) {}
+			@Override
+			public void windowClosed(WindowEvent e) {}
+			@Override
+			public void windowActivated(WindowEvent e) {}
+		});
 	}
 	
 	/**
@@ -203,6 +232,7 @@ public class AddNoteDialog
 			DisplayNotes.textArea.requestFocusInWindow();
 			DisplayNotes.textArea.setEditable(true);
 			
+			Notes.noSelectedNotePanel.setVisible(false);
 			customFrame.setVisible(false); // hide window
 		}
 		

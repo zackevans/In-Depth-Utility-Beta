@@ -7,13 +7,19 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import file.files.PasswordAttemptsFile;
 import menu.buffer.BufferPanel;
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.SafteyEmailCountCombobox;
+import program.util.email.PushEmail;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
+import sql.userinfo.UserInfoDatabase;
 import statusbar.addons.LockButton;
 
 public class LoginButton extends JButton
 {
 	BufferPanel bufferPanel;
+	static int attempts = 0;
 	
 	public LoginButton(BufferPanel bufferPanel)
 	{
@@ -21,7 +27,6 @@ public class LoginButton extends JButton
 		this.bufferPanel = bufferPanel;
 		initialize();
 	}
-	
 	
 	public void initialize()
 	{
@@ -52,24 +57,59 @@ public class LoginButton extends JButton
 		});
 	}
 	
-	
 	public void loginAction()
 	{
-		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
-		if(LoginField.loginField.getText().equals(passwordAndSecurityDatabase.getPassword()))
+		if(LoginField.loginField.getText().equals(passwordSettingsDatabase.getPassword()))
 		{
-			LoginField.loginField.setText("");
-			LoginErrors.loginError.setVisible(false);
-			
 			bufferPanel.showRawPanel(BufferPanel.currentPanel);
 			LockButton.lockButton.setVisible(true);
-			bufferPanel.checkBackButton(BufferPanel.currentPanel);
+			bufferPanel.checkBackButton(BufferPanel.currentPanel); // check back button bc method .showRawPanel doesent include it :(
 		}
 		
 		else
 		{
+			attempts = attempts +=1;
+			
+			checkAttempts();
+			
+			addAttempt();
+			
 			LoginErrors.loginError.setVisible(true);
+			LoginField.loginField.selectAll();
+		}
+	}
+	
+	public static void checkAttempts()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
+		
+		if(securitySettingsDatabase.getReceiveEmailAttemptsValue()) // if the user wants to revive an email
+		{			
+			int permittedAttempts = (SafteyEmailCountCombobox.safteyEmailCombobox.getSelectedIndex()+1) *5;
+			
+			if(attempts >= permittedAttempts) // if the user used up all their attempts
+			{
+				String[] to = {userInfoDatabase.getEmail()};
+				
+				PushEmail.sendEmail(to, "Unusual Account Activity", "There have been " + permittedAttempts + " consecutive failed attempts on your IDU account");
+				attempts =0;
+			}		
+		}
+	}
+	
+	public static void addAttempt()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		
+		if(securitySettingsDatabase.getLogFailedAttemptsValue()) // if the user set to record attempts
+		{
+			if(LoginField.loginField.getText().length() > 0) // if a attempt was actually made
+			{
+				PasswordAttemptsFile.addAttempt(LoginField.loginField.getText());
+			}
 		}
 	}
 }

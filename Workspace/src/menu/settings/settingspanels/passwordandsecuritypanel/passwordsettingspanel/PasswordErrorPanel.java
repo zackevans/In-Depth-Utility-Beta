@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import menu.notes.exportnote.ExportErrorNotePanel;
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 
 public class PasswordErrorPanel extends JPanel
 {
@@ -15,7 +15,7 @@ public class PasswordErrorPanel extends JPanel
 	
 	public static JLabel incorrectPasswordLabel= new JLabel();
 	public static JLabel resetPasswordsDoesentMatchErrorLabel = new JLabel();
-	
+
 	public static JLabel removePasswordLabel = new JLabel();
 	
 	/**
@@ -71,9 +71,9 @@ public class PasswordErrorPanel extends JPanel
 		resetPasswordsDoesentMatchErrorLabel.setIcon(errorIcon);
 		removePasswordLabel.setIcon(errorIcon);
 		
-		newPasswordDoesentMatchErrorLabel.setToolTipText("Passwords dont Match");
+		newPasswordDoesentMatchErrorLabel.setToolTipText("Passwords Don't Match");
 		incorrectPasswordLabel.setToolTipText("Incorrect Password");
-		resetPasswordsDoesentMatchErrorLabel.setToolTipText("Passwords dont Match");
+		resetPasswordsDoesentMatchErrorLabel.setToolTipText("Passwords Don't Match");
 		removePasswordLabel.setToolTipText("Incorrect Password");
 		
 		newPasswordDoesentMatchErrorLabel.setBounds(375,82, 30,22);
@@ -102,9 +102,9 @@ public class PasswordErrorPanel extends JPanel
 	
 	public static void checkAllResetPasswordPanelErrors()
 	{
-		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
-		if(!PasswordFields.currentPasswordField.getText().equals(passwordAndSecurityDatabase.getPassword())) // if the passwords dont match
+		if(!PasswordFields.currentPasswordField.getText().equals(passwordSettingsDatabase.getPassword())) // if the passwords dont match
 		{
 			incorrectPasswordLabel.setVisible(true);
 		}
@@ -118,9 +118,9 @@ public class PasswordErrorPanel extends JPanel
 	
 	public static void checkRemovePasswordPanelErrors()
 	{
-		PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
-		if(!PasswordFields.removePasswordField.getText().equals(passwordAndSecurityDatabase.getPassword()))
+		if(!PasswordFields.removePasswordField.getText().equals(passwordSettingsDatabase.getPassword()))
 		{
 			removePasswordLabel.setVisible(true);
 		}
