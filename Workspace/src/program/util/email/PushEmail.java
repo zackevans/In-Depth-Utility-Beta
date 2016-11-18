@@ -41,4 +41,19 @@ public class PushEmail
 			}
 		}	
 	}
+	
+	public static void sendEmail(String[] to, String subject, String body)
+	{
+		if(NetworkUtil.isNetworkAvailable()) // if network is available
+		{
+			Thread sendMail = new Thread(new PushEmailThread(to, subject, body)); // create new thread to send email	in the background
+			sendMail.start(); // start the thread
+		}
+		
+		else
+		{
+			SaveAndSendDataBase saveAndSendDataBase = new SaveAndSendDataBase();
+			saveAndSendDataBase.createSavedEmail(to, subject, body); // save emails in db
+		}
+	}
 }
