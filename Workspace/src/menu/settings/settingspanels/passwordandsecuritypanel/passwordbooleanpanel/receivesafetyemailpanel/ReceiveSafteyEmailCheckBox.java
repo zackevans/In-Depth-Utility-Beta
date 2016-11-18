@@ -5,13 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBox;
 
+import menu.settings.settingsbufferpanel.SettingsBufferPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.noemaildialog.NoEmailDialog;
+import program.util.email.EmailUtil;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
+import sql.userinfo.UserInfoDatabase;
 
 public class ReceiveSafteyEmailCheckBox extends JCheckBox
 {
-	public ReceiveSafteyEmailCheckBox ()
+	SettingsBufferPanel settingsBufferPanel;
+	
+	public ReceiveSafteyEmailCheckBox (SettingsBufferPanel settingsBufferPanel)
 	{
 		super();
+		this.settingsBufferPanel = settingsBufferPanel;
 		initialize();
 	}
 	
@@ -27,15 +34,42 @@ public class ReceiveSafteyEmailCheckBox extends JCheckBox
 	}
 	
 	public void addListeners()
-	{
+	{	
 		addActionListener(new ActionListener() 
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
-				securitySettingsDatabase.updateReceiveEmailAttemptsValue(ReceiveSafteyEmailPanel.receiveSafteyEmailCheckbox.isSelected());
+				UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
+				
+				if(isSelected()) // if the check box is being selected
+				{
+					if(EmailUtil.validateEmailAddress(userInfoDatabase.getEmail()))
+					{
+						updateCombobox();
+					}
+					
+					else
+					{
+						NoEmailDialog noEmailDialog = new NoEmailDialog(settingsBufferPanel);
+						setSelected(false);
+						
+						noEmailDialog.launchDialog();
+					}
+				}
+				
+				else
+				{
+					updateCombobox();
+				}				
 			}
 		});
+	}
+	
+	public void updateCombobox()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		
+		securitySettingsDatabase.updateReceiveEmailAttemptsValue(ReceiveSafteyEmailPanel.receiveSafteyEmailCheckbox.isSelected());
 	}
 }

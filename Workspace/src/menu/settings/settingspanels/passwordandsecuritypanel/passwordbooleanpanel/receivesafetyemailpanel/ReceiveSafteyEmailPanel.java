@@ -6,17 +6,20 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
 public class ReceiveSafteyEmailPanel extends JPanel
 {
-	public static JCheckBox receiveSafteyEmailCheckbox = new ReceiveSafteyEmailCheckBox();
+	SettingsBufferPanel settingsBufferPanel;
+	public static JCheckBox receiveSafteyEmailCheckbox;
+	SafteyEmailCountCombobox safteyEmailCountCombobox;
 	JLabel secondHalfofMessage = new JLabel(" Failed Attempts");
-	SafteyEmailCountCombobox safteyEmailCountCombobox = new SafteyEmailCountCombobox();
 	
-	public ReceiveSafteyEmailPanel()
+	public ReceiveSafteyEmailPanel(SettingsBufferPanel settingsBufferPanel)
 	{
 		super();
+		this.settingsBufferPanel = settingsBufferPanel;
 		initialize();
 	}
 	
@@ -29,6 +32,10 @@ public class ReceiveSafteyEmailPanel extends JPanel
 	
 	public void createPanel()
 	{
+		receiveSafteyEmailCheckbox = new ReceiveSafteyEmailCheckBox(settingsBufferPanel);
+		safteyEmailCountCombobox = new SafteyEmailCountCombobox();
+		
+		
 		setLayout(new FlowLayout(FlowLayout.LEFT));
 		setOpaque(false);
 	}

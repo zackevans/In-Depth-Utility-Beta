@@ -34,7 +34,7 @@ public class ExtrasPanelErrors
 	{
 		UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
 		
-		if(EmailUtil.validateEmailAddress(userInfoDatabase.getEmail()))
+		if(EmailUtil.validateEmailAddress(userInfoDatabase.getEmail()) || userInfoDatabase.getEmail().length() ==0)
 		{		
 			emailErrorLabel.setVisible(false);
 		}

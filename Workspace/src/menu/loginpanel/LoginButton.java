@@ -9,6 +9,8 @@ import javax.swing.JButton;
 
 import file.files.PasswordAttemptsFile;
 import menu.buffer.BufferPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.SafteyEmailCountCombobox;
+import program.util.email.PushEmail;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 import sql.userinfo.UserInfoDatabase;
@@ -25,7 +27,6 @@ public class LoginButton extends JButton
 		this.bufferPanel = bufferPanel;
 		initialize();
 	}
-	
 	
 	public void initialize()
 	{
@@ -69,26 +70,9 @@ public class LoginButton extends JButton
 		
 		else
 		{
-			SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
-			UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
+			attempts = attempts +=1;
 			
-			attempts = attempts++;
-			
-			if(securitySettingsDatabase.getReceiveEmailAttemptsValue()) // if the user wants to revive an email
-			{
-				if(userInfoDatabase.getEmail().length() > 0)
-				{
-					
-				}
-				
-				else
-				{
-					// TODO tell user there is no email entered.
-				}
-				
-				
-				
-			}
+			checkAttempts();
 			
 			addAttempt();
 			
@@ -97,6 +81,24 @@ public class LoginButton extends JButton
 		}
 	}
 	
+	public static void checkAttempts()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
+		
+		if(securitySettingsDatabase.getReceiveEmailAttemptsValue()) // if the user wants to revive an email
+		{			
+			int permittedAttempts = (SafteyEmailCountCombobox.safteyEmailCombobox.getSelectedIndex()+1) *5;
+			
+			if(attempts >= permittedAttempts) // if the user used up all their attempts
+			{
+				String[] to = {userInfoDatabase.getEmail()};
+				
+				PushEmail.sendEmail(to, "Unusual Account Activity", "There have been " + permittedAttempts + " consecutive failed attempts on your IDU account");
+				attempts =0;
+			}		
+		}
+	}
 	
 	public static void addAttempt()
 	{

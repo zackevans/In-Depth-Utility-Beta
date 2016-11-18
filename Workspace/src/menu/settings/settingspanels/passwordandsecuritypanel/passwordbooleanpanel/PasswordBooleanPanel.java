@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.AttemptsCombobox;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.EraseAppDataPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.panel.LogPasswordAttemptsPanel;
@@ -18,12 +19,15 @@ import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpane
 
 public class PasswordBooleanPanel extends JPanel
 {
-	public PasswordBooleanPanel ()
+	SettingsBufferPanel settingsBufferpanel;
+	
+	public PasswordBooleanPanel (SettingsBufferPanel settingsBufferPanel)
 	{
 		super();
+		this.settingsBufferpanel = settingsBufferPanel;
 		initialize();
 	}
-	
+
 	public void initialize()
 	{
 		createPanel();
@@ -41,7 +45,7 @@ public class PasswordBooleanPanel extends JPanel
 	{
 		JPanel requirePasswordTimeoutPanel = new RequirePasswordSettingsPanel();
 		JPanel logPasswordAttemptsPanel = new LogPasswordAttemptsPanel();
-		JPanel reciveSafteyEmailPanel = new ReceiveSafteyEmailPanel();
+		JPanel reciveSafteyEmailPanel = new ReceiveSafteyEmailPanel(settingsBufferpanel);
 		JPanel showNotificationsButtonPanel = new ShowNotificationsButtonPanel();
 		JPanel eraseAppDataPanel = new EraseAppDataPanel();
 		

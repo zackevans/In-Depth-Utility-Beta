@@ -17,8 +17,6 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 import menu.settings.settingsbufferpanel.SettingsBufferPanel;
-import menu.settings.settingspanels.passwordandsecuritypanel.PasswordAndSecuritySettingsPanel;
-import menu.settings.settingspanels.userpanel.UserSettingsPanel;
 
 public class SettingsList 
 {
@@ -26,6 +24,8 @@ public class SettingsList
 	public static JScrollPane scrollPane = new JScrollPane();
 	public static JList settingsList = new JList();
 	private Map<String, ImageIcon> imageMap = new HashMap<String, ImageIcon>(); // create a hashmap with the name and image
+	
+	public static String[] listItems = {"User","General", "Password/Security", "Notifications", "Status Bar" , "Sharing"};
 	
 	public SettingsList (SettingsBufferPanel settingsBufferPanel)
 	{
@@ -49,8 +49,6 @@ public class SettingsList
 	
 	public void createList()
 	{
-		String[] listItems = {"User","General", "Password/Security", "Notifications", "Status Bar" , "Sharing"};
-		
 		settingsList.setListData(listItems); // put the list data in the list
 		settingsList.setBorder(null);
 		settingsList.setBackground(new Color(225,225,225,0x99)); // set color to clear white
@@ -101,11 +99,9 @@ public class SettingsList
 				{
 					case 0:
 						settingsBufferPanel.showPanel("USER_SETTINGS");
-						UserSettingsPanel.resetPanel();
 				        break;
 					case 2:
 						settingsBufferPanel.showPanel("PASSWORD_AND_SECURITY_SETTINGS");
-						PasswordAndSecuritySettingsPanel.resetPanel();
 						 break;
 				    default:
 				    	settingsBufferPanel.clearPanel();  

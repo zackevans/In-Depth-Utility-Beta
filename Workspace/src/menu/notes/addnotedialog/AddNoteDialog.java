@@ -112,7 +112,7 @@ public class AddNoteDialog
 		warningLabel = new DialogWarningLabel();
 		
 		// set the location and size of the object
-		noteNameField.noteNameTextField.setBounds(75, 30, 243, 24);
+		noteNameField.noteNameTextField.setBounds(75, 32, 243, 24);
 		enterButton.setBounds(223, 80, 100, 25);
 		cancelButton.setBounds(123,80,100,25);
 		enterLabel.setBounds(77,3,225,40);
