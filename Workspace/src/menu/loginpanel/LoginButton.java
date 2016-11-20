@@ -9,12 +9,15 @@ import javax.swing.JButton;
 
 import file.files.PasswordAttemptsFile;
 import menu.buffer.BufferPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.eraseappdatapanel.AttemptsCombobox;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.SafteyEmailCountCombobox;
 import program.util.email.PushEmail;
+import sql.DataBase;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 import sql.userinfo.UserInfoDatabase;
 import statusbar.addons.LockButton;
+import statusbar.addons.NotificationsButton;
 
 public class LoginButton extends JButton
 {
@@ -66,13 +69,15 @@ public class LoginButton extends JButton
 			bufferPanel.showRawPanel(BufferPanel.currentPanel);
 			LockButton.lockButton.setVisible(true);
 			bufferPanel.checkBackButton(BufferPanel.currentPanel); // check back button bc method .showRawPanel doesent include it :(
+			NotificationsButton.notificationsButton.setVisible(true);
 		}
 		
 		else
 		{
 			attempts = attempts +=1;
 			
-			checkAttempts();
+			checkAttemptsForDataDelete();
+			checkAttemptsForEmail();
 			
 			addAttempt();
 			
@@ -81,7 +86,7 @@ public class LoginButton extends JButton
 		}
 	}
 	
-	public static void checkAttempts()
+	public static void checkAttemptsForEmail()
 	{
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
 		UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
@@ -97,6 +102,22 @@ public class LoginButton extends JButton
 				PushEmail.sendEmail(to, "Unusual Account Activity", "There have been " + permittedAttempts + " consecutive failed attempts on your IDU account");
 				attempts =0;
 			}		
+		}
+	}
+	
+	public static void checkAttemptsForDataDelete()
+	{
+		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+		
+		if(securitySettingsDatabase.getEraseAppDataValue())
+		{
+			int permittedAttempts = (AttemptsCombobox.attemptsCombobox.getSelectedIndex()+1) *5;
+			
+			if(attempts >= permittedAttempts) // if the user used up all their attempts
+			{
+				DataBase dataBase = new DataBase();
+				dataBase.deleteDatabase();
+			}	
 		}
 	}
 	

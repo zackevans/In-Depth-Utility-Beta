@@ -101,6 +101,8 @@ public class DeleteButton extends JButton
 		        		notesList.removeSearchListItem(listIndex);
 		        		displayNotes.clearDisplay();
 					}
+					
+					NoSelectedNotePanel.updateText(); // check which message to display
 				}
 				
 				else
