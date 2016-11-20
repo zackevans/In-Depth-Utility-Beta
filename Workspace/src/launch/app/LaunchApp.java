@@ -4,6 +4,7 @@ package launch.app;
 // Imports 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 
@@ -12,9 +13,12 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
+import com.apple.eawt.Application;
+
 import file.filemanager.FileManager;
 import jobs.handler.JobHandler;
 import menu.buffer.BufferPanel;
+import menu.notes.AddNoteButton;
 import menu.notes.addnotedialog.AddNoteDialog;
 import menu.notes.sharenotesdialog.ShareNotesDialog;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.attempsdialog.PasswordAttemptsDialog;
@@ -84,6 +88,8 @@ public class LaunchApp
     	// create variables to be initialized and used later
     	Wallpaper wallpaper;
     	StatusBar statusBar;
+    	
+    	createAppIcon();
     	
     	//sets size restraints
     	frame.setSize(Window_Width, Window_Height); 
@@ -243,5 +249,14 @@ public class LaunchApp
     	ShareNotesDialog.customFrame.setVisible(false);
 		AddNoteDialog.customFrame.setVisible(false);
 		PasswordAttemptsDialog.customFrame.setVisible(false);
+    }
+    
+    public static void createAppIcon()
+    {
+    	Application application = Application.getApplication();
+    	URL url = AddNoteButton.class.getResource("/Button_Images/Program/Dock.png"); // add resource to the project
+    	Image image = Toolkit.getDefaultToolkit().getImage(url);
+    	
+    	application.setDockIconImage(image);
     }
 }
