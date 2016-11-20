@@ -14,7 +14,7 @@ public class EraseAppDataPanel extends JPanel
 {
 	public static JCheckBox lockAfterTimeoutCheckbox = new EraseAppDataCheckbox();
 	JLabel secondHalfofMessage = new JLabel(" Failed Attempts");
-	AttemptsCombobox attemptsCombobox = new AttemptsCombobox();
+	public static AttemptsCombobox attemptsCombobox = new AttemptsCombobox();
 	
 	public EraseAppDataPanel()
 	{
@@ -67,5 +67,4 @@ public class EraseAppDataPanel extends JPanel
 			}
 		});
 	}
-	
 }

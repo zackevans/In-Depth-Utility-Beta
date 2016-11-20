@@ -10,10 +10,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import sql.util.DatabaseUtil;
+
 public class NoSelectedNotePanel extends JPanel
 {	
 	JLabel imageLabel = new JLabel();
-	JLabel textLabel = new JLabel("Select a Note");
+	static JLabel textLabel = new JLabel();
 	
 	public NoSelectedNotePanel()
 	{
@@ -27,12 +29,12 @@ public class NoSelectedNotePanel extends JPanel
 		setBackground(Color.white);
 		setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0,Color.BLACK));
 		
+		updateText();
 		createImage();
 		addText();
 		
 		addComponents();
 	}
-	
 	
 	public void addComponents()
 	{
@@ -41,6 +43,19 @@ public class NoSelectedNotePanel extends JPanel
 		
 		add(imageLabel);
 		add(textLabel);
+	}
+	
+	public static void updateText()
+	{
+		if(DatabaseUtil.countItems("USER_NOTES") == 0)
+		{
+			textLabel.setText("Create a Note");
+		}
+		
+		else
+		{
+			textLabel.setText("Select a Note");
+		}
 	}
 	
 	public void createImage()

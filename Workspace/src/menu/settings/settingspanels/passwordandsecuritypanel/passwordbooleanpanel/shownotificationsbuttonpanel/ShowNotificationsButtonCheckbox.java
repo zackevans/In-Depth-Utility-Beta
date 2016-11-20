@@ -23,7 +23,7 @@ public class ShowNotificationsButtonCheckbox extends JCheckBox
 	
 	public void createCheckbox()
 	{
-		setText("Show Notificatins Tab When Locked");
+		setText("Hide Notificatins Tab When Locked");
 	}
 	
 	public void addListeners()
@@ -38,7 +38,4 @@ public class ShowNotificationsButtonCheckbox extends JCheckBox
 			}
 		});
 	}
-	
-	
-
 }

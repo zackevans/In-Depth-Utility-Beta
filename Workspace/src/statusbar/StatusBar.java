@@ -22,7 +22,7 @@ public class StatusBar extends JPanel
 {
 	public static final int Window_Width = 700;
 	public static final int Window_Height = 500;
-	private NotificationsButton notificationsBtn;
+	public static NotificationsButton notificationsBtn;
 	private TimeAndDate timeAndDate;
 	public static  BufferPanelBackButton backButton;
 	public static LockButton lockButton;
@@ -56,7 +56,6 @@ public class StatusBar extends JPanel
 		super.paintComponent(g);
 		
 		g.drawLine(0, 20, 700,20); // draw line across window
-		g.drawLine(655, -12, 655, 20); // draw separator between status bar and notifications button
 	}
 	
 	/**
@@ -93,7 +92,7 @@ public class StatusBar extends JPanel
 		
 		// create and set the size/location of the notifications button
 		notificationsBtn.initialize();
-		notificationsBtn.setBounds(655, 0, 50, 21);
+		NotificationsButton.buttonPanel.setBounds(655, 0, 50, 21);
 		
 		BufferPanelBackButton.backButton.setBounds(10, -1, 55,20);
 		
@@ -108,7 +107,7 @@ public class StatusBar extends JPanel
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20)); // set size of the panel
 		
 		// add items to the top bar
-		add(notificationsBtn);
+		add(NotificationsButton.buttonPanel);
 		add(TimeAndDate.timeLabel);
 		add(BufferPanelBackButton.backButton);
 		add(LockButton.lockButton);

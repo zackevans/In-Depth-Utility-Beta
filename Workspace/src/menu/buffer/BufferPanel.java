@@ -14,8 +14,10 @@ import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
 import menu.settings.SettingsPanel;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 import statusbar.addons.BufferPanelBackButton;
 import statusbar.addons.LockButton;
+import statusbar.addons.NotificationsButton;
 
 /**
  * Class: BufferPanel
@@ -27,7 +29,7 @@ import statusbar.addons.LockButton;
 public class BufferPanel extends JPanel
 {
 	// Creates hash map to store all main panels <Name of Panel,Panel Object>
-	private Map <String, JPanel> mapPanels = new HashMap <String, JPanel>();
+	private Map <String, JPanel> mapPanels = new HashMap <>();
 	// Create VAR for all main panels 
 	private MainMenu mainMenu;
 	private Notes notes;
@@ -251,11 +253,14 @@ public class BufferPanel extends JPanel
 	{
 		if(panelName == "LOGIN_PANEL")
 		{
+			SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+			
 			BufferPanelBackButton.backButton.setVisible(false);
 			LockButton.lockButton.setVisible(false);
 			LoginErrors.loginError.setVisible(false);
 			LoginField.loginField.setText("");
 			LoginField.loginField.requestFocusInWindow();
+			NotificationsButton.notificationsButton.setVisible(!securitySettingsDatabase.getShowNotificationsValue());
 		}
 	}
 }

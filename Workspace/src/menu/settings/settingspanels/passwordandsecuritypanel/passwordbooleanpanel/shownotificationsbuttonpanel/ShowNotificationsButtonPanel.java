@@ -38,7 +38,6 @@ public class ShowNotificationsButtonPanel extends JPanel
 		showNotificationsButtonCheckbox.setBorderPainted(false); // remove the border.
 	}
 	
-	
 	public void addComponents()
 	{
 		add(showNotificationsButtonCheckbox);
@@ -49,5 +48,4 @@ public class ShowNotificationsButtonPanel extends JPanel
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
 		showNotificationsButtonCheckbox.setSelected(securitySettingsDatabase.getShowNotificationsValue());
 	}
-
 }
