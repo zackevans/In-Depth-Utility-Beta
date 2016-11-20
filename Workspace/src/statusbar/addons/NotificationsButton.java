@@ -1,11 +1,14 @@
 package statusbar.addons;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
 
@@ -16,8 +19,10 @@ import menu.buffer.BufferPanel;
  * This class is the notifications button that is in the status bar 
  */ 
 
-public class NotificationsButton extends JButton
+public class NotificationsButton 
 {
+	public static JPanel buttonPanel = new JPanel();
+	public static JButton notificationsButton = new JButton();
 	BufferPanel bufferPanel; // bufferPanel object created so class has access to the BufferPanel 
 	
 	/**
@@ -43,18 +48,19 @@ public class NotificationsButton extends JButton
 	
 	public void initialize()
 	{
-		createBtn();
+		createButton();
+		createPanel();
 		addListeners();
 	}
 	
 	/**
-	 * Function: createBtn()
+	 * Function: createPanel()
 	 * @author ZackEvans
 	 * 
-	 * Function creates button properties and set the look
+	 * Function creates the panel and its properties
 	 */
 	
-	public void createBtn()
+	public void createButton()
 	{
 		// create URLs for button images
 		URL btnURL = NotificationsButton.class.getResource("/Button_Images/TopBar/Notifications.png"); 
@@ -65,11 +71,22 @@ public class NotificationsButton extends JButton
 		ImageIcon btnPressedImg = new ImageIcon(pressedBtnURL);
 		
 		// set button icons
-		setIcon(btnImg);
-		setPressedIcon(btnPressedImg);
+		notificationsButton.setIcon(btnImg);
+		notificationsButton.setPressedIcon(btnPressedImg);
 		
-		setFocusable(false); // button cannot be focused 
-		setBorderPainted(false); // border doesn't show
+		notificationsButton.setFocusable(false); // button cannot be focused 
+		notificationsButton.setBorderPainted(false); // border doesn't show
+		
+		notificationsButton.setBounds(0, 0, 45, 21);
+	}
+		
+	public void createPanel()
+	{
+		buttonPanel.setLayout(null);
+		buttonPanel.setOpaque(false);
+		buttonPanel.setBorder(BorderFactory.createMatteBorder(0, 1, 0, 0, Color.BLACK)); // add border on one side for division line
+		
+		buttonPanel.add(notificationsButton);
 	}
 	
 	/**
@@ -81,7 +98,7 @@ public class NotificationsButton extends JButton
 	
 	public void addListeners()
 	{
-		addActionListener(new ActionListener()  // create a new action listener for the 
+		notificationsButton.addActionListener(new ActionListener()  // create a new action listener for the 
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) // Override standard function to do what i want

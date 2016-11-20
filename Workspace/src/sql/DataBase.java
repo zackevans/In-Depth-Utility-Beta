@@ -82,4 +82,15 @@ public class DataBase
 		
 		System.out.println("database connected: " + connection);
 	}
+	
+	public void deleteDatabase()
+	{
+		File database = new File(System.getProperty("user.home"),"Library/IDU Data/User.db");
+		File savedPassAttempts = new File(System.getProperty("user.home"),"Library/IDU Data/PasswordAttempts.txt");
+		
+		database.delete();
+		savedPassAttempts.delete();
+		
+		System.exit(0);
+	}
 }

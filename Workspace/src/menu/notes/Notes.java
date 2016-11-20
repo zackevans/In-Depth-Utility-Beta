@@ -2,6 +2,7 @@ package menu.notes;
 
 import java.awt.Dimension;
 
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import menu.buffer.BufferPanel;
@@ -25,6 +26,7 @@ public class Notes extends JPanel
 	private DisplayNotes displayNotes;
 	private ClearButton clearButton;
 	public  static ShareButton shareButton;
+	public static NoSelectedNotePanel noSelectedNotePanel;
 	BufferPanel bufferPanel;
 	
 	/**
@@ -76,6 +78,7 @@ public class Notes extends JPanel
 		displayNotes = new DisplayNotes();
 		clearButton = new ClearButton();
 		shareButton = new ShareButton(bufferPanel);
+		noSelectedNotePanel = new NoSelectedNotePanel();
 		
 		// sets location for GUI components 
 		NotesList.scrollPane.setBounds(0,50,250,423);
@@ -86,6 +89,7 @@ public class Notes extends JPanel
 		displayNotes.setBounds(250,50,450,423);
 		clearButton.setBounds(224,23,20,20);
 		shareButton.setBounds(660,18,30,30);
+		noSelectedNotePanel.setBounds(250,50,450,423);
 	}
 	
 	/**
@@ -120,14 +124,28 @@ public class Notes extends JPanel
 		setLayout(null); // get rid of layout manager
 		setPreferredSize(new Dimension(Window_Width,Window_Height-20)); // set size of panel
 		
+		JPanel contentPanel = new JPanel();
+		contentPanel.setLayout(null);
+		contentPanel.setOpaque(false);
+		
 		// add items to panel
-		add(clearButton); // add clear button first so it stays on top of the search bar. (Im to lazy to make a layeredpane rn)
-		add(searchbar.searchLabel);
-		add(NotesList.scrollPane);
-		add(SearchBar.textField);
-		add(addNoteButton);
-		add(deleteButton);
-		add(displayNotes);
-		add(shareButton);
+		contentPanel.add(clearButton); // add clear button first so it stays on top of the search bar. (Im to lazy to make a layeredpane rn)
+		contentPanel.add(searchbar.searchLabel);
+		contentPanel.add(NotesList.scrollPane);
+		contentPanel.add(SearchBar.textField);
+		contentPanel.add(addNoteButton);
+		contentPanel.add(deleteButton);
+		contentPanel.add(displayNotes);
+		contentPanel.add(shareButton);
+		contentPanel.setBounds(0, 0, Window_Width,Window_Height);
+		
+		
+		JLayeredPane layerPane = new JLayeredPane();
+		layerPane.add(contentPanel, new Integer(0), 0);
+        layerPane.add(noSelectedNotePanel, new Integer(1), 0);	
+        layerPane.setBounds(0, 0, Window_Width,Window_Height);
+        
+       add(layerPane);
+        
 	}
 }

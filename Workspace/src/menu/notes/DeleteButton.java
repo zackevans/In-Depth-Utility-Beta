@@ -72,19 +72,20 @@ public class DeleteButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
+				NotesList notesList = new NotesList();
 				SearchBar searchBar = new SearchBar();
+				DisplayNotes displayNotes = new DisplayNotes();
 				
-				if (searchBar.doesTextExist() == false) // if there is no text in the search bar
+				int listIndex = notesList.list.getSelectedIndex(); // get the list index
+        		int listPosition = listIndex+1; // adapt to base 1 system
+				
+				if(listIndex != -1) // if a item in the list is selected
 				{
-					NotesList notesList = new NotesList();
-					DisplayNotes displayNotes = new DisplayNotes();
+					Notes.noSelectedNotePanel.setVisible(true);
 					
-					int listIndex = notesList.list.getSelectedIndex(); // get the list index
-	        		int listPosition = listIndex+1; // adapt to base 1 system
-	        		
-	        		if(listIndex != -1) // if a item in the list is selected
-	        		{
-	        			NotesDataBase notesDatabase = new NotesDataBase();
+					if (searchBar.doesTextExist() == false) // if there is no text in the search bar
+					{
+						NotesDataBase notesDatabase = new NotesDataBase();
 	        			int id = notesDatabase.getID(listPosition); // get id of selected note
 	        			
 	        			notesDatabase.pushWholeListUpOne(); // push list items in databse up
@@ -92,42 +93,27 @@ public class DeleteButton extends JButton
 	        			
 	        			notesList.loadData(); // load data in the notes list
 	        			displayNotes.clearDisplay();
-	        		}
-	        		
-	        		else // if there is nothing selected in the list
-	        		{
-	        			LaunchApp launchApp = new LaunchApp();
-	        			
-	        			// show warning message
-	        			JOptionPane.showMessageDialog(launchApp.getFrame(),
-								  "No Item Was Seclected",
-								  "Delete Warning",
-								  JOptionPane.WARNING_MESSAGE);
-	        		}
-				}
-				
-				else // if there is text in the searchbar
-				{	
-					NotesList notesList = new NotesList();
-					DisplayNotes displayNotes = new DisplayNotes();
-					int listIndex = NotesList.list.getSelectedIndex(); // get the list index of the selected note.
+					}
 					
-	        		if(listIndex != -1) // check if a note is selected
-	        		{		
-	        			// call method to remove the note in the search list and the database.
+					else
+					{
+						// call method to remove the note in the search list and the database.
 		        		notesList.removeSearchListItem(listIndex);
 		        		displayNotes.clearDisplay();
-	        		}
-	        		
-	        		else
-	        		{
-	        			LaunchApp launchApp = new LaunchApp();
-	        			// display note error
-	        			JOptionPane.showMessageDialog(launchApp.getFrame(),
-								  "No Item Was Seclected",
-								  "Delete Warning",
-								  JOptionPane.WARNING_MESSAGE);
-	        		}
+					}
+					
+					NoSelectedNotePanel.updateText(); // check which message to display
+				}
+				
+				else
+				{
+					LaunchApp launchApp = new LaunchApp();
+        			
+        			// show warning message
+        			JOptionPane.showMessageDialog(launchApp.getFrame(),
+							  "No Item Was Seclected",
+							  "Delete Warning",
+							  JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});

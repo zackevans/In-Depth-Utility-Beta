@@ -78,7 +78,6 @@ public class ShareButton extends JButton
 			public void actionPerformed(ActionEvent arg0) // when button is clicked
 			{
 				ShareNotesDialog shareDialog = new ShareNotesDialog(bufferPanel);
-				
 				shareDialog.launchDialog(); // show window next to frame
 			}
 		});

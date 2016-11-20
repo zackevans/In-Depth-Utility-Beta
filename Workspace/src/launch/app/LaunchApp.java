@@ -4,6 +4,7 @@ package launch.app;
 // Imports 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 
@@ -12,14 +13,23 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
+import com.apple.eawt.Application;
+
+import file.filemanager.FileManager;
 import jobs.handler.JobHandler;
 import menu.buffer.BufferPanel;
+import menu.notes.AddNoteButton;
+import menu.notes.addnotedialog.AddNoteDialog;
+import menu.notes.sharenotesdialog.ShareNotesDialog;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.attempsdialog.PasswordAttemptsDialog;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;
 import sql.notes.NotesDataBase;
 import sql.saveandsend.SaveAndSendDataBase;
 import sql.saveandsend.SaveAndSendSettingsDataBase;
-import sql.systemsettings.passwordandsecurity.PasswordAndSecurityDatabase;
+import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
+import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
+import sql.userinfo.UserInfoDatabase;
 import statusbar.StatusBar;
 
 /**
@@ -53,7 +63,8 @@ public class LaunchApp
     public static void main(String[] args) 
     {	
     	dataBaseCalls(); // Method call to Initialize the Database.
-    	
+    	FileManager.createFiles();
+    	  	
     	SwingUtilities.invokeLater(new Runnable() // Created Runnable thread to run GUI.
 		{
 			@Override
@@ -74,11 +85,11 @@ public class LaunchApp
     
     private static void createAndShowGUI()
     {
-    	JobHandler jobHandler = new JobHandler();
-    	
     	// create variables to be initialized and used later
     	Wallpaper wallpaper;
     	StatusBar statusBar;
+    	
+    	createAppIcon();
     	
     	//sets size restraints
     	frame.setSize(Window_Width, Window_Height); 
@@ -124,6 +135,7 @@ public class LaunchApp
         frame.pack();
         frame.setVisible(true);
         
+       JobHandler jobHandler = new JobHandler(bufferPanel);
        jobHandler.createJobs();
     }
     
@@ -148,14 +160,19 @@ public class LaunchApp
     	final NotesDataBase notesdb = new NotesDataBase();
     	final SaveAndSendDataBase snsdb = new SaveAndSendDataBase();
     	final SaveAndSendSettingsDataBase saveAndSendSettingsdb = new SaveAndSendSettingsDataBase();
-    	final PasswordAndSecurityDatabase passwordAndSecurityDatabase = new PasswordAndSecurityDatabase();
+    	final PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
+    	final SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+    	final UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
     	
     	// create db location and create the database
     	dataBase.createDBLocation();
 		dataBase.createDatabase();
 		
 		// create settings tables
-		passwordAndSecurityDatabase.createPasswordAndSecurityTable();
+		passwordSettingsDatabase.createPasswordTable();
+		
+		// create security settings database
+		securitySettingsDatabase.createSecuritySettingsTable();
 		
 		// create the notes table in the database
 		notesdb.createNotesTable();
@@ -163,6 +180,8 @@ public class LaunchApp
 		//create the save and send email services tables
 		snsdb.createSaveAndSendTable();
 		saveAndSendSettingsdb.createSaveAndSendSettingsTable();
+		
+		userInfoDatabase.createUserInfoTable();
     }
      
     /**
@@ -223,5 +242,21 @@ public class LaunchApp
     		// if process fails then print failures
  			e.printStackTrace();
  		} 
+    }
+    
+    public static void hideAllOtherWindows()
+    {
+    	ShareNotesDialog.customFrame.setVisible(false);
+		AddNoteDialog.customFrame.setVisible(false);
+		PasswordAttemptsDialog.customFrame.setVisible(false);
+    }
+    
+    public static void createAppIcon()
+    {
+    	Application application = Application.getApplication();
+    	URL url = AddNoteButton.class.getResource("/Button_Images/Program/Dock.png"); // add resource to the project
+    	Image image = Toolkit.getDefaultToolkit().getImage(url);
+    	
+    	application.setDockIconImage(image);
     }
 }

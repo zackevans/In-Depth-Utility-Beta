@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import menu.buffer.BufferPanel;
 import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 
-public class SettingsMenu extends JPanel
+public class SettingsPanel extends JPanel
 {
 	BufferPanel bufferPanel;
 	public static final int Window_Width = 700;
@@ -15,7 +15,7 @@ public class SettingsMenu extends JPanel
 	SettingsList settingsList;
 	SettingsBufferPanel settingsBufferPanel;
 	
-	public SettingsMenu(BufferPanel bufferPanel)
+	public SettingsPanel(BufferPanel bufferPanel)
 	{
 		super();
 		this.bufferPanel = bufferPanel;

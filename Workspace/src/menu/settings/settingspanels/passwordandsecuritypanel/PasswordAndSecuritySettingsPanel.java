@@ -4,15 +4,20 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import menu.settings.settingsbufferpanel.SettingsBufferPanel;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.PasswordBooleanPanel;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordsettingspanel.PasswordSettingsPanel;
 
 public class PasswordAndSecuritySettingsPanel extends JPanel
 {
 	private JPanel passwordSettingsPanel;
-		
-	public PasswordAndSecuritySettingsPanel()
+	private JPanel passwordBooleanPanel;
+	SettingsBufferPanel settingsBufferPanel;
+	
+	public PasswordAndSecuritySettingsPanel(SettingsBufferPanel settingsBufferpanel)
 	{
 		super();
+		this.settingsBufferPanel = settingsBufferpanel;
 	}
 	
 	public void initialize()
@@ -33,17 +38,21 @@ public class PasswordAndSecuritySettingsPanel extends JPanel
 	public void createComponenets()
 	{
 		passwordSettingsPanel = new PasswordSettingsPanel();
+		passwordBooleanPanel = new PasswordBooleanPanel(settingsBufferPanel);
 		
 		passwordSettingsPanel.setBounds(10, 10, 455, 200);
+		passwordBooleanPanel.setBounds(10, 215, 455, 225);
 	}
 	
 	public void layoutComponents()
 	{
 		add(passwordSettingsPanel);
+		add(passwordBooleanPanel);
 	}
 	
 	public static void resetPanel()
 	{
 		PasswordSettingsPanel.showMenu();
+		PasswordBooleanPanel.resetPanel();
 	}
 }

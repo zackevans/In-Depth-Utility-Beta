@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
-import menu.loginpanel.LoginField;
 
 public class LockButton 
 {
@@ -51,9 +50,6 @@ public class LockButton
 			public void actionPerformed(ActionEvent e) 
 			{
 				bufferPanel.showRawPanel("LOGIN_PANEL");
-				BufferPanelBackButton.backButton.setVisible(false);
-				lockButton.setVisible(false);
-				LoginField.loginField.requestFocusInWindow();
 			}
 		});
 	}

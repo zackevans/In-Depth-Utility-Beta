@@ -1,7 +1,9 @@
 package program.util;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +23,29 @@ public class FileUtil
 		{
 			return false;
 		}
+	}
+	
+	public static boolean isFileEmpty(String path)
+	{
+		boolean rVal = false;
+		
+		try 
+		{
+			BufferedReader br = new BufferedReader(new FileReader(path));
+			
+			if (br.readLine() == null) 
+			{
+			   rVal = true;
+			}
+		} 
+		
+		catch (IOException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}     
+		
+		return rVal;
 	}
 	
 	public static void createNewFile(String fileLocation,String fileText)
@@ -79,5 +104,5 @@ public class FileUtil
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}	
 }

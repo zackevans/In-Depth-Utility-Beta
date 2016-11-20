@@ -73,7 +73,7 @@ public class FileExistsDialog
 	{
 		createComponents(); // call method to create the components on the panel
 		
-		sameNameDialogFrame.setSize(393, 167);  // set the size of the dilog frame.
+		sameNameDialogFrame.setSize(393, 167);  // set the size of the dialog frame.
 		sameNameDialogFrame.setResizable(false); // make the frame note resizeable
 		
 		addComponents(); // add the components to the frame
