@@ -22,7 +22,6 @@ public class DiscardButton extends JButton
 	
 	/**
 	 * Constructor: DiscardButton(BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This constructor inherits the bufferPanel object, calls button hierarchy and calls a method to setup the button.
@@ -37,7 +36,6 @@ public class DiscardButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the button
 	 */
@@ -50,7 +48,6 @@ public class DiscardButton extends JButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * This method sets the text and color of the button.
 	 * This method also removes the blue selected border.
@@ -65,7 +62,6 @@ public class DiscardButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This methods adds a action listener to the button
 	 */

@@ -18,7 +18,6 @@ public class DialogMessage
 	
 	/**
 	 * Constructor: DialogMessage ()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls a method to create the text area.
 	 */
@@ -30,9 +29,8 @@ public class DialogMessage
 	
 	/**
 	 * Function: createField()
-	 * @author ZackEvans
 	 * 
-	 * This function makes the text area note not editable by the user and makes the words wrap around in the warning box.
+	 * This function makes the message not editable and makes the words return. Then it sets the background color to the dialogs color.
 	 */
 	
 	public void createField()
@@ -42,6 +40,12 @@ public class DialogMessage
 		errorTextArea.setWrapStyleWord(true);
 		errorTextArea.setBackground(FileExistsDialog.sameNameDialogFrame.getBackground());
 	}
+	
+	/**
+	 * Function: updateErrorText()
+	 * 
+	 * This function updates the error message.
+	 */
 	
 	public static void updateErrorText()
 	{

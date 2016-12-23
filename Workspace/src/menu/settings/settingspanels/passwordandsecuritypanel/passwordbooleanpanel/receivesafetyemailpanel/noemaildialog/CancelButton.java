@@ -16,7 +16,6 @@ public class CancelButton extends JButton
 {
 	/**
 	 * Constructor: CancelButton()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls the panel hierarchy and a method to create the button.
 	 */
@@ -29,7 +28,6 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the button
 	 */
@@ -42,9 +40,8 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Function: createBtn()
-	 * @author ZackEvans
 	 * 
-	 * This function sets the text and doesent allow focous on the button
+	 * This function sets the text and gets rid of the blue selection border.
 	 */
 	
 	public void createBtn()
@@ -55,9 +52,8 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
-	 * This function adds an action listener to the button
+	 * This function adds an action listener to the button. When it fires it hides the dialog.
 	 */
 	
 	public void addListeners()

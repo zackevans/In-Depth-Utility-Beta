@@ -11,6 +11,14 @@ import org.quartz.impl.StdSchedulerFactory;
 
 import jobs.jobs.CheckAndSendEmailJob;
 
+/**
+ * Class: CheckAndSendEmailJobScheduler
+ * @author ZackEvans
+ *
+ * This class contains methods that creates a job for sending emails saved in a db.
+ */
+
+
 public class CheckAndSendEmailJobScheduler 
 {
 	/**
@@ -42,7 +50,6 @@ public class CheckAndSendEmailJobScheduler
 		
 		catch (SchedulerException e) 
 		{
-			System.out.println("createCheckAndSendEmailJob() - Unable to Create Email Job");
 			e.printStackTrace();
 		}
     }

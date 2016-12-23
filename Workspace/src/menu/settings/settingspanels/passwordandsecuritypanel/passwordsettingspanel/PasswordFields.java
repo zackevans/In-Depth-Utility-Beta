@@ -8,6 +8,13 @@ import javax.swing.JTextField;
 
 import program.textfield.PasswordTextFieldShell;
 
+/**
+ * Class: PasswordFields
+ * @author ZackEvans
+ * 
+ * This class holds all of the textfields needed to set change and remove a password.
+ */
+
 public class PasswordFields 
 {
 	// text fields for create password settings
@@ -31,21 +38,23 @@ public class PasswordFields
 	public static JTextField removePasswordField = new PasswordTextFieldShell();
 	public static JLabel removePasswordLabel = new JLabel("Password:" );
 	
-	public PasswordFields()
-	{
-		
-	}
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls functions to create the panel
+	 */
 	
 	public void initialize()
 	{
-		createTextFields();
+		hideAllFields();
 		addListeners();
 	}
 	
-	public void createTextFields()
-	{
-		hideAllFields();
-	}
+	/**
+	 * Function: hideAllFields()
+	 * 
+	 * This function hides all of the textfields on the panel
+	 */
 	
 	public void hideAllFields()
 	{
@@ -68,6 +77,12 @@ public class PasswordFields
 		removePasswordLabel.setVisible(false);
 	}
 	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds action listeners to all the fields on the panel
+	 */
+	
 	public void addListeners()
 	{
 		createPasswordFieldListeners();
@@ -81,6 +96,13 @@ public class PasswordFields
 	}
 
 	
+	/**
+	 * Function: createPasswordFieldListeners()
+	 * 
+	 * This function adds an action listener to the passwordField.
+	 * When the enter key is pressed it make the user move on to the next password field (retype field).
+	 */
+	
 	public void createPasswordFieldListeners()
 	{
 		passwordField.addKeyListener(new KeyListener() 
@@ -91,8 +113,7 @@ public class PasswordFields
 			{
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
 				{
-					//PasswordFields.retypeField.selectAll();
-					PasswordFields.retypeField.requestFocusInWindow();
+					retypeField.requestFocusInWindow();
 				}
 			}
 			
@@ -103,6 +124,13 @@ public class PasswordFields
 		});
 	}
 	
+	/**
+	 * Function: createRetypePasswordFieldListener()
+	 * 
+	 * This function adds an action listener to the retype field.
+	 * When the enter button is clicked it updates the password change or shows errors.
+	 */
+	
 	public void createRetypePasswordFieldListener()
 	{
 		retypeField.addKeyListener(new KeyListener() 
@@ -112,8 +140,7 @@ public class PasswordFields
 			{
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
 				{
-					SaveButton saveButton = new SaveButton();
-					saveButton.saveButtonAction();
+					SaveButton.saveButtonAction();
 				}
 			}
 			
@@ -123,6 +150,13 @@ public class PasswordFields
 			public void keyReleased(KeyEvent e) {}
 		});	
 	}
+	
+	/**
+	 * Function: createCurrentPasswordFieldListener()
+	 * 
+	 * This function adds an action listener the field.
+	 * When the enter button is clicked it moves the focus to the text textfield.
+	 */
 	
 	public void createCurrentPasswordFieldListener()
 	{
@@ -144,6 +178,12 @@ public class PasswordFields
 		});
 	}
 	
+	/**
+	 * Function: createNewPasswordFieldListener()
+	 * 
+	 * This function adds an action listener to the field.
+	 * When the enter button is clicked it moves the focus to the text textfield.
+	 */
 	
 	public void createNewPasswordFieldListener()
 	{
@@ -165,6 +205,13 @@ public class PasswordFields
 		});
 	}
 	
+	/**
+	 * Function: createNewConfirmPasswordFieldListener()
+	 * 
+	 * This function adds an action listener to the field.
+	 * When the enter button is clicked it updates the password change or shows errors.
+	 */
+	
 	public void createNewConfirmPasswordFieldListener()
 	{
 		confirmPasswordField.addKeyListener(new KeyListener() 
@@ -174,8 +221,7 @@ public class PasswordFields
 			{
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
 				{
-					SaveButton saveButton = new SaveButton();
-					saveButton.saveButtonAction();
+					SaveButton.saveButtonAction();
 				}
 			}
 			
@@ -183,9 +229,15 @@ public class PasswordFields
 			public void keyTyped(KeyEvent e) {}
 			@Override
 			public void keyReleased(KeyEvent e) {}
-				
 		});
 	}
+	
+	/**
+	 * Function: createRemovePasswordFieldListener()
+	 * 
+	 * This function adds an action listener to the field.
+	 * When the enter button is clicked it updates the password change or shows errors.
+	 */
 	
 	public void createRemovePasswordFieldListener()
 	{
@@ -196,8 +248,7 @@ public class PasswordFields
 			{
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
 				{
-					SaveButton saveButton = new SaveButton();
-					saveButton.saveButtonAction();
+					SaveButton.saveButtonAction();
 				}
 			}
 			
@@ -205,7 +256,6 @@ public class PasswordFields
 			public void keyTyped(KeyEvent e) {}
 			@Override
 			public void keyReleased(KeyEvent e) {}
-				
 		});
 	}
 }

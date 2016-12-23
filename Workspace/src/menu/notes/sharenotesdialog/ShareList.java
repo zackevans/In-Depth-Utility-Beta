@@ -15,8 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 
 import menu.buffer.BufferPanel;
-import menu.notes.exportnote.ExportNote;
-import menu.notes.mailnote.MailNote;
 
 /**
  * Class: ShareList 
@@ -28,12 +26,11 @@ import menu.notes.mailnote.MailNote;
 public class ShareList 
 {
 	public static  JList list = new JList(); // create 
-	private final Map<String, ImageIcon> imageMap = new HashMap<String, ImageIcon>(); // create a hashmap with the name and image
+	private final Map<String, ImageIcon> imageMap = new HashMap<>(); // create a hashmap with the name and image
 	BufferPanel bufferPanel; // create bufferPanel obejct used to show the different Share panels
 	
 	/**
 	 * Constructor: ShareList (BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This constructor inherit the bufferPanel object and calls panel hierarchy.
@@ -46,7 +43,6 @@ public class ShareList
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the list.
 	 */
@@ -60,7 +56,6 @@ public class ShareList
 	
 	/**
 	 * Function: createList()
-	 * @author ZackEvans
 	 * 
 	 * This function adds the names into the list and sets the color of it.
 	 * This function also sets a custom cell render on the list
@@ -76,7 +71,6 @@ public class ShareList
 	
 	/**
 	 * Function: createIcons()
-	 * @author ZackEvans
 	 * 
 	 * This function creates images that will be added to the list
 	 * Images should be 32 x 32 pix
@@ -97,7 +91,6 @@ public class ShareList
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * @see MailNotePanel
 	 * 
 	 * Function adds a focus listener and a mouse listener to the panel
@@ -117,15 +110,11 @@ public class ShareList
 	        		if(indexClicked == 0) // if the mail index is clicked
 	        		{
 	        			bufferPanel.showPanel("MAIL_NOTES"); // show mail note panel
-	        			MailNote.clearPanel(); // reset all components on the panel
-	        			MailNote.autoFill();
 	        		}
 	        		
 	        		if(indexClicked == 1) // if the export index is clicked
 	        		{
 	        			bufferPanel.showPanel("EXPORT_NOTE"); // show the export note panel
-	        			ExportNote.clearPanel();
-	        			ExportNote.autoFill();
 	        		}
 	        		
 	        		ShareNotesDialog.customFrame.setVisible(false);	// hide the window
@@ -145,7 +134,6 @@ public class ShareList
 	
 	/**
 	 * Class: ShareListRender
-	 * @author ZackEvans
 	 *
 	 * This class creates custom list cells.
 	 * This class Overrides the cell render method to add an image and text to the list.

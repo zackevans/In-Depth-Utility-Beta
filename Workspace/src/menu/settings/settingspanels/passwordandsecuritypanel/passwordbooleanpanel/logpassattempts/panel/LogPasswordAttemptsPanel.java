@@ -7,10 +7,23 @@ import javax.swing.JPanel;
 
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
+/**
+ * Class: LogPasswordAttemptsPanel
+ * @author ZackEvans
+ *
+ * This class is a panel that holds the settings to log failed password attemtps
+ */
+
 public class LogPasswordAttemptsPanel extends JPanel
 {
 	public static JCheckBox logPasswordCheckbox = new LogPasswordCheckbox();
 	private static ViewFailedPasswordButton viewFailedPasswordAttemptsButton = new ViewFailedPasswordButton();
+	
+	/**
+	 * Constructor: LogPasswordAttemptsPanel()
+	 * 
+	 * This constructor calls the panel hierarchy and a method to create the panel
+	 */
 	
 	public LogPasswordAttemptsPanel()
 	{
@@ -18,12 +31,23 @@ public class LogPasswordAttemptsPanel extends JPanel
 		initialize();
 	}
 	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls functions to create the panel
+	 */
+	
 	public void initialize()
 	{
 		createPanel();
-		createCheckbox();
 		addComponents();
 	}
+	
+	/**
+	 * Function: createPanel()
+	 * 
+	 * This function sets the layout manager for the panel and makes it clear.
+	 */
 	
 	public void createPanel()
 	{
@@ -31,17 +55,23 @@ public class LogPasswordAttemptsPanel extends JPanel
 		setOpaque(false);
 	}
 	
-	public void createCheckbox()
-	{
-		logPasswordCheckbox.setFocusPainted(false); // removed blue outline when clicked
-		logPasswordCheckbox.setBorderPainted(false); // remove the border.
-	}
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function adds the components to the panel
+	 */
 	
 	public void addComponents()
 	{
 		add(logPasswordCheckbox);
 		add(viewFailedPasswordAttemptsButton);
 	}
+	
+	/**
+	 * Function: updatePanel()
+	 * 
+	 * This function updates the panels components.
+	 */
 	
 	public static void updatePanel()
 	{
