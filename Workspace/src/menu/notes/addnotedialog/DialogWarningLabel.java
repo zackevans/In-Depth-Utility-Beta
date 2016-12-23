@@ -16,7 +16,6 @@ public class DialogWarningLabel extends JLabel
 {
 	/**
 	 * Constructor: DialogWarning()
-	 * @author ZackEvans
 	 * 
 	 * Constructor calls hierarchy and calls method to create label properties
 	 */
@@ -29,7 +28,6 @@ public class DialogWarningLabel extends JLabel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Function calls mathods to create the label
 	 */
@@ -41,7 +39,6 @@ public class DialogWarningLabel extends JLabel
 	
 	/**
 	 * Function: createLabel()
-	 * @author ZackEvans
 	 * 
 	 * Function sets icon on label, adds tool tip, and by default hides label
 	 */
@@ -57,5 +54,4 @@ public class DialogWarningLabel extends JLabel
 		
 		setVisible(false); // hide label
 	}
-
 }

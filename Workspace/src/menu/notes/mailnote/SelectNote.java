@@ -19,11 +19,10 @@ import sql.notes.NotesDataBase;
 
 public class SelectNote 
 {
-	public static JComboBox <String> comboBox = new JComboBox <String>(); // create the combobox that will hold the note options
+	public static JComboBox <String> comboBox = new JComboBox <>(); // create the combobox that will hold the note options
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This method calls functions to create the combobox
 	 */
@@ -37,7 +36,6 @@ public class SelectNote
 	
 	/**
 	 * Function: createCombobox()
-	 * @author ZackEvans
 	 * 
 	 * This method make the comobox not focus and removes the border.
 	 */
@@ -50,7 +48,6 @@ public class SelectNote
 	
 	/**
 	 * Function: updateData()
-	 * @author ZackEvans
 	 * 
 	 * This method updates the note options in the combo box
 	 */
@@ -75,7 +72,6 @@ public class SelectNote
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This method adds a action listener to the combobox
 	 */

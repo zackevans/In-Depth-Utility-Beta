@@ -13,15 +13,34 @@ import javax.swing.event.DocumentListener;
 import program.textfield.TextFieldShell;
 import sql.userinfo.UserInfoDatabase;
 
+/**
+ * Class: LastNameField 
+ * @author ZackEvans
+ *
+ * This class holds components to get the users last name.
+ */
+
 public class LastNameField 
 {
 	public static JTextField lastNameField = new TextFieldShell();
 	public static JLabel lastNameLabel = new JLabel("Last Name");
 	
+	/**
+	 * Constructor: LastNameField()
+	 * 
+	 * This constructor calls a method to create the panel.
+	 */
+	
 	public LastNameField()
 	{
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls two metod that create the components.
+	 */
 	
 	public void initialize()
 	{
@@ -29,12 +48,26 @@ public class LastNameField
     	addListeners();
 	}
 	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This function sets the text in the center of the label and the color of the text.
+	 */
+	
 	public void createComponents()
 	{
 		lastNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lastNameLabel.setOpaque(false);
 		lastNameLabel.setForeground(new Color(0,0,0,200));
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds a document and focus listener to the text field.
+	 * The document listener updates the users typing in the database. 
+	 * The focus listener handles the visibility of the label.
+	 */
 	
 	public void addListeners()
 	{
@@ -77,6 +110,12 @@ public class LastNameField
 			}
 		});
 	}
+	
+	/**
+	 * Function: updateField()
+	 * 
+	 * This function updates the text in the text field with the data in the database.
+	 */
 	
 	public static void updateField()
 	{

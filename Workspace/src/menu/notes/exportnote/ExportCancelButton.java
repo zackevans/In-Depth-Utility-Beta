@@ -20,7 +20,6 @@ public class ExportCancelButton extends JButton
 	
 	/**
 	 * Constructor: ExportCancelButton(BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This constructor calls button hierarchy and inherits the bufferPanel object
@@ -34,7 +33,6 @@ public class ExportCancelButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans 
 	 * 
 	 * This method calls function to setup the button
 	 */
@@ -47,7 +45,6 @@ public class ExportCancelButton extends JButton
 	
 	/**
 	 * Function: createBtn()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the button text and removes the selected border.
 	 */
@@ -60,7 +57,6 @@ public class ExportCancelButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener to the button.
 	 * The action listener shows the notes panel

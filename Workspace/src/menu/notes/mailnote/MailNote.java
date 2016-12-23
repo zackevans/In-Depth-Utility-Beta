@@ -50,7 +50,6 @@ public class MailNote extends JPanel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the panel
 	 */
@@ -64,7 +63,6 @@ public class MailNote extends JPanel
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates components to be added to the panel.
 	 * Each component is initialized and bounds are set
@@ -114,7 +112,6 @@ public class MailNote extends JPanel
 	
 	/**
 	 * Function: initializeComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function call methods to initialize components
 	 */
@@ -137,7 +134,6 @@ public class MailNote extends JPanel
 
 	/**
 	 * Function: addComponents()
-	 * @author ZackEvans
 	 * 
 	 * Function sets layout of the panel and adds components to it.
 	 */
@@ -165,7 +161,6 @@ public class MailNote extends JPanel
 	
 	/**
 	 * Function: createContentPanel()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the content panel and then adds components to it.
 	 */
@@ -198,7 +193,6 @@ public class MailNote extends JPanel
 	
 	/**
 	 * Function: clearPanel()
-	 * @author ZackEvans
 	 * 
 	 * This function clears all components on the MailNote panel
 	 */
@@ -216,7 +210,6 @@ public class MailNote extends JPanel
 	
 	/**
 	 * Function: autoFill()
-	 * @author ZackEvans
 	 * 
 	 * This function autofills fields in mail note panel 
 	 */

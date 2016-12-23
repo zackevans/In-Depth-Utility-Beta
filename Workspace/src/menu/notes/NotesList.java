@@ -24,11 +24,10 @@ public class NotesList
 {
 	public static JScrollPane scrollPane = new JScrollPane();
 	public static JList list = new JList();
-	public static ArrayList<Integer> notesCorrespondingID = new ArrayList<Integer>(); // INDEX is the position of the note in the displayed list, VALUE is the id of the note in the database
+	public static ArrayList<Integer> notesCorrespondingID = new ArrayList<>(); // INDEX is the position of the note in the displayed list, VALUE is the id of the note in the database
 	
 	/**
 	 * Constructor: NotesList () 
-	 * @author ZackEvans
 	 * @param notes
 	 * 
 	 * Call super Run panel hierarchy 
@@ -42,7 +41,6 @@ public class NotesList
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Function calls function to set up the list
 	 */
@@ -57,7 +55,6 @@ public class NotesList
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * Function creates the list customize the scroll pane
 	 */
@@ -70,7 +67,6 @@ public class NotesList
 	
 	/**
 	 * Function: layoutComponents()
-	 * @author ZackEvans
 	 * 
 	 * Function puts list in scroll pane to make it be able to expand and scroll
 	 */
@@ -82,7 +78,6 @@ public class NotesList
 	
 	/**
 	 * Function: loadData()
-	 * @author ZackEvans
 	 * 
 	 * Function loads data from lowest to highest LIST_POSITION
 	 */
@@ -97,7 +92,6 @@ public class NotesList
 	
 	/**
 	 * Function: loadSearchData(String searchText)
-	 * @author ZackEvans
 	 * @param searchText
 	 * 
 	 * This function loads sorted list names from the database into the Jlist that displays all the notes
@@ -113,7 +107,6 @@ public class NotesList
 	
 	/**
 	 * Function: removeSearchListItem(int index)
-	 * @author ZackEvans
 	 * @param index
 	 * 
 	 * Function removes item from sorted notes list. 
@@ -124,7 +117,7 @@ public class NotesList
 	public void removeSearchListItem(int index)
 	{
 		NotesDataBase notesdb = new NotesDataBase();
-		ArrayList<String> noteNamesInList = new ArrayList<String>();
+		ArrayList<String> noteNamesInList = new ArrayList<>();
 		ListModel<?> model = list.getModel();
 		int id = notesCorrespondingID.get(index); // get the id of the note selected
 		
@@ -146,7 +139,6 @@ public class NotesList
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * Function adds a mouse listener to the note list.
 	 */
@@ -206,7 +198,6 @@ public class NotesList
 	
 	/**
 	 * Function: loadDefultData()
-	 * @author ZackEvans
 	 * 
 	 * This function loads the initial data from the database
 	 */

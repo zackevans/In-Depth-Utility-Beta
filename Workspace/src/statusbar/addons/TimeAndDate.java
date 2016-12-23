@@ -21,7 +21,7 @@ public class TimeAndDate
 	/**
 	 * Function: createLabel()
 	 * 
-	 * Function sets up label settings
+	 * this function sets up label settings
 	 */
 	
 	public void createLabel()
@@ -31,9 +31,8 @@ public class TimeAndDate
 	
 	/**
 	 * Function: showTime()
-	 * @author ZackEvans
 	 * 
-	 * Function sets label (timeLabel) to the current time
+	 * This function sets label (timeLabel) to the current time
 	 */
 	
 	public void showTime()

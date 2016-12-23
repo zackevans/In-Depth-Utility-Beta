@@ -34,7 +34,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: launchDialog()
-	 * @author ZackEvans
 	 * 
 	 * Function is called to launch the dialog window
 	 */
@@ -55,7 +54,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: createAndShowGUI() 
-	 * @author ZackEvans
 	 * 
 	 * This function creates the dialog window and displays it.
 	 */
@@ -76,7 +74,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: showGUI()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the location of the window then displays it
 	 */
@@ -97,7 +94,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the components that will be added to the dialog frame
 	 */
@@ -121,7 +117,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: initializeComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods that will initialize the objects that are going to be added to the frame.
 	 */
@@ -136,7 +131,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: addComponents()
-	 * @author ZackEvans
 	 * 
 	 * Function adds the components to the dialog frame
 	 */
@@ -152,6 +146,12 @@ public class AddNoteDialog
 		customFrame.getContentPane().add(enterLabel);
 		customFrame.getContentPane().add(warningLabel);
 	}
+	
+	/**
+	 * Function:  addListeners()
+	 * 
+	 * This function adds a window listener to the frame. When the frame loses focous it hide the window.
+	 */
 	
 	public void addListeners()
 	{
@@ -180,7 +180,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: clearWindow()
-	 * @author ZackEvans
 	 * 
 	 * Function resets the dialogs GUI
 	 */
@@ -194,7 +193,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: showDialogWarning
-	 * @author ZackEvans
 	 * @see warning message
 	 * 
 	 * This function shows a warning message in the text field and then highlights the text in the field.
@@ -209,7 +207,6 @@ public class AddNoteDialog
 	
 	/**
 	 * Function: createNote()
-	 * @author ZackEvans
 	 * @see warning text when
 	 * 
 	 * This function checks if a new note can be created. If so it creates it and adds it to the list

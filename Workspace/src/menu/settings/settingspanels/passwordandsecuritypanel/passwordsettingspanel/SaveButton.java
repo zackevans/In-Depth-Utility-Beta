@@ -8,6 +8,13 @@ import javax.swing.JButton;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import statusbar.addons.LockButton;
 
+/**
+ * Class: SaveButton
+ * @author ZackEvans
+ *
+ * This class is a button that when clicked updates the users password in the database or it shows a warning.
+ */
+
 public class SaveButton extends JButton
 {
 	public SaveButton ()
@@ -33,7 +40,6 @@ public class SaveButton extends JButton
 	{
 		addActionListener(new ActionListener() 
 		{
-			
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -42,7 +48,13 @@ public class SaveButton extends JButton
 		});
 	}
 	
-	public void saveButtonAction()
+	/**
+	 * Function: saveButtonAction()
+	 * 
+	 * This function decides which components are currently being shown and then checks and saves the components accordingly.
+	 */
+	
+	public static void saveButtonAction()
 	{
 		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
 		
@@ -67,7 +79,7 @@ public class SaveButton extends JButton
 					
 				}
 				
-				else // if the password doesent match the one in the databse
+				else // if the password doesn't match the one in the database
 				{
 					PasswordErrorPanel.checkAllResetPasswordPanelErrors();
 				}
@@ -110,7 +122,6 @@ public class SaveButton extends JButton
 			{
 				PasswordErrorPanel.newPasswordDoesentMatchErrorLabel.setVisible(true);
 			}
-
 		}
 	}
 }

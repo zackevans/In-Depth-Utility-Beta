@@ -22,7 +22,6 @@ public class FromField
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods that create the textfield
 	 */
@@ -35,7 +34,6 @@ public class FromField
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the label and the textfield.
 	 */
@@ -51,7 +49,6 @@ public class FromField
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a document listener to the text field.
 	 */

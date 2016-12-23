@@ -20,7 +20,6 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Constructor: Cancel Button
-	 * @param bufferPanel
 	 * 
 	 * This constructor calls panel hierarchy and inherits the bufferPanel object
 	 */
@@ -45,7 +44,6 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Function: createBtn()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the text of the button and removes the blue border
 	 */
@@ -58,7 +56,6 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * @see NOTES panel
 	 * 
 	 * This function adds an action listener to the button

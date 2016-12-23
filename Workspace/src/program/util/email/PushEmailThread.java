@@ -1,5 +1,12 @@
 package program.util.email;
 
+/**
+ * Class: PushEmailThread
+ * @author ZackEvans
+ *
+ * This class adds function to a thread.
+ */
+
 public class PushEmailThread implements Runnable
 {
 	String[] to;
@@ -7,8 +14,7 @@ public class PushEmailThread implements Runnable
 	String body;
 	
 	/**
-	 * Constructor: PushEmail(String[] to, String subject, String body) 
-	 * @author ZackEvans
+	 * Constructor: PushEmail(String[] to, String subject, String body)
 	 * @param to
 	 * @param subject
 	 * @param body
@@ -25,7 +31,6 @@ public class PushEmailThread implements Runnable
 	
 	/**
 	 * Function: run()
-	 * @author ZackEvans
 	 * 
 	 * This function overrides the defult runnable function to send an email.
 	 */

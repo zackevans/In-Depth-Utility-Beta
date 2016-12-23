@@ -5,19 +5,33 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * Class: LoginLabels 
+ * @author ZackEvans
+ *
+ * This class holds labels that are added to the login panel
+ */
+
 public class LoginLabels 
 {
 	public JLabel panelLabel  = new JLabel("In Depth Utility",SwingConstants.CENTER);
 	
-	public LoginLabels()
-	{
-		initialize();
-	}
+	/**
+	 * Constructor: LoginLabels()
+	 * 
+	 * This constructor calls a method to create the labels
+	 */
 	
-	public void initialize()
+	public LoginLabels()
 	{
 		createPanelLabel();
 	}
+	
+	/**
+	 * Function: createPanelLabel()
+	 * 
+	 * This function sets up the label
+	 */
 	
 	public void createPanelLabel()
 	{

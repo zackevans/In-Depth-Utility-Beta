@@ -12,16 +12,35 @@ import javax.swing.SwingConstants;
 
 import sql.util.DatabaseUtil;
 
+/**
+ * Function: NoSelectedNotePanel
+ * @author ZackEvans
+ * 
+ * This class is a panel that is shown when no note is selected
+ */
+
 public class NoSelectedNotePanel extends JPanel
 {	
 	JLabel imageLabel = new JLabel();
 	static JLabel textLabel = new JLabel();
+	
+	/**
+	 * Constructor: NoSelectedNotePanel()
+	 * 
+	 * This constructor calls panel hierarchy and calls a method to create the panel
+	 */
 	
 	public NoSelectedNotePanel()
 	{
 		super();
 		createPanel();
 	}
+	
+	/**
+	 * Function: createPanel()
+	 * 
+	 * This function sets up the panel
+	 */
 	
 	public void createPanel()
 	{
@@ -36,6 +55,12 @@ public class NoSelectedNotePanel extends JPanel
 		addComponents();
 	}
 	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function sets the size and location of the components and adds them to the panel.
+	 */
+	
 	public void addComponents()
 	{
 		imageLabel.setBounds(0, -40, 450,423);
@@ -44,6 +69,12 @@ public class NoSelectedNotePanel extends JPanel
 		add(imageLabel);
 		add(textLabel);
 	}
+	
+	/**
+	 * Function: updateText()
+	 * 
+	 * This function updates the text based on if there are notes in the list.
+	 */
 	
 	public static void updateText()
 	{
@@ -58,6 +89,12 @@ public class NoSelectedNotePanel extends JPanel
 		}
 	}
 	
+	/**
+	 * Function: createImage()
+	 * 
+	 * This function creates the image to add to the panel
+	 */
+	
 	public void createImage()
 	{
 		URL url = NoSelectedNotePanel.class.getResource("/Button_Images/Settings/AttemptsDialog/Document.png"); // add resource to the project
@@ -65,6 +102,12 @@ public class NoSelectedNotePanel extends JPanel
 		imageLabel.setIcon(icon);
 		imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	}
+	
+	/**
+	 * Function: addText()
+	 * 
+	 * This function sets up the text label
+	 */
 	
 	public void addText()
 	{

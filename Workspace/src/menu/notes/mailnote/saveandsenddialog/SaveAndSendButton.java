@@ -24,7 +24,6 @@ public class SaveAndSendButton extends JButton
 	
 	/**
 	 * Constructor: SaveAndSendButton(BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This constructor calls button hierarchy and inherits the bufferPanel object.
@@ -40,7 +39,6 @@ public class SaveAndSendButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the button
 	 */
@@ -53,7 +51,6 @@ public class SaveAndSendButton extends JButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the text and removes the selected border of the button
 	 */
@@ -66,7 +63,6 @@ public class SaveAndSendButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This method adds a action listener that when fired saves the note email in the data base
 	 */

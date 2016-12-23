@@ -8,14 +8,33 @@ import javax.swing.JComboBox;
 
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
+/**
+ * Class:  TimeCombobox
+ * @author ZackEvans
+ *
+ * This class holds a combobox that lets the user select how often the program will lock.
+ */
+
 public class TimeCombobox 
 {
-	public static JComboBox <String> timeCombobox = new JComboBox <String>();
+	public static JComboBox <String> timeCombobox = new JComboBox <>();
 
+	/**
+	 * Constructor: TimeCombobox()
+	 * 
+	 * This constructor calls a method to create the combobox.
+	 */
+	
 	public TimeCombobox()
 	{
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * this method calls methods to create the panel
+	 */
 	
 	public void initialize()
 	{
@@ -25,18 +44,25 @@ public class TimeCombobox
 	}
 	
 	/**
-	 * This method make the comobox not focus and removes the border.
+	 * Function: createCombobox()
+	 * 
+	 * This method makes the time combobox not be able to gain focus.
 	 */
 	
 	public void createCombobox()
 	{
-		timeCombobox.setFocusable(false); // make the combobox not be able to focous
-		timeCombobox.setBorder(null); // remove the border
+		timeCombobox.setFocusable(false); 
 	}
+	
+	/**
+	 * Function: setData()
+	 * 
+	 * This functions adds the options to the combobox
+	 */
 	
 	public void setData()
 	{
-		DefaultComboBoxModel <String> timeModel = new DefaultComboBoxModel <String> ();
+		DefaultComboBoxModel <String> timeModel = new DefaultComboBoxModel <> ();
 		timeModel.addElement("5 minutes");
 		timeModel.addElement("20 minutes");
 		timeModel.addElement("40 minutes");
@@ -47,11 +73,23 @@ public class TimeCombobox
 		timeCombobox.setModel(timeModel);
 	}
 	
+	/**
+	 * Function: updateCombobox()
+	 * 
+	 * This function updates the combobox index based on the value from the db
+	 */
+	
 	public static void updateCombobox()
 	{
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
 		timeCombobox.setSelectedIndex(securitySettingsDatabase.getRequirePasswordTimeValue());
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds an action listener to the combobox. When fired it updates the value in the db.
+	 */
 	
 	public void addListeners()
 	{

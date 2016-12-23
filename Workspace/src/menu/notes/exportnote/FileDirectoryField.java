@@ -21,7 +21,6 @@ public class FileDirectoryField
 
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans 
 	 * 
 	 * This function calls methods that setup the text field and label
 	 */
@@ -34,7 +33,6 @@ public class FileDirectoryField
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function makes the text field not editable by the user.
 	 */
@@ -46,7 +44,6 @@ public class FileDirectoryField
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a document listener to the textfield
 	 */

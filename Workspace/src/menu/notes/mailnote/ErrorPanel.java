@@ -26,7 +26,6 @@ public class ErrorPanel extends JPanel
 	
 	/**
 	 * Constructor: ErrorPanel
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls panel hierarchy and makes panel clear
 	 */
@@ -39,7 +38,6 @@ public class ErrorPanel extends JPanel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods that create the panel
 	 */
@@ -52,7 +50,6 @@ public class ErrorPanel extends JPanel
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates all labels to be added to the panel
 	 */
@@ -82,7 +79,6 @@ public class ErrorPanel extends JPanel
 
 	/**
 	 * Function: addComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function adds all labels to panel
 	 */
@@ -100,7 +96,6 @@ public class ErrorPanel extends JPanel
 	
 	/**
 	 * Function: checkErrors()
-	 * @author ZackEvans
 	 * 
 	 * This function checks all fields for errors and if one is found it displays corresponding error icon
 	 */
@@ -128,7 +123,6 @@ public class ErrorPanel extends JPanel
 	
 	/**
 	 * Function: hideAllErrors()
-	 * @author ZackEvans
 	 * 
 	 * This function hides all the labels on the panel
 	 */

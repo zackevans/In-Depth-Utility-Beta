@@ -21,7 +21,7 @@ public class SaveAndSendDataBase
 	 * Function: createSaveAndSendTable()
 	 * @author ZackEvans
 	 * 
-	 * create table in db if it doesent already exist
+	 * create table in db if it doesn't already exist
 	 */
 	
 	public void createSaveAndSendTable()
@@ -59,7 +59,6 @@ public class SaveAndSendDataBase
 	
 	/**
 	 * Function: createSavedEmail(String[] to, String subject, String body)
-	 * @author ZackEvans
 	 * @param to
 	 * @param subject
 	 * @param body
@@ -77,7 +76,6 @@ public class SaveAndSendDataBase
 	
 	/**
 	 * Function: createSavedEmail(String[] to, String subject, String body)
-	 * @author ZackEvans
 	 * @param to
 	 * @param subject
 	 * @param body
@@ -120,7 +118,6 @@ public class SaveAndSendDataBase
 	
 	/**
 	 * Function: getFirstIndex()
-	 * @author ZackEvans
 	 * @return return first ID in the db
 	 * 
 	 * Function returns the first id in the database
@@ -162,7 +159,6 @@ public class SaveAndSendDataBase
 	
 	/**
 	 * Function: getToAddress(int id) 
-	 * @author ZackEvans
 	 * @param id
 	 * @return email address of the receiver
 	 * 
@@ -208,7 +204,6 @@ public class SaveAndSendDataBase
 	
 	/**
 	 * Function: getSubject(int id)
-	 * @author ZackEvans
 	 * @param id
 	 * @return note subject
 	 * 
@@ -256,7 +251,6 @@ public class SaveAndSendDataBase
 	
 	/**
 	 * Function: getBody(int id)
-	 * @author ZackEvans
 	 * @param id
 	 * @return
 	 * 
@@ -304,10 +298,9 @@ public class SaveAndSendDataBase
 	
 	/**
 	 * Function: deleteSavedEmail(int idNum)
-	 * @author ZackEvans
 	 * @param idNum
 	 * 
-	 * Function deletes a item from the tabel
+	 * Function deletes a item from the table
 	 */
 	
 	public void deleteSavedEmail(int idNum)

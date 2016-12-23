@@ -8,14 +8,33 @@ import javax.swing.JComboBox;
 
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
+/**
+ * Class: AttemptsCombobox
+ * @author ZackEvans
+ *
+ * This class holds a combo box which sets how many attempts the user is allowed
+ */
+
 public class AttemptsCombobox 
 {
-	public static JComboBox <String> attemptsCombobox = new JComboBox <String>();
+	public static JComboBox <String> attemptsCombobox = new JComboBox <>();
 
+	/**
+	 * Constructor: AttemptsCombobox ()
+	 * 
+	 * This constructor calls a methods to create the combobox
+	 */
+	
 	public AttemptsCombobox ()
 	{
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls methods to create the checkbox
+	 */
 	
 	public void initialize()
 	{
@@ -26,7 +45,6 @@ public class AttemptsCombobox
 	
 	/**
 	 * Function: createCombobox()
-	 * @author ZackEvans
 	 * 
 	 * This method make the comobox not focus and removes the border.
 	 */
@@ -37,9 +55,15 @@ public class AttemptsCombobox
 		attemptsCombobox.setBorder(null); // remove the border
 	}
 	
+	/**
+	 * Function: setData()
+	 * 
+	 * This function loads the data into the combobox
+	 */
+	
 	public void setData()
 	{
-		DefaultComboBoxModel <String> attemptModel = new DefaultComboBoxModel <String> ();
+		DefaultComboBoxModel <String> attemptModel = new DefaultComboBoxModel <> ();
 		attemptModel.addElement("5");
 		attemptModel.addElement("10");
 		attemptModel.addElement("15");
@@ -49,11 +73,24 @@ public class AttemptsCombobox
 		attemptsCombobox.setModel(attemptModel);
 	}
 	
+	/**
+	 * Function: updateCombobox()
+	 * 
+	 * This function updates the selected item in the combobox 
+	 */
+	
 	public static void updateCombobox()
 	{
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
 		attemptsCombobox.setSelectedIndex(securitySettingsDatabase.getReceiveEmailAttemptsCount());
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function add an action listener to the combobox.
+	 * When the item is changed it is updated in the database.
+	 */
 	
 	public void addListeners()
 	{

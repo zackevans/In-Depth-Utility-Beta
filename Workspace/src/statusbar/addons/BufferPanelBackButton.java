@@ -9,10 +9,24 @@ import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
 
+/**
+ * Class: BufferPanelBackButton
+ * @author ZackEvans
+ * 
+ * This class holds a button that is added to the status bar and lets the user return to previous panels.
+ */
+
 public class BufferPanelBackButton
 {
 	public static JButton backButton = new JButton();
 	BufferPanel bufferPanel;
+	
+	/**
+	 * Constructor: BufferPanelBackButton(BufferPanel bufferPanel) 
+	 * @param bufferPanel
+	 * 
+	 * This function inherits the bufferpanel object and calls a method to create the button.
+	 */
 	
 	public BufferPanelBackButton(BufferPanel bufferPanel)
 	{
@@ -20,11 +34,23 @@ public class BufferPanelBackButton
 		initialize();
 	}
 	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls methods to initialize the button.
+	 */
+	
 	public void initialize()
 	{
 		createButton();
 		addListeners();
 	}
+	
+	/**
+	 * Function: createButton()
+	 * 
+	 * This function creates the buttons images and how the button should look.
+	 */
 	
 	public void createButton()
 	{
@@ -42,6 +68,13 @@ public class BufferPanelBackButton
 		backButton.setFocusPainted(false); // remove annoying blue border when clicked
 		// set the button text in the center
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * @see bufferpanels last panel
+	 * 
+	 * This function adds a action listener to the button. When clicked it shows that last panel that was shown.
+	 */
 	
 	public void addListeners()
 	{

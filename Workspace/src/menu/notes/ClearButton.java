@@ -7,7 +7,6 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-
 /**
  * Class: ClearButton
  * @author ZackEvans
@@ -19,7 +18,6 @@ public class ClearButton extends JButton
 {
 	/**
 	 * Constructor: ClearButton()
-	 * @author ZackEvans
 	 * 
 	 * Constructor calls hierarchy
 	 */
@@ -31,7 +29,6 @@ public class ClearButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to set up the button and add listeners to it
 	 */
@@ -44,7 +41,6 @@ public class ClearButton extends JButton
 	
 	/**
 	 * Function: createBtn()
-	 * @author ZackEvans
 	 * 
 	 * This function set icons for the button
 	 */
@@ -65,7 +61,6 @@ public class ClearButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener to the button that when clicked clears the search bar text.
 	 */

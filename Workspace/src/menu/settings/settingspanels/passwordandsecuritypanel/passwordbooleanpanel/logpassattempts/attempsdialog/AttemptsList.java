@@ -11,15 +11,35 @@ import javax.swing.SwingConstants;
 
 import file.files.PasswordAttemptsFile;
 
+/**
+ * Function: AttemptsList 
+ * @author ZackEvans
+ *
+ * This class holds a list that displays all of the failed password attempts.
+ */
+
 public class AttemptsList 
 {
 	public static JScrollPane listScrollPane = new JScrollPane();
 	public static JList list = new JList();
 	
+	/**
+	 * Constructor: AttemptsList()
+	 * 
+	 * This construcot calls a method to create the list.
+	 */
+	
 	public AttemptsList()
 	{
 		updateList();
 	}
+	
+	/**
+	 * Function: updateList()
+	 * 
+	 * This function updates the list with attempts stored in a file.
+	 * Then it scrolls to the end of the list to show the last failed attempt.
+	 */
 	
 	public static void updateList()
 	{
@@ -28,6 +48,11 @@ public class AttemptsList
 		list.clearSelection();
 	}
 	
+	/**
+	 * Function: createList()
+	 * 
+	 * This function sets up the list.
+	 */
 	
 	public void createList()
 	{
@@ -42,6 +67,12 @@ public class AttemptsList
 		gotoLastItem();
 	}
 	
+	/**
+	 * Function: gotoLastItem()
+	 * 
+	 * This function scrolls to the last item in the list ( The newest item)
+	 */
+	
 	public static void gotoLastItem()
 	{
 		int lastIndex = list.getModel().getSize() -1;
@@ -51,6 +82,13 @@ public class AttemptsList
 			list.ensureIndexIsVisible(lastIndex);
 		}
 	}
+	
+	/**
+	 * Class: AttemptsListRender
+	 * @author ZackEvans
+	 *
+	 * This function alternates the color of the list indexes.
+	 */
 	
 	class AttemptsListRender extends DefaultListCellRenderer 
 	{

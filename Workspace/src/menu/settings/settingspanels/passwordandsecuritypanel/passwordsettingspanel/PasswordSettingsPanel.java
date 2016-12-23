@@ -1,6 +1,5 @@
 package menu.settings.settingspanels.passwordandsecuritypanel.passwordsettingspanel;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -13,6 +12,13 @@ import javax.swing.border.EtchedBorder;
 import program.util.StringUtil;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 
+/**
+ * Class: PasswordSettingsPanel
+ * @author ZackEvans
+ *
+ * This class is a panel that holds all of the components to set, change, and remove the password.
+ */
+
 public class PasswordSettingsPanel extends JPanel
 {
 	JPanel contentPanel = new JPanel();
@@ -24,11 +30,23 @@ public class PasswordSettingsPanel extends JPanel
 	private static JButton saveButton;
 	PasswordErrorPanel passwordErrorPanel;
 	
+	/**
+	 * Constructor: PasswordSettingsPanel()
+	 * 
+	 * This constructor calls the panel hierarchy and a method to create the panel
+	 */
+	
 	public PasswordSettingsPanel()
 	{
 		super();
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls functions to create the panel
+	 */
 	
 	public void initialize()
 	{
@@ -39,11 +57,23 @@ public class PasswordSettingsPanel extends JPanel
 		showMenu();
 	}
 	
+	/**
+	 * Function: createPanel()
+	 * 
+	 * This function makes the panel clear and creates a custom border.
+	 */
+	
 	public void createPanel()
 	{
 		setOpaque(false);
 		setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED,Color.black,Color.gray), "Password Settings"));
 	}
+	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This Function creates all of the components and sets the size and location of them.
+	 */
 	
 	public void createComponents()
 	{
@@ -82,10 +112,22 @@ public class PasswordSettingsPanel extends JPanel
 		saveButton.setBounds(345, 165, 100, 25);
 	}
 	
+	/**
+	 * Function: initializeComponents()
+	 * 
+	 * This function calls a method to craete all of the fields for the panel.
+	 */
+	
 	public void initializeComponents()
 	{
 		passwordFields.initialize();
 	}
+	
+	/**
+	 * Function: layoutComponents()
+	 * 
+	 * This function sets the layout manager for the panel and the size. Then it layers all of the panels and adds the layer to the panel.
+	 */
 	
 	public void layoutComponents()
 	{		
@@ -110,6 +152,11 @@ public class PasswordSettingsPanel extends JPanel
 		add(layerPane);
 	}
 	
+	/**
+	 * Function: createContentPanel()
+	 * 
+	 * This function sets the layout manager for the panel and then adds all the components to the panel.
+	 */
 	
 	public void createContentPanel()
 	{
@@ -142,6 +189,12 @@ public class PasswordSettingsPanel extends JPanel
 		contentPanel.add(cancelButton);
 		contentPanel.add(saveButton);	
 	}
+	
+	/**
+	 * Function: clearPanel()
+	 * 
+	 * This function resets all of the components on the panel.
+	 */
 	
 	public static void clearPanel()
 	{
@@ -181,6 +234,12 @@ public class PasswordSettingsPanel extends JPanel
 	}
 	
 	
+	/**
+	 * Function: showMenu()
+	 * 
+	 * This function decides which components need to be shown on the panel.
+	 */
+	
 	public static void showMenu()
 	{
 		PasswordSettingsDatabase passwordSettingsDatabase = new PasswordSettingsDatabase();
@@ -198,6 +257,11 @@ public class PasswordSettingsPanel extends JPanel
 		}
 	}
 	
+	/**
+	 * Function: showCreatePasswordMenu()
+	 * 
+	 * This function shows the "create password menu". This function shows the button to create a password.
+	 */
 	
 	public static void showCreatePasswordMenu()
 	{
@@ -206,6 +270,12 @@ public class PasswordSettingsPanel extends JPanel
 		createPasswordButton.setVisible(true);
 	}
 	
+	/**
+	 * Function: showUpdatePasswordMenu()
+	 * 
+	 * This function shows the "Update password menu". This fucntion buttons that lets the user reset of remove a password.
+	 */
+	
 	public static void showUpdatePasswordMenu()
 	{
 		clearPanel();
@@ -213,6 +283,12 @@ public class PasswordSettingsPanel extends JPanel
 		resetPasswordButton.setVisible(true);
 		removePasswordButton.setVisible(true);
 	}
+	
+	/**
+	 * Function: showCreatePasswordFields()
+	 * 
+	 * This function shows components to let the user add a password.
+	 */
 	
 	public static void showCreatePasswordFields()
 	{
@@ -230,6 +306,12 @@ public class PasswordSettingsPanel extends JPanel
 		cancelButton.setVisible(true);
 		saveButton.setVisible(true);
 	}
+	
+	/**
+	 * Function: showResetPasswordFields()
+	 * 
+	 * This function shows components to allow the user to reset their password.
+	 */
 	
 	public static void showResetPasswordFields()
 	{
@@ -252,6 +334,12 @@ public class PasswordSettingsPanel extends JPanel
 		saveButton.setVisible(true);
 	}
 	
+	/**
+	 * Function: showRemovePasswordField()
+	 * 
+	 * This function shows components to let the user remove their password.
+	 */
+	
 	public static void showRemovePasswordField()
 	{
 		clearPanel();
@@ -263,5 +351,7 @@ public class PasswordSettingsPanel extends JPanel
 		
 		cancelButton.setVisible(true);
 		saveButton.setVisible(true);
-	}	
+		
+		PasswordFields.removePasswordField.requestFocusInWindow();
+	}
 }

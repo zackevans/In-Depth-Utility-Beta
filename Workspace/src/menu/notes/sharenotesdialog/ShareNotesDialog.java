@@ -24,7 +24,6 @@ public class ShareNotesDialog
 	
 	/**
 	 * Constructor: ShareNotesDialog(BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 *
 	 * This constructor inherit the bufferPanel object and calls panel hierarchy.
@@ -38,7 +37,6 @@ public class ShareNotesDialog
 	
 	/**
 	 * Function: launchDialog()
-	 * @author ZackEvans
 	 * 
 	 * This function is called to show the share window
 	 */
@@ -59,7 +57,6 @@ public class ShareNotesDialog
 	
 	/**
 	 * Function: createAndShowGUI()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the share window and adds list to it.
 	 */
@@ -83,7 +80,6 @@ public class ShareNotesDialog
 	
 	/**
 	 * Function: showWindow()
-	 * @author ZackEvans
 	 * 
 	 * This function updates the location of the window and displays it.
 	 */
@@ -103,7 +99,6 @@ public class ShareNotesDialog
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * Function creates the list object that is to be added to the panel
 	 */
@@ -116,7 +111,6 @@ public class ShareNotesDialog
 	
 	/**
 	 * Function: addComponents()
-	 * @author ZackEvans
 	 * 
 	 * Function adds the list to the frame
 	 */
@@ -126,6 +120,12 @@ public class ShareNotesDialog
 		customFrame.getContentPane().add(ShareList.list); // add share list to panel
 	}
 	
+	/**
+	 * Function: addListener()
+	 * 
+	 * This function adds a window listener to the frame.
+	 * When the frame looses focus it hide the dialog.
+	 */
 	
 	public void addListener()
 	{

@@ -8,8 +8,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Class: FileUtill 
+ * @author ZackEvans
+ *
+ * This class holds functions that help with files.
+ */
+
 public class FileUtil 
 {
+	/**
+	 * Function: doesFileExist(String filePath)
+	 * @param filePath
+	 * @return If the file exists.
+	 * 
+	 * This function checks if a file exists. If it does it returns true.
+	 */
+	
 	public static boolean doesFileExist(String filePath)
 	{
 		File f = new File(filePath);
@@ -24,6 +39,14 @@ public class FileUtil
 			return false;
 		}
 	}
+	
+	/**
+	 * Function: isFileEmpty(String path)
+	 * @param path
+	 * @return If there content in the file.
+	 * 
+	 * This function returns true if there is content in the file.
+	 */
 	
 	public static boolean isFileEmpty(String path)
 	{
@@ -48,6 +71,14 @@ public class FileUtil
 		return rVal;
 	}
 	
+	/**
+	 * Function: createNewFile(String fileLocation,String fileText)
+	 * @param fileLocation
+	 * @param fileText
+	 * 
+	 * This function creates a new file in memory.
+	 */
+	
 	public static void createNewFile(String fileLocation,String fileText)
 	{
 		File exportFile = new File(fileLocation);
@@ -68,6 +99,13 @@ public class FileUtil
 		}
 	}
 	
+	/**
+	 * Function: overWriteFile(String fileLocation, String fileText)
+	 * @param fileLocation
+	 * @param fileText
+	 * 
+	 * This function replaces the data in a file.
+	 */
 	
 	public static void overWriteFile(String fileLocation, String fileText)
 	{
@@ -89,6 +127,13 @@ public class FileUtil
 			e1.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Function: clearFile(String fileLocation)
+	 * @param fileLocation
+	 * 
+	 * This function removes all the data from the funciton.
+	 */
 	
 	public static void clearFile(String fileLocation)
 	{

@@ -22,7 +22,6 @@ public class PreviewNote extends JScrollPane
 	
 	/**
 	 * Constructor: PreviewNote
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls panel hierarchy
 	 */
@@ -34,7 +33,6 @@ public class PreviewNote extends JScrollPane
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the scroll pane.
 	 */
@@ -46,7 +44,6 @@ public class PreviewNote extends JScrollPane
 
 	/**
 	 * Function: createPreviewArea()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the text area for the preview window
 	 */
@@ -69,7 +66,6 @@ public class PreviewNote extends JScrollPane
 	
 	/**
 	 * Function: displayNote(int index)
-	 * @author ZackEvans
 	 * @param index
 	 * 
 	 * This function gets the note body from the db and shows it in the text area

@@ -15,7 +15,6 @@ public class TextFieldShell extends JTextField
 {	
 	/**
 	 * Function: paintComponent(Graphics g) 
-	 * @author ZackEvans
 	 * @param Graphics g
 	 * 
 	 * round corners of textfield
@@ -31,7 +30,6 @@ public class TextFieldShell extends JTextField
 	
 	/**
 	 * Function: paintBorder(Graphics g)
-	 * @author ZackEvans
 	 * @param Graphics g
 	 * 
 	 * round border of textfield

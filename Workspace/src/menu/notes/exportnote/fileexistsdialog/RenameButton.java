@@ -18,7 +18,6 @@ public class RenameButton extends JButton
 {
 	/**
 	 * Constructor: RenameButton()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls the button heirarchy and calls a method to setup the button.
 	 */
@@ -31,7 +30,6 @@ public class RenameButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the button
 	 */
@@ -44,7 +42,6 @@ public class RenameButton extends JButton
 	
 	/**
 	 * Function: createBtn()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the text of the button and makes it so the button cannot gain focus
 	 */
@@ -57,7 +54,6 @@ public class RenameButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener to the button 
 	 */

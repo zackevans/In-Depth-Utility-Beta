@@ -27,7 +27,6 @@ public class SendButton extends JButton
 	
 	/**
 	 * Constructor: SendButton (BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls panel hierarchy and inherits the bufferPanel object
 	 */
@@ -40,7 +39,6 @@ public class SendButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This method call functions to create the button
 	 */
@@ -53,7 +51,6 @@ public class SendButton extends JButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the button text and removes the focus border.
 	 */
@@ -66,10 +63,8 @@ public class SendButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This method adds a action listener to the button.
-	 * Added logic to send email.
 	 */
 	
 	public void addListeners()
@@ -92,7 +87,7 @@ public class SendButton extends JButton
 					fromField = FromField.textField.getText(); // get text from the FromField
 					finalBody = body + "\n\n" + additionalComments + "\n\n" + "-" + fromField; // add all fields together to create email body
 					
-					PushEmail.sendEmail(to, subject, finalBody,bufferPanel);
+					PushEmail.sendEmailAndShowDialog(to, subject, finalBody,bufferPanel);
 				}
 				
 				else // if a field is empty

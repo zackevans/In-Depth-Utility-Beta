@@ -20,11 +20,10 @@ public class RecipientViewer
 {
 	public static JPanel recipientViewerPanel  = new JPanel(); // create the panel to hold all of the components
 	public static JLabel noRecipientsWarrning = new JLabel("No Recipients Exist"); // create a label to show when there is nothing in the pamel
-	public static ArrayList<String> listOfEmails = new ArrayList<String>(); // create array list to hold all of the recipients emails
+	public static ArrayList<String> listOfEmails = new ArrayList<>(); // create array list to hold all of the recipients emails
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the panel
 	 */
@@ -36,7 +35,6 @@ public class RecipientViewer
 	
 	/**
 	 * Function: createPanel()
-	 * @author ZackEvans
 	 * 
 	 * This method creates the components to be added to the panel and sets a custom border.
 	 * By default this panel is hidden.
@@ -54,7 +52,6 @@ public class RecipientViewer
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the components to be added to the panel
 	 */
@@ -79,7 +76,6 @@ public class RecipientViewer
 	
 	/**
 	 * Function: getEmailIndex(String email)
-	 * @author ZackEvans
 	 * @param email of recipient
 	 * @return the index of the email in the arraylist
 	 * 

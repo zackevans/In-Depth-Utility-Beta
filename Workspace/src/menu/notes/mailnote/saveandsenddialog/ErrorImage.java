@@ -16,7 +16,6 @@ public class ErrorImage extends JLabel
 {
 	/**
 	 * Constructor: ErrorImage()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls label heiarchy and calls method to create the label image.
 	 */
@@ -29,7 +28,6 @@ public class ErrorImage extends JLabel
 	
 	/**
 	 * Function: createImage()
-	 * @author ZackEvans
 	 * 
 	 * This method loads and sets the error image on the label
 	 */

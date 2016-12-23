@@ -22,7 +22,6 @@ public class RecipientButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create button
 	 */
@@ -35,7 +34,6 @@ public class RecipientButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * This function sets an image on the button.
 	 * Creates the border.
@@ -60,7 +58,6 @@ public class RecipientButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener to the button
 	 */
@@ -79,7 +76,6 @@ public class RecipientButton
 	
 	/**
 	 * Function: updateButtonNumber()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the button text the the number of emails in the que.
 	 */

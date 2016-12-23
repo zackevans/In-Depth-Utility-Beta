@@ -20,7 +20,6 @@ public class Wallpaper extends JPanel
 
 	/**
 	 * Function: Wallpaper(String img)
-	 * @author ZackEvans
 	 * @param img
 	 * 
 	 * Constructor takes in string of image and converts it to a ImageIcon
@@ -33,7 +32,6 @@ public class Wallpaper extends JPanel
 	
 	/**
 	 * Function: Wallpaper(Image img)
-	 * @author ZackEvans
 	 * @param img
 	 * 
 	 * Constructor takes in image and converts it to a ImageIcon
@@ -52,7 +50,6 @@ public class Wallpaper extends JPanel
 
 	/**
 	 * Function: paintComponent(Graphics g) 
-	 * @author ZackEvans
 	 * @param Graphics g
 	 * 
 	 * draw image on panel

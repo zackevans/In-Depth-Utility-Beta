@@ -16,7 +16,6 @@ public class EnterButton extends JButton
 {
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Function calls methods to create button.
 	 */
@@ -29,7 +28,6 @@ public class EnterButton extends JButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * This function sets button properties.
 	 * Function adds text to button
@@ -42,7 +40,6 @@ public class EnterButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * Function adds an action listener to the button.
 	 * When the Button is clicked it will create a new note in the database

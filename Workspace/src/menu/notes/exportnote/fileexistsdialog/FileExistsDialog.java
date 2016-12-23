@@ -28,7 +28,6 @@ public class FileExistsDialog
 	
 	/**
 	 * Constructor: FileExistsDialog (BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This function inherits the bufferpanel object
@@ -41,7 +40,6 @@ public class FileExistsDialog
 	
 	/**
 	 * Function: launchDialog()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the panel and shows it if the panel has not been shown yet. If the panel has been shown
 	 * then it just displays the panel
@@ -51,8 +49,8 @@ public class FileExistsDialog
 	{	
 		if (clicked == false) // if the panel has not been clicked
 		{
-			createAndShowGUI(); // creaet the panel and show it.
-			clicked = true; // set the obejct to be marked as shown
+			createAndShowGUI();
+			clicked = true; 
 		}
 		
 		else // if the window has been shown
@@ -63,7 +61,6 @@ public class FileExistsDialog
 	
 	/**
 	 * Function: createAndShowGUI()
-	 * @author ZackEvans
 	 * 
 	 * This function creates and shows the panel
 	 */
@@ -83,7 +80,6 @@ public class FileExistsDialog
 	
 	/**
 	 * Function: showWindow()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the location where the dialog will display and then shows the dilaog frame.
 	 */
@@ -103,7 +99,6 @@ public class FileExistsDialog
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the components that will be added to the panel
 	 */
@@ -124,7 +119,6 @@ public class FileExistsDialog
 	
 	/**
 	 * Function: addComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function adds all of the components to the panel.
 	 */

@@ -26,7 +26,6 @@ public class ExportErrorNotePanel extends JPanel
 	
 	/**
 	 * Constructor: ExportErrorNotePanel ()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls panel hierarchy and calls a method to create the button.
 	 */
@@ -39,7 +38,6 @@ public class ExportErrorNotePanel extends JPanel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to set up the panel and error labels
 	 */
@@ -53,7 +51,6 @@ public class ExportErrorNotePanel extends JPanel
 	
 	/**
 	 * Function: createPanel()
-	 * @author ZackEvans
 	 * 
 	 * This function makes the panel clear
 	 */
@@ -65,7 +62,6 @@ public class ExportErrorNotePanel extends JPanel
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This method creates all the images and tooltip text. This method also sets the size and location of the labels.
 	 */
@@ -101,7 +97,6 @@ public class ExportErrorNotePanel extends JPanel
 	
 	/**
 	 * Function: addComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function removes the layout manager from the panel and the size of the panel
 	 * Then it adds the errors to the panel.
@@ -124,7 +119,6 @@ public class ExportErrorNotePanel extends JPanel
 	
 	/**
 	 * Function: hideAllErrors()
-	 * @author ZackEvans
 	 * 
 	 * This method hides all of the labels on the panel
 	 */
@@ -139,7 +133,6 @@ public class ExportErrorNotePanel extends JPanel
 	
 	/**
 	 * Function: checkAllErrors()
-	 * @author ZackEvans
 	 * 
 	 * This function hides all the errors on the panel then checks all of the components on the export panel for errors.
 	 */
@@ -171,7 +164,6 @@ public class ExportErrorNotePanel extends JPanel
 	
 	/**
 	 * Function: checkFileWarning()
-	 * @author ZackEvans
 	 * 
 	 * This function checks if the file already exists and if it does then it shows the fileNameWarning.
 	 */

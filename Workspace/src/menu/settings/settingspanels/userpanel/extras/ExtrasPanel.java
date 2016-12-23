@@ -7,6 +7,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+/**
+ * Class: ExtrasPanel
+ * @author ZackEvans
+ * 
+ * This class is a panel that holds all of the other fields that are not the name or company fields.
+ */
+
 public class ExtrasPanel extends JPanel
 {
 	private PhoneNumberPanel phoneNumberPanel;
@@ -15,11 +22,23 @@ public class ExtrasPanel extends JPanel
 	private BirthdayFields birthdayFields;
 	private ExtrasPanelErrors extrasPanelErrors;
 	
+	/**
+	 * Constructor: ExtrasPanel()
+	 * 
+	 * This constructor calls the panel hierarchy and a method to create the panel.
+	 */
+	
 	public ExtrasPanel() 
 	{
 		super();
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls methods to create the components and the panel.
+	 */
 	
 	public void initialize()
 	{
@@ -28,12 +47,25 @@ public class ExtrasPanel extends JPanel
 		addComponents();
 	}
 	
+	/**
+	 * Function: createPanel()
+	 * 
+	 * This function sets the border for the panel and the size.
+	 */
+	
 	public void createPanel()
 	{
 		setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED,Color.black,Color.gray), "Additional Information"));
 		setPreferredSize(new Dimension(500, 300));
 		setOpaque(false);
 	}
+	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This function initializes all of the components on the panel.
+	 * Then it sets the size and location of the components.
+	 */
 	
 	public void createComponents()
 	{
@@ -53,6 +85,11 @@ public class ExtrasPanel extends JPanel
 		birthdayFields.setBounds(30,180, 400,35);
 	}
 	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function sets the layout manager for the panel and adds the components to the panel.
+	 */
 	
 	public void addComponents()
 	{
@@ -65,9 +102,15 @@ public class ExtrasPanel extends JPanel
 		add(birthdayFields);
 	}
 	
+	/**
+	 * Function: updatePanel()
+	 * 
+	 * This function calls each panels fucntion to load their components with data from the database.
+	 */
+	
 	public static void updatePanel()
 	{
-		PhoneNumberPanel.updateNumberFields();
+		PhoneNumberPanel.updateValue();
 		EmailPanel.updateField();
 		AddressPanel.updateAddressField();
 		BirthdayFields.updateBoxes();

@@ -31,7 +31,6 @@ public class SaveAndSendDialog
 	
 	/**
 	 * Constructor: SaveAndSendDialog(BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This constructor inherits the bufferPanel object.
@@ -44,7 +43,6 @@ public class SaveAndSendDialog
 	
 	/**
 	 * Function: launchDialog ()
-	 * @author ZackEvans
 	 * 
 	 * This function launches and shows the dialog
 	 */
@@ -65,7 +63,6 @@ public class SaveAndSendDialog
 	
 	/**
 	 * Function: createAndShowGUI()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the components to be added to the window and shows the frame.
 	 */
@@ -87,7 +84,6 @@ public class SaveAndSendDialog
 	
 	/**
 	 * Function: showWindow()
-	 * @author ZackEvans
 	 * 
 	 * this method sets the location of the window in the center of the Main Frame and shows it.
 	 */
@@ -108,7 +104,6 @@ public class SaveAndSendDialog
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This method creates componets and sets the size and location of them.
 	 */
@@ -129,7 +124,6 @@ public class SaveAndSendDialog
 	
 	/**
 	 * Function: addComponents()
-	 * @author ZackEvans
 	 * 
 	 * This method adds all the components to the frame
 	 */

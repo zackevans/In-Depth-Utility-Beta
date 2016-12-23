@@ -19,7 +19,6 @@ public class DatabaseUtil
 	
 	/**
      * Function: countItems()
-     * @author ZackEvans
      * @param name of database table
      * @return number of items in the database
      * 

@@ -26,7 +26,6 @@ public class NotesDataBase
     
     /**
      * Function: createNotesTable()
-     * @author ZackEvans
      * 
      * create the notes table in the database if it doesen't already
      */
@@ -64,7 +63,6 @@ public class NotesDataBase
     
     /**
      * Function: addNewNoteToList(String noteName)
-     * @author ZackEvans
      * @param noteName
      * 
      * Function adds a new note to the top of the list and the database
@@ -78,11 +76,10 @@ public class NotesDataBase
     
     /**
      * Function: createNotesTable()
-     * @author ZackEvans
      * @param noteName
      * 
      * Function creates a new personal note in the database that is blank.
-     * Function uses prepared statments so inserted string doesent bug with '"() characters.
+     * Function uses prepared statements so inserted string doesn't bug with '"() characters.
      * Function sets note at the top of the list
      */
     
@@ -124,7 +121,6 @@ public class NotesDataBase
     
     /**
      * Function: pushWholeListDownOne()
-     * @author ZackEvans
      * 
      * Push all list positions down 1 value
      */
@@ -139,7 +135,6 @@ public class NotesDataBase
     
     /**
      * Function: getID(int listPosition)
-     * @author ZackEvans
      * @param listPosition
      * @return ID
      * 
@@ -188,7 +183,6 @@ public class NotesDataBase
     
     /**
      * Function: getListPosition(int rowNum)
-     * @author ZackEvans
      * @param id # of note in the db table
      * @return number of items in the database
      * 
@@ -233,7 +227,6 @@ public class NotesDataBase
     
     /**
      * Function: updateListPosition(int id, int listPosition)
-     * @author ZackEvans
      * @param id
      * @param listPosition
      * 
@@ -271,7 +264,6 @@ public class NotesDataBase
     
     /**
      * Function: getListNamesData()
-     * @author ZackEvans
      * @return note names sorted by list position
      * 
      * This function returns an arraylist that contains note names sorted from least to greatest LIST_POSITION.
@@ -279,7 +271,7 @@ public class NotesDataBase
     
     public ArrayList<String> getListNamesData()
     {
-		ArrayList<String> returnList = new ArrayList<String>();
+		ArrayList<String> returnList = new ArrayList<>();
 		Connection c = null; // create connection for db
         Statement stmt = null; 
 		
@@ -319,7 +311,6 @@ public class NotesDataBase
     
     /**
      * Function: getSortedListNamesData(String searchText)
-     * @author ZackEvans
      * @param searchText
      * @return an arraylist with note names sorted from the database
      * 
@@ -328,7 +319,7 @@ public class NotesDataBase
     
     public ArrayList<String> getSortedListNamesData(String searchText)
     {
-    	ArrayList<String> returnList = new ArrayList<String>(); // create array to be returned
+    	ArrayList<String> returnList = new ArrayList<>(); // create array to be returned
 		Connection c = null; // create connection for db
         Statement stmt = null; 
         
@@ -373,7 +364,6 @@ public class NotesDataBase
     
     /**
      * Function: getSortedListID(String searchText)
-     * @author ZackEvans
      * @param searchText
      * @return arraylist with IDs of notes that contain the (searchText)
      * 
@@ -382,7 +372,7 @@ public class NotesDataBase
     
     public ArrayList<Integer> getSortedListID(String searchText)
     {
-    	ArrayList<Integer> returnList = new ArrayList<Integer>(); // create array to be returned
+    	ArrayList<Integer> returnList = new ArrayList<>(); // create array to be returned
 		Connection c = null; // create connection for db
         Statement stmt = null; 
         
@@ -426,7 +416,6 @@ public class NotesDataBase
     
     /**
      * Function: pushItemsAboveClickedDown (int numberClicked)
-     * @author ZackEvans
      * @param numberClicked
      * 
      * This function moves all notes above the one selected down (+1) in the database
@@ -442,7 +431,6 @@ public class NotesDataBase
     
     /**
      * Function: pushItemsBelowClickedUp(int numberClicked)
-     * @author ZackEvans
      * @param numberClicked
      * 
      * When a note is removed from the database this function pushes all the notes under the removed one up one position.
@@ -462,7 +450,6 @@ public class NotesDataBase
     
     /**
      * Function: pushWholeListUpOne()
-     * @author ZackEvans
      * 
      * push all list positions up 1 value
      */
@@ -477,7 +464,6 @@ public class NotesDataBase
     
     /**
      * Function: deleteNote(int id)
-     * @author ZackEvans
      * @param idNum
      * 
      * delete note from db 
@@ -513,7 +499,6 @@ public class NotesDataBase
     
     /**
      * Function: getNotesBody(int id)
-     * @author ZackEvans
      * @param id
      * @return body of the note
      * 
@@ -559,7 +544,6 @@ public class NotesDataBase
     
     /**
      * Function: updateNotesBody (int id, String body)
-     * @author ZackEvans
      * @param id
      * @param body
      * 

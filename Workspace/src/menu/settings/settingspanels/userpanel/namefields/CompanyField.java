@@ -13,15 +13,34 @@ import javax.swing.event.DocumentListener;
 import program.textfield.TextFieldShell;
 import sql.userinfo.UserInfoDatabase;
 
+/**
+ * Class: CompanyField 
+ * @author ZackEvans
+ *
+ * This class holds a text field that the user enters their company field.
+ */
+
 public class CompanyField 
 {
 	public static JTextField companyField = new TextFieldShell();
 	public static JLabel companyLabel = new JLabel("Company");
 	
+	/**
+	 * Constructor: CompanyField()
+	 * 
+	 * This constructor calls a method to create the components. 
+	 */
+	
 	public CompanyField()
 	{
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls funcitons to create the components on the panel
+	 */
 	
 	public void initialize()
 	{
@@ -29,12 +48,25 @@ public class CompanyField
     	addListeners();
 	}
 	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This function sets up the company label text alignment and its color.
+	 */
+	
 	public void createComponents()
 	{
 		companyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		companyLabel.setOpaque(false);
 		companyLabel.setForeground(new Color(0,0,0,200));
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds a document listener to the field. When the user types it updates the database.
+	 * This function also adds a focus listener to the panel. When it looses focus it shows the label in the field.
+	 */
 	
 	public void addListeners()
 	{
@@ -77,6 +109,12 @@ public class CompanyField
 			}
 		});
 	}
+	
+	/**
+	 * Function: updateField()
+	 * 
+	 * This function updates the value in the database with the value in the text field.
+	 */
 	
 	public static void updateField()
 	{

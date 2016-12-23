@@ -9,9 +9,22 @@ import java.sql.Statement;
 import program.util.security.Encryption;
 import sql.util.DatabaseUtil;
 
+/**
+ * Class: PasswordSettingsDatabase
+ * @author ZackEvans
+ * 
+ * This class holds methods that interact with the Password settings table in the database.
+ */
+
 public class PasswordSettingsDatabase 
 {
 	final static String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; // db location
+	
+	/**
+	 * Function: createPasswordTable()
+	 * 
+	 * This function creates the Password settings table in the database. Then it creates a single row that will store all of the data.
+	 */
 	
 	public void createPasswordTable()
 	{
@@ -47,6 +60,12 @@ public class PasswordSettingsDatabase
 	    }
 	}
 	
+	/**
+	 * Function: createInitialRow()
+	 * 
+	 * This function creates a single row in the database where all the data will be stored.
+	 */
+	
 	public static void createInitialRow()
 	{
 		Connection c = null; // create connection
@@ -77,6 +96,13 @@ public class PasswordSettingsDatabase
 	    	System.exit(0);
 	    }
 	}
+	
+	/**
+	 * Function: updatePassword(String password)
+	 * @param password
+	 * 
+	 * This function updates the password value in the database.
+	 */
 	
 	public void updatePassword(String password)
 	{
@@ -110,6 +136,13 @@ public class PasswordSettingsDatabase
 		System.out.println("Updated Password successfully");
 	}
 	
+	/**
+	 * Function: getPassword()
+	 * @return users password
+	 * 
+	 * This function gets the users password from the database.
+	 */
+	
 	public String getPassword()
 	{
 		Connection c = null;
@@ -140,6 +173,13 @@ public class PasswordSettingsDatabase
 	    
 	    return name;
 	}
+	
+	/**
+	 * Function: doesPasswordExist()
+	 * @return true if a password exists.
+	 * 
+	 * This function will return true if there is a password value present.
+	 */
 	
 	public boolean doesPasswordExist()
 	{

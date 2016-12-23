@@ -9,22 +9,48 @@ import javax.swing.JButton;
 
 import menu.buffer.BufferPanel;
 
+/**
+ * Class: LockButton 
+ * @author ZackEvans
+ *
+ * This class holds a button that when clicked shows the user the login screen(locks the program).
+ */
+
 public class LockButton 
 {
 	BufferPanel bufferPanel;
 	public static JButton lockButton = new JButton();
 
+	/**
+	 * Constructor: LockButton(BufferPanel bufferPanel)
+	 * @param bufferPanel
+	 * 
+	 * This constructor inherits the bufferpanel object and calls a method to create the button.
+	 */
+	
 	public LockButton(BufferPanel bufferPanel)
 	{
 		this.bufferPanel = bufferPanel;
 		initialize();
 	}
 
+	/**
+	 * Function: initialize() 
+	 * 
+	 * This function calls functions to create the button.
+	 */
+	
 	public void initialize()
 	{
 		createButton();
 		addListeners();
 	}
+	
+	/**
+	 * Function: createButton()
+	 * 
+	 * This function create the lock image to put on the button. Then it sets other properties to clean up the look of the button.
+	 */
 	
 	public void createButton()
 	{
@@ -41,6 +67,12 @@ public class LockButton
 		lockButton.setFocusable(false); // make the button not have focus
 		lockButton.setFocusPainted(false); // remove annoying blue border when clicked
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds an action listener to the button. When clicked the button shows the login screen.
+	 */
 	
 	public void addListeners()
 	{

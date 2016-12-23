@@ -15,7 +15,6 @@ public class NetworkUtil
 {
 	/**
 	 * Function: isNetworkAvailable() 
-	 * @author ZackEvans
 	 * @return if there is a network connection or not.
 	 * 
 	 * This function checks if the computer if connected to the Internet.

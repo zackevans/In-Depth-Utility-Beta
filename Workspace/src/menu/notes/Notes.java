@@ -30,13 +30,11 @@ public class Notes extends JPanel
 	BufferPanel bufferPanel;
 	
 	/**
-	 * @author ZackEvans
 	 * Constructor: Notes
 	 * @param bufferPanel
 	 * 
 	 * Call super Run panel hierarchy 
 	 * Inherit bufferPanel object
-	 * 
 	 */
 	
 	public Notes (BufferPanel bufferPanel)
@@ -47,7 +45,6 @@ public class Notes extends JPanel
 	}
 	
 	/**
-	 * @author ZackEvans
 	 * Function: initialize
 	 * 
 	 * call functions that set up the basic panel
@@ -61,7 +58,6 @@ public class Notes extends JPanel
 	}
 	
 	/**
-	 * @author ZackEvans
 	 * Function: create Components
 	 * 
 	 * create objects
@@ -93,7 +89,6 @@ public class Notes extends JPanel
 	}
 	
 	/**
-	 * @author ZackEvans
 	 * Function: initializeComponents
 	 * 
 	 * call initialize methods
@@ -111,7 +106,6 @@ public class Notes extends JPanel
 	}
 	
 	/**
-	 * @author ZackEvans
 	 * Function: layoutComponents
 	 * 
 	 * set panel layout not nothing
@@ -139,13 +133,11 @@ public class Notes extends JPanel
 		contentPanel.add(shareButton);
 		contentPanel.setBounds(0, 0, Window_Width,Window_Height);
 		
-		
 		JLayeredPane layerPane = new JLayeredPane();
 		layerPane.add(contentPanel, new Integer(0), 0);
         layerPane.add(noSelectedNotePanel, new Integer(1), 0);	
         layerPane.setBounds(0, 0, Window_Width,Window_Height);
         
        add(layerPane);
-        
 	}
 }

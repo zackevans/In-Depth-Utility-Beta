@@ -22,7 +22,6 @@ public class NoteNameField
 		
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Function calls methods to create the textfield
 	 */
@@ -35,7 +34,6 @@ public class NoteNameField
 	
 	/**
 	 * Function: setUpTextField()
-	 * @author ZackEvans
 	 * 
 	 * This function removes the sound when the backspace is pressed on a empty textfield
 	 */
@@ -47,7 +45,6 @@ public class NoteNameField
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * Function adds listeners to the text field
 	 */

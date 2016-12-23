@@ -18,10 +18,8 @@ import launch.app.LaunchApp;
 
 public class ChooseDirectoryButton extends JButton
 {
-	
 	/**
 	 * Constructor: ChooseDirectoryButton ()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls button hierarchy and calls a method to setup the button.
 	 */
@@ -34,7 +32,6 @@ public class ChooseDirectoryButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls a method to create and setup the button
 	 */
@@ -47,7 +44,6 @@ public class ChooseDirectoryButton extends JButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the text and removes the selected border from the button.
 	 */
@@ -60,7 +56,6 @@ public class ChooseDirectoryButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This method adds an action listener to the button.
 	 * When the action is performed a JFileChooser is shown.

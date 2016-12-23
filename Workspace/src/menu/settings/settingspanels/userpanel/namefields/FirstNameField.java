@@ -13,15 +13,34 @@ import javax.swing.event.DocumentListener;
 import program.textfield.TextFieldShell;
 import sql.userinfo.UserInfoDatabase;
 
+/**
+ * Class: FirstNameField
+ * @author ZackEvans
+ *
+ * This class holds the components used to get the users first name.
+ */
+
 public class FirstNameField 
 {
 	public static JTextField firstNameField = new TextFieldShell();
 	public static JLabel firstNameLabel = new JLabel("First Name");
 	
+	/**
+	 * Constructor: FirstNameField()
+	 * 
+	 * This constructor calls a method to crate the components.
+	 */
+	
 	public FirstNameField()
 	{
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls methods to create the component.
+	 */
 	
 	public void initialize()
 	{
@@ -29,12 +48,25 @@ public class FirstNameField
     	addListeners();
 	}
 	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This function sets the text in the enter of the label and the color of the text.
+	 */
+	
 	public void createComponents()
 	{
 		firstNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		firstNameLabel.setOpaque(false);
 		firstNameLabel.setForeground(new Color(0,0,0,200));
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds a document and focus listener to the text field.
+	 * The document updates the database values and the focus listener manages the label.
+	 */
 	
 	public void addListeners()
 	{
@@ -76,6 +108,12 @@ public class FirstNameField
 			}
 		});
 	}
+	
+	/**
+	 * Function: updateField()
+	 * 
+	 * This function updates the database value with the value in the textfield.
+	 */
 	
 	public static void updateField()
 	{

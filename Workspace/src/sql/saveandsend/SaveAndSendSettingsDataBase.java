@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
 /**
  * Class: SaveAndSendSettingsDataBase
  * @author ZackEvans
@@ -20,9 +19,8 @@ public class SaveAndSendSettingsDataBase
 	
 	/**
 	 * Function: createSaveAndSendSettingsTable()
-	 * @author ZackEvans
 	 * 
-	 * Creates the SaveAndSendSettingsTable if it doesent already
+	 * Creates the SaveAndSendSettingsTable if it doesn't already
 	 */
 	
 	public void createSaveAndSendSettingsTable()
@@ -55,7 +53,7 @@ public class SaveAndSendSettingsDataBase
         
         System.out.println("Save And Send Settings Table created successfully");
         
-        if(checkIfRowExists() == false) // if the setting row doesent exist create it
+        if(checkIfRowExists() == false) // if the setting row doesn't exist create it
         {
         	try
             {
@@ -87,7 +85,6 @@ public class SaveAndSendSettingsDataBase
 	
 	/**
 	 * Function: checkIfRowExists()
-	 * @author ZackEvans
 	 * @return if a single row exists in the 
 	 * 
 	 * Function return a boolean value depending on if a initial row exists
@@ -135,10 +132,9 @@ public class SaveAndSendSettingsDataBase
 	
 	/**
 	 * Function: updateNeverShow(boolean tf)
-	 * @author ZackEvans
 	 * @param tf
 	 * 
-	 * Updates the Nevershow Item in col 1
+	 * Updates the Nevershow value in col 1
 	 */
 	
 	public void updateNeverShow(boolean tf)
@@ -173,7 +169,6 @@ public class SaveAndSendSettingsDataBase
 	
 	/**
 	 * Function: getNeverShow()
-	 * @author ZackEvans
 	 * 
 	 * Get NEVERSHOW setting from the database.
 	 */

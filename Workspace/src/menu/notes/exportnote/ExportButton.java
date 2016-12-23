@@ -23,7 +23,6 @@ public class ExportButton extends JButton
 	
 	/**
 	 * Constructor: ExportButton (BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This constructor inherits the bufferPanel object and calls button hierarchy
@@ -37,7 +36,6 @@ public class ExportButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods that setup the button.
 	 */
@@ -50,7 +48,6 @@ public class ExportButton extends JButton
 	
 	/**
 	 * Function: createButton ()
-	 * @author ZackEvans
 	 * 
 	 * This method sets the button text and removes the border from the button
 	 */
@@ -63,7 +60,6 @@ public class ExportButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This method adds an action listener to the button.
 	 */

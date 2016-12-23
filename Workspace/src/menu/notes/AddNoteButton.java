@@ -20,7 +20,6 @@ public class AddNoteButton extends JButton
 {
 	/**
 	 * Constructor: AddNoteButton ()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls button hierarchy
 	 */
@@ -32,7 +31,6 @@ public class AddNoteButton extends JButton
 	
 	/**
 	 * Function: initialize ()
-	 * @author ZackEvans
 	 * 
 	 * Function calls methods to setup button and and a listener to it.
 	 */
@@ -45,7 +43,6 @@ public class AddNoteButton extends JButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * Function adds an image to the button
 	 */
@@ -59,7 +56,6 @@ public class AddNoteButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * Function adds a listener to the button
 	 */

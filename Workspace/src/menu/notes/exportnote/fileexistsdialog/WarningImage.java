@@ -16,7 +16,6 @@ public class WarningImage extends JLabel
 {
 	/**
 	 * Constructor: WarningImage()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls the label hierarchy and calls a method to setup the label
 	 */
@@ -29,7 +28,6 @@ public class WarningImage extends JLabel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls method to create the label
 	 */
@@ -41,7 +39,6 @@ public class WarningImage extends JLabel
 	
 	/**
 	 * Function: createImage()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the image on the label
 	 */

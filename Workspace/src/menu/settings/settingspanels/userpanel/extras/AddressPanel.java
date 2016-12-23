@@ -12,29 +12,71 @@ import javax.swing.event.DocumentListener;
 import program.textfield.TextFieldShell;
 import sql.userinfo.UserInfoDatabase;
 
+/**
+ * Class: AddressPanel
+ * @author ZackEvans
+ *
+ * This class holds the field the user enters their address in.
+ */
+
 public class AddressPanel extends JPanel
 {
 	static JTextField addressField = new TextFieldShell();
 	
-	public AddressPanel ()
+	/**
+	 * Constructor: AddressPanel()
+	 * 
+	 * This constructor calls the panel hierarchy and a method to create the components on the panel.
+	 */
+	
+	public AddressPanel()
 	{
 		super();
 		initialize();
 	}
 	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function sets the layout of the panel and calls methods to create the individual components on the panel
+	 */
+	
 	public void initialize()
 	{
-		setLayout(new FlowLayout(FlowLayout.LEFT));
+		createPanel();
 		createTextfields();
 		addComponents();
 		addListeners();
 	}
 	
+	/**
+	 * Function: createPanel()
+	 * 
+	 * This function sets the layout for the panel and makes the panel clear.
+	 */
+	
+	public void createPanel()
+	{
+		setLayout(new FlowLayout(FlowLayout.LEFT));
+		setOpaque(false);
+	}
+	
+	/**
+	 * Function: createTextfields()
+	 * 
+	 */
+	
 	public void createTextfields()
 	{
-		setOpaque(false);
+		
 		addressField.setPreferredSize(new Dimension(250, 23));
 	}
+	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function adds the components to the panel
+	 */
 	
 	public void addComponents()
 	{
@@ -43,6 +85,12 @@ public class AddressPanel extends JPanel
 		add(addressLabel);
 		add(addressField);
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds a document listener to the address field. Ever time it fires it saves the current number in the database
+	 */
 	
 	public void addListeners()
 	{
@@ -67,10 +115,16 @@ public class AddressPanel extends JPanel
 		});
 	}
 	
+	
+	/**
+	 * Function: updateAddressField()
+	 * 
+	 * This function updates the database value with the current number in the field.
+	 */
+	
 	public static void updateAddressField()
 	{
 		UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
-		
 		addressField.setText(userInfoDatabase.getAddress());
 	}
 }

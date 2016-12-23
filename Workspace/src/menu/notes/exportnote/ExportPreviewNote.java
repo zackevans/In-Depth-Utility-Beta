@@ -22,7 +22,6 @@ public class ExportPreviewNote extends JScrollPane
 	
 	/**
 	 * Constructor: ExportPreviewNote()
-	 * @author ZackEvans
 	 * 
 	 * This function calls the scroll pane hierarchy.
 	 */
@@ -34,7 +33,6 @@ public class ExportPreviewNote extends JScrollPane
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls a method to setup the scrollpane
 	 */
@@ -46,7 +44,6 @@ public class ExportPreviewNote extends JScrollPane
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the scrollpane
 	 */
@@ -67,7 +64,6 @@ public class ExportPreviewNote extends JScrollPane
 	
 	/**
 	 * Function: displayNote(int index)
-	 * @author ZackEvans
 	 * @param index
 	 * 
 	 * This function displays a note in the textarea.

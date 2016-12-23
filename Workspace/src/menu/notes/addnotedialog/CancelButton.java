@@ -16,7 +16,6 @@ public class CancelButton extends JButton
 {
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Function calls methods to set up the button 
 	 */
@@ -28,7 +27,6 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the button
 	 */
@@ -41,7 +39,6 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * This function sets up the button
 	 */
@@ -53,7 +50,6 @@ public class CancelButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener to the button to perform a action
 	 */

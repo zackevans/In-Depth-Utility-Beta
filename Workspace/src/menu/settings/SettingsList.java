@@ -18,24 +18,36 @@ import javax.swing.JScrollPane;
 
 import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 
-public class SettingsList 
+/**
+ * Class: SettingsList
+ * @author ZackEvans
+ * 
+ * This class holds a list that holds the main settings categories.
+ */
+
+public class SettingsList
 {
 	private SettingsBufferPanel settingsBufferPanel;
 	public static JScrollPane scrollPane = new JScrollPane();
 	public static JList settingsList = new JList();
-	private Map<String, ImageIcon> imageMap = new HashMap<String, ImageIcon>(); // create a hashmap with the name and image
-	
+	private Map<String, ImageIcon> imageMap = new HashMap<>(); // create a hashmap with the name and image
 	public static String[] listItems = {"User","General", "Password/Security", "Notifications", "Status Bar" , "Sharing"};
+	
+	/**
+	 * Constructor: SettingsList (SettingsBufferPanel settingsBufferPanel)
+	 * @param settingsBufferPanel
+	 * 
+	 * This constructor inherits the settings settingsbufferpanel object and calls a method to crate the list.
+	 */
 	
 	public SettingsList (SettingsBufferPanel settingsBufferPanel)
 	{
-		initialize();	
 		this.settingsBufferPanel = settingsBufferPanel;
+		initialize();	
 	}
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the list.
 	 */
@@ -46,6 +58,12 @@ public class SettingsList
 		createIcons();
 		addListeners();
 	}
+	
+	/**
+	 * Function: createList()
+	 * 
+	 * This function creates the scroll pane and the settings list
+	 */
 	
 	public void createList()
 	{
@@ -61,6 +79,12 @@ public class SettingsList
 		scrollPane.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 1, Color.BLACK));
 		scrollPane.setFocusable(false);
 	}
+	
+	/**
+	 * Function: createIcons ()
+	 * 
+	 * This function loads and creates all the images. All images are stored in a map so they can be loaded later
+	 */
 	
 	public void createIcons ()
 	{
@@ -85,6 +109,12 @@ public class SettingsList
 		imageMap.put("Status Bar", statusBarImg);
 		imageMap.put("Sharing", sharingImg);
 	}
+	
+	/**
+	 * Function: addListeners() 
+	 * 
+	 * This function adds an action listener to the list so the user can make selections.
+	 */
 	
 	public void addListeners()
 	{

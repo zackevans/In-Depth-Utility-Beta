@@ -22,7 +22,6 @@ public class AddRecipientButton extends JButton
 {
 	/**
 	 * Constructor: AddRecipientButton ()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls button hierarchy
 	 */
@@ -34,7 +33,6 @@ public class AddRecipientButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the button 
 	 */
@@ -47,7 +45,6 @@ public class AddRecipientButton extends JButton
 	
 	/**
 	 * Function: createButton()
-	 * @author ZackEvans
 	 * 
 	 * This function creates a image and sets it on the button.
 	 * This function removes the border and makes the button not be able to focous.
@@ -65,7 +62,6 @@ public class AddRecipientButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds an action listener to the button
 	 */
@@ -84,7 +80,6 @@ public class AddRecipientButton extends JButton
 	
 	/**
 	 * Function: addEmail()
-	 * @author ZackEvans
 	 * 
 	 * This function adds the email in the To field (ToField) into the list of emails
 	 */

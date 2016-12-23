@@ -22,7 +22,6 @@ public class DeleteButton extends JButton
 {	
 	/**
 	 * Constructor: DeleteButton()
-	 * @author ZackEvans
 	 * 
 	 * Constructor calls hierarchy of button
 	 */
@@ -34,7 +33,6 @@ public class DeleteButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This Function calls methods to create the button
 	 */
@@ -46,7 +44,6 @@ public class DeleteButton extends JButton
 	
 	/**
 	 * Function: createBtn()
-	 * @author ZackEvans
 	 * 
 	 * Function sets an icon on the button
 	 */
@@ -60,7 +57,6 @@ public class DeleteButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener to the button. When clicked the selected note is deleted
 	 */

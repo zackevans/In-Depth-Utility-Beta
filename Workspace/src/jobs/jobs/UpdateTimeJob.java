@@ -9,6 +9,7 @@ import statusbar.addons.TimeAndDate;
 /**
  * Class: UpdateTimeJob
  * @author ZackEvans
+ * @see updated time in menu
  *
  * This class is a job that updates the time in the statusbar
  */

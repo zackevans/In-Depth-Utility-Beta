@@ -8,10 +8,23 @@ import java.sql.Statement;
 
 import sql.util.DatabaseUtil;
 
+/**
+ * Class: SecuritySettingsDatabase 
+ * @author ZackEvans
+ *
+ * This class holds functions that interact with the security settings table in the database.
+ */
+
 public class SecuritySettingsDatabase 
 {
 	final static String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; // db location
 
+	/**
+	 * Function: createSecuritySettingsTable()
+	 * 
+	 * This function creates all the fields needed in the security settings table. If the first row doesn't exist call a function to create it.
+	 */
+	
 	public void createSecuritySettingsTable()
 	{
 		Connection c = null; // create connection var
@@ -52,6 +65,12 @@ public class SecuritySettingsDatabase
 	    }
 	}
 	
+	/**
+	 * Function: createInitialRow()
+	 * 
+	 * This function creates the first row in the database and initializes values.
+	 */
+	
 	public static void createInitialRow()
 	{
 		Connection c = null; // create connection
@@ -91,6 +110,13 @@ public class SecuritySettingsDatabase
 	    }
 	}
 
+	/**
+	 * Function: getRequirePasswordValue()
+	 * @return REQUIRE_PASSWORD value from db
+	 * 
+	 * This function gets the value REQUIRE_PASSWORD from the first row of the db.
+	 */
+	
 	public boolean getRequirePasswordValue()
 	{
 		// create connections
@@ -131,6 +157,13 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	/**
+	 * Function: updateRequirePasswordValue(Boolean updatedValue)
+	 * @param updatedValue
+	 * 
+	 * Thus function updates the REQUIRE_PASSWORD value in the first row of the database.
+	 */
+	
 	public void updateRequirePasswordValue(Boolean updatedValue)
 	{
 		Connection dbConnection = null; // create var to hold connection to the database
@@ -160,6 +193,13 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
+	
+	/**
+	 * Function: getRequirePasswordTimeValue()
+	 * @return the REQUIRE_PASSWORD_TIME value from the db
+	 * 
+	 * This function returns the REQUIRE_PASSWORD_TIME value from the first row of the database.
+	 */
 	
 	public int getRequirePasswordTimeValue()
 	{
@@ -202,6 +242,13 @@ public class SecuritySettingsDatabase
 		
 	}
 	
+	/**
+	 * Function: updateRequirePasswordTimeValue(int updatedValue)
+	 * @param updatedValue
+	 * 
+	 * This function updates the REQUIRE_PASSWORD_TIME value in the first row of the database.
+	 */
+	
 	public void updateRequirePasswordTimeValue(int updatedValue)
 	{
 		Connection dbConnection = null; // create var to hold connection to the database
@@ -231,6 +278,14 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
+	
+	/**
+	 * Function: getLogFailedAttemptsValue()
+	 * @return LOG_FAILED_ATTEMPTS value from db.
+	 * 
+	 * This function gets the LOG_FAILED_ATTEMPTS value from the first row of the table
+	 */
+	
 	
 	public boolean getLogFailedAttemptsValue()
 	{
@@ -272,6 +327,12 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	/**
+	 * Function: updateLogFailedAttemptsValue(Boolean updatedValue)
+	 * @param updatedValue
+	 * 
+	 * This function updates the LOG_FAILED_ATTEMPTS value in the database.
+	 */
 	
 	public void updateLogFailedAttemptsValue(Boolean updatedValue)
 	{
@@ -305,6 +366,12 @@ public class SecuritySettingsDatabase
 		}
 	}
 	
+	/**
+	 * Function: getReceiveEmailAttemptsValue()
+	 * @return the RECEIVE_EMAIL_ATTEMPTS value in the databse.
+	 * 
+	 * This function returns the RECEIVE_EMAIL_ATTEMPTS value from the first row of the table.
+	 */
 	
 	public boolean getReceiveEmailAttemptsValue()
 	{
@@ -344,6 +411,13 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	/**
+	 * Function: updateReceiveEmailAttemptsValue(Boolean updatedValue)
+	 * @param updatedValue
+	 * 
+	 * This function updates the RECEIVE_EMAIL_ATTEMPTS value in the first row of the table
+	 */
+	
 	public void updateReceiveEmailAttemptsValue(Boolean updatedValue)
 	{
 		Connection dbConnection = null; // create var to hold connection to the database
@@ -374,6 +448,13 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
+	
+	/**
+	 * Function: getReceiveEmailAttemptsCount()
+	 * @return RECEIVE_EMAIL_ATTEMPTS_COUNT value stored in the database.
+	 * 
+	 * This function gets the RECEIVE_EMAIL_ATTEMPTS_COUNT value in the first row of the table.
+	 */
 	
 	public int getReceiveEmailAttemptsCount()
 	{
@@ -413,6 +494,13 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	/**
+	 * Function: updateReceiveEmailAttemptsCount(int updatedValue)
+	 * @param updatedValue
+	 * 
+	 * This function updates the RECEIVE_EMAIL_ATTEMPTS_COUNT value in the database.
+	 */
+	
 	public void updateReceiveEmailAttemptsCount(int updatedValue)
 	{
 		Connection dbConnection = null; // create var to hold connection to the database
@@ -443,6 +531,13 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
+	
+	/**
+	 * Function: getShowNotificationsValue()
+	 * @return SHOW_NOTIFICATIONS value from the database
+	 * 
+	 * This funciton returns the SHOW_NOTIFICATIONS from the first row of the table.
+	 */
 	
 	public boolean getShowNotificationsValue()
 	{
@@ -484,6 +579,13 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	/**
+	 * Function: updateShowNotificaitonsValue(boolean updatedValue)
+	 * @param updatedValue
+	 * 
+	 * This function updates the SHOW_NOTIFICATIONS in the first row of the SECURITY_SETTINGS table
+	 */
+	
 	public void updateShowNotificaitonsValue(boolean updatedValue)
 	{
 		Connection dbConnection = null; // create var to hold connection to the database
@@ -514,6 +616,13 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
+	
+	/**
+	 * Function: getEraseAppDataValue()
+	 * @return ERASE_APP_DATA value
+	 *
+	 * This function gets the ERASE_APP_DATA value from the database.
+	 */
 	
 	public boolean getEraseAppDataValue()
 	{
@@ -555,6 +664,13 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	/**
+	 * Function: updateEraseAppDataValue(boolean updatedValue)
+	 * @param updatedValue
+	 * 
+	 * this function updates the ERASE_APP_DATA value in the database
+	 */
+	
 	public void updateEraseAppDataValue(boolean updatedValue)
 	{
 		Connection dbConnection = null; // create var to hold connection to the database
@@ -585,6 +701,13 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
+	
+	/**
+	 * Function: getEraseAppDataCount()
+	 * @return ERASE_APP_DATA_COUNT value.
+	 * 
+	 * This funciton updates the ERASE_APP_DATA_COUNT value in the first row of the table.
+	 */
 	
 	public int getEraseAppDataCount()
 	{
@@ -626,6 +749,13 @@ public class SecuritySettingsDatabase
         return rVal; // return ID
 	}
 	
+	/**
+	 * Function: updateEraseAppDataCount(int updatedValue)
+	 * @param updatedValue
+	 * 
+	 * This function updates the ERASE_APP_DATA_COUNT value in the database.
+	 */
+	
 	public void updateEraseAppDataCount(int updatedValue)
 	{
 		Connection dbConnection = null; // create var to hold connection to the database
@@ -656,5 +786,4 @@ public class SecuritySettingsDatabase
 			System.exit(0);
 		}
 	}
-	
 }

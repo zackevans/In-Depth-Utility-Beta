@@ -12,11 +12,24 @@ import javax.swing.JPanel;
 
 import sql.userinfo.UserInfoDatabase;
 
+/**
+ * Class: BirthdayFields
+ * @author ZackEvans
+ * 
+ * This class holds all the components needed to get the uses birthday.
+ */
+
 public class BirthdayFields extends JPanel
 {
-	public static JComboBox<Integer> monthBox = new JComboBox<Integer>();
-	public static JComboBox<Integer> dayBox = new JComboBox<Integer>();
-	public static JComboBox<Integer> yearBox = new JComboBox<Integer>();
+	public static JComboBox<Integer> monthBox = new JComboBox<>();
+	public static JComboBox<Integer> dayBox = new JComboBox<>();
+	public static JComboBox<Integer> yearBox = new JComboBox<>();
+	
+	/**
+	 * Constructor: BirthdayFields() 
+	 * 
+	 * This constructor calls the panel hierarchy and a function to create the panel 
+	 */
 	
 	public BirthdayFields() 
 	{
@@ -24,14 +37,38 @@ public class BirthdayFields extends JPanel
 		initialize();
 	}
 	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This fucntion calls methods to create the fields.
+	 */
+	
 	public void initialize()
 	{
-		setLayout(new FlowLayout(FlowLayout.LEFT));
+		createPanel();
 		createComboboxes();
 		addComponents();
 		addListeners();
 		setOpaque(false);
 	}
+	
+	/**
+	 * Function: createPanel()
+	 * 
+	 * This function sets the layout mananger and makes the panel clear.
+	 */
+	
+	public void createPanel()
+	{
+		setLayout(new FlowLayout(FlowLayout.LEFT));
+		setOpaque(false);
+	}
+	
+	/**
+	 * Function: createComboboxes()
+	 * 
+	 * This function loads the comoboboxes with their data.
+	 */
 	
 	public void createComboboxes()
 	{
@@ -59,6 +96,12 @@ public class BirthdayFields extends JPanel
 		yearBox.setModel(yearBoxModel);
 	}
 	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function adds all of the componenets to the panel.
+	 */
+	
 	public void addComponents()
 	{
 		JLabel birthdayLabel = new JLabel("Birthday: ");
@@ -68,6 +111,12 @@ public class BirthdayFields extends JPanel
 		add(dayBox);
 		add(yearBox);
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds an action listener to each of the comboboxes. When they fire they update their value in the database.
+	 */
 	
 	public void addListeners()
 	{
@@ -101,6 +150,12 @@ public class BirthdayFields extends JPanel
 			}
 		});
 	}
+	
+	/**
+	 * Function: updateBoxes()
+	 * 
+	 * This fucntion updates the comboboxes with the values stored in the database.
+	 */
 	
 	public static void updateBoxes()
 	{

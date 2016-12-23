@@ -22,7 +22,6 @@ public class EmailUtil
 {
 	/**
 	 * Function: sendNoteEMail(String[] to, String subject, String body) 
-	 * @author ZackEvans
 	 * @param to
 	 * @param subject
 	 * @param body
@@ -85,7 +84,6 @@ public class EmailUtil
 	
 	/**
 	 * Function: sendNoteEMail(String to, String subject, String body) 
-	 * @author ZackEvans
 	 * @param to
 	 * @param subject
 	 * @param body
@@ -137,7 +135,6 @@ public class EmailUtil
 	
 	/**
 	 * Function: validateEmailAddress(String email) 
-	 * @author ZackEvans
 	 * @param email
 	 * @return If the email passed into the method it a real email
 	 * 

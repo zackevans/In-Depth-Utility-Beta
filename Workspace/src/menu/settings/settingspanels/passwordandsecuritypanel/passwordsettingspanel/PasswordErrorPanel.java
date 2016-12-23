@@ -9,6 +9,13 @@ import javax.swing.JPanel;
 import menu.notes.exportnote.ExportErrorNotePanel;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 
+/**
+ * Class: 
+ * @author ZackEvans
+ *
+ * This class is a panel that holds all of the warnings and errors for the password panel.
+ */
+
 public class PasswordErrorPanel extends JPanel
 {
 	public static JLabel newPasswordDoesentMatchErrorLabel = new JLabel();
@@ -20,7 +27,6 @@ public class PasswordErrorPanel extends JPanel
 	
 	/**
 	 * Constructor: PasswordErrorPanel ()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls panel hierarchy and calls a method to create the button.
 	 */
@@ -33,7 +39,6 @@ public class PasswordErrorPanel extends JPanel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to set up the panel and error labels
 	 */
@@ -47,7 +52,6 @@ public class PasswordErrorPanel extends JPanel
 	
 	/**
 	 * Function: createPanel()
-	 * @author ZackEvans
 	 * 
 	 * This function makes the panel clear
 	 */
@@ -57,6 +61,12 @@ public class PasswordErrorPanel extends JPanel
 		setOpaque(false);
 		setLayout(null);
 	}
+	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This function creates the images for the warnings and sets the size and location of them.
+	 */
 	
 	public void createComponents()
 	{
@@ -84,6 +94,12 @@ public class PasswordErrorPanel extends JPanel
 		hideAllWarnings();
 	}
 	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function adds the warnings to the panel.
+	 */
+	
 	public void addComponents()
 	{
 		add(newPasswordDoesentMatchErrorLabel);
@@ -92,6 +108,12 @@ public class PasswordErrorPanel extends JPanel
 		add(removePasswordLabel);
 	}
 	
+	/**
+	 * Function: hideAllWarnings()
+	 * 
+	 * This function hides all the warnings on the panel
+	 */
+	
 	public static void hideAllWarnings()
 	{
 		newPasswordDoesentMatchErrorLabel.setVisible(false);
@@ -99,6 +121,12 @@ public class PasswordErrorPanel extends JPanel
 		resetPasswordsDoesentMatchErrorLabel.setVisible(false);
 		removePasswordLabel.setVisible(false);
 	}
+	
+	/**
+	 * Function: checkAllResetPasswordPanelErrors()
+	 * 
+	 * This function checks if it should shows warnings.
+	 */
 	
 	public static void checkAllResetPasswordPanelErrors()
 	{
@@ -115,6 +143,12 @@ public class PasswordErrorPanel extends JPanel
 			resetPasswordsDoesentMatchErrorLabel.setVisible(true);
 		}
 	}	
+	
+	/**
+	 * Function: checkRemovePasswordPanelErrors()
+	 * 
+	 * This function checks if it should shows warnings.
+	 */
 	
 	public static void checkRemovePasswordPanelErrors()
 	{

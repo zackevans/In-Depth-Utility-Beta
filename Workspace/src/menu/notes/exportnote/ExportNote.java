@@ -32,7 +32,6 @@ public class ExportNote extends JPanel
 	
 	/**
 	 * Constructor:  ExportNote(BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This method calls the panel hierarchy and inherits the bufferPanel object.
@@ -46,7 +45,6 @@ public class ExportNote extends JPanel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods setup the panel and its components.
 	 */
@@ -60,7 +58,6 @@ public class ExportNote extends JPanel
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates panel components and sets the size an location of them.
 	 */
@@ -95,7 +92,6 @@ public class ExportNote extends JPanel
 	
 	/**
 	 * Function: addComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function sets up the panel and adds the components to it.
 	 */
@@ -127,7 +123,6 @@ public class ExportNote extends JPanel
 	
 	/**
 	 * Function: initializeComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function calls the methods to create the components.
 	 */
@@ -144,7 +139,6 @@ public class ExportNote extends JPanel
 	
 	/**
 	 * Function: createContentPanel()
-	 * @author ZackEvans
 	 * 
 	 * This function creates the content panel and adds the components to it.
 	 */
@@ -177,7 +171,6 @@ public class ExportNote extends JPanel
 	
 	/**
 	 * Function: clearPanel()
-	 * @author ZackEvans
 	 * 
 	 * This function clears all of the components on the panel
 	 */
@@ -193,7 +186,6 @@ public class ExportNote extends JPanel
 	
 	/**
 	 * Function: autoFill()
-	 * @author ZackEvans
 	 * 
 	 * This function fills the selected note with the note selected on the note panel
 	 */

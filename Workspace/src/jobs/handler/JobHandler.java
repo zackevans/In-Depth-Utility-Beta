@@ -5,6 +5,13 @@ import jobs.handler.lockapp.LockAppJobScheduler;
 import jobs.handler.statusbar.UpdateTimeScheduler;
 import menu.buffer.BufferPanel;
 
+/**
+ * Class: JobHandler
+ * @author ZackEvans
+ *
+ * This class holds methods that creates jobs
+ */
+
 public class JobHandler 
 {
 	BufferPanel bufferPanel;

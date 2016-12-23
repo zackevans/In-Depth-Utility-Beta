@@ -26,7 +26,6 @@ public class RecipientHolder extends JScrollPane
 	
 	/**
 	 * Constructor: RecipientHolder ()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls scroll pane hierarchy and makes the pane clear.
 	 */
@@ -39,7 +38,6 @@ public class RecipientHolder extends JScrollPane
 
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the scroll pane
 	 */
@@ -52,7 +50,6 @@ public class RecipientHolder extends JScrollPane
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This method sets how the scroll pane will scroll.
 	 * This method hides the scroll bar from the scroll pane.
@@ -81,7 +78,6 @@ public class RecipientHolder extends JScrollPane
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This method adds a mouse listener to the holder panel
 	 */
@@ -100,7 +96,6 @@ public class RecipientHolder extends JScrollPane
 	
 	/**
 	 * Function: createNewPanel(String email)
-	 * @author ZackEvans
 	 * @param email to be sent to
 	 * 
 	 * This method creates a new panel to sit in the panel holder
@@ -113,7 +108,6 @@ public class RecipientHolder extends JScrollPane
 	
 	/**
 	 * Function: removePanel(Component clickedPanel,String email)
-	 * @author ZackEvans
 	 * @param clickedPanel
 	 * @param email
 	 * 
@@ -136,7 +130,6 @@ public class RecipientHolder extends JScrollPane
 	
 	/**
 	 * Function: clearAllPanels()
-	 * @author ZackEvans
 	 * 
 	 * This method clears all the panels in the panel holder
 	 */

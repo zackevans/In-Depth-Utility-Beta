@@ -24,7 +24,6 @@ public class ToField
 	
 	/**
 	 * Function: initialize();
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the text field and the label.
 	 */
@@ -37,7 +36,6 @@ public class ToField
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the color and border for the components
 	 */
@@ -55,7 +53,6 @@ public class ToField
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a key listener to the text field to add functionality when the enter key is pressed
 	 * and update the errors on the error panel.

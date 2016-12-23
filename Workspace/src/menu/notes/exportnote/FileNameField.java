@@ -22,7 +22,6 @@ public class FileNameField
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls a methods to create the button
 	 */
@@ -34,7 +33,6 @@ public class FileNameField
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a document listener to the textfield.
 	 */

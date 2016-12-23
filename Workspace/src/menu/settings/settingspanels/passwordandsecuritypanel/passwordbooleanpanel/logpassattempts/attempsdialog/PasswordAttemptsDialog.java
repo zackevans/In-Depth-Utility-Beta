@@ -12,6 +12,13 @@ import javax.swing.JPanel;
 import file.files.PasswordAttemptsFile;
 import launch.app.LaunchApp;
 
+/**
+ * Class: PasswordAttemptsDialog
+ * @author ZackEvans
+ *
+ * This class is a dialog that that displays all of the failed password attempts.
+ */
+
 public class PasswordAttemptsDialog 
 {
 	public static final int Window_Width = 393; // Standard Dialog size
@@ -26,7 +33,6 @@ public class PasswordAttemptsDialog
 	
 	/**
 	 * Function: launchDialog()
-	 * @author ZackEvans
 	 * 
 	 * Function is called to launch the dialog window
 	 */
@@ -45,6 +51,12 @@ public class PasswordAttemptsDialog
 		}
 	}
 	
+	/**
+	 * Function: createAndShowGUI()
+	 * 
+	 * This method creates the frame and calls methods to create the components for the frame.
+	 */
+	
 	public void createAndShowGUI()
 	{
 		customFrame.setSize(Window_Width, Window_Height); // set the size of the window
@@ -58,6 +70,13 @@ public class PasswordAttemptsDialog
 		
 		showGUI();
 	}
+	
+	/**
+	 * Function: showGUI()
+	 * 
+	 * This function sets the location of where the frame should launch. 
+	 * Then the function decides if it should show a warning and then shows the panel.
+	 */
 	
 	public void showGUI()
 	{
@@ -78,8 +97,16 @@ public class PasswordAttemptsDialog
 			emptyListIconPanel.setVisible(false);
 		}
 		
+		AttemptsList.updateList();
+		
 		customFrame.setVisible(true); // show the window
 	}
+	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This function creates the componets for the frame and sets the size and location of them.
+	 */
 	
 	public void createComponents()
 	{
@@ -96,12 +123,24 @@ public class PasswordAttemptsDialog
 		emptyListIconPanel.setBounds(0, 50, customFrame.getWidth(), 300);
 	}
 	
+	/**
+	 * Function: initializeComponents()
+	 * 
+	 * This function calls functions to crate the individual components.
+	 */
+	
 	public void initializeComponents()
 	{
 		attemptsList.createList();
 		clearButton.initialize();
 		okButton.initialize();
 	}
+	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function adds all of the compoents to the frame.
+	 */
 	
 	public void addComponents()
 	{
@@ -119,6 +158,12 @@ public class PasswordAttemptsDialog
         
         customFrame.getContentPane().add(layerPane);
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds a window listener to the window so when the window looses focus it hide the frame.
+	 */
 	
 	public void addListeners()
 	{		

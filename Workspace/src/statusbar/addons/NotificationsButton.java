@@ -27,7 +27,6 @@ public class NotificationsButton
 	
 	/**
 	 * Constructor: NotificationsButton (BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * Call call button hierarchy then inherit bufferpanel
@@ -41,7 +40,6 @@ public class NotificationsButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Function creates the button and adds listeners to the button 
 	 */
@@ -55,9 +53,8 @@ public class NotificationsButton
 	
 	/**
 	 * Function: createPanel()
-	 * @author ZackEvans
 	 * 
-	 * Function creates the panel and its properties
+	 * this function creates the panel and its properties
 	 */
 	
 	public void createButton()
@@ -80,6 +77,12 @@ public class NotificationsButton
 		notificationsButton.setBounds(0, 0, 45, 21);
 	}
 		
+	/**
+	 * Function: createPanel()
+	 * 
+	 * This function sets the layout manager for the panel and adds the button to the panel
+	 */
+	
 	public void createPanel()
 	{
 		buttonPanel.setLayout(null);
@@ -91,17 +94,16 @@ public class NotificationsButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener to the button so a action can be performed when clicked.
 	 */
 	
 	public void addListeners()
 	{
-		notificationsButton.addActionListener(new ActionListener()  // create a new action listener for the 
+		notificationsButton.addActionListener(new ActionListener()
 		{
 			@Override
-			public void actionPerformed(ActionEvent arg0) // Override standard function to do what i want
+			public void actionPerformed(ActionEvent arg0)
 			{	
 				System.out.println("Notifications Btn Clicked");
 			}

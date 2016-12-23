@@ -23,7 +23,6 @@ public class AdditionalComments extends JScrollPane
 	
 	/**
 	 * Constructor: AdditionalComments()
-	 * @author ZackEvans
 	 * 
 	 * The constructor calls the scroll panes hierarchy
 	 */
@@ -35,7 +34,6 @@ public class AdditionalComments extends JScrollPane
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the scroll pane.
 	 */
@@ -48,7 +46,6 @@ public class AdditionalComments extends JScrollPane
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function creates and sets up the text area.
 	 */
@@ -70,7 +67,6 @@ public class AdditionalComments extends JScrollPane
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a focous listener to the text area.
 	 */

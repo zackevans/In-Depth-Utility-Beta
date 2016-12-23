@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import menu.buffer.BufferPanel;
-import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 
 /**
  * Class: MainMenu
@@ -45,11 +44,10 @@ public class MainMenu extends JPanel
 	
 	/**
 	 * Constructor: MainMenu(BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * Call super Run panel hierarchy 
-	 * Inharet bufferPanel object
+	 * Inherit bufferPanel object
 	 * Set Panel Seethrough
 	 * 
 	 */
@@ -63,7 +61,6 @@ public class MainMenu extends JPanel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Call methods to create menu
 	 */
@@ -76,11 +73,9 @@ public class MainMenu extends JPanel
 	}
 	
 	/**
-	 * 
 	 * Function: Create components
-	 * @author ZackEvans
 	 * 
-	 * Initilize panels and set Button/Label names
+	 * Initialize panels and set Button/Label names
 	 * Call methods to set and position buttons
 	 */
 	
@@ -108,7 +103,6 @@ public class MainMenu extends JPanel
 	
 	/**
 	 * Function: layoutComponents
-	 * @author ZackEvans
 	 * 
 	 * set panel layout
 	 * set panel size
@@ -132,7 +126,6 @@ public class MainMenu extends JPanel
 	
 	/**
 	 * Function: addListeners
-	 * @author ZackEvans
 	 * @see when buttons are clicked bufferPanel shows differnt tools
 	 * 
 	 * add a action listener to each button on panel
@@ -184,9 +177,7 @@ public class MainMenu extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				SettingsBufferPanel.resetAllPanels();
-				bufferPanel.showPanel("SETTINGS_MENU"); // call show panel method and show the settings menu panel
-				
+				bufferPanel.showPanel("SETTINGS_MENU"); // call show panel method and show the settings menu panel	
 			}
 		});
 		
@@ -202,7 +193,6 @@ public class MainMenu extends JPanel
 	
 	/**
 	 * Function: createMainTittleLable()
-	 * @author ZackEvans
 	 * 
 	 * Set font and textsize
 	 * position the label
@@ -217,7 +207,6 @@ public class MainMenu extends JPanel
 	
 	/**
 	 * Function: createBottomLabel
-	 * @author ZackEvans
 	 * 
 	 * Set font and textsize
 	 * Position the label
@@ -233,7 +222,6 @@ public class MainMenu extends JPanel
 	/**
 	 * Function: createPersonalButton(), createSchoolButton(), createComputerButton(),
 	 * 			 createSettingsButton(), createAboutMenu ()
-	 * @author ZackEvans
 	 * 
 	 * Set the position and font of all buttons
 	 */

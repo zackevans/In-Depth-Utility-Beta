@@ -15,7 +15,6 @@ public class DataBase
 {
 	/**
 	 * Function: createDBLocation()
-	 * @author ZackEvans
 	 * 
 	 * Check if path folder exists and if it doesent then create it.
 	 */
@@ -33,7 +32,6 @@ public class DataBase
 	
 	/**
 	 * Function: createDatabase()
-	 * @author ZackEvans
 	 * 
 	 * Create the database file
 	 */
@@ -58,7 +56,6 @@ public class DataBase
 	
 	/**
 	 * Function: checkConnection()
-	 * @author ZackEvans
 	 * 
 	 * check to see if a connection can be established to the database.
 	 */
@@ -82,6 +79,13 @@ public class DataBase
 		
 		System.out.println("database connected: " + connection);
 	}
+	
+	/**
+	 * Function: deleteDatabase()
+	 * 
+	 * This function deletes the database file and password text file from memory.
+	 * Then it exits the program.
+	 */
 	
 	public void deleteDatabase()
 	{

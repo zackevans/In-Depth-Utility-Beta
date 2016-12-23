@@ -11,13 +11,20 @@ import org.quartz.impl.StdSchedulerFactory;
 
 import jobs.jobs.UpdateTimeJob;
 
+/**
+ * Class: UpdateTimeScheduler
+ * @author ZackEvans
+ * 
+ * This class hold methods that create a job to update the programs time.
+ */
+
 public class UpdateTimeScheduler 
 {
 	/**
      * @author ZackEvans
      * Function: createUpdateTimeJob()
      * 
-     * every min run a job that updates the time
+     * Every min run a job that updates the time
      */
     
     public static void createUpdateTimeJob()
@@ -47,5 +54,4 @@ public class UpdateTimeScheduler
 			e.printStackTrace();
 		}
     }
-
 }

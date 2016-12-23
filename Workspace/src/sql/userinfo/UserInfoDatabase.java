@@ -9,9 +9,22 @@ import java.sql.Statement;
 import program.util.security.Encryption;
 import sql.util.DatabaseUtil;
 
+/**
+ * Class: UserInfoDatabase
+ * @author ZackEvans
+ *
+ * This class holds methods that interact with the user info table.
+ */
+
 public class UserInfoDatabase 
 {
 	final String dbLocation = "jdbc:sqlite:" + System.getProperty("user.home") + "/Library/IDU Data/User.db"; // file path to db
+	
+	/**
+	 * Function: createUserInfoTable()
+	 * 
+	 * This function creates the USER_INFO table in the database. If there is not an initial row then it creates one.
+	 */
 	
     public void createUserInfoTable()
     {
@@ -50,9 +63,14 @@ public class UserInfoDatabase
         if(DatabaseUtil.countItems("USER_INFO") == 0) // check if the table is empty
 	    {
 	    	createInitialRow(); // create the defult row
-	    }
-        
+	    }    
     }
+    
+    /**
+     * Function: createInitialRow()
+     * 
+     * This function creates the first row in the table where the settings values will be stored.
+     */
     
     public void createInitialRow()
     {
@@ -93,6 +111,13 @@ public class UserInfoDatabase
 	    }
     }
     
+    /**
+     * Function: updateFirstName(String updatedString)
+     * @param updatedString
+     * 
+     * This function updates the FIRST_NAME value in the first row of the table
+     */
+    
     public void updateFirstName(String updatedString)
     {
     	Connection dbConnection = null; // create var to hold connection to the database
@@ -122,6 +147,13 @@ public class UserInfoDatabase
 			System.exit(0);
 		}
     }
+    
+    /**
+     * Function: getFirstName();
+     * @return FIRST_NAME value
+     * 
+     * This function returns the FIRST_NAME value in the first row of the database.
+     */
     
     public String getFirstName()
     {
@@ -161,6 +193,13 @@ public class UserInfoDatabase
         return rVal; // return ID
     }
     
+    /**
+     * Function: updateLastName(String updatedString)
+     * @param updatedString
+     * 
+     * This function updates the LAST_NAME value in the first row in the table.
+     */
+    
     public void updateLastName(String updatedString)
     {
     	Connection dbConnection = null; // create var to hold connection to the database
@@ -190,6 +229,13 @@ public class UserInfoDatabase
 			System.exit(0);
 		}
     }
+    
+    /**
+     * Function: getLastName()
+     * @return LAST_NAME value from database.
+     * 
+     * This function returns the LAST_NAME value from the first column in the table
+     */
     
     public String getLastName()
     {
@@ -229,6 +275,12 @@ public class UserInfoDatabase
         return rVal; // return ID
     }
     
+    /**
+     * Function: updateCompanyName(String updatedString)
+     * @param updatedString
+     * 
+     * This function updates the COMPANY value in the first row of the table.
+     */
     
     public void updateCompanyName(String updatedString)
     {
@@ -259,6 +311,13 @@ public class UserInfoDatabase
             System.exit(0);
         }
     }
+    
+    /**
+     * Function: getCompanyName()
+     * @return COMPANY value in database.
+     * 
+     * This function returns the COMPANY value in the database.
+     */
     
     public String getCompanyName()
     {
@@ -298,6 +357,13 @@ public class UserInfoDatabase
         return rVal; // return ID
     }
     
+    /**
+     * Function: 
+     * @param updatedString
+     * 
+     * This function updates the PHONE value in the table.
+     */
+    
     public void updatePhoneNumber(String updatedString)
     {
         Connection dbConnection = null; // create var to hold connection to the database
@@ -327,6 +393,13 @@ public class UserInfoDatabase
             System.exit(0);
         }
     }
+    
+    /**
+     * Function: getPhoneNumber()
+     * @return PHONE value in the database.
+     * 
+     * This function returns the PHONE value from the first row in the table.
+     */
     
     public String getPhoneNumber()
     {
@@ -366,6 +439,13 @@ public class UserInfoDatabase
         return rVal; // return ID
     }
     
+    /**
+     * Function: updateEmail(String updatedString)
+     * @param updatedString
+     * 
+     * This function updates the EMAIL value in the database.
+     */
+    
     public void updateEmail(String updatedString)
     {
         Connection dbConnection = null; // create var to hold connection to the database
@@ -395,6 +475,13 @@ public class UserInfoDatabase
             System.exit(0);
         }
     }
+    
+    /**
+     * Function: 
+     * @return EMAIL value from database.
+     * 
+     * This function returns the EMAIL value from the first row of the table.
+     */
     
     public String getEmail()
     {
@@ -434,6 +521,13 @@ public class UserInfoDatabase
         return rVal; // return ID
     }
     
+    /**
+     * Function: updateAddress(String updatedString)
+     * @param updatedString
+     * 
+     * This function updates the ADDRESS value in the first row of the table.
+     */
+    
     public void updateAddress(String updatedString)
     {
         Connection dbConnection = null; // create var to hold connection to the database
@@ -463,6 +557,13 @@ public class UserInfoDatabase
             System.exit(0);
         }
     }
+    
+    /**
+     * Function: 
+     * @return ADDRESS value in the database.
+     * 
+     * This function returns the ADDRESS value in the first row of the table.
+     */
     
     public String getAddress()
     {
@@ -502,6 +603,13 @@ public class UserInfoDatabase
         return rVal; // return ID
     }
     
+   /**
+    * Function: updateBirthdayMonth (int updatedNumber)
+    * @param updatedNumber
+    * 
+    * This function updates the BIRTHDAY_MONTH value in the database.
+    */
+    
     public void updateBirthdayMonth (int updatedNumber)
     {
         Connection dbConnection = null; // create var to hold connection to the database
@@ -532,6 +640,13 @@ public class UserInfoDatabase
         }
     }
         
+    /**
+     * Function: getBirthdayMonth()
+     * @return BIRTHDAY_MONTH value from database.
+     * 
+     * This function returns the BIRTHDAY_MONTH value from the database.
+     */
+    
     public int getBirthdayMonth()
     {
         Connection c = null;
@@ -570,6 +685,13 @@ public class UserInfoDatabase
         return rVal; // return ID
     }
     
+    /**
+     * Function: updateBirthdayDay (int updatedNumber)
+     * @param updatedNumber
+     * 
+     * This function updates the BIRTHDAY_DAY value in the first row of the table
+     */
+    
     public void updateBirthdayDay (int updatedNumber)
     {
         Connection dbConnection = null; // create var to hold connection to the database
@@ -600,6 +722,13 @@ public class UserInfoDatabase
         }
     }
         
+    /**
+     * Function: getBirthdayDay()
+     * @return BIRTHDAY_DAY value from database.
+     * 
+     * This function returns the BIRTHDAY_DAY value from the first row of the table.
+     */
+    
     public int getBirthdayDay()
     {
         Connection c = null;
@@ -638,6 +767,13 @@ public class UserInfoDatabase
         return rVal; // return ID
     }
     
+    /**
+     * Function: updateBirthdayYear (int updatedNumber)
+     * @param updatedNumber
+     * 
+     * This function updates the BIRTHDAY_YEAR value in the first row of the table.
+     */
+    
     public void updateBirthdayYear (int updatedNumber)
     {
         Connection dbConnection = null; // create var to hold connection to the database
@@ -668,6 +804,13 @@ public class UserInfoDatabase
         }
     }
         
+    /**
+     * Function: getBirthdayYear()
+     * @return BIRTHDAY_YEAR value from database.
+     * 
+     * This function updates the BIRTHDAY_YEAR value in the first row of the table.
+     */
+    
     public int getBirthdayYear()
     {
         Connection c = null;

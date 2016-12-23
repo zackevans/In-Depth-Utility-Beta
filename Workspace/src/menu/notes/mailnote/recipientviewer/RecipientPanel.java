@@ -25,7 +25,6 @@ public class RecipientPanel extends JPanel
 	
 	/**
 	 * Constructor: RecipientPanel (String email)
-	 * @author ZackEvans
 	 * @param email of recipient
 	 * 
 	 * This constructor calls panel hierarchy and saves the email passed to the method.
@@ -41,7 +40,6 @@ public class RecipientPanel extends JPanel
 	
 	/**
 	 * Function: paintComponent(Graphics g) *
-	 * @author ZackEvans
 	 * @param Graphics g
 	 * 
 	 * round border of text field
@@ -57,7 +55,6 @@ public class RecipientPanel extends JPanel
 	
 	/**
 	 * Function: paintBorder(Graphics g)*
-	 * @author ZackEvans
 	 * @param Graphics g
 	 * 
 	 * round border of text field
@@ -72,7 +69,6 @@ public class RecipientPanel extends JPanel
 	
     /**
      * Function: createPanel(String email)
-     * @author ZackEvans
      * @param email
      * 
      * This function sets up a new panel
@@ -100,7 +96,6 @@ public class RecipientPanel extends JPanel
 	
 	/**
 	 * Function: getEmailText()
-	 * @author ZackEvans
 	 * @return recipient email
 	 * 
 	 * This function returns the email recipient shown on the panel

@@ -23,7 +23,6 @@ public class DisplayNotes extends JScrollPane
 	
 	/**
 	 * Constructor: DisplayNotes()
-	 * @author ZackEvans
 	 * 
 	 * call hierarchy
 	 */
@@ -35,7 +34,6 @@ public class DisplayNotes extends JScrollPane
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Function calls methods to create the notes display
 	 */
@@ -48,7 +46,6 @@ public class DisplayNotes extends JScrollPane
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
 	 * This function sets properties on the text area.
 	 * This function adds a thin matte border on 2 sides of the text area and makes it not be able to scroll right to left
@@ -70,7 +67,6 @@ public class DisplayNotes extends JScrollPane
 	
 	/**
 	 * Function: displayNote(int ID)
-	 * @author ZackEvans
 	 * @param ID
 	 * 
 	 * This function allows the note to be edited.
@@ -86,7 +82,6 @@ public class DisplayNotes extends JScrollPane
 	
 	/**
 	 * Function: documentChange()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a document listener to the text area.
 	 * Function is set up to continuously save the users progress as the work.
@@ -115,7 +110,6 @@ public class DisplayNotes extends JScrollPane
 	
 	/**
 	 * Function: updateChange()
-	 * @author ZackEvans
 	 * 
 	 * This function updates the body in the database
 	 */
@@ -142,7 +136,6 @@ public class DisplayNotes extends JScrollPane
 	
 	/**
 	 * Function: clearDisplay()
-	 * @author ZackEvans
 	 * 
 	 * This function restricts the text area if there is not a note selected
 	 * This function clears all the text out of the text area.

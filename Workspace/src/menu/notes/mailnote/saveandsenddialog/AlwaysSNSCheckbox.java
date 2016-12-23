@@ -13,7 +13,6 @@ public class AlwaysSNSCheckbox extends JCheckBox
 {
 	/**
 	 * Constructor: AlwaysSNSCheckbox()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls the check box hierarchy and calls a method to setup the checkbox
 	 */
@@ -26,7 +25,6 @@ public class AlwaysSNSCheckbox extends JCheckBox
 	
 	/**
 	 * Function: createCheckBox()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the text for the check box and removes the border & focus border.
 	 */

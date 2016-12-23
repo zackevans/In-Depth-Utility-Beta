@@ -9,29 +9,37 @@ import javax.swing.JTextField;
 import menu.buffer.BufferPanel;
 import program.textfield.PasswordTextFieldShell;
 
+/**
+ * Class: LoginField
+ * @author ZackEvans
+ *
+ * This class holds the textfield the user enters their password in
+ */
+
 public class LoginField 
 {
 	BufferPanel bufferPanel;
 	public static JTextField loginField = new PasswordTextFieldShell();
 	public JLabel loginLabel = new JLabel("Password: ");
 	
+	/**
+	 * Constructor: LoginField(BufferPanel bufferPanel)
+	 * @param bufferPanel
+	 * 
+	 * This constructor inherits the bufferpanel object and calls a method to 
+	 */
+	
 	public LoginField(BufferPanel bufferPanel)
 	{
-		initialize();
 		this.bufferPanel = bufferPanel;
-	}
-	
-	
-	public void initialize()
-	{
-		createTextField();
 		addListeners();
 	}
 	
-	public void createTextField()
-	{
-		
-	}
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function add a key listener to the text field. Every time the user hits the enter key it executes an action.
+	 */
 	
 	public void addListeners()
 	{
@@ -40,10 +48,9 @@ public class LoginField
 			@Override
 			public void keyPressed(KeyEvent e) 
 			{
-				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) // if the key is the enter button
 				{
-					LoginButton loginButton = new LoginButton(bufferPanel);
-					loginButton.loginAction();
+					LoginPanel.loginButton.loginAction();
 				}	
 			}
 			

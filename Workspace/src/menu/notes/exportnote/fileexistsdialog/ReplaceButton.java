@@ -25,7 +25,6 @@ public class ReplaceButton extends JButton
 	
 	/**
 	 * Constructor: ReplaceButton (BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * This constructor inherits the bufferPanel obejct and calls the button hierarchy.
@@ -41,7 +40,6 @@ public class ReplaceButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create and setup the button.
 	 */
@@ -54,7 +52,6 @@ public class ReplaceButton extends JButton
 	
 	/**
 	 * Function: createBtn()
-	 * @author ZackEvans
 	 * 
 	 * This function sets the text of the button and doesent let it gain focus ever
 	 */
@@ -67,7 +64,6 @@ public class ReplaceButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener that overwrites the same file.
 	 */

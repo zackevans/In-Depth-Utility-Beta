@@ -24,7 +24,6 @@ public class SearchBar
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * Calls methods to create searchbar components
 	 */
@@ -37,7 +36,6 @@ public class SearchBar
 	
 	/**
 	 * Function: createSearchbar()
-	 * @author ZackEvans
 	 * 
 	 * customize label
 	 */
@@ -49,7 +47,6 @@ public class SearchBar
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * Function adds focous and action listener to the textfield
 	 */
@@ -97,7 +94,6 @@ public class SearchBar
 	
 	/**
 	 * Function: updateNotesList()
-	 * @author ZackEvans
 	 * 
 	 * This function updates the Jlist that displays the note names. 
 	 */
@@ -112,8 +108,7 @@ public class SearchBar
 	}
 	
 	/**
-	 * Function:doesTextExist()
-	 * @author ZackEvans
+	 * Function: doesTextExist()
 	 * @return if there is text in the text field
 	 * 
 	 * This function return true or false based on if there is text in the textfield

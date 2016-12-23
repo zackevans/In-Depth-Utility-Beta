@@ -14,17 +14,37 @@ import jobs.jobs.LockAppJob;
 import menu.buffer.BufferPanel;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 
+/**
+ * Class: LockAppJobScheduler
+ * @author ZackEvans
+ *
+ * This class holds methods that create a job for locking the app after X ammout of time
+ */
+
 public class LockAppJobScheduler 
 {
 	BufferPanel bufferPanel;
 	static Scheduler scheduler; // schedule the process
-	private static final String[] cronExpressions = {"0 0/5 * 1/1 * ? *", "0 0/20 * 1/1 * ? *", "0 0/40 * 1/1 * ? *", "0 0 0/1 1/1 * ? *", "0 0 0/2 1/1 * ? *", "0 0 0/5 1/1 * ? *" };
+	private static final String[] cronExpressions = {"0 0/5 * 1/1 * ? *", "0 0/20 * 1/1 * ? *", "0 0/40 * 1/1 * ? *", "0 0 0/1 1/1 * ? *", "0 0 0/2 1/1 * ? *", "0 0 0/5 1/1 * ? *"};
+	
+	/**
+	 * Constructor: LockAppJobScheduler(BufferPanel bufferPanel)
+	 * @param bufferPanel
+	 * 
+	 * This constructor inherits the bufferPanel object and calls a method to create the Job.
+	 */
 	
 	public LockAppJobScheduler(BufferPanel bufferPanel)
 	{
 		this.bufferPanel = bufferPanel;
 		createLockJob();
 	}
+	
+	/**
+	 * Function: createLockJob()
+	 * 
+	 * This function creates a job that locks the application after a certian interval.
+	 */
 	
 	public void createLockJob()
 	{
@@ -41,7 +61,7 @@ public class LockAppJobScheduler
 		try 
 		{
 			scheduler = new StdSchedulerFactory().getScheduler();
-			scheduler.getContext().put("BufferPanel", bufferPanel);
+			scheduler.getContext().put("BufferPanel", bufferPanel); // "Pass" value
 			scheduler.start();
 	    	scheduler.scheduleJob(job, trigger);
 	    } 
@@ -51,6 +71,14 @@ public class LockAppJobScheduler
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * Function: recheduleLockAppJob(int jobTime)
+	 * @param jobTime
+	 * 
+	 * This function makes the job fire at a different interval
+	 */
 	
 	public static void recheduleLockAppJob(int jobTime)
 	{

@@ -30,7 +30,6 @@ public class StatusBar extends JPanel
 	
 	/**
 	 * Constructor: TopBar (BufferPanel bufferPanel)
-	 * @author ZackEvans
 	 * @param bufferPanel
 	 * 
 	 * Constructor call hierarchy, inherits the bufferPanel object and sets the topbar clear
@@ -45,7 +44,6 @@ public class StatusBar extends JPanel
 	
 	/**
 	 * Function: paintComponent(Graphics g)*
-	 * @author ZackEvans
 	 * 
 	 * Function paints lines to create the top bar
 	 */
@@ -60,9 +58,8 @@ public class StatusBar extends JPanel
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
-	 * Function calls functions to create the topbar
+	 * this function calls functions to create the topbar
 	 */
 	
 	public void initialize()
@@ -73,9 +70,8 @@ public class StatusBar extends JPanel
 	
 	/**
 	 * Function: createComponents()
-	 * @author ZackEvans
 	 * 
-	 * Function creates and sets location of items to be added to the status bar
+	 * this function creates and sets location of items to be added to the status bar
 	 */
 	
 	public void createComponents()
@@ -100,6 +96,12 @@ public class StatusBar extends JPanel
 		//LockButton.lockButton.setBorder(BorderFactory.createLineBorder(Color.red));
 		
 	}
+	
+	/**
+	 * Function: layoutComponents()
+	 * 
+	 * This function sets the layout manager and adds the components to the status bar.
+	 */
 	
 	public void layoutComponents()
 	{

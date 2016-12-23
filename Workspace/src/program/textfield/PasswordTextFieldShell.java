@@ -15,10 +15,9 @@ public class PasswordTextFieldShell extends JPasswordField
 {
 	/**
 	 * Function: paintComponent(Graphics g) 
-	 * @author ZackEvans
 	 * @param Graphics g
 	 * 
-	 * round corners of textfield
+	 * round corners of text field
 	 */
 	
 	@Override
@@ -31,10 +30,9 @@ public class PasswordTextFieldShell extends JPasswordField
 	
 	/**
 	 * Function: paintBorder(Graphics g)
-	 * @author ZackEvans
 	 * @param Graphics g
 	 * 
-	 * round border of textfield
+	 * round border of text field
 	 */
 	
     @Override
@@ -43,5 +41,4 @@ public class PasswordTextFieldShell extends JPasswordField
          g.setColor(getForeground());
          g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 6, 6);
     }
-
 }

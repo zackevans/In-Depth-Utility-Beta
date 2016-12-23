@@ -24,7 +24,6 @@ public class RemoveButton extends JButton
 	
 	/**
 	 * Constructor: RemoveButton(RecipientPanel recipientPanel)
-	 * @author ZackEvans
 	 * @param recipientPanel
 	 * 
 	 * Constructor calls button hierarchy and saves the RecipientPanel object that is passed to it.
@@ -40,7 +39,6 @@ public class RemoveButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the button
 	 */
@@ -53,7 +51,6 @@ public class RemoveButton extends JButton
 	
 	/**
 	 * Function: createBtn()
-	 * @author ZackEvans
 	 * 
 	 * This function set icons for the button
 	 */
@@ -75,7 +72,6 @@ public class RemoveButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds a action listener to the button that when clicked clears the search bar text.
 	 * This function adds a mouse listener to the button so RecipientViewer doesn't disappear when mouse is over it.
@@ -92,7 +88,6 @@ public class RemoveButton extends JButton
 				RecipientButton.updateButtonNumber(); // update the button number after a deletion
 			}
 		});
-		
 		
 		addMouseListener(new MouseAdapter()  // add a mouse listener to the button so RecipientViewer doesn't disappear when mouse is over it.
 		{

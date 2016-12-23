@@ -10,6 +10,13 @@ import launch.app.LaunchApp;
 import menu.notes.exportnote.fileexistsdialog.WarningImage;
 import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 
+/**
+ * Class: updateErrorText()
+ * @author ZackEvans
+ * 
+ * This class holds a frame for a dialog that lets the user know an email doesn't exist.
+ */
+
 public class NoEmailDialog 
 {
 	public static JFrame noEmailDialogFrame= new JFrame();
@@ -20,11 +27,24 @@ public class NoEmailDialog
 	JButton addEmailButton;
 	SettingsBufferPanel settingsBufferPanel;
 	
+	/**
+	 * Constructor: NoEmailDialog (SettingsBufferPanel settingsBufferPanel)
+	 * @param settingsBufferPanel
+	 * 
+	 * This constructor inherits the settings buffer panel object.
+	 */
+	
 	public NoEmailDialog (SettingsBufferPanel settingsBufferPanel)
 	{
 		this.settingsBufferPanel = settingsBufferPanel;
 	}
 		
+	/**
+	 * Function: launchDialog()
+	 * 
+	 * This function shows the dialog.
+	 */
+	
 	public void launchDialog()
 	{	
 		if (clicked == false) // if the panel has not been clicked
@@ -39,6 +59,12 @@ public class NoEmailDialog
 		}
 	}
 	
+	/**
+	 * Function: createAndShowGUI()
+	 * 
+	 * This function creates the dialog then displays it.
+	 */
+	
 	public void createAndShowGUI()
 	{
 		createComponents(); // call method to create the components on the panel
@@ -50,6 +76,12 @@ public class NoEmailDialog
 		
 		showWindow(); // display the window.
 	}
+	
+	/**
+	 * Function: showWindow() 
+	 * 
+	 * This function calculates where the dialog should display and shows it.
+	 */
 	
 	public void showWindow()
 	{
@@ -63,6 +95,12 @@ public class NoEmailDialog
 		//ShareList.list.clearSelection();
 		noEmailDialogFrame.setVisible(true);
 	}
+	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This function creates all the components to be added to the panel. Then sets the size and location of them.
+	 */
 	
 	public void createComponents()
 	{
@@ -79,6 +117,12 @@ public class NoEmailDialog
 		cancelButton.setBounds(170, 105, 100,25);
 		addEmailButton.setBounds(275, 105, 100,25);
 	}
+	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function sets the layout manager and adds the components to the frame.
+	 */
 	
 	public void addComponents()
 	{

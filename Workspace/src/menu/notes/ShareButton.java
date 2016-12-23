@@ -23,7 +23,6 @@ public class ShareButton extends JButton
 	
 	/**
 	 * Constructor:  ShareButton ()
-	 * @author ZackEvans
 	 * 
 	 * Call super Run button hierarchy
 	 * Inherit bufferpanel object
@@ -37,7 +36,6 @@ public class ShareButton extends JButton
 	
 	/**
 	 * Function: initialize()
-	 * @author ZackEvans
 	 * 
 	 * This function calls methods to create the button
 	 */
@@ -50,7 +48,6 @@ public class ShareButton extends JButton
 	
 	/**
 	 * Function: createBtn();
-	 * @author ZackEvans
 	 * 
 	 * This function adds an image to the button
 	 */
@@ -64,7 +61,6 @@ public class ShareButton extends JButton
 	
 	/**
 	 * Function: addListeners()
-	 * @author ZackEvans
 	 * 
 	 * This function adds an action listener to the button.
 	 * When the button is clicked it shows a window with sharing options

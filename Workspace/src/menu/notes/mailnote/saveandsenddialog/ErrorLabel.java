@@ -13,7 +13,6 @@ public class ErrorLabel extends JTextArea
 {
 	/**
 	 * Constructor: ErrorLabel()
-	 * @author ZackEvans
 	 * 
 	 * This constructor calls text area hierarchy and calls a method to setup the label
 	 */
@@ -26,7 +25,6 @@ public class ErrorLabel extends JTextArea
 	
 	/**
 	 * Function: createLabel()
-	 * @author ZackEvans
 	 * 
 	 * This method makes the text ara clear and wraps the words so words are not cut off.
 	 */
