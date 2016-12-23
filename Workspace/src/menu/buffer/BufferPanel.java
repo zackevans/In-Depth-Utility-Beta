@@ -13,6 +13,7 @@ import menu.notes.Notes;
 import menu.notes.exportnote.ExportNote;
 import menu.notes.mailnote.MailNote;
 import menu.settings.SettingsPanel;
+import menu.settings.settingsbufferpanel.SettingsBufferPanel;
 import sql.systemsettings.passwordsettings.PasswordSettingsDatabase;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 import statusbar.addons.BufferPanelBackButton;
@@ -42,7 +43,6 @@ public class BufferPanel extends JPanel
 	
 	/**
 	 * Constructor: BufferPanel()
-	 * @author ZackEvans
 	 * 
 	 * this constructor calls panel hierarchy.
 	 */
@@ -54,7 +54,6 @@ public class BufferPanel extends JPanel
 	
 	/**
 	 * Function: initialize
-	 * @author ZackEvans
 	 * 
 	 * Calls methods to create panel and components
 	 */
@@ -70,11 +69,9 @@ public class BufferPanel extends JPanel
 	
 	/**
 	 * Function: createComponents
-	 * @author ZackEvans
 	 * 
 	 * initialize object
 	 * Add panel object in to hashmap (mapPanels) 
-	 * 
 	 */
 	
 	public void createComponents() 
@@ -104,7 +101,6 @@ public class BufferPanel extends JPanel
 	
 	/**
 	 * Function: initializePanels
-	 * @author ZackEvans
 	 * 
 	 * Initialize (create) all Panels 
 	 */
@@ -127,7 +123,6 @@ public class BufferPanel extends JPanel
 	
 	/**
 	 * Function: addComponents
-	 * @author ZackEvans
 	 * 
 	 * add all main panel components to panel (Separated in categories)
 	 */
@@ -151,7 +146,6 @@ public class BufferPanel extends JPanel
 	
 	/**
 	 * Function: setDefaults
-	 * @author ZackEvans
 	 * 
 	 * Check to see if there is a password in the database (getPassExist)
 	 * Show login panel or main menu at start of the program
@@ -174,7 +168,6 @@ public class BufferPanel extends JPanel
 	
 	/** 
 	 * Function: showPanel
-	 * @author ZackEvans
 	 * @param panelName
 	 * @see new panel
 	 * 
@@ -202,7 +195,6 @@ public class BufferPanel extends JPanel
 	
 	/**
 	 * Function: showRawPanel(String panelName)
-	 * @author ZackEvans
 	 * @param panelName
 	 * 
 	 * This function shows a panel on the bufferPanel no questions asked.
@@ -223,7 +215,6 @@ public class BufferPanel extends JPanel
 	
 	/**
 	 * Function: checkBackButton(String panelName)
-	 * @author ZackEvans
 	 * @param panelname
 	 * 
 	 * This function shows the back button when needed.
@@ -232,35 +223,54 @@ public class BufferPanel extends JPanel
 	
 	public void checkBackButton(String panelName)
 	{
-		if(panelName == "MAIN_MENU")
+		switch (panelName) 
 		{
-			BufferPanelBackButton.backButton.setVisible(false);
-		}
-			
-		else if(panelName == "NOTES")
-		{
-			BufferPanelBackButton.backButton.setVisible(true);
-			lastPanel = "MAIN_MENU";
-		}
-			
-		else
-		{
-			BufferPanelBackButton.backButton.setVisible(true);
+			case "MAIN_MENU":
+				BufferPanelBackButton.backButton.setVisible(false);
+				break;
+			case "NOTES":
+				BufferPanelBackButton.backButton.setVisible(true);
+				lastPanel = "MAIN_MENU";
+				break;
+			default:
+				BufferPanelBackButton.backButton.setVisible(true);
+				break;
 		}
 	}
 	
+	/**
+	 * Function: showPanelPresets(String panelName)
+	 * @param panelName
+	 * 
+	 * This function sets panel presets. When each panel is loaded it is checked to see if it has any presets.
+	 */
+	
 	public void showPanelPresets(String panelName)
 	{
-		if(panelName == "LOGIN_PANEL")
+		switch (panelName) 
 		{
-			SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
-			
-			BufferPanelBackButton.backButton.setVisible(false);
-			LockButton.lockButton.setVisible(false);
-			LoginErrors.loginError.setVisible(false);
-			LoginField.loginField.setText("");
-			LoginField.loginField.requestFocusInWindow();
-			NotificationsButton.notificationsButton.setVisible(!securitySettingsDatabase.getShowNotificationsValue());
+			case "LOGIN_PANEL":
+				SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
+				BufferPanelBackButton.backButton.setVisible(false);
+				LockButton.lockButton.setVisible(false);
+				LoginErrors.loginError.setVisible(false);
+				LoginField.loginField.setText("");
+				LoginField.loginField.requestFocusInWindow();
+				NotificationsButton.notificationsButton.setVisible(!securitySettingsDatabase.getShowNotificationsValue());
+				break;
+			case "SETTINGS_MENU":
+				SettingsBufferPanel.resetAllPanels();
+				break;
+			case "MAIL_NOTES":
+				MailNote.clearPanel(); // reset all components on the panel
+    			MailNote.autoFill();
+				break;
+			case "EXPORT_NOTE":
+				ExportNote.clearPanel();
+    			ExportNote.autoFill();
+				break;
+			default:
+				break;
 		}
 	}
 }

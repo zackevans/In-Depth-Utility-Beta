@@ -10,17 +10,36 @@ import menu.settings.SettingsList;
 import menu.settings.settingspanels.passwordandsecuritypanel.PasswordAndSecuritySettingsPanel;
 import menu.settings.settingspanels.userpanel.UserSettingsPanel;
 
+/**
+ * Class: SettingsBufferPanel
+ * @author ZackEvans
+ *
+ * This class is a panel that shows the content for the settings menus.
+ */
+
 public class SettingsBufferPanel extends JPanel
 {
-	private Map <String, JPanel> mapPanels = new HashMap <String, JPanel>();
+	private Map <String, JPanel> mapPanels = new HashMap <>();
 	private PasswordAndSecuritySettingsPanel passwordAndSecuritySettingsPanel;
 	private UserSettingsPanel userSettingsPanel;
+	
+	/**
+	 * Constructor: SettingsBufferPanel ()
+	 * 
+	 * This constructor calls the panel hierarchy and calls a method to create the panel.
+	 */
 	
 	public SettingsBufferPanel ()
 	{
 		super();
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls methods that create the panel
+	 */
 	
 	public void initialize()
 	{
@@ -31,6 +50,12 @@ public class SettingsBufferPanel extends JPanel
 		setOpaque(false);
 	}
 	
+	/**
+	 * Function: createComponents()
+	 * 
+	 * This function creates the objects to be added to the panel and adds the panels to a map for fast lookup.
+	 */
+	
 	public void createComponents()
 	{
 		passwordAndSecuritySettingsPanel = new PasswordAndSecuritySettingsPanel(this);
@@ -40,11 +65,23 @@ public class SettingsBufferPanel extends JPanel
 		mapPanels.put("USER_SETTINGS", userSettingsPanel);
 	}
 	
+	/**
+	 * Function: initializePanels()
+	 * 
+	 * This function calls methods to set up the individual components.
+	 */
+	
 	public void initializePanels()
 	{
 		passwordAndSecuritySettingsPanel.initialize();
 		userSettingsPanel.initialize();
 	}
+	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This methods adds the components to the panel
+	 */
 	
 	public void addComponents()
 	{
@@ -54,7 +91,6 @@ public class SettingsBufferPanel extends JPanel
 	
 	/** 
 	 * Function: showPanel
-	 * @author ZackEvans
 	 * @param panelName
 	 * @see new panel
 	 * 
@@ -72,16 +108,25 @@ public class SettingsBufferPanel extends JPanel
 		panelToShow.setVisible(true); // set new panel visible 
 	}
 	
+	/**
+	 * Function: showPanelAndList(String panelName)
+	 * @param panelName
+	 * 
+	 * This function shows a panel and highlights the corresponding item in the list.
+	 */
+	
 	public void showPanelAndList(String panelName)
 	{
-		clearPanel();
-		setPanelPresets(panelName);
-		
-		JPanel panelToShow = mapPanels.get(panelName); // Create holding panel (panelToShow) and set equal to panelName (Passed Pram)
-		panelToShow.setVisible(true); // set new panel visible 
+		showPanel(panelName); 
 		
 		SettingsList.settingsList.setSelectedIndex(Arrays.asList(SettingsList.listItems).indexOf(panelName) +1);
 	}
+	
+	/**
+	 * Function: clearPanel()
+	 * 
+	 * This function hides all the panels on the frame.
+	 */
 	
 	public void clearPanel()
 	{
@@ -91,22 +136,37 @@ public class SettingsBufferPanel extends JPanel
 		}
 	}
 	
+	/**
+	 * Function: resetAllPanels()
+	 * 
+	 * This function sets the presets for all of the panels.
+	 */
+	
 	public static void resetAllPanels()
 	{
 		PasswordAndSecuritySettingsPanel.resetPanel();
 		UserSettingsPanel.resetPanel();
 	}
 	
+	/**
+	 * Function: setPanelPresets(String panelName)
+	 * @param panelName
+	 * 
+	 * This function sets up default state for all of the panels.
+	 */
+	
 	public void setPanelPresets(String panelName)
 	{
-		if(panelName == "USER_SETTINGS")
+		switch (panelName) 
 		{
-			UserSettingsPanel.resetPanel();
-		}
-		
-		if(panelName == "PASSWORD_AND_SECURITY_SETTINGS")
-		{
-			PasswordAndSecuritySettingsPanel.resetPanel();
+			case "USER_SETTINGS":
+				UserSettingsPanel.resetPanel();
+				break;
+			case "PASSWORD_AND_SECURITY_SETTINGS":
+				PasswordAndSecuritySettingsPanel.resetPanel();
+				break;
+			default:
+				break;
 		}
 	}
 }
