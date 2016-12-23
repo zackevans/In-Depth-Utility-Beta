@@ -9,20 +9,37 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import program.util.textfield.JTextFieldLimit;
+import program.textfield.TextFieldShell;
 import sql.userinfo.UserInfoDatabase;
+
+/**
+ * Class: PhoneNumberPanel
+ * @author ZackEvans
+ *
+ * This class is a panel holds components that get the users phone number.
+ */
 
 public class PhoneNumberPanel extends JPanel
 {
-	static JTextField firstDigitsField = new JTextField();
-	static JTextField middleDigitsField = new JTextField();
-	static JTextField lastsDigitsField = new JTextField();
+	static JTextField phoneNumberField = new TextFieldShell();
+	
+	/**
+	 * Constructor: PhoneNumberPanel()
+	 * 
+	 * This constructor calls the panel hierarchy and a method to create the panel.
+	 */
 	
 	public PhoneNumberPanel()
 	{
 		super();
 		initialize();	
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function sets the layout manager of the panel and calls methods to create the components.
+	 */
 	
 	public void initialize()
 	{
@@ -32,174 +49,81 @@ public class PhoneNumberPanel extends JPanel
 		addListeners();
 	}
 	
+	/**
+	 * Function: createTextfields()
+	 * 
+	 * This function sets the size of the field.
+	 */
+	
 	public void createTextfields()
 	{
-		firstDigitsField.setDocument(new JTextFieldLimit(3));
-		firstDigitsField.setPreferredSize(new Dimension(40, 23));
-		
-		middleDigitsField.setDocument(new JTextFieldLimit(3));
-		middleDigitsField.setPreferredSize(new Dimension(40, 23));
-		
-		lastsDigitsField.setDocument(new JTextFieldLimit(4));
-		lastsDigitsField.setPreferredSize(new Dimension(50, 23));
+		phoneNumberField.setPreferredSize(new Dimension(200, 23));
 	}
+	
+	/**
+	 * Function: addComponents()
+	 * 
+	 * This function adds the components to the panel
+	 */
 	
 	public void addComponents()
 	{	
 		JLabel phoneLabel = new JLabel("Phone: ");
-		JLabel spacerLabel1 = new JLabel("-");
-		JLabel spacerLabel = new JLabel("-");
 		setOpaque(false);
 		
 		add(phoneLabel);
-		add(firstDigitsField);
-		add(spacerLabel1);
-		add(middleDigitsField);
-		add(spacerLabel);
-		add(lastsDigitsField);
+		add(phoneNumberField);
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds a document listener to the panel so when info is changed in the field it updates the value in the database
+	 */
 	
 	public void addListeners()
 	{
-		addFirstDigitsListener();
-		addMiddleDigitsListeners();
-		addLastDigitsListeners();
-	}
-	
-	public void addFirstDigitsListener()
-	{
-		firstDigitsField.getDocument().addDocumentListener(new DocumentListener() 
+		phoneNumberField.getDocument().addDocumentListener(new DocumentListener() 
 		{
+			
 			@Override
 			public void removeUpdate(DocumentEvent e) 
 			{
-				updateNumber();
+				saveValue(phoneNumberField.getText());
 			}
 			
 			@Override
 			public void insertUpdate(DocumentEvent e) 
 			{
-				updateNumber();
-				
-				if(firstDigitsField.getText().length() == 3)
-				{
-					middleDigitsField.requestFocusInWindow();
-				}
+				saveValue(phoneNumberField.getText());
 			}
-			
 			@Override
 			public void changedUpdate(DocumentEvent e) {}
 		});
 	}
 	
-	public void addMiddleDigitsListeners()
-	{
-		middleDigitsField.getDocument().addDocumentListener(new DocumentListener() 
-		{
-			@Override
-			public void removeUpdate(DocumentEvent e) 
-			{
-				updateNumber();
-				if(middleDigitsField.getText().length() == 0)
-				{
-					firstDigitsField.requestFocusInWindow();
-				}
-			}
-			
-			@Override
-			public void insertUpdate(DocumentEvent e) 
-			{
-				updateNumber();
-				
-				if(middleDigitsField.getText().length() == 3)
-				{
-					lastsDigitsField.requestFocusInWindow();
-				}	
-			}
-			
-			@Override
-			public void changedUpdate(DocumentEvent e) {}
-		});
-	}
+	/**
+	 * Function: saveValue(String phoneNumber)
+	 * @param phoneNumber
+	 * 
+	 * This function updates the value in the database with the value passed into the function
+	 */
 	
-	public void addLastDigitsListeners()
-	{
-		lastsDigitsField.getDocument().addDocumentListener(new DocumentListener() 
-		{
-			@Override
-			public void removeUpdate(DocumentEvent e) 
-			{
-				updateNumber();
-				
-				if(lastsDigitsField.getText().length() == 0)
-				{
-					middleDigitsField.requestFocusInWindow();	
-				}
-			}
-			
-			@Override
-			public void insertUpdate(DocumentEvent e) 
-			{
-				updateNumber();
-			}
-			
-			@Override
-			public void changedUpdate(DocumentEvent e) {}
-		});
-	}
-	
-	public void updateNumber()
+	public void saveValue(String phoneNumber)
 	{
 		UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
-		String phoneNumber = firstDigitsField.getText()+ middleDigitsField.getText() + lastsDigitsField.getText();
-		
 		userInfoDatabase.updatePhoneNumber(phoneNumber);
 	}
 	
-	public static void updateNumberFields()
+	/**
+	 * Function: updateValue()
+	 * 
+	 * This function updates the field with the value saved in the database.
+	 */
+	
+	public static void updateValue()
 	{
 		UserInfoDatabase userInfoDatabase = new UserInfoDatabase();
-		String phoneNumber = userInfoDatabase.getPhoneNumber();
-		
-		parsePhoneNumber(phoneNumber);	
-	}
-
-	public static void parsePhoneNumber(String phoneNumber)
-	{
-		if(phoneNumber.length() >= 7)
-		{
-			firstDigitsField.setText(phoneNumber.substring(0, 3));
-			phoneNumber = removeFirst3Char(phoneNumber);
-			
-			middleDigitsField.setText(phoneNumber.substring(0,3));
-			phoneNumber = removeFirst3Char(phoneNumber);
-			
-			lastsDigitsField.setText(phoneNumber);
-		}
-		
-		else if(phoneNumber.length() >= 4)
-		{
-			firstDigitsField.setText(phoneNumber.substring(0, 3));
-			phoneNumber = removeFirst3Char(phoneNumber);
-			
-			middleDigitsField.setText(phoneNumber);
-		}
-		
-		else
-		{
-			firstDigitsField.setText(phoneNumber);
-		}
-	}
-	
-	public static String removeFirst3Char(String str)
-	{
-		StringBuilder sb = new StringBuilder(str);
-		
-		for (int i=0; i <= 2; i++)
-		{
-			sb.deleteCharAt(0);
-		}
-		
-		return sb.toString();
+		phoneNumberField.setText(userInfoDatabase.getPhoneNumber());
 	}
 }
