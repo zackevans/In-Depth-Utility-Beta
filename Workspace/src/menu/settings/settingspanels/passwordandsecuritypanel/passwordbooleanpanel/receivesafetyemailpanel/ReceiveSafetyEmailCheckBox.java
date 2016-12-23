@@ -11,16 +11,37 @@ import program.util.email.EmailUtil;
 import sql.systemsettings.securitysettings.SecuritySettingsDatabase;
 import sql.userinfo.UserInfoDatabase;
 
-public class ReceiveSafteyEmailCheckBox extends JCheckBox
+/**
+ * Class: ReceiveSafteyEmailCheckBox
+ * @author ZackEvans
+ *
+ * This class is a checkbox will allow the user to receive an email when there are too many failed attempts.
+ */
+
+public class ReceiveSafetyEmailCheckBox extends JCheckBox
 {
 	SettingsBufferPanel settingsBufferPanel;
 	
-	public ReceiveSafteyEmailCheckBox (SettingsBufferPanel settingsBufferPanel)
+	/**
+	 * Constructor: ReceiveSafteyEmailCheckBox (SettingsBufferPanel settingsBufferPanel)
+	 * @param settingsBufferPanel
+	 * 
+	 * This panel calls the checkbox hierarchy and inherits the settingsbufferpanel object.
+	 * Then it calls a method to create the checkbox
+	 */
+	
+	public ReceiveSafetyEmailCheckBox (SettingsBufferPanel settingsBufferPanel)
 	{
 		super();
 		this.settingsBufferPanel = settingsBufferPanel;
 		initialize();
 	}
+	
+	/**
+	 * Function: initialize()
+	 * 
+	 * This function calls functions to create the panels
+	 */
 	
 	public void initialize()
 	{
@@ -28,10 +49,24 @@ public class ReceiveSafteyEmailCheckBox extends JCheckBox
 		addListeners();
 	}
 	
+	/**
+	 * Function: createCheckbox()
+	 * 
+	 * This function sets the text for the checkbox
+	 */
+	
 	public void createCheckbox()
 	{
 		setText("Receive Email After");
+		setFocusPainted(false);
 	}
+	
+	/**
+	 * Function: addListeners()
+	 * 
+	 * This function adds an action listener to the checkbox that when clicked it updates the value in the database 
+	 * or lets the user know that there is no email available for use.
+	 */
 	
 	public void addListeners()
 	{	
@@ -46,7 +81,7 @@ public class ReceiveSafteyEmailCheckBox extends JCheckBox
 				{
 					if(EmailUtil.validateEmailAddress(userInfoDatabase.getEmail()))
 					{
-						updateCombobox();
+						updateCheckboxValue();
 					}
 					
 					else
@@ -60,16 +95,21 @@ public class ReceiveSafteyEmailCheckBox extends JCheckBox
 				
 				else
 				{
-					updateCombobox();
+					updateCheckboxValue();
 				}				
 			}
 		});
 	}
 	
-	public void updateCombobox()
+	/**
+	 * Function: updateCombobox()
+	 * 
+	 * this function updates the database with the current value of the checkbox.
+	 */
+	
+	public void updateCheckboxValue()
 	{
 		SecuritySettingsDatabase securitySettingsDatabase = new SecuritySettingsDatabase();
-		
-		securitySettingsDatabase.updateReceiveEmailAttemptsValue(ReceiveSafteyEmailPanel.receiveSafteyEmailCheckbox.isSelected());
+		securitySettingsDatabase.updateReceiveEmailAttemptsValue(ReceiveSafetyEmailPanel.receiveSafteyEmailCheckbox.isSelected());
 	}
 }
