@@ -20,8 +20,11 @@ import jobs.handler.JobHandler;
 import menu.buffer.BufferPanel;
 import menu.notes.AddNoteButton;
 import menu.notes.addnotedialog.AddNoteDialog;
+import menu.notes.exportnote.fileexistsdialog.FileExistsDialog;
+import menu.notes.mailnote.saveandsenddialog.SaveAndSendDialog;
 import menu.notes.sharenotesdialog.ShareNotesDialog;
 import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.logpassattempts.attempsdialog.PasswordAttemptsDialog;
+import menu.settings.settingspanels.passwordandsecuritypanel.passwordbooleanpanel.receivesafetyemailpanel.noemaildialog.NoEmailDialog;
 import panel.wallpaper.Wallpaper;
 import sql.DataBase;
 import sql.notes.NotesDataBase;
@@ -53,7 +56,6 @@ public class LaunchApp
     
     /**
      * Function: main(String[] args) 
-     * @author ZackEvans
      * 
      * Main initial method
      * Creates thread to run GUI components
@@ -77,7 +79,6 @@ public class LaunchApp
     
     /**
      * Function: Create and show GUI()
-     * @author ZackEvans
      * 
      * sets size restraints
      * TODO Create a Wrapper so the main panel will be able to auto resize (See IDU Beta 1 Resize) 
@@ -141,7 +142,6 @@ public class LaunchApp
     
     /**
      * Function: dataBaseCalls()
-     * @author ZackEvans
      * 
      * Method that creates dbLocation and the Database
      * 
@@ -186,7 +186,6 @@ public class LaunchApp
      
     /**
      * Function: frameXPosition()
-     * @author ZackEvans
      * @return frame x coordinate
      * 
      * Function returns the X cordinate of the MainJFrame.
@@ -199,7 +198,6 @@ public class LaunchApp
     
     /**
      * Function: frameYPosition()
-     * @author ZackEvans
      * @return frame y coordinate
      * 
      * Function returns the Y cordinate of the MainJFrame.
@@ -212,7 +210,6 @@ public class LaunchApp
     
     /**
      * Function: getFrame()
-     * @author ZackEvans
      * @return frame
      * 
      * Function returns the main frame JFrame object
@@ -225,7 +222,6 @@ public class LaunchApp
     
     /**
      * Function: createWallpaperImage(URL url)
-     * @author ZackEvans
      * @param url
      * 
      * Function creates wallpaper image from a URL
@@ -244,12 +240,29 @@ public class LaunchApp
  		} 
     }
     
+    /**
+     * Function: hideAllOtherWindows()
+     * @author ZackEvans
+     * 
+     * This function hides all the other dialog windows in the app
+     */
+    
     public static void hideAllOtherWindows()
     {
     	ShareNotesDialog.customFrame.setVisible(false);
 		AddNoteDialog.customFrame.setVisible(false);
 		PasswordAttemptsDialog.customFrame.setVisible(false);
+		NoEmailDialog.noEmailDialogFrame.setVisible(false);
+		FileExistsDialog.sameNameDialogFrame.setVisible(false);
+		SaveAndSendDialog.saveAndSendDialogFrame.setVisible(false);
     }
+    
+    /**
+     * Function: createAppIcon()
+     * @author ZackEvans
+     * 
+     * This function sets the dock image for the application.
+     */
     
     public static void createAppIcon()
     {
