@@ -87,7 +87,8 @@ public class SendButton extends JButton
 					fromField = FromField.textField.getText(); // get text from the FromField
 					finalBody = body + "\n\n" + additionalComments + "\n\n" + "-" + fromField; // add all fields together to create email body
 					
-					PushEmail.sendEmailAndShowDialog(to, subject, finalBody,bufferPanel);
+					PushEmail.sendEmail(to, subject, body);
+					bufferPanel.showPanel(BufferPanel.lastPanel);
 				}
 				
 				else // if a field is empty
