@@ -28,7 +28,7 @@ public class CheckAndSendEmailJob implements Job
 			if(DatabaseUtil.countItems("SAVE_AND_SEND_EMAIL") > 0) // are there items in the database`
 			{
 				int firstdbID = saveAndSenddb.getFirstIndex(); // get the first 
-				int numberOfItemsIndb = DatabaseUtil.countItems("SAVE_AND_SEND_EMAIL"); // get number of items in the databse
+				int numberOfItemsIndb = DatabaseUtil.countItems("SAVE_AND_SEND_EMAIL"); // get number of items in the table
 				
 				for(int i = firstdbID; i < firstdbID + numberOfItemsIndb; i++) // run through all the IDs in the db
 				{
