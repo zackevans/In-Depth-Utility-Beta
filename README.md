@@ -1,4 +1,4 @@
-# In-Depth-Utility-Beta-2.0
+# In-Depth-Utility-Beta-
 A Utilities Application for Mac:
 
 Check out the release tab to download jar
